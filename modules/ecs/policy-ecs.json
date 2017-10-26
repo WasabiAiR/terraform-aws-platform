@@ -1,0 +1,23 @@
+{
+    "Statement": [
+        {
+            "Action": [
+                "ecs:DeregisterContainerInstance",
+                "ecs:DiscoverPollEndpoint",
+                "ecs:Poll",
+                "ecs:RegisterContainerInstance",
+                "ecs:StartTelemetrySession",
+                "ecs:Submit*",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "rekognition:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        }
+    ],
+    "Version": "2012-10-17"
+}
+
