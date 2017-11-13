@@ -66,3 +66,133 @@
 * Fill in the rest of the variables, review the output of a `terraform plan`, then apply the changes.
 * Create a CNAME from your `dns_name` to the value of the `GrayMetaPlatformEndpoint` output. This needs to be publicly resolvable.
 * Load `https://dns_name` where _dns\_name_ is the name you chose above. The default username is `admin@graymeta.com`. The password is set to the instance ID of one of the Services nodes of the platform. These are tagged with the name `GrayMetaPlatform-${platform_instance_id}-Services` in the EC2 console. There should be at least 2 nodes running. Try the instance ID of both. After logging in for the first time, change the password of the `admin@graymeta.com` account. Create other accounts as necessary.
+
+## Example
+
+```
+
+locals {
+    platform_instance_id = "labs"
+    key_name             = "jhancock"
+}
+
+provider "aws" {
+    region = "us-east-1"
+}
+
+module "network" {
+    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.2"
+
+    platform_instance_id = "${local.platform_instance_id}"
+    region               = "us-east-1"
+    az1                  = "us-east-1a"
+    az2                  = "us-east-1b"
+}
+
+module "platform" {
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.2"
+
+    platform_instance_id       = "${local.platform_instance_id}"
+    region                     = "us-east-1"
+    key_name                   = "${local.key_name}"
+    platform_access_cidrs      = "0.0.0.0/0"
+    file_storage_s3_bucket_arn = "arn:aws:s3:::cfn-file-api"
+    dns_name                   = "foo.cust.graymeta.com"
+    ssl_certificate_arn        = "arn:aws:acm:us-east-1:913397769129:certificate/507e54c3-51a4-45b3-ae21-9cb4647bb671"
+
+    # RDS Configuration
+    db_username      = "mydbuser"
+    db_password      = "mydbpassword"
+    db_instance_size = "db.t2.small"
+
+    # ECS Cluster Configuration
+    ecs_instance_type    = "c4.large"
+    ecs_max_cluster_size = 2
+    ecs_min_cluster_size = 1
+
+    # Services Cluster Configuration
+    services_instance_type    = "m4.large"
+    services_max_cluster_size = 4
+    services_min_cluster_size = 2
+
+    # Encryption Tokens - 32 character alpha numberic strings
+    client_secret_fe       = "012345678901234567890123456789ab"
+    client_secret_internal = "012345678901234567890123456789ab"
+    jwt_key                = "012345678901234567890123456789ab"
+    encryption_key         = "012345678901234567890123456789ab"
+
+    # Elasticache Configuration
+    elasticache_instance_type_services = "cache.m4.large"
+    elasticache_instance_type_facebox  = "cache.m4.large"
+
+    ecs_nat_ip                = "${module.network.ecs_nat_ip}/32"
+    ecs_subnet_id             = "${module.network.ecs_subnet_id}"
+    public_subnet_id_1        = "${module.network.public_subnet_id_1}"
+    public_subnet_id_2        = "${module.network.public_subnet_id_2}"
+    rds_subnet_id_1           = "${module.network.rds_subnet_id_1}"
+    rds_subnet_id_2           = "${module.network.rds_subnet_id_2}"
+    services_subnet_id_1      = "${module.network.services_subnet_id_1}"
+    services_subnet_id_2      = "${module.network.services_subnet_id_2}"
+    elasticsearch_subnet_id_1 = "${module.network.elasticsearch_subnet_id_1}"
+    elasticsearch_subnet_id_2 = "${module.network.elasticsearch_subnet_id_2}"
+    ssh_cidr_blocks           = "10.0.0.0/24,10.0.1.0/24"
+
+    ###############################################################
+    # Cognitive Service Configuration
+    ###############################################################
+
+    # Facebox API Key
+    facebox_key                      = ""
+
+    # Azure Vision
+    azure_emotion_key                = ""
+    azure_face_api_key               = ""
+    azure_vision_key                 = ""
+
+    # Geonames (geocoding)
+    geonames_user                    = ""
+
+    # Google maps (for plotting geocoded results on a map in the UI
+    google_maps_key                  = ""
+
+    # Google Speech To Text
+    google_speech_auth_json          = ""
+    google_speech_bucket             = ""
+    google_speech_project_id         = ""
+
+    # Google Vision
+    google_vision_features           = ""
+    google_vision_key                = ""
+
+    # Apptek Language ID
+    languageid_apptek_host           = ""
+    languageid_apptek_password       = ""
+    languageid_apptek_segment_length = ""
+    languageid_apptek_username       = ""
+
+    # Microsoft Speech to Text
+    microsoft_speech_api_key         = ""
+
+    # Pic Purify
+    pic_purify_key                   = ""
+    pic_purify_tasks                 = ""
+
+    # DM Safety
+    safety_dm_host                   = ""
+    safety_dm_pass                   = ""
+    safety_dm_user                   = ""
+
+    # Apptek Speech To Text
+    speech_apptek_concurrency        = ""
+    speech_apptek_host               = ""
+    speech_apptek_password           = ""
+    speech_apptek_username           = ""
+
+    # Watson Speech To Text
+    watson_speech_password           = ""
+    watson_speech_username           = ""
+
+    # Weather (forecast.io API key)
+    weather_api_key                  = ""
+}
+```
