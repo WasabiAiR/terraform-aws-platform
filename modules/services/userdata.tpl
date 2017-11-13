@@ -40,6 +40,9 @@ write_files:
 -   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         facebox_host=http://127.0.0.1:9090
+        gm_auth_api_redis=${elasticache_services}:6379
+        gm_auth_api_redis_db=0
+        gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
         gm_container_image=graymeta/harvester
         gm_data_api=https://${dns_name}/api/data

@@ -195,4 +195,8 @@ module "platform" {
     # Weather (forecast.io API key)
     weather_api_key                  = ""
 }
+
+output "GrayMetaPlatformEndpoint" {
+    value = "${module.platform.GrayMetaPlatformEndpoint}"
+}
 ```
