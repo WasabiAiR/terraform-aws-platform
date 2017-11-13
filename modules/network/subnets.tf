@@ -82,3 +82,27 @@ resource "aws_subnet" "ecs" {
         PlatformInstanceID = "${var.platform_instance_id}"
     }
 }
+
+resource "aws_subnet" "elasticsearch_1" {
+    vpc_id            = "${aws_vpc.main.id}"
+    cidr_block        = "${var.cidr_subnet_elasticsearch_1}"
+    availability_zone = "${var.az1}"
+
+    tags {
+        Name               = "GrayMetaPlatform-${var.platform_instance_id}-Elasticsearch1"
+        Application        = "GrayMetaPlatform"
+        PlatformInstanceID = "${var.platform_instance_id}"
+    }
+}
+
+resource "aws_subnet" "elasticsearch_2" {
+    vpc_id            = "${aws_vpc.main.id}"
+    cidr_block        = "${var.cidr_subnet_elasticsearch_2}"
+    availability_zone = "${var.az2}"
+
+    tags {
+        Name               = "GrayMetaPlatform-${var.platform_instance_id}-Elasticsearch2"
+        Application        = "GrayMetaPlatform"
+        PlatformInstanceID = "${var.platform_instance_id}"
+    }
+}

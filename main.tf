@@ -31,6 +31,16 @@ module "elasticache" {
     instance_type_facebox  = "${var.elasticache_instance_type_facebox}"
 }
 
+module "elasticsearch" {
+    source = "./modules/elasticsearch"
+
+    platform_instance_id = "${var.platform_instance_id}"
+    region               = "${var.region}"
+    security_group_ids   = "${module.services.services_security_group_id}"
+    subnet_id_1          = "${var.elasticsearch_subnet_id_1}"
+    subnet_id_2          = "${var.elasticsearch_subnet_id_2}"
+}
+
 module "rds" {
     source = "./modules/rds"
 
@@ -59,7 +69,7 @@ module "services" {
     file_storage_s3_bucket_arn = "${var.file_storage_s3_bucket_arn}"
     ami_id                     = "${lookup(var.services_amis, var.region)}"
     instance_type              = "${var.services_instance_type}"
-    elasticsearch_endpoint     = "${var.elasticsearch_endpoint}"
+    elasticsearch_endpoint     = "https://${module.elasticsearch.endpoint}"
     max_cluster_size           = "${var.services_max_cluster_size}"
     min_cluster_size           = "${var.services_min_cluster_size}"
     key_name                   = "${var.key_name}"

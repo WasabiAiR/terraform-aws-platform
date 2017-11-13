@@ -65,3 +65,15 @@ variable "cidr_subnet_ecs" {
     description = "The CIDR block to use for the ecs subnet"
     default     = "10.0.8.0/21"
 }
+
+variable "cidr_subnet_elasticsearch_1" {
+    type        = "string"
+    description = "The CIDR block to use for the elasticsearch 1 subnet"
+    default     = "10.0.16.0/24"
+}
+
+variable "cidr_subnet_elasticsearch_2" {
+    type        = "string"
+    description = "The CIDR block to use for the elasticsearch 2 subnet"
+    default     = "10.0.17.0/24"
+}

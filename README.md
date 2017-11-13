@@ -48,25 +48,18 @@
       * availability zone: no hard requirement here, but typically deployed in the same AZ as Services subnet 1
       * route 0.0.0.0/0 through the ECS NAT gateway
       * record the subnet id as variable `ecs_subnet_id_1`
-  * Create a NAT gateway for the Services\* subnets. Record the EIP assigned to the NAT gateway for use when standing up your Elasticsearch domain below.
+    * Elasticsearch Subnet 1:
+      * size: /24 (needs to be as large as `instance_count` / 2 * 3 addresses available where `instance_count` is the number of instances not counting dedicated master nodes in the ES cluster)
+      * availability zone: different than Elasticsearch Subnet 2, should be same AZ as Services Subnet 1
+      * route 0.0.0.0/0 through the Services NAT gateway
+      * record the subnet id as variable `elasticsearch_subnet_id_1`
+    * Elasticsearch Subnet 2:
+      * size: /24 (needs to be as large as `instance_count` / 2 * 3 addresses available where `instance_count` is the number of instances not counting dedicated master nodes in the ES cluster)
+      * availability zone: different than Elasticsearch Subnet 1, should be same AZ as Services Subnet 2
+      * route 0.0.0.0/0 through the Services NAT gateway
+      * record the subnet id as variable `elasticsearch_subnet_id_1`
+  * Create a NAT gateway for the Services\* subnets.
   * Create a NAT gateway for the ECS subnet. Record the EIP assigned to the NAT gateway as variable `ecs_nat_ip`. Note that it must be in CIDR notation: `1.2.3.4/32`
-* Stand up an Elasticsearch Domain running version 5.1 of Elasticsearch . The `modules/elasticsearch` module can be used if necessary. AWS recently added VPC support for their Elasticsearch offering, however it is not currently supported by a released version of the Terraform AWS provider. Until it is officially released, standing up an Elasticsearch Domain is outside the scope of the platform deployment. Make sure you set the following access policy (replace REGION, ACCOUNT_ID, DOMAIN, and SOURCE_IP with valid values - SOURCE_IP is the EIP of the Services NAT Gateway):
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "es:*",
-            "Principal": "*",
-            "Effect": "Allow",
-            "Resource": "arn:aws:es:REGION:ACCOUNT_ID:domain/DOMAIN/*",
-            "Condition": {
-                "IpAddress": {"aws:SourceIp": ["SOURCE_IP"]}
-            }
-        }
-    ]
-}
-```
 * Decide the CIDR or CIDRs that will be allowed access to the platform. Record as comma delimited lists of CIDR blocks.
   * `platform_access_cidrs` - The list of CIDRs that will be allowed to access the web ports of the platform
   * `ssh_cidr_blocks` - The list of CIDRs that will be allowed SSH access to the servers. This is typically an admin or VPN subnet somewhere within your VPC.

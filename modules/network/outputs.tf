@@ -26,6 +26,14 @@ output "ecs_subnet_id" {
     value = "${aws_subnet.ecs.id}"
 }
 
+output "elasticsearch_subnet_id_1" {
+    value = "${aws_subnet.elasticsearch_1.id}"
+}
+
+output "elasticsearch_subnet_id_2" {
+    value = "${aws_subnet.elasticsearch_2.id}"
+}
+
 output "ecs_nat_ip" {
     value = "${aws_eip.nat_gateway_ecs.public_ip}"
 }

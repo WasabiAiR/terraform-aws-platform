@@ -43,6 +43,16 @@ variable "public_subnet_id_2" {
     description = "The second public subnet ID to use. Needs to be in a different AZ than public_subnet_id_1"
 }
 
+variable "elasticsearch_subnet_id_1" {
+    type = "string"
+    description = "The first elasticsearch subnet ID to use. Needs to be in a different AZ than elasticsearch_subnet_id_2"
+}
+
+variable "elasticsearch_subnet_id_2" {
+    type = "string"
+    description = "The second elasticsearch subnet ID to use. Needs to be in a different AZ than elasticsearch_subnet_id_1"
+}
+
 variable "ecs_max_cluster_size" {
     type        = "string"
     description = "The maxiumum number of nodes in the ECS cluster"
@@ -294,11 +304,6 @@ variable elasticache_instance_type_facebox {
     type        = "string"
     description = "Instance type for Facebox Redis cache"
     default     = "cache.m4.large"
-}
-
-variable elasticsearch_endpoint {
-    type        = "string"
-    description = "URL (including scheme) to reach elasticsearch"
 }
 
 variable ssh_cidr_blocks {
