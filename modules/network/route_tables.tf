@@ -92,3 +92,13 @@ resource "aws_route_table_association" "rds_2" {
     subnet_id      = "${aws_subnet.rds_2.id}"
     route_table_id = "${aws_route_table.services.id}"
 }
+
+resource "aws_route_table_association" "elasticsearch_1" {
+    subnet_id      = "${aws_subnet.elasticsearch_1.id}"
+    route_table_id = "${aws_route_table.services.id}"
+}
+
+resource "aws_route_table_association" "elasticsearch_2" {
+    subnet_id      = "${aws_subnet.elasticsearch_2.id}"
+    route_table_id = "${aws_route_table.services.id}"
+}

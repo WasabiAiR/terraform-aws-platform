@@ -10,7 +10,7 @@ resource "aws_security_group" "ecs" {
     }
 
     ingress {
-        from_port   = 0
+        from_port   = 8
         to_port     = 0
         protocol    = "icmp"
         cidr_blocks = ["0.0.0.0/0"]

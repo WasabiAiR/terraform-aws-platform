@@ -1,14 +1,17 @@
 {
-    "Version": "2012-10-17",
     "Statement": [
         {
-            "Action": "es:*",
-            "Principal": "*",
+            "Action": [
+                "es:*"
+            ],
             "Effect": "Allow",
-            "Resource": "arn:aws:es:${region}:${account_id}:domain/graymeta-${platform_instance_id}/*",
-            "Condition": {
-                "IpAddress": {"aws:SourceIp": ["${source_ip}"]}
-            }
+            "Principal": {
+                "AWS": [
+                    "*"
+                ]
+            },
+            "Resource": "arn:aws:es:${region}:${account_id}:domain/${domain_name}/*"
         }
-    ]
+    ],
+    "Version": "2012-10-17"
 }
