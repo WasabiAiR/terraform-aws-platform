@@ -311,6 +311,11 @@ variable ssh_cidr_blocks {
     description = "Comma delimited list of cidr blocks from which to allow access via SSH"
 }
 
+variable "notifications_from_addr" {
+    type        = "string"
+    description = "The email address to use as the From address on email notifications. This must be an SES verified email address"
+}
+
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
 # Limiting factor for region support is EFS: http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region
 variable ecs_amis {

@@ -73,6 +73,7 @@ module "services" {
     max_cluster_size           = "${var.services_max_cluster_size}"
     min_cluster_size           = "${var.services_min_cluster_size}"
     key_name                   = "${var.key_name}"
+    notifications_from_addr    = "${var.notifications_from_addr}"
 
     sqs_activity          = "${module.queues.activity}"
     sqs_activity_arn      = "${module.queues.activity_arn}"

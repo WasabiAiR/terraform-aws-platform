@@ -104,6 +104,7 @@ data "template_file" "userdata" {
         encryption_key                   = "${var.encryption_key}"
         facebox_key                      = "${var.facebox_key}"
         file_storage_s3_bucket_arn       = "${var.file_storage_s3_bucket_arn}"
+        from_addr                        = "${var.notifications_from_addr}"
         geonames_user                    = "${var.geonames_user}"
         geonames_user                    = "${var.geonames_user}"
         google_maps_key                  = "${var.google_maps_key}"
