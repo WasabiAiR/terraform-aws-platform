@@ -25,5 +25,6 @@ data "template_file" "policy_services" {
         sqs_index_arn              = "${var.sqs_index_arn}"
         sqs_stage_arn              = "${var.sqs_stage_arn}"
         sqs_walk_arn               = "${var.sqs_walk_arn}"
+        from_addr                  = "${var.notifications_from_addr}"
     }
 }

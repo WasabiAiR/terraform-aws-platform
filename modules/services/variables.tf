@@ -23,6 +23,8 @@ variable "encryption_key" {}
 variable "facebox_key" {}
 variable "jwt_key" {}
 
+# SES Information
+variable "notifications_from_addr" {}
 
 # SQS Queue Information
 variable "sqs_activity" {}

@@ -46,8 +46,20 @@
                 "${sqs_stage_arn}",
                 "${sqs_walk_arn}"
             ]
+        },
+        {
+            "Action": [
+                "ses:SendEmail",
+                "ses:SendRawEmail"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "ses:FromAddress": "${from_addr}"
+                }
+            },
+            "Effect": "Allow",
+            "Resource": "*"
         }
     ],
     "Version": "2012-10-17"
 }
-

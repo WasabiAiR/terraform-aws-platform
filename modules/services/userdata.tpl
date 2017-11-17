@@ -39,6 +39,7 @@ write_files:
     permissions: '0644'
 -   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+        SES_REGION=${region}
         facebox_host=http://127.0.0.1:9090
         gm_auth_api_redis=${elasticache_services}:6379
         gm_auth_api_redis_db=0
@@ -59,6 +60,8 @@ write_files:
         gm_ecs_memory_soft=3000
         gm_ecs_region=${region}
         gm_elasticsearch=${elasticsearch_endpoint}
+        gm_email_from=${from_addr}
+        gm_email_sender=ses
         gm_encryption_key=${encryption_key}
         gm_env=aws
         gm_fileapi_stow_kind=s3
