@@ -57,7 +57,8 @@ resource "aws_lb_target_group" "port80" {
 
     health_check {
         path                = "/"
-        interval            = 10
+        interval            = 30
+        timeout             = 5
         protocol            = "HTTP"
         matcher             = "301"
         healthy_threshold   = 5
@@ -85,7 +86,8 @@ resource "aws_lb_target_group" "port7000" {
 
     health_check {
         path                = "/"
-        interval            = 10
+        interval            = 30
+        timeout             = 5
         protocol            = "HTTP"
         matcher             = "200"
         healthy_threshold   = 5
@@ -107,7 +109,8 @@ resource "aws_lb_target_group" "port9090" {
 
     health_check {
         path                = "/"
-        interval            = 10
+        interval            = 30
+        timeout             = 5
         protocol            = "HTTP"
         matcher             = "200"
         healthy_threshold   = 5
