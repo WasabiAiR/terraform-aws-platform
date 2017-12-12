@@ -1,6 +1,6 @@
 resource "aws_elasticsearch_domain" "es" {
   domain_name           = "graymeta-${var.platform_instance_id}"
-  elasticsearch_version = "5.1"
+  elasticsearch_version = "5.5"
   access_policies       = "${data.template_file.policy.rendered}"
 
   cluster_config {
