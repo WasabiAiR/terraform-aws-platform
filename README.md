@@ -85,7 +85,7 @@ provider "aws" {
 }
 
 module "network" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.6"
+    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.7"
 
     platform_instance_id = "${local.platform_instance_id}"
     region               = "us-east-1"
@@ -94,7 +94,7 @@ module "network" {
 }
 
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.6"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.7"
 
     platform_instance_id       = "${local.platform_instance_id}"
     region                     = "us-east-1"
