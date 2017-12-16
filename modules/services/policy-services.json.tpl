@@ -7,6 +7,7 @@
                 "logs:DescribeLogGroups",
                 "logs:CreateLogStream",
                 "logs:PutLogEvents",
+                "ecs:DescribeClusters",
                 "ecs:RunTask",
                 "ecs:RegisterTaskDefinition"
             ],
