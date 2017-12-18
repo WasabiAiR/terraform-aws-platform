@@ -3,6 +3,10 @@
 resource "aws_cloudformation_stack" "services_asg" {
     name               = "GrayMetaPlatform-${var.platform_instance_id}-Services-ASG"
     timeout_in_minutes = "90"
+    timeouts {
+        create = "90m"
+        update = "90m"
+    }
     template_body      = <<EOF
 {
   "Resources": {
