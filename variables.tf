@@ -334,10 +334,10 @@ variable services_amis {
     type        = "map"
     description = "map of region to ami for services nodes"
     default = {
-        "us-east-1"      = "ami-05abda7f"
-        "us-east-2"      = "ami-332f0756"
-        "us-west-2"      = "ami-f1aa0a89"
-        "ap-southeast-2" = "ami-6e04f20c"
-        "eu-west-1"      = "ami-2be96f52"
+        "us-east-1"      = "ami-822d53f8"
+        "us-east-2"      = "ami-86f8d0e3"
+        "us-west-2"      = "ami-8d8f2df5"
+        "ap-southeast-2" = "ami-d9da2bbb"
+        "eu-west-1"      = "ami-dbe96aa2"
     }
 }
