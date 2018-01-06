@@ -323,7 +323,7 @@ variable ecs_amis {
     description = "map of region to ami for ecs nodes"
     default = {
         "us-east-1"      = "ami-13401669"
-        "us-east-2"      = "ami-901338f5"
+        "us-east-2"      = "ami-34032e51"
         "us-west-2"      = "ami-9a02a9e2"
         "ap-southeast-2" = "ami-b88e7cda"
         "eu-west-1"      = "ami-7827b301"
