@@ -41,9 +41,9 @@ module "elasticsearch" {
     subnet_id_2            = "${var.elasticsearch_subnet_id_2}"
     volume_size            = "${var.elasticsearch_volume_size}"
     instance_type          = "${var.elasticsearch_instance_type}"
+    instance_count         = "${var.elasticsearch_instance_count}"
     dedicated_master_type  = "${var.elasticsearch_dedicated_master_type}"
     dedicated_master_count = "${var.elasticsearch_dedicated_master_count}"
-    instance_count         = "${var.elasticsearch_instance_count}"
 }
 
 module "rds" {

@@ -130,6 +130,13 @@ module "platform" {
     elasticache_instance_type_services = "cache.m4.large"
     elasticache_instance_type_facebox  = "cache.m4.large"
 
+    # ElasticSearch Configuration
+    elasticsearch_volume_size = "100"
+    elasticsearch_instance_type = "m4.large.elasticsearch"
+    elasticsearch_dedicated_master_type = "m4.large.elasticsearch"
+    elasticsearch_dedicated_master_count = "3"
+    elasticsearch_instance_count = "2"
+
     ecs_nat_ip                = "${module.network.ecs_nat_ip}/32"
     ecs_subnet_id             = "${module.network.ecs_subnet_id}"
     public_subnet_id_1        = "${module.network.public_subnet_id_1}"
