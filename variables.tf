@@ -3,6 +3,11 @@ variable "region" {
     description = "The region to deploy into"
 }
 
+variable "customer" {
+    type = string
+    description = "A human-readable string that identifies your company. Should be alphanumeric + underscores only. eg. If your company is 'XYZ Widgets', you might set it to 'xyzwidgets' or 'xyz_widgets'"
+}
+
 variable "platform_instance_id" {
     type        = "string"
     description = "A human-readable string for this instance of the GrayMeta Platform"
@@ -350,6 +355,12 @@ variable ssh_cidr_blocks {
 variable "notifications_from_addr" {
     type        = "string"
     description = "The email address to use as the From address on email notifications. This must be an SES verified email address"
+}
+
+variable "rollbar_token" {
+    type        = "string"
+    description = "A token used for accessing the Rollbar API for the purposes of reporting errors. Optional"
+    default     = ""
 }
 
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html

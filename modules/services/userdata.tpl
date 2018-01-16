@@ -63,7 +63,7 @@ write_files:
         gm_email_from=${from_addr}
         gm_email_sender=ses
         gm_encryption_key=${encryption_key}
-        gm_env=aws
+        gm_env=${gm_env}
         gm_fileapi_stow_kind=s3
         gm_files_api=https://${dns_name}/files
         gm_front_end_client_secret=${client_secret_fe}

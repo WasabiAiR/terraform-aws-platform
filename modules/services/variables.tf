@@ -1,3 +1,4 @@
+variable "customer" {}
 variable "platform_instance_id" {}
 variable "platform_access_cidrs" {}
 variable "subnet_id_1" {}

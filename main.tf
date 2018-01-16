@@ -63,6 +63,7 @@ module "rds" {
 module "services" {
     source = "./modules/services"
 
+    customer                   = "${var.customer}"
     platform_instance_id       = "${var.platform_instance_id}"
     ecs_nat_ip                 = "${var.ecs_nat_ip}"
     platform_access_cidrs      = "${var.platform_access_cidrs}"
