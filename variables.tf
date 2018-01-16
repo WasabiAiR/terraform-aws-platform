@@ -294,16 +294,46 @@ variable "speech_apptek_username" {
     description = "Apptek speech to text username. Contact GrayMeta."
 }
 
-variable elasticache_instance_type_services {
+variable "elasticache_instance_type_services" {
     type        = "string"
     description = "Instance type for Services cluster Redis cache"
     default     = "cache.m4.large"
 }
 
-variable elasticache_instance_type_facebox {
+variable "elasticache_instance_type_facebox" {
     type        = "string"
     description = "Instance type for Facebox Redis cache"
     default     = "cache.m4.large"
+}
+
+variable "elasticsearch_volume_size" {
+    type        = "string"
+    description = "The size of the disk, in GB"
+    default     = "10"
+}
+
+variable "elasticsearch_instance_type" {
+    type        = "string"
+    description = "Instance type of data nodes in the cluster"
+    default     = "m4.large.elasticsearch"
+}
+
+variable "elasticsearch_dedicated_master_type" {
+    type        = "string"
+    description = "Instance type of the dedicated master nodes in the cluster"
+    default     = "m4.large.elasticsearch"
+}
+
+variable "elasticsearch_dedicated_master_count" {
+    type        = "string"
+    description = "Number of dedicated master nodes in the cluster"
+    default     = "3"
+}
+
+variable "elasticsearch_instance_count" {
+    type = "string"
+    description = "Number of data instances in the cluster. Because zone awareness is enabled, this should always be an even number"
+    default = "2"
 }
 
 variable ssh_cidr_blocks {

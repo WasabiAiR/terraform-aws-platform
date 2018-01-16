@@ -34,11 +34,16 @@ module "elasticache" {
 module "elasticsearch" {
     source = "./modules/elasticsearch"
 
-    platform_instance_id = "${var.platform_instance_id}"
-    region               = "${var.region}"
-    security_group_ids   = "${module.services.services_security_group_id}"
-    subnet_id_1          = "${var.elasticsearch_subnet_id_1}"
-    subnet_id_2          = "${var.elasticsearch_subnet_id_2}"
+    platform_instance_id   = "${var.platform_instance_id}"
+    region                 = "${var.region}"
+    security_group_ids     = "${module.services.services_security_group_id}"
+    subnet_id_1            = "${var.elasticsearch_subnet_id_1}"
+    subnet_id_2            = "${var.elasticsearch_subnet_id_2}"
+    volume_size            = "${var.elasticsearch_volume_size}"
+    instance_type          = "${var.elasticsearch_instance_type}"
+    dedicated_master_type  = "${var.elasticsearch_dedicated_master_type}"
+    dedicated_master_count = "${var.elasticsearch_dedicated_master_count}"
+    instance_count         = "${var.elasticsearch_instance_count}"
 }
 
 module "rds" {
