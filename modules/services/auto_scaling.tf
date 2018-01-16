@@ -128,6 +128,7 @@ data "template_file" "userdata" {
         pic_purify_key                   = "${var.pic_purify_key}"
         pic_purify_tasks                 = "${var.pic_purify_tasks}"
         region                           = "${data.aws_region.current.name}"
+        rollbar_token                    = "${var.rollbar_token}"
         safety_dm_host                   = "${var.safety_dm_host}"
         safety_dm_pass                   = "${var.safety_dm_pass}"
         safety_dm_user                   = "${var.safety_dm_user}"

@@ -121,6 +121,7 @@ module "services" {
     microsoft_speech_api_key         = "${var.microsoft_speech_api_key}"
     pic_purify_key                   = "${var.pic_purify_key}"
     pic_purify_tasks                 = "${var.pic_purify_tasks}"
+    rollbar_token                    = "${var.rollbar_token}"
     safety_dm_host                   = "${var.safety_dm_host}"
     safety_dm_pass                   = "${var.safety_dm_pass}"
     safety_dm_user                   = "${var.safety_dm_user}"

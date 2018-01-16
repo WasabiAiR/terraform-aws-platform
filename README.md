@@ -150,6 +150,9 @@ module "platform" {
     elasticsearch_subnet_id_2 = "${module.network.elasticsearch_subnet_id_2}"
     ssh_cidr_blocks           = "10.0.0.0/24,10.0.1.0/24"
 
+    # Optional Error Reporting Configurations
+    rollbar_token = ""
+
     ###############################################################
     # Cognitive Service Configuration
     ###############################################################

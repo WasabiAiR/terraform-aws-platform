@@ -58,6 +58,7 @@ variable "languageid_apptek_username" {}
 variable "microsoft_speech_api_key" {}
 variable "pic_purify_key" {}
 variable "pic_purify_tasks" {}
+variable "rollbar_token" {}
 variable "safety_dm_host" {}
 variable "safety_dm_pass" {}
 variable "safety_dm_user" {}

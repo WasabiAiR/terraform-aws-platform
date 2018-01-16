@@ -99,6 +99,7 @@ write_files:
         harvest_microsoft_speech_api_key=${microsoft_speech_api_key}
         harvest_rekognition_auth_type=iam
         harvest_rekognition_region=${region}
+        harvest_rollbar_token=${harvest_rollbar_token}
         harvest_safety_dm_host=${safety_dm_host}
         harvest_safety_dm_pass=${safety_dm_pass}
         harvest_safety_dm_user=${safety_dm_user}
@@ -107,6 +108,7 @@ write_files:
         harvest_speech_apptek_password=${speech_apptek_password}
         harvest_speech_apptek_username=${speech_apptek_username}
         harvest_weather_api_key=${weather_api_key}
+        rollbar_token=${rollbar_token}
         stow_mountpath=/var/lib/graymeta/mounts
     path: /etc/graymeta/metafarm.env
     permissions: '0400'
