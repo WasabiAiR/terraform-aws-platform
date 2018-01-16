@@ -1,5 +1,5 @@
 resource "aws_db_instance" "default" {
-    allocated_storage         = 100
+    allocated_storage         = "${var.allocated_storage}"
     storage_type              = "gp2"
     engine                    = "postgres"
     engine_version            = "9.6.1"

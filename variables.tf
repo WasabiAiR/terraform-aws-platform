@@ -123,6 +123,12 @@ variable "db_instance_size" {
     default     = "db.t2.small"
 }
 
+variable "db_allocated_storage" {
+    type        = "string"
+    description = "The size of the storage to allocate for the RDS database, in GB"
+    default     = "100"
+}
+
 variable "file_storage_s3_bucket_arn" {
     type        = "string"
     description = "The ARN of the s3 bucket to store thumbnails, video previews, and metadata files"

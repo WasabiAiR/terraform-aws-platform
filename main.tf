@@ -57,6 +57,7 @@ module "rds" {
     services_subnet_id_1 = "${var.services_subnet_id_1}"
     services_subnet_id_2 = "${var.services_subnet_id_2}"
     db_instance_size     = "${var.db_instance_size}"
+    allocated_storage    = "${var.db_allocated_storage}"
 }
 
 module "services" {

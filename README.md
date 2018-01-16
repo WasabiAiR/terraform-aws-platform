@@ -106,9 +106,10 @@ module "platform" {
     notifications_from_addr    = "noreply@example.com"
 
     # RDS Configuration
-    db_username      = "mydbuser"
-    db_password      = "mydbpassword"
-    db_instance_size = "db.t2.small"
+    db_username          = "mydbuser"
+    db_password          = "mydbpassword"
+    db_instance_size     = "db.t2.small"
+    db_allocated_storage = "100"
 
     # ECS Cluster Configuration
     ecs_instance_type    = "c4.large"
