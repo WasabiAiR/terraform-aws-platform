@@ -8,6 +8,7 @@ variable "public_subnet_id_2" {}
 variable "ecs_nat_ip" {}
 variable "ssl_certificate_arn" {}
 variable "file_storage_s3_bucket_arn" {}
+variable "usage_s3_bucket_arn" {}
 variable "ami_id" {}
 variable "instance_type" {}
 variable "max_cluster_size" {}

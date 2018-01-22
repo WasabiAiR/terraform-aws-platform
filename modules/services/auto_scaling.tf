@@ -142,6 +142,7 @@ data "template_file" "userdata" {
         sqs_index                        = "${var.sqs_index}"
         sqs_stage                        = "${var.sqs_stage}"
         sqs_walk                         = "${var.sqs_walk}"
+        usage_s3_bucket_arn              = "${var.usage_s3_bucket_arn}"
         watson_speech_password           = "${var.watson_speech_password}"
         watson_speech_password           = "${var.watson_speech_password}"
         watson_speech_username           = "${var.watson_speech_username}"

@@ -1,7 +1,7 @@
 #cloud-config
 package_upgrade: false
 runcmd:
-- /opt/graymeta/bin/aws_configurator -bucket ${file_storage_s3_bucket_arn} >> /etc/graymeta/metafarm.env
+- /opt/graymeta/bin/aws_configurator -bucket ${file_storage_s3_bucket_arn} -usage-bucket ${usage_s3_bucket_arn} >> /etc/graymeta/metafarm.env
 - sed -i 's/^log_group_name = .*/log_group_name = ${services_log_group}/' /var/awslogs/etc/awslogs.conf
 - systemctl daemon-reload
 - systemctl restart awslogs
