@@ -1,64 +1,66 @@
 resource "aws_autoscaling_group" "auto_scaling_group_ecs" {
-    name_prefix           = "GrayMetaPlatform-${var.platform_instance_id}-ECS-"
-    max_size                  = "${var.max_cluster_size}"
-    min_size                  = "${var.min_cluster_size}"
-    force_delete              = true
-    launch_configuration      = "${aws_launch_configuration.launch_config_ecs.name}"
-    vpc_zone_identifier       = ["${var.subnet_id}"]
+  name_prefix          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-"
+  max_size             = "${var.max_cluster_size}"
+  min_size             = "${var.min_cluster_size}"
+  force_delete         = true
+  launch_configuration = "${aws_launch_configuration.launch_config_ecs.name}"
+  vpc_zone_identifier  = ["${var.subnet_id}"]
 
-    lifecycle {
-        create_before_destroy = true
-    }
+  lifecycle {
+    create_before_destroy = true
+  }
 
-    timeouts {
-        delete = "15m"
-    }
+  timeouts {
+    delete = "15m"
+  }
 
-    tags = [
-        {
-            key                 = "Name"
-            value               = "GrayMetaPlatform-${var.platform_instance_id}-ECS"
-            propagate_at_launch = true
-        },
-        {
-            key                 = "ApplicationName"
-            value               = "GrayMetaPlatform"
-            propagate_at_launch = true
-        },
-        {
-            key                 = "PlatformInstanceID"
-            value               = "${var.platform_instance_id}"
-            propagate_at_launch = true
-        },
-    ]
+  tags = [
+    {
+      key                 = "Name"
+      value               = "GrayMetaPlatform-${var.platform_instance_id}-ECS"
+      propagate_at_launch = true
+    },
+    {
+      key                 = "ApplicationName"
+      value               = "GrayMetaPlatform"
+      propagate_at_launch = true
+    },
+    {
+      key                 = "PlatformInstanceID"
+      value               = "${var.platform_instance_id}"
+      propagate_at_launch = true
+    },
+  ]
 }
 
 resource "aws_launch_configuration" "launch_config_ecs" {
-    name_prefix           = "GrayMetaPlatform-${var.platform_instance_id}-ECS-"
-    image_id              = "${var.ami_id}"
-    instance_type         = "${var.instance_type}"
-    iam_instance_profile  = "${aws_iam_instance_profile.iam_instance_profile_ecs.name}"
-    key_name              = "${var.key_name}"
-    security_groups       = ["${aws_security_group.ecs.id}"]
-    user_data             = "${data.template_file.userdata.rendered}"
-    root_block_device {
-        volume_type           = "gp2"
-        volume_size           = 50
-        delete_on_termination = true
-    }
+  name_prefix          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-"
+  image_id             = "${var.ami_id}"
+  instance_type        = "${var.instance_type}"
+  iam_instance_profile = "${aws_iam_instance_profile.iam_instance_profile_ecs.name}"
+  key_name             = "${var.key_name}"
+  security_groups      = ["${aws_security_group.ecs.id}"]
+  user_data            = "${data.template_file.userdata.rendered}"
 
-    lifecycle {
-        create_before_destroy = true
-    }
+  root_block_device {
+    volume_type           = "gp2"
+    volume_size           = 50
+    delete_on_termination = true
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 data "template_file" "userdata" {
-    template = "${file("${path.module}/userdata.tpl")}"
-    vars {
-        ecs_cluster       = "${aws_ecs_cluster.ecs_cluster.name}"
-        file_system_id    = "${aws_efs_file_system.ecs_filesystem.id}"
-        region            = "${data.aws_region.current.name}"
-    }
+  template = "${file("${path.module}/userdata.tpl")}"
+
+  vars {
+    ecs_cluster    = "${aws_ecs_cluster.ecs_cluster.name}"
+    file_system_id = "${aws_efs_file_system.ecs_filesystem.id}"
+    region         = "${data.aws_region.current.name}"
+  }
 }
 
 resource "aws_autoscaling_policy" "scale_up" {

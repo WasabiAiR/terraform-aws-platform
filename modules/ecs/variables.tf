@@ -7,10 +7,9 @@ variable "min_cluster_size" {}
 variable "key_name" {}
 
 variable "ssh_cidr_blocks" {
-    type        = "string"
-    description = "Comma delimited list of cidr blocks to allow SSH access from."
+  type        = "string"
+  description = "Comma delimited list of cidr blocks to allow SSH access from."
 }
-
 
 data "aws_region" "current" {
   current = true

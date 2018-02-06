@@ -3,5 +3,5 @@ output "GrayMetaPlatformEndpoint" {
 }
 
 output "services_security_group_id" {
-    value = "${aws_security_group.services.id}"
+  value = "${aws_security_group.services.id}"
 }

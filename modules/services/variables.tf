@@ -30,6 +30,7 @@ variable "notifications_from_addr" {}
 
 # SQS Queue Information
 variable "sqs_activity" {}
+
 variable "sqs_activity_arn" {}
 variable "sqs_index" {}
 variable "sqs_index_arn" {}
@@ -40,6 +41,7 @@ variable "sqs_walk_arn" {}
 
 # RDS
 variable "db_username" {}
+
 variable "db_password" {}
 variable "db_endpoint" {}
 
@@ -73,8 +75,8 @@ variable "watson_speech_username" {}
 variable "weather_api_key" {}
 
 variable "ssh_cidr_blocks" {
-    type        = "string"
-    description = "Comma delimited list of cidr blocks to allow SSH access from."
+  type        = "string"
+  description = "Comma delimited list of cidr blocks to allow SSH access from."
 }
 
 data "aws_region" "current" {

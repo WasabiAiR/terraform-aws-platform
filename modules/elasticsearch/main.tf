@@ -39,35 +39,36 @@ resource "aws_elasticsearch_domain" "es" {
 }
 
 data "template_file" "policy" {
-    template = "${file("${path.module}/policy.json.tpl")}"
-    vars {
-        account_id  = "${data.aws_caller_identity.current.account_id}"
-        region      = "${var.region}"
-        domain_name = "graymeta-${var.platform_instance_id}"
-    }
+  template = "${file("${path.module}/policy.json.tpl")}"
+
+  vars {
+    account_id  = "${data.aws_caller_identity.current.account_id}"
+    region      = "${var.region}"
+    domain_name = "graymeta-${var.platform_instance_id}"
+  }
 }
 
 resource "aws_security_group" "elasticsearch" {
-    description = "Access to elasticsearch"
-    vpc_id      = "${data.aws_subnet.subnet_1.vpc_id}"
+  description = "Access to elasticsearch"
+  vpc_id      = "${data.aws_subnet.subnet_1.vpc_id}"
 
-    ingress {
-        from_port       = 0
-        to_port         = 0
-        protocol        = "-1"
-        security_groups = ["${split(",", var.security_group_ids)}"]
-    }
+  ingress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    security_groups = ["${split(",", var.security_group_ids)}"]
+  }
 
-    egress {
-        from_port       = 0
-        to_port         = 0
-        protocol        = "-1"
-        cidr_blocks     = ["0.0.0.0/0"]
-    }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-    tags {
-        Name               = "GrayMetaPlatform-${var.platform_instance_id}-Elasticsearch"
-        ApplicationName    = "GrayMetaPlatform"
-        PlatformInstanceID = "${var.platform_instance_id}"
-    }
+  tags {
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-Elasticsearch"
+    ApplicationName    = "GrayMetaPlatform"
+    PlatformInstanceID = "${var.platform_instance_id}"
+  }
 }

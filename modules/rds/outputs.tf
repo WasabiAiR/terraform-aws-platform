@@ -1,3 +1,3 @@
 output "endpoint" {
-    value = "${element(split(":", "${aws_db_instance.default.endpoint}"), 0)}"
+  value = "${element(split(":", "${aws_db_instance.default.endpoint}"), 0)}"
 }

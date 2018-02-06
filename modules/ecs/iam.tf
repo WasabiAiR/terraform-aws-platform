@@ -16,4 +16,3 @@ resource "aws_iam_policy_attachment" "iam_policy_attachment" {
 resource "aws_iam_instance_profile" "iam_instance_profile_ecs" {
   role = "${aws_iam_role.iam_role.name}"
 }
-
