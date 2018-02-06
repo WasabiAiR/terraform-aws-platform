@@ -99,7 +99,7 @@ write_files:
         harvest_microsoft_speech_api_key=${microsoft_speech_api_key}
         harvest_rekognition_auth_type=iam
         harvest_rekognition_region=${region}
-        harvest_rollbar_token=${harvest_rollbar_token}
+        harvest_rollbar_token=${rollbar_token}
         harvest_safety_dm_host=${safety_dm_host}
         harvest_safety_dm_pass=${safety_dm_pass}
         harvest_safety_dm_user=${safety_dm_user}
