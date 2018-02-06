@@ -22,6 +22,7 @@ data "template_file" "policy_services" {
 
   vars {
     file_storage_s3_bucket_arn = "${var.file_storage_s3_bucket_arn}"
+    usage_s3_bucket_arn        = "${var.usage_s3_bucket_arn}"
     sqs_activity_arn           = "${var.sqs_activity_arn}"
     sqs_index_arn              = "${var.sqs_index_arn}"
     sqs_stage_arn              = "${var.sqs_stage_arn}"
