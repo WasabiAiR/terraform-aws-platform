@@ -139,6 +139,11 @@ variable "file_storage_s3_bucket_arn" {
     description = "The ARN of the s3 bucket to store thumbnails, video previews, and metadata files"
 }
 
+variable "usage_s3_bucket_arn" {
+    type        = "string"
+    description = "The ARN of the s3 bucket to store usage reports"
+}
+
 variable "client_secret_fe" {
     type        = "string"
     description = "32 character string used to generate tokens"
@@ -369,11 +374,11 @@ variable ecs_amis {
     type        = "map"
     description = "map of region to ami for ecs nodes"
     default = {
-        "us-east-1"      = "ami-13401669"
-        "us-east-2"      = "ami-34032e51"
-        "us-west-2"      = "ami-9a02a9e2"
-        "ap-southeast-2" = "ami-b88e7cda"
-        "eu-west-1"      = "ami-7827b301"
+        "us-east-1"      = "ami-19141263"
+        "us-east-2"      = "ami-39ae9b5c"
+        "us-west-2"      = "ami-f8cf4b80"
+        "ap-southeast-2" = "ami-3b837859"
+        "eu-west-1"      = "ami-b02049c9"
     }
 }
 
@@ -381,10 +386,10 @@ variable services_amis {
     type        = "map"
     description = "map of region to ami for services nodes"
     default = {
-        "us-east-1"      = "ami-050e5d7f"
-        "us-east-2"      = "ami-25f3d840"
-        "us-west-2"      = "ami-e4319b9c"
-        "ap-southeast-2" = "ami-9e20d2fc"
-        "eu-west-1"      = "ami-21b02658"
+        "us-east-1"      = "ami-3a4e4040"
+        "us-east-2"      = "ami-199eab7c"
+        "us-west-2"      = "ami-9862e6e0"
+        "ap-southeast-2" = "ami-0bd52e69"
+        "eu-west-1"      = "ami-62f29b1b"
     }
 }

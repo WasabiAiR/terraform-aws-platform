@@ -74,6 +74,7 @@ module "services" {
     public_subnet_id_2         = "${var.public_subnet_id_2}"
     ssl_certificate_arn        = "${var.ssl_certificate_arn}"
     file_storage_s3_bucket_arn = "${var.file_storage_s3_bucket_arn}"
+    usage_s3_bucket_arn        = "${var.usage_s3_bucket_arn}"
     ami_id                     = "${lookup(var.services_amis, var.region)}"
     instance_type              = "${var.services_instance_type}"
     elasticsearch_endpoint     = "https://${module.elasticsearch.endpoint}"
