@@ -22,7 +22,8 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "${file_storage_s3_bucket_arn}"
+                "${file_storage_s3_bucket_arn}",
+                "${usage_s3_bucket_arn}"
             ]
         },
         {
@@ -33,7 +34,8 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "${file_storage_s3_bucket_arn}/*"
+                "${file_storage_s3_bucket_arn}/*",
+                "${usage_s3_bucket_arn}/*"
             ]
         },
         {

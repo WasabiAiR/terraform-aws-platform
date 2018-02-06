@@ -1,3 +1,3 @@
 output "endpoint" {
-    value = "${aws_elasticsearch_domain.es.endpoint}"
+  value = "${aws_elasticsearch_domain.es.endpoint}"
 }

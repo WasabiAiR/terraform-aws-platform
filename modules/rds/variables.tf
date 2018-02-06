@@ -8,9 +8,7 @@ variable "db_username" {}
 variable "db_password" {}
 variable "db_instance_size" {}
 
-#data "aws_region" "current" {
-#  current = true
-#}
+variable "allocated_storage" {}
 
 data "aws_subnet" "rds_subnet_1" {
   id = "${var.rds_subnet_id_1}"

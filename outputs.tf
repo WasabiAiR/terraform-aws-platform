@@ -1,3 +1,3 @@
 output "GrayMetaPlatformEndpoint" {
-    value = "${module.services.GrayMetaPlatformEndpoint}"
+  value = "${module.services.GrayMetaPlatformEndpoint}"
 }
