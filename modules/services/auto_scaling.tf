@@ -110,6 +110,7 @@ data "template_file" "userdata" {
     elasticache_facebox              = "${var.elasticache_facebox}"
     elasticache_services             = "${var.elasticache_services}"
     elasticsearch_endpoint           = "${var.elasticsearch_endpoint}"
+    encrypted_config_blob            = "${var.encrypted_config_blob}"
     encryption_key                   = "${var.encryption_key}"
     facebox_key                      = "${var.facebox_key}"
     file_storage_s3_bucket_arn       = "${var.file_storage_s3_bucket_arn}"

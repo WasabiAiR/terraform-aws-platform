@@ -24,6 +24,8 @@ variable "elasticsearch_endpoint" {}
 variable "encryption_key" {}
 variable "facebox_key" {}
 variable "jwt_key" {}
+variable "encrypted_config_blob" {}
+variable "services_iam_role_name" {}
 
 # SES Information
 variable "notifications_from_addr" {}
