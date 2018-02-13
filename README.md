@@ -84,6 +84,12 @@ provider "aws" {
     region = "us-east-1"
 }
 
+module "servicesiam" {
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.9"
+
+    platform_instance_id = "${local.platform_instance_id}"
+}
+
 module "network" {
     source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.9"
 
@@ -120,6 +126,7 @@ module "platform" {
     services_instance_type    = "m4.large"
     services_max_cluster_size = 4
     services_min_cluster_size = 2
+    services_iam_role_name    = "${module.servicesiam.services_iam_role_name}"
 
     # Encryption Tokens - 32 character alpha numberic strings
     client_secret_fe       = "012345678901234567890123456789ab"

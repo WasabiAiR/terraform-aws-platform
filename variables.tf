@@ -115,6 +115,7 @@ variable "ssl_certificate_arn" {
 variable "db_password" {
   type        = "string"
   description = "password for postgresql database"
+  default     = ""
 }
 
 variable "db_username" {
@@ -147,11 +148,13 @@ variable "usage_s3_bucket_arn" {
 variable "client_secret_fe" {
   type        = "string"
   description = "32 character string used to generate tokens"
+  default     = ""
 }
 
 variable "client_secret_internal" {
   type        = "string"
   description = "32 character string used to generate tokens used internally by the system."
+  default     = ""
 }
 
 variable "dns_name" {
@@ -162,6 +165,7 @@ variable "dns_name" {
 variable "encryption_key" {
   type        = "string"
   description = "32 Character string used to encrypt data prior to storage in the database"
+  default     = ""
 }
 
 variable "facebox_key" {
@@ -182,6 +186,7 @@ variable "google_maps_key" {
 variable "jwt_key" {
   type        = "string"
   description = "A 32 character string used to encrypt JWT web tokens"
+  default     = ""
 }
 
 variable "watson_speech_password" {
@@ -366,6 +371,17 @@ variable "rollbar_token" {
   type        = "string"
   description = "A token used for accessing the Rollbar API for the purposes of reporting errors. Optional"
   default     = ""
+}
+
+variable "encrypted_config_blob" {
+  type        = "string"
+  description = "base64 encoded string of encrypted data from the gmcrypt utility. Contact GrayMeta for more information"
+  default     = ""
+}
+
+variable "services_iam_role_name" {
+  type        = "string"
+  description = "The name of the IAM role that will be applied to services roles. Must be created by the servicesiam module"
 }
 
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html

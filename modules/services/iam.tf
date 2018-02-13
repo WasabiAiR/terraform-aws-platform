@@ -1,20 +1,18 @@
-resource "aws_iam_role" "iam_role" {
-  assume_role_policy = "${file("${path.module}/policy-assume-role.json")}"
-}
-
 resource "aws_iam_policy" "iam_policy" {
+  name        = "GrayMetaPlatform-${var.platform_instance_id}-Services-Policy"
   description = "GrayMeta Platform Services Nodes privileges"
   policy      = "${data.template_file.policy_services.rendered}"
 }
 
 resource "aws_iam_policy_attachment" "iam_policy_attachment" {
   name       = "${aws_iam_policy.iam_policy.name}"
-  roles      = ["${aws_iam_role.iam_role.name}"]
+  roles      = ["${var.services_iam_role_name}"]
   policy_arn = "${aws_iam_policy.iam_policy.arn}"
 }
 
 resource "aws_iam_instance_profile" "iam_instance_profile_services" {
-  role = "${aws_iam_role.iam_role.name}"
+  name = "GrayMetaPlatform-${var.platform_instance_id}-Services-InstanceProfile"
+  role = "${var.services_iam_role_name}"
 }
 
 data "template_file" "policy_services" {
