@@ -77,6 +77,8 @@ write_files:
         gm_sqs_index=${sqs_index}
         gm_sqs_stage=${sqs_stage}
         gm_sqs_walk=${sqs_walk}
+        gm_usage_api=https://${dns_name}/api/usage
+        gm_usage_prefix=${gm_usage_prefix}
         harvest_SPEECH_WATSON_PASSWORD=${watson_speech_password}
         harvest_SPEECH_WATSON_USERNAME=${watson_speech_username}
         harvest_facebox_host=https://${dns_name}:8445

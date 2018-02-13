@@ -125,6 +125,7 @@ data "template_file" "userdata" {
     google_vision_features           = "${var.google_vision_features}"
     google_vision_key                = "${var.google_vision_key}"
     gm_env                           = "${var.customer}-${var.platform_instance_id}"
+    gm_usage_prefix                  = "${var.customer}-${var.platform_instance_id}"
     jwt_key                          = "${var.jwt_key}"
     languageid_apptek_host           = "${var.languageid_apptek_host}"
     languageid_apptek_password       = "${var.languageid_apptek_password}"
