@@ -4,6 +4,7 @@
             "Action": [
                 "s3:ListAllMyBuckets",
                 "s3:GetBucketLocation",
+                "logs:CreateLogGroup",
                 "logs:DescribeLogGroups",
                 "logs:CreateLogStream",
                 "logs:PutLogEvents",
