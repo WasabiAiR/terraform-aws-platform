@@ -30,7 +30,7 @@ Peform a `terraform plan` and `terraform apply`
 
 ### Step 2: Create a KMS Customer Master Key
 
-Log into the AWS KMS console (IAM->Encryption keys). Create a new KMS CMK or use an existing CMK. The key must exist in the same region into which you are deploying the platform. When provisioning the key or using an existinng key, add the IAM role `GrayMetaPlatform-{platform_instance_id}-Services-AssumeRole` (where `{platform_instance_id}` is replaced by what you chose in the `locals` block) to the list of users that can use the key to encrypt and decrypt data. Record the ARN of the CMK.
+Log into the AWS KMS console (IAM->Encryption keys). Create a new KMS CMK or use an existing CMK. The key must exist in the same region into which you are deploying the platform. When provisioning the key or using an existinng key, add the IAM role `GrayMetaPlatform-{platform_instance_id}-Services-AssumeRole2` (where `{platform_instance_id}` is replaced by what you chose in the `locals` block) to the list of users that can use the key to encrypt and decrypt data. Record the ARN of the CMK.
 
 ## Step 3: Generate the encrypted configuration blob
 
