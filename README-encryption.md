@@ -11,7 +11,7 @@ Your terraform configs should look like this:
 ```
 locals {
     platform_instance_id = "labs"
-    key_name             = "jhancock"
+    key_name             = "somekey"
 }
 
 provider "aws" {
@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.9"
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.10"
 
     platform_instance_id = "${local.platform_instance_id}"
 }
@@ -30,9 +30,9 @@ Peform a `terraform plan` and `terraform apply`
 
 ### Step 2: Create a KMS Customer Master Key
 
-Log into the AWS KMS console (IAM->Encryption keys). Create a new KMS CMK or use an existing CMK. The key must exist in the same region into which you are deploying the platform. When provisioning the key or using an existinng key, add the IAM role `GrayMetaPlatform-{platform_instance_id}-Services-AssumeRole` (where `{platform_instance_id}` is replaced by what you chose in the `locals` block) to the list of users that can use the key to encrypt and decrypt data. Record the ARN of the CMK.
+Log into the AWS KMS console (IAM->Encryption keys). Create a new KMS CMK or use an existing CMK. The key must exist in the same region into which you are deploying the platform. When provisioning the key or using an existinng key, add the IAM role `GrayMetaPlatform-{platform_instance_id}-Services-AssumeRole2` (where `{platform_instance_id}` is replaced by what you chose in the `locals` block) to the list of users that can use the key to encrypt and decrypt data. Record the ARN of the CMK.
 
-## Step 3: Generate the encrypted configuration blob
+### Step 3: Generate the encrypted configuration blob
 
 Contact GrayMeta to get a copy of the `gmcrypt` utility. Ensure you have credentials set up in your `~/.aws/credentials` file that are allowed to use the KMS CMK. If you have credentials but they are not the `default` profile, set the `AWS_PROFILE` environment variable to the profile's name that contains the credentials.
 
@@ -54,12 +54,12 @@ A base64 encoded string will be output. This string becomes the `encrypted_confi
 
 ### Step 4: Add the rest of the configs to the terraform module
 
-Add in the network(if using) and services modules. Your Terraform config should now look like this:
+Add in the network(if using) and platform modules. Your Terraform config should now look like this:
 
 ```
 locals {
     platform_instance_id = "labs"
-    key_name             = "jhancock"
+    key_name             = "somekey"
 }
 
 provider "aws" {
@@ -67,19 +67,19 @@ provider "aws" {
 }
 
 module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.9"
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.10"
 
     platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.9"
+    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.10"
 
     ... (see README.md for details)
 }
 
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.9"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.10"
 
     encrypted_config_blob = "base64 encoded string from gmcrypt"
 

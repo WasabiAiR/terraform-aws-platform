@@ -77,7 +77,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 
 locals {
     platform_instance_id = "labs"
-    key_name             = "jhancock"
+    key_name             = "somekey"
 }
 
 provider "aws" {
@@ -85,13 +85,13 @@ provider "aws" {
 }
 
 module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.9"
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.10"
 
     platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.9"
+    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.10"
 
     platform_instance_id = "${local.platform_instance_id}"
     region               = "us-east-1"
@@ -100,13 +100,15 @@ module "network" {
 }
 
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.9"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.10"
 
     platform_instance_id       = "${local.platform_instance_id}"
+    customer                   = "mycompanyname"
     region                     = "us-east-1"
     key_name                   = "${local.key_name}"
     platform_access_cidrs      = "0.0.0.0/0"
     file_storage_s3_bucket_arn = "arn:aws:s3:::cfn-file-api"
+    usage_s3_bucket_arn        = "arn:aws:s3:::cfn-usage-api"
     dns_name                   = "foo.cust.graymeta.com"
     ssl_certificate_arn        = "arn:aws:acm:us-east-1:913397769129:certificate/507e54c3-51a4-45b3-ae21-9cb4647bb671"
     notifications_from_addr    = "noreply@example.com"
