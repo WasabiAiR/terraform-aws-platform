@@ -112,6 +112,7 @@ module "platform" {
     dns_name                   = "foo.cust.graymeta.com"
     ssl_certificate_arn        = "arn:aws:acm:us-east-1:913397769129:certificate/507e54c3-51a4-45b3-ae21-9cb4647bb671"
     notifications_from_addr    = "noreply@example.com"
+    services_iam_role_name     = "${module.servicesiam.services_iam_role_name}"
 
     # RDS Configuration
     db_username          = "mydbuser"

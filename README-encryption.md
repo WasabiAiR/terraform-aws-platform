@@ -47,7 +47,7 @@ key2=value2
 Encrypt the file:
 
 ```
-# gmcrypt -key-id <arn of key> -region <region you are deploying into> data.txt
+# gmcrypt -key-arn <arn of key> -region <region you are deploying into> data.txt
 ```
 
 A base64 encoded string will be output. This string becomes the `encrypted_config_blob` variable in the next step
