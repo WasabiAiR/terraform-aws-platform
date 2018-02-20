@@ -110,8 +110,8 @@ write_files:
         harvest_speech_apptek_password=${speech_apptek_password}
         harvest_speech_apptek_username=${speech_apptek_username}
         harvest_weather_api_key=${weather_api_key}
-        harvest_box_client_id=${box_client_id}
-        harvest_box_client_secret=${box_client_secret}
+        box_client_id=${box_client_id}
+        box_client_secret=${box_client_secret}
         rollbar_token=${rollbar_token}
         stow_mountpath=/var/lib/graymeta/mounts
     path: /etc/graymeta/metafarm.env
