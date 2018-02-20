@@ -220,6 +220,10 @@ module "platform" {
 
     # Weather (forecast.io API key)
     weather_api_key                  = ""
+
+    # Box (Box.com)
+    box_client_id                    = ""
+    box_client_secret                = ""
 }
 
 output "GrayMetaPlatformEndpoint" {

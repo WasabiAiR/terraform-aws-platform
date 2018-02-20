@@ -75,6 +75,8 @@ variable "speech_apptek_username" {}
 variable "watson_speech_password" {}
 variable "watson_speech_username" {}
 variable "weather_api_key" {}
+variable "box_client_id" {}
+variable "box_client_secret" {}
 
 variable "ssh_cidr_blocks" {
   type        = "string"

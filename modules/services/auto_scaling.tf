@@ -155,6 +155,8 @@ data "template_file" "userdata" {
     watson_speech_username           = "${var.watson_speech_username}"
     weather_api_key                  = "${var.weather_api_key}"
     weather_api_key                  = "${var.weather_api_key}"
+    box_client_id                    = "${var.box_client_id}"
+    box_client_secret                = "${var.box_client_secret}"
   }
 }
 

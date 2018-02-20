@@ -136,4 +136,6 @@ module "services" {
   watson_speech_password           = "${var.watson_speech_password}"
   watson_speech_username           = "${var.watson_speech_username}"
   weather_api_key                  = "${var.weather_api_key}"
+  box_client_id                    = "${var.box_client_id}"
+  box_client_secret                = "${var.box_client_secret}"
 }
