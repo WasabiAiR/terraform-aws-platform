@@ -207,11 +207,13 @@ variable "weather_api_key" {
 variable "box_client_id" {
   type        = "string"
   description = "Box Client ID key. See box.com"
+  default     = ""
 }
 
 variable "box_client_secret" {
   type        = "string"
   description = "Box client secret. See box.com"
+  default     = ""
 }
 
 variable "google_speech_auth_json" {

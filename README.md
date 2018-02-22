@@ -175,6 +175,10 @@ module "platform" {
     azure_face_api_key               = ""
     azure_vision_key                 = ""
 
+    # Box (Box.com)
+    box_client_id                    = ""
+    box_client_secret                = ""
+
     # Geonames (geocoding)
     geonames_user                    = ""
 
@@ -220,10 +224,6 @@ module "platform" {
 
     # Weather (forecast.io API key)
     weather_api_key                  = ""
-
-    # Box (Box.com)
-    box_client_id                    = ""
-    box_client_secret                = ""
 }
 
 output "GrayMetaPlatformEndpoint" {
