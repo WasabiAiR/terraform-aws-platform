@@ -204,6 +204,18 @@ variable "weather_api_key" {
   description = "A API key. See forecast.io"
 }
 
+variable "box_client_id" {
+  type        = "string"
+  description = "Box Client ID key. See box.com"
+  default     = ""
+}
+
+variable "box_client_secret" {
+  type        = "string"
+  description = "Box client secret. See box.com"
+  default     = ""
+}
+
 variable "google_speech_auth_json" {
   type        = "string"
   description = "base64 encoded json google speech configuration"

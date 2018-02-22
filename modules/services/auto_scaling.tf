@@ -99,6 +99,8 @@ data "template_file" "userdata" {
     azure_emotion_key                = "${var.azure_emotion_key}"
     azure_face_api_key               = "${var.azure_face_api_key}"
     azure_vision_key                 = "${var.azure_vision_key}"
+    box_client_id                    = "${var.box_client_id}"
+    box_client_secret                = "${var.box_client_secret}"
     client_secret_fe                 = "${var.client_secret_fe}"
     client_secret_internal           = "${var.client_secret_internal}"
     db_endpoint                      = "${var.db_endpoint}"
@@ -116,8 +118,6 @@ data "template_file" "userdata" {
     file_storage_s3_bucket_arn       = "${var.file_storage_s3_bucket_arn}"
     from_addr                        = "${var.notifications_from_addr}"
     geonames_user                    = "${var.geonames_user}"
-    geonames_user                    = "${var.geonames_user}"
-    google_maps_key                  = "${var.google_maps_key}"
     google_maps_key                  = "${var.google_maps_key}"
     google_speech_auth_json          = "${var.google_speech_auth_json}"
     google_speech_bucket             = "${var.google_speech_bucket}"
@@ -150,10 +150,7 @@ data "template_file" "userdata" {
     sqs_walk                         = "${var.sqs_walk}"
     usage_s3_bucket_arn              = "${var.usage_s3_bucket_arn}"
     watson_speech_password           = "${var.watson_speech_password}"
-    watson_speech_password           = "${var.watson_speech_password}"
     watson_speech_username           = "${var.watson_speech_username}"
-    watson_speech_username           = "${var.watson_speech_username}"
-    weather_api_key                  = "${var.weather_api_key}"
     weather_api_key                  = "${var.weather_api_key}"
   }
 }

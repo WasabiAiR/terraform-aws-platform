@@ -111,6 +111,8 @@ module "services" {
   azure_emotion_key                = "${var.azure_emotion_key}"
   azure_face_api_key               = "${var.azure_face_api_key}"
   azure_vision_key                 = "${var.azure_vision_key}"
+  box_client_id                    = "${var.box_client_id}"
+  box_client_secret                = "${var.box_client_secret}"
   geonames_user                    = "${var.geonames_user}"
   google_maps_key                  = "${var.google_maps_key}"
   google_speech_auth_json          = "${var.google_speech_auth_json}"
