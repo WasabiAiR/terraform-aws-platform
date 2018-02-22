@@ -40,6 +40,8 @@ write_files:
 -   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         SES_REGION=${region}
+        box_client_id=${box_client_id}
+        box_client_secret=${box_client_secret}
         facebox_host=http://127.0.0.1:9090
         gm_auth_api_redis=${elasticache_services}:6379
         gm_auth_api_redis_db=0
@@ -110,8 +112,6 @@ write_files:
         harvest_speech_apptek_password=${speech_apptek_password}
         harvest_speech_apptek_username=${speech_apptek_username}
         harvest_weather_api_key=${weather_api_key}
-        box_client_id=${box_client_id}
-        box_client_secret=${box_client_secret}
         rollbar_token=${rollbar_token}
         stow_mountpath=/var/lib/graymeta/mounts
     path: /etc/graymeta/metafarm.env
