@@ -107,6 +107,11 @@ variable "ecs_nat_ip" {
   description = "The public IP all traffic from the ECS cluster is NAT'ed through to allow access to the APIs"
 }
 
+variable "services_nat_ip" {
+  type        = "string"
+  description = "The public IP all traffic from the Services cluster is NAT'ed through to allow access to the APIs"
+}
+
 variable "ssl_certificate_arn" {
   type        = "string"
   description = "The ARN of the SSL certificate to use to secure the endpoints. Must be a valid CA issued certificate (no self-signed certs)"

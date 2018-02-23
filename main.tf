@@ -66,6 +66,7 @@ module "services" {
   customer                   = "${var.customer}"
   platform_instance_id       = "${var.platform_instance_id}"
   ecs_nat_ip                 = "${var.ecs_nat_ip}"
+  services_nat_ip            = "${var.services_nat_ip}"
   platform_access_cidrs      = "${var.platform_access_cidrs}"
   ssh_cidr_blocks            = "${var.ssh_cidr_blocks}"
   subnet_id_1                = "${var.services_subnet_id_1}"

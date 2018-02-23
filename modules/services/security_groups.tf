@@ -89,6 +89,13 @@ resource "aws_security_group" "services_alb_security_group" {
   }
 
   ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["${var.services_nat_ip}"]
+  }
+
+  ingress {
     from_port   = 8445
     to_port     = 8445
     protocol    = "tcp"
