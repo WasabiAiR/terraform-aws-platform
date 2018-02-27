@@ -114,67 +114,15 @@ module "platform" {
     # Optional Error Reporting Configurations
     rollbar_token = ""
 
-    ###############################################################
-    # Cognitive Service Configuration
-    ###############################################################
-
     # Facebox API Key
     facebox_key                      = ""
-
-    # Azure Vision
-    azure_emotion_key                = ""
-    azure_face_api_key               = ""
-    azure_vision_key                 = ""
 
     # Box (Box.com)
     box_client_id                    = ""
     box_client_secret                = ""
 
-    # Geonames (geocoding)
-    geonames_user                    = ""
-
     # Google maps (for plotting geocoded results on a map in the UI
     google_maps_key                  = ""
-
-    # Google Speech To Text
-    google_speech_auth_json          = ""
-    google_speech_bucket             = ""
-    google_speech_project_id         = ""
-
-    # Google Vision
-    google_vision_features           = ""
-    google_vision_key                = ""
-
-    # Apptek Language ID
-    languageid_apptek_host           = ""
-    languageid_apptek_password       = ""
-    languageid_apptek_segment_length = ""
-    languageid_apptek_username       = ""
-
-    # Microsoft Speech to Text
-    microsoft_speech_api_key         = ""
-
-    # Pic Purify
-    pic_purify_key                   = ""
-    pic_purify_tasks                 = ""
-
-    # DM Safety
-    safety_dm_host                   = ""
-    safety_dm_pass                   = ""
-    safety_dm_user                   = ""
-
-    # Apptek Speech To Text
-    speech_apptek_concurrency        = ""
-    speech_apptek_host               = ""
-    speech_apptek_password           = ""
-    speech_apptek_username           = ""
-
-    # Watson Speech To Text
-    watson_speech_password           = ""
-    watson_speech_username           = ""
-
-    # Weather (forecast.io API key)
-    weather_api_key                  = ""
 }
 
 output "GrayMetaPlatformEndpoint" {

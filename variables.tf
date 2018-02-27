@@ -178,11 +178,6 @@ variable "facebox_key" {
   description = "A facebox PRO license key. See http://machinebox.io"
 }
 
-variable "geonames_user" {
-  type        = "string"
-  description = "A GeoNames username for geolocation. See http://www.geonames.org/"
-}
-
 variable "google_maps_key" {
   type        = "string"
   description = "A Google maps key"
@@ -192,21 +187,6 @@ variable "jwt_key" {
   type        = "string"
   description = "A 32 character string used to encrypt JWT web tokens"
   default     = ""
-}
-
-variable "watson_speech_password" {
-  type        = "string"
-  description = "Watson speech-to-text password"
-}
-
-variable "watson_speech_username" {
-  type        = "string"
-  description = "Watson speech-to-text username"
-}
-
-variable "weather_api_key" {
-  type        = "string"
-  description = "A API key. See forecast.io"
 }
 
 variable "box_client_id" {
@@ -219,117 +199,6 @@ variable "box_client_secret" {
   type        = "string"
   description = "Box client secret. See box.com"
   default     = ""
-}
-
-variable "google_speech_auth_json" {
-  type        = "string"
-  description = "base64 encoded json google speech configuration"
-}
-
-variable "google_speech_bucket" {
-  type        = "string"
-  description = "google storage bucket for uploading files for speech to text"
-}
-
-variable "google_speech_project_id" {
-  type        = "string"
-  description = "google speech project ID"
-}
-
-variable "azure_face_api_key" {
-  type        = "string"
-  description = "Azure faces API key. https://azure.microsoft.com/en-us/services/cognitive-services/face/"
-}
-
-variable "azure_emotion_key" {
-  type        = "string"
-  description = "Azure emotion API key. https://azure.microsoft.com/en-us/services/cognitive-services/emotion/"
-}
-
-variable "google_vision_key" {
-  type        = "string"
-  description = "Google vision API key"
-}
-
-variable "google_vision_features" {
-  type        = "string"
-  description = "A comma-delimited list of features to use for google vision (ex. FACE_DETECTION,IMAGE_PROPERTIES,LABEL_DETECTION,LANDMARK_DETECTION,LOGO_DETECTION,SAFE_SEARCH_DETECTION,TEXT_DETECTION)"
-}
-
-variable "pic_purify_key" {
-  type        = "string"
-  description = "PicPurify API key. See https://www.picpurify.com/"
-}
-
-variable "pic_purify_tasks" {
-  type        = "string"
-  description = "Comma delimited list of PicPurify tasks to run. (ex. porn_detection)"
-}
-
-variable "azure_vision_key" {
-  type        = "string"
-  description = "Azure vision API key. See https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/"
-}
-
-variable "languageid_apptek_host" {
-  type        = "string"
-  description = "Apptek Language ID server URL. Contact GrayMeta."
-}
-
-variable "languageid_apptek_password" {
-  type        = "string"
-  description = "Apptek Language ID password. Contact GrayMeta."
-}
-
-variable "languageid_apptek_segment_length" {
-  type        = "string"
-  description = "Apptek Language ID segment length expressed as a Golang duration string. A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as `300ms`, `-1.5h` or `2h45m`. Valid time units are `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`."
-}
-
-variable "languageid_apptek_username" {
-  type        = "string"
-  description = "Apptek Language ID username. Contact GrayMeta."
-}
-
-variable "microsoft_speech_api_key" {
-  type        = "string"
-  description = "Azure speech to text api key. https://docs.microsoft.com/en-us/azure/cognitive-services/speech/home"
-}
-
-variable "safety_dm_host" {
-  type        = "string"
-  description = "DimensionalMechanics safety model host URL. Contact GrayMeta."
-}
-
-variable "safety_dm_pass" {
-  type        = "string"
-  description = "DimensionalMechanics safety model password. Contact GrayMeta."
-}
-
-variable "safety_dm_user" {
-  type        = "string"
-  description = "DimensionalMechanics safety model username. Contact GrayMeta."
-}
-
-variable "speech_apptek_concurrency" {
-  type        = "string"
-  default     = "5"
-  description = "Number of segments to run in parallel through Apptek speech to text."
-}
-
-variable "speech_apptek_host" {
-  type        = "string"
-  description = "Apptek speech to text hostname. Contact GrayMeta."
-}
-
-variable "speech_apptek_password" {
-  type        = "string"
-  description = "Apptek speech to text password. Contact GrayMeta."
-}
-
-variable "speech_apptek_username" {
-  type        = "string"
-  description = "Apptek speech to text username. Contact GrayMeta."
 }
 
 variable "elasticache_instance_type_services" {
@@ -374,7 +243,7 @@ variable "elasticsearch_instance_count" {
   default     = "2"
 }
 
-variable ssh_cidr_blocks {
+variable "ssh_cidr_blocks" {
   type        = "string"
   description = "Comma delimited list of cidr blocks from which to allow access via SSH"
 }
