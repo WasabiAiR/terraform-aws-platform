@@ -11,9 +11,7 @@ variable "ssh_cidr_blocks" {
   description = "Comma delimited list of cidr blocks to allow SSH access from."
 }
 
-data "aws_region" "current" {
-  current = true
-}
+data "aws_region" "current" {}
 
 data "aws_subnet" "ecs_subnet" {
   id = "${var.subnet_id}"
