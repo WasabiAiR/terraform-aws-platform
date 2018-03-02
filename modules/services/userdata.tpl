@@ -81,6 +81,7 @@ write_files:
         gm_recently_walked_redis=${elasticache_services}:6379
         gm_recently_walked_redis_db=0
         gm_recently_walked_redis_key_prefix="recwalked:"
+        gm_scheduler_api=https://${dns_name}/api/scheduler
         gm_sqs_activity=${sqs_activity}
         gm_sqs_index=${sqs_index}
         gm_sqs_stage=${sqs_stage}
