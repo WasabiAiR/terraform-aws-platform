@@ -59,7 +59,7 @@ data "template_file" "userdata" {
   vars {
     ecs_cluster    = "${aws_ecs_cluster.ecs_cluster.name}"
     file_system_id = "${aws_efs_file_system.ecs_filesystem.id}"
-    region         = "${data.aws_region.current.name}"
+    region         = "${var.region}"
   }
 }
 

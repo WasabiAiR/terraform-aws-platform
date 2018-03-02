@@ -118,7 +118,7 @@ data "template_file" "userdata" {
     gm_env                           = "${var.customer}-${var.platform_instance_id}"
     gm_usage_prefix                  = "${var.customer}-${var.platform_instance_id}"
     jwt_key                          = "${var.jwt_key}"
-    region                           = "${data.aws_region.current.name}"
+    region                           = "${var.region}"
     rollbar_token                    = "${var.rollbar_token}"
     services_log_group               = "GrayMetaPlatform-${var.platform_instance_id}-Services"
     sqs_activity                     = "${var.sqs_activity}"
