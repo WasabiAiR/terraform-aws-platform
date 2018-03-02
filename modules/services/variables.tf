@@ -1,3 +1,4 @@
+variable "region" {}
 variable "customer" {}
 variable "platform_instance_id" {}
 variable "platform_access_cidrs" {}
@@ -55,8 +56,6 @@ variable "ssh_cidr_blocks" {
   type        = "string"
   description = "Comma delimited list of cidr blocks to allow SSH access from."
 }
-
-data "aws_region" "current" {}
 
 data "aws_subnet" "subnet_1" {
   id = "${var.subnet_id_1}"

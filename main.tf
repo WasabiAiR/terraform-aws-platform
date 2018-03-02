@@ -5,6 +5,7 @@ provider "aws" {
 module "ecs" {
   source = "./modules/ecs"
 
+  region               = "${var.region}"
   platform_instance_id = "${var.platform_instance_id}"
   subnet_id            = "${var.ecs_subnet_id}"
   ami_id               = "${lookup(var.ecs_amis, var.region)}"
@@ -63,6 +64,7 @@ module "rds" {
 module "services" {
   source = "./modules/services"
 
+  region                     = "${var.region}"
   customer                   = "${var.customer}"
   platform_instance_id       = "${var.platform_instance_id}"
   ecs_nat_ip                 = "${var.ecs_nat_ip}"
