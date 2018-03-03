@@ -9,12 +9,6 @@ runcmd:
 - /opt/graymeta/bin/all-services.sh restart
 write_files:
 -   content: |
-        [Service]
-        ExecStart=
-        ExecStart=/bin/sh -c "/opt/graymeta/bin/scheduled -max-items 1 >> /var/log/graymeta/scheduled.log 2>&1"
-    path: /etc/systemd/system/gm-scheduled.service.d/scheduled-exec-start.conf
-    permissions: '0644'
--   content: |
         [Unit]
         Description=Daemon for facebox
         After=docker.service
