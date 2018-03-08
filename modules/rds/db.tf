@@ -2,7 +2,7 @@ resource "aws_db_instance" "default" {
   allocated_storage         = "${var.allocated_storage}"
   storage_type              = "gp2"
   engine                    = "postgres"
-  engine_version            = "9.6.1"
+  engine_version            = "9.6.6"
   instance_class            = "${var.db_instance_size}"
   name                      = "graymeta"
   username                  = "${var.db_username}"
