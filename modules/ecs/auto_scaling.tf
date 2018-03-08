@@ -44,7 +44,7 @@ resource "aws_launch_configuration" "launch_config_ecs" {
 
   root_block_device {
     volume_type           = "gp2"
-    volume_size           = 50
+    volume_size           = "${var.volume_size}"
     delete_on_termination = true
   }
 
@@ -58,7 +58,6 @@ data "template_file" "userdata" {
 
   vars {
     ecs_cluster    = "${aws_ecs_cluster.ecs_cluster.name}"
-    file_system_id = "${aws_efs_file_system.ecs_filesystem.id}"
     region         = "${var.region}"
   }
 }

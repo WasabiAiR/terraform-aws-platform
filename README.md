@@ -75,6 +75,7 @@ module "platform" {
     ecs_instance_type    = "c4.large"
     ecs_max_cluster_size = 2
     ecs_min_cluster_size = 1
+    ecs_volume_size      = 1000
 
     # Services Cluster Configuration
     services_instance_type    = "m4.large"
