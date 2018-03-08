@@ -6,6 +6,7 @@ variable "ami_id" {}
 variable "max_cluster_size" {}
 variable "min_cluster_size" {}
 variable "key_name" {}
+variable "volume_size" {}
 
 variable "ssh_cidr_blocks" {
   type        = "string"

@@ -69,6 +69,11 @@ variable "ecs_min_cluster_size" {
   default     = "1"
 }
 
+variable "ecs_volume_size" {
+    type        = "string"
+    description = "The size of the EBS volumes to mount to ECS nodes. This is workload dependent. Contact GrayMeta for a recommendation"
+}
+
 variable "services_max_cluster_size" {
   type        = "string"
   description = "The maxiumum number of nodes in the Services cluster"

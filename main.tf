@@ -14,6 +14,7 @@ module "ecs" {
   min_cluster_size     = "${var.ecs_min_cluster_size}"
   key_name             = "${var.key_name}"
   ssh_cidr_blocks      = "${var.ssh_cidr_blocks}"
+  volume_size          = "${var.ecs_volume_size}"
 }
 
 module "queues" {
