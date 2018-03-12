@@ -36,13 +36,13 @@ provider "aws" {
 }
 
 module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.15"
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.17"
 
     platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.15"
+    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.17"
 
     platform_instance_id = "${local.platform_instance_id}"
     region               = "us-east-1"
@@ -51,7 +51,7 @@ module "network" {
 }
 
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.15"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.17"
 
     platform_instance_id       = "${local.platform_instance_id}"
     customer                   = "mycompanyname"
