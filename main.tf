@@ -88,6 +88,7 @@ module "services" {
   notifications_from_addr    = "${var.notifications_from_addr}"
   encrypted_config_blob      = "${var.encrypted_config_blob}"
   services_iam_role_name     = "${var.services_iam_role_name}"
+  temporary_bucket_name      = "${module.ecs.temporary_bucket_name}"
 
   sqs_activity     = "${module.queues.activity}"
   sqs_activity_arn = "${module.queues.activity_arn}"

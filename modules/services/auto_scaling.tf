@@ -125,6 +125,7 @@ data "template_file" "userdata" {
     sqs_index                        = "${var.sqs_index}"
     sqs_stage                        = "${var.sqs_stage}"
     sqs_walk                         = "${var.sqs_walk}"
+    temporary_bucket_name            = "${var.temporary_bucket_name}"
     usage_s3_bucket_arn              = "${var.usage_s3_bucket_arn}"
   }
 }

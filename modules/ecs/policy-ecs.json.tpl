@@ -11,11 +11,32 @@
                 "logs:CreateLogGroup",
                 "logs:CreateLogStream",
                 "logs:PutLogEvents",
-                "rekognition:*"
+                "rekognition:*",
+                "s3:ListAllMyBuckets"
             ],
             "Effect": "Allow",
             "Resource": [
                 "*"
+            ]
+        },
+        {
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "${bucket_arn}"
+            ]
+        },
+        {
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "${bucket_arn}/*"
             ]
         }
     ],
