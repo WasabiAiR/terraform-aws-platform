@@ -75,6 +75,7 @@ write_files:
         gm_job_store_redis_db=0
         gm_job_store_redis_key_prefix="jobinfo:"
         gm_jwt_private_key=${jwt_key}
+        gm_recently_walked_expiration=1209600s
         gm_recently_walked_redis=${elasticache_services}:6379
         gm_recently_walked_redis_db=0
         gm_recently_walked_redis_key_prefix="recwalked:"
