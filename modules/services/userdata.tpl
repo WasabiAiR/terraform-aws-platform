@@ -86,6 +86,8 @@ write_files:
         gm_usage_api=https://${dns_name}/api/usage
         gm_usage_prefix=${gm_usage_prefix}
         harvest_facebox_host=https://${dns_name}:8445
+        harvest_gm_temp_bucket_name=${temporary_bucket_name}
+        harvest_gm_temp_bucket_region=${region}
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
         harvest_rollbar_token=${rollbar_token}
         rollbar_token=${rollbar_token}

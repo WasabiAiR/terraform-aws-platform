@@ -6,7 +6,7 @@ resource "aws_iam_role" "iam_role" {
 resource "aws_iam_policy" "iam_policy" {
   name        = "GrayMetaPlatform-${var.platform_instance_id}-ECS-Policy"
   description = "GrayMeta Platform ECS privileges"
-  policy      = "${file("${path.module}/policy-ecs.json")}"
+  policy      = "${data.template_file.policy_ecs.rendered}"
 }
 
 resource "aws_iam_policy_attachment" "iam_policy_attachment" {
@@ -19,3 +19,12 @@ resource "aws_iam_instance_profile" "iam_instance_profile_ecs" {
   name = "GrayMetaPlatform-${var.platform_instance_id}-ECS-InstanceProfile"
   role = "${aws_iam_role.iam_role.name}"
 }
+
+data "template_file" "policy_ecs" {
+  template = "${file("${path.module}/policy-ecs.json.tpl")}"
+
+  vars {
+    bucket_arn = "${aws_s3_bucket.temp_bucket.arn}"
+  }
+}
+
