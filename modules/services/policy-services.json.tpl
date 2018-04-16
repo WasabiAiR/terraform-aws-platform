@@ -63,6 +63,15 @@
             },
             "Effect": "Allow",
             "Resource": "*"
+        },
+        {
+            "Action": [
+                "sns:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "${sns_topic_arn_harvest_complete}"
+            ]
         }
     ],
     "Version": "2012-10-17"
