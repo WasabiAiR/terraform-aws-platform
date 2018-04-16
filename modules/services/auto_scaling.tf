@@ -121,6 +121,7 @@ data "template_file" "userdata" {
     region                           = "${var.region}"
     rollbar_token                    = "${var.rollbar_token}"
     services_log_group               = "GrayMetaPlatform-${var.platform_instance_id}-Services"
+    sns_topic_arn_harvest_complete   = "${aws_sns_topic.harvest_complete.arn}"
     sqs_activity                     = "${var.sqs_activity}"
     sqs_index                        = "${var.sqs_index}"
     sqs_stage                        = "${var.sqs_stage}"

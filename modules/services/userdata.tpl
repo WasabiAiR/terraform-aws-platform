@@ -47,6 +47,7 @@ write_files:
         gm_auth_api_redis_db=0
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
+        gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
         gm_container_image=graymeta/harvester
         gm_data_api=https://${dns_name}/api/data
         gm_db_host=${db_endpoint}
