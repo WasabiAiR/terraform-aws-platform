@@ -70,6 +70,8 @@ module "platform" {
     db_password          = "mydbpassword"
     db_instance_size     = "db.t2.small"
     db_allocated_storage = "100"
+    db_storage_encrypted = false    # optional
+    db_kms_key_id        = ""       # optional
 
     # ECS Cluster Configuration
     ecs_instance_type    = "c4.large"
