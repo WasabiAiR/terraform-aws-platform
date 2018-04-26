@@ -18,6 +18,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 * Decide the CIDR or CIDRs that will be allowed access to the platform. Record as comma delimited lists of CIDR blocks.
   * `platform_access_cidrs` - The list of CIDRs that will be allowed to access the web ports of the platform
   * `ssh_cidr_blocks` - The list of CIDRs that will be allowed SSH access to the servers. This is typically an admin or VPN subnet somewhere within your VPC.
+* Decide if you want the RDS encrypted.  To encrypt change `db_storage_encrypted` to true.  If you leave `db_kms_key_id` blank it will create a kms key for you.  To specify an existing KMS Key add the ARN to `db_kms_key_id`.  These settings are ignored after creation.
 * Fill in the rest of the variables, review the output of a `terraform plan`, then apply the changes.
 * Create a CNAME from your `dns_name` to the value of the `GrayMetaPlatformEndpoint` output. This needs to be publicly resolvable.
 * Load `https://dns_name` where _dns\_name_ is the name you chose above. The default username is `admin@graymeta.com`. The password is set to the instance ID of one of the Services nodes of the platform. These are tagged with the name `GrayMetaPlatform-${platform_instance_id}-Services` in the EC2 console. There should be at least 2 nodes running. Try the instance ID of both. After logging in for the first time, change the password of the `admin@graymeta.com` account. Create other accounts as necessary.
@@ -70,6 +71,8 @@ module "platform" {
     db_password          = "mydbpassword"
     db_instance_size     = "db.t2.small"
     db_allocated_storage = "100"
+    db_storage_encrypted = false
+    db_kms_key_id        = ""
 
     # ECS Cluster Configuration
     ecs_instance_type    = "c4.large"

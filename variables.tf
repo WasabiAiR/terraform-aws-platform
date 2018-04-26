@@ -145,6 +145,18 @@ variable "db_allocated_storage" {
   default     = "100"
 }
 
+variable "db_storage_encrypted" {
+  type        = "string"
+  description = "(Optional) The data is already encrypted by Platform before inserting into database.  This option specifies whether the DB instance is encrypted at rest.  The default is false if not specified"
+  default     = false
+}
+
+variable "db_kms_key_id" {
+  type        = "string"
+  description = "(Optional) The ARN for the KMS encryption key.  If not specified and db_storage_encrypted is true, it will generate a kms key"
+  default     = ""
+}
+
 variable "file_storage_s3_bucket_arn" {
   type        = "string"
   description = "The ARN of the s3 bucket to store thumbnails, video previews, and metadata files"

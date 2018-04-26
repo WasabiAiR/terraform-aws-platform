@@ -10,6 +10,9 @@ variable "db_instance_size" {}
 
 variable "allocated_storage" {}
 
+variable "db_storage_encrypted" {}
+variable "db_kms_key_id" {}
+
 data "aws_subnet" "rds_subnet_1" {
   id = "${var.rds_subnet_id_1}"
 }
