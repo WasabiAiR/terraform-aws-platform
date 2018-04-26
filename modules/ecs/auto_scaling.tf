@@ -57,8 +57,8 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
   vars {
-    ecs_cluster    = "${aws_ecs_cluster.ecs_cluster.name}"
-    region         = "${var.region}"
+    ecs_cluster = "${aws_ecs_cluster.ecs_cluster.name}"
+    region      = "${var.region}"
   }
 }
 

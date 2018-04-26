@@ -30,10 +30,8 @@ variable "encrypted_config_blob" {}
 variable "services_iam_role_name" {}
 variable "temporary_bucket_name" {}
 
-# SES Information
 variable "notifications_from_addr" {}
 
-# SQS Queue Information
 variable "sqs_activity" {}
 variable "sqs_activity_arn" {}
 variable "sqs_index" {}
@@ -43,7 +41,6 @@ variable "sqs_stage_arn" {}
 variable "sqs_walk" {}
 variable "sqs_walk_arn" {}
 
-# RDS
 variable "db_username" {}
 variable "db_password" {}
 variable "db_endpoint" {}

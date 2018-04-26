@@ -14,10 +14,16 @@ resource "aws_db_instance" "default" {
   storage_encrypted          = "${var.db_storage_encrypted}"
   kms_key_id                 = "${var.db_kms_key_id}"
 
+  snapshot_identifier = "${var.db_snapshot == "final" ?
+    format("GrayMetaPlatform-${var.platform_instance_id}-final") :
+    var.db_snapshot
+  }"
+
   lifecycle {
     ignore_changes = [
       "storage_encrypted",
       "kms_key_id",
+      "snapshot_identifier",
     ]
   }
 

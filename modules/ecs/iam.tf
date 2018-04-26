@@ -27,4 +27,3 @@ data "template_file" "policy_ecs" {
     bucket_arn = "${aws_s3_bucket.temp_bucket.arn}"
   }
 }
-
