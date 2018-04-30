@@ -22,6 +22,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 * Fill in the rest of the variables, review the output of a `terraform plan`, then apply the changes.
 * Create a CNAME from your `dns_name` to the value of the `GrayMetaPlatformEndpoint` output. This needs to be publicly resolvable.
 * Load `https://dns_name` where _dns\_name_ is the name you chose above. The default username is `admin@graymeta.com`. The password is set to the instance ID of one of the Services nodes of the platform. These are tagged with the name `GrayMetaPlatform-${platform_instance_id}-Services` in the EC2 console. There should be at least 2 nodes running. Try the instance ID of both. After logging in for the first time, change the password of the `admin@graymeta.com` account. Create other accounts as necessary.
+* After the initial install it is recommended to change `db_snapshot = "final"`.  If the database is destroyed this will use the final snapshot when recreating the database.
 
 ## Example
 
@@ -71,6 +72,7 @@ module "platform" {
     db_password          = "mydbpassword"
     db_instance_size     = "db.t2.small"
     db_allocated_storage = "100"
+    db_snapshot          = ""
     db_storage_encrypted = false
     db_kms_key_id        = ""
 

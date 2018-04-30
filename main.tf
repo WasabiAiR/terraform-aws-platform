@@ -54,6 +54,7 @@ module "rds" {
   platform_instance_id = "${var.platform_instance_id}"
   db_username          = "${var.db_username}"
   db_password          = "${var.db_password}"
+  db_snapshot          = "${var.db_snapshot}"
   db_storage_encrypted = "${var.db_storage_encrypted}"
   db_kms_key_id        = "${var.db_kms_key_id}"
   rds_subnet_id_1      = "${var.rds_subnet_id_1}"

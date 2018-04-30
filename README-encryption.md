@@ -88,3 +88,29 @@ module "platform" {
 ```
 
 Then run a `terraform plan` and a `terraform apply`
+
+
+---
+# Migrating from RDS to encrypted.
+
+* Manually create a snapshot as a backup.  The destroy should create a final backup.  This is just in case something goes wrong.
+* Destroy the existing database
+```
+terraform destroy -target=module.platform.module.rds.aws_db_instance.default
+```
+* Create a new KMS key and add the following to the platform configuration.
+```
+  db_storage_encrypted = true
+  db_kms_key_id        = "arn:aws:kms:us-west-2:1111111111111:key/11111111-1111-11111-11111-111111111"
+```
+* Go into AWS console -> RDS -> Snapshots -> Look for a snapshot that has the name GrayMetaPlatform-<platform_instance_id>-final.  
+* Select Copy on that snapshot and enable encryption on the copy.  Then wait for the copy to complete.
+* Add the following to the platform configuration
+```
+  db_snapshot = "<copy snapshot name>"
+```
+* Then run a `terraform plan` and a `terraform apply`
+* Then update db_snapshot to final
+```
+  db_snapshot = "final"
+```

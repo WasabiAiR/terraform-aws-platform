@@ -10,6 +10,8 @@ variable "db_instance_size" {}
 
 variable "allocated_storage" {}
 
+variable "db_snapshot" {}
+
 variable "db_storage_encrypted" {}
 variable "db_kms_key_id" {}
 

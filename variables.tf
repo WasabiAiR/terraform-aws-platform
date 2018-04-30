@@ -70,8 +70,8 @@ variable "ecs_min_cluster_size" {
 }
 
 variable "ecs_volume_size" {
-    type        = "string"
-    description = "The size of the EBS volumes to mount to ECS nodes. This is workload dependent. Contact GrayMeta for a recommendation"
+  type        = "string"
+  description = "The size of the EBS volumes to mount to ECS nodes. This is workload dependent. Contact GrayMeta for a recommendation"
 }
 
 variable "services_max_cluster_size" {
@@ -143,6 +143,12 @@ variable "db_allocated_storage" {
   type        = "string"
   description = "The size of the storage to allocate for the RDS database, in GB"
   default     = "100"
+}
+
+variable "db_snapshot" {
+  type        = "string"
+  description = "(Optional) Specify a snapshot to use on db create.  For initial install this should be empty string.  After the initial create it is recommended to set this to final."
+  default     = ""
 }
 
 variable "db_storage_encrypted" {
