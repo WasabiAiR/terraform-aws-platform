@@ -206,6 +206,12 @@ variable "google_maps_key" {
   description = "A Google maps key"
 }
 
+variable "harvest_polling_time" {
+  type        = "string"
+  description = "Live Harvest Polling time.  Default: 6h"
+  default     = "6h"
+}
+
 variable "jwt_key" {
   type        = "string"
   description = "A 32 character string used to encrypt JWT web tokens"

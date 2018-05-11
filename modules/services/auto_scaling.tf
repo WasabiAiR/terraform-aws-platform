@@ -117,6 +117,7 @@ data "template_file" "userdata" {
     google_maps_key                = "${var.google_maps_key}"
     gm_env                         = "${var.customer}-${var.platform_instance_id}"
     gm_usage_prefix                = "${var.customer}-${var.platform_instance_id}"
+    harvest_polling_time           = "${var.harvest_polling_time}"
     jwt_key                        = "${var.jwt_key}"
     region                         = "${var.region}"
     rollbar_token                  = "${var.rollbar_token}"
