@@ -22,10 +22,7 @@ data "template_file" "policy_services" {
     file_storage_s3_bucket_arn     = "${var.file_storage_s3_bucket_arn}"
     usage_s3_bucket_arn            = "${var.usage_s3_bucket_arn}"
     sns_topic_arn_harvest_complete = "${aws_sns_topic.harvest_complete.arn}"
-    sqs_activity_arn               = "${var.sqs_activity_arn}"
-    sqs_index_arn                  = "${var.sqs_index_arn}"
-    sqs_stage_arn                  = "${var.sqs_stage_arn}"
-    sqs_walk_arn                   = "${var.sqs_walk_arn}"
+    sqs_queues                     = "${join("\",\"", list(var.sqs_activity_arn, var.sqs_index_arn, var.sqs_walk_arn, var.sqs_stage01_arn, var.sqs_stage02_arn, var.sqs_stage03_arn, var.sqs_stage04_arn, var.sqs_stage05_arn, var.sqs_stage06_arn, var.sqs_stage07_arn, var.sqs_stage08_arn, var.sqs_stage09_arn, var.sqs_stage10_arn))}"
     from_addr                      = "${var.notifications_from_addr}"
   }
 }

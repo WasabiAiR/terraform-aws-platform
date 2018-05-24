@@ -44,12 +44,7 @@
                 "sqs:*"
             ],
             "Effect": "Allow",
-            "Resource": [
-                "${sqs_activity_arn}",
-                "${sqs_index_arn}",
-                "${sqs_stage_arn}",
-                "${sqs_walk_arn}"
-            ]
+            "Resource": ["${sqs_queues}"]
         },
         {
             "Action": [
