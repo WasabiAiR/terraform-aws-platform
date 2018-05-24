@@ -7,6 +7,7 @@ runcmd:
 - systemctl daemon-reload
 - systemctl restart docker-facebox.service
 - /opt/graymeta/bin/all-services.sh restart
+- /opt/graymeta/bin/all-services.sh enable
 write_files:
 -   content: |
         [Unit]
