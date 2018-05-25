@@ -114,6 +114,7 @@ module "services" {
   elasticache_services   = "${module.elasticache.endpoint_services}"
   encryption_key         = "${var.encryption_key}"
   facebox_key            = "${var.facebox_key}"
+  harvest_polling_time   = "${var.harvest_polling_time}"
   jwt_key                = "${var.jwt_key}"
 
   box_client_id     = "${var.box_client_id}"
