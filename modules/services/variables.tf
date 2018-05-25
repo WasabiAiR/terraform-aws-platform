@@ -29,6 +29,7 @@ variable "jwt_key" {}
 variable "encrypted_config_blob" {}
 variable "services_iam_role_name" {}
 variable "temporary_bucket_name" {}
+variable "harvest_polling_time" {}
 
 variable "notifications_from_addr" {}
 

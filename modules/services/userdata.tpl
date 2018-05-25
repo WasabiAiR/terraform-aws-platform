@@ -77,6 +77,7 @@ write_files:
         gm_files_api=https://${dns_name}/files
         gm_front_end_client_secret=${client_secret_fe}
         gm_google_maps_key=${google_maps_key}
+        gm_harvest_polling_time=${harvest_polling_time}
         gm_internal_client_secret=${client_secret_internal}
         gm_job_store_redis=${elasticache_services}:6379
         gm_job_store_redis_db=0
