@@ -7,6 +7,15 @@ runcmd:
 - systemctl daemon-reload
 - systemctl restart docker-facebox.service
 - /opt/graymeta/bin/all-services.sh restart
+- /opt/graymeta/bin/all-services.sh enable
+- echo 1 > /proc/sys/net/ipv4/tcp_fin_timeout
+- echo 20 > /proc/sys/net/ipv4/tcp_keepalive_intvl
+- echo 5 > /proc/sys/net/ipv4/tcp_keepalive_probes
+- echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
+- echo "net.ipv4.tcp_fin_timeout = 1" >> /etc/sysctl.conf
+- echo "net.ipv4.tcp_keepalive_intvl = 20" >> /etc/sysctl.conf
+- echo "net.ipv4.tcp_keepalive_probes = 5" >> /etc/sysctl.conf
+- echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
 write_files:
 -   content: |
         [Unit]
@@ -87,6 +96,8 @@ write_files:
         gm_sqs_walk=${sqs_walk}
         gm_usage_api=https://${dns_name}/api/usage
         gm_usage_prefix=${gm_usage_prefix}
+        gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
+        gm_walkd_redis_max_active=${gm_walkd_redis_max_active}
         harvest_facebox_host=https://${dns_name}:8445
         harvest_gm_temp_bucket_name=${temporary_bucket_name}
         harvest_gm_temp_bucket_region=${region}
@@ -94,6 +105,7 @@ write_files:
         harvest_rollbar_token=${rollbar_token}
         rollbar_token=${rollbar_token}
         stow_mountpath=/var/lib/graymeta/mounts
+        walkd_item_batch_size=${walkd_item_batch_size}
     path: /etc/graymeta/metafarm.env
     permissions: '0400'
     owner: graymeta:graymeta

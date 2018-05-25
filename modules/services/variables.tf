@@ -50,6 +50,18 @@ variable "box_client_secret" {}
 variable "google_maps_key" {}
 variable "rollbar_token" {}
 
+variable "gm_walkd_max_item_concurrency" {
+  default = "600"
+}
+
+variable "gm_walkd_redis_max_active" {
+  default = "1200"
+}
+
+variable "walkd_item_batch_size" {
+  default = "300"
+}
+
 variable "ssh_cidr_blocks" {
   type        = "string"
   description = "Comma delimited list of cidr blocks to allow SSH access from."

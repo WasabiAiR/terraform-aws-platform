@@ -117,6 +117,8 @@ data "template_file" "userdata" {
     google_maps_key                = "${var.google_maps_key}"
     gm_env                         = "${var.customer}-${var.platform_instance_id}"
     gm_usage_prefix                = "${var.customer}-${var.platform_instance_id}"
+    gm_walkd_max_item_concurrency  = "${var.gm_walkd_max_item_concurrency}"
+    gm_walkd_redis_max_active      = "${var.gm_walkd_redis_max_active}"
     jwt_key                        = "${var.jwt_key}"
     region                         = "${var.region}"
     rollbar_token                  = "${var.rollbar_token}"
@@ -128,6 +130,7 @@ data "template_file" "userdata" {
     sqs_walk                       = "${var.sqs_walk}"
     temporary_bucket_name          = "${var.temporary_bucket_name}"
     usage_s3_bucket_arn            = "${var.usage_s3_bucket_arn}"
+    walkd_item_batch_size          = "${var.walkd_item_batch_size}"
   }
 }
 
