@@ -8,14 +8,11 @@ runcmd:
 - systemctl restart docker-facebox.service
 - /opt/graymeta/bin/all-services.sh restart
 - /opt/graymeta/bin/all-services.sh enable
-- echo 1 > /proc/sys/net/ipv4/tcp_fin_timeout
-- echo 20 > /proc/sys/net/ipv4/tcp_keepalive_intvl
-- echo 5 > /proc/sys/net/ipv4/tcp_keepalive_probes
-- echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
 - echo "net.ipv4.tcp_fin_timeout = 1" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_intvl = 20" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_probes = 5" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
+- sysctl -p
 write_files:
 -   content: |
         [Unit]
