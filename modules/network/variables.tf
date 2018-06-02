@@ -77,3 +77,9 @@ variable "cidr_subnet_elasticsearch_2" {
   description = "The CIDR block to use for the elasticsearch 2 subnet"
   default     = "10.0.17.0/24"
 }
+
+variable "gateway_endpoints" {
+  type        = "string"
+  description = "Setup endpoint to s3 in the same region"
+  default     = true
+}
