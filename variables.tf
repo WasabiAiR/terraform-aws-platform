@@ -299,6 +299,12 @@ variable "services_iam_role_name" {
   description = "The name of the IAM role that will be applied to services roles. Must be created by the servicesiam module"
 }
 
+variable "harvest_complete_stow_fields" {
+    type        = "string"
+    description = "A comma-delimited list of strings that correspond to the names of Stow metadata keys or Stow tag keys to include in harvest complete notification messages. Case insensitive."
+    default     = ""
+}
+
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
 # Limiting factor for region support is EFS: http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region
 variable ecs_amis {

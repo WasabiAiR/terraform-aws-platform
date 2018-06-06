@@ -119,6 +119,7 @@ data "template_file" "userdata" {
     gm_usage_prefix                = "${var.customer}-${var.platform_instance_id}"
     gm_walkd_max_item_concurrency  = "${var.gm_walkd_max_item_concurrency}"
     gm_walkd_redis_max_active      = "${var.gm_walkd_redis_max_active}"
+    harvest_complete_stow_fields   = "${var.harvest_complete_stow_fields}"
     harvest_polling_time           = "${var.harvest_polling_time}"
     jwt_key                        = "${var.jwt_key}"
     region                         = "${var.region}"

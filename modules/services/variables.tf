@@ -30,6 +30,7 @@ variable "encrypted_config_blob" {}
 variable "services_iam_role_name" {}
 variable "temporary_bucket_name" {}
 variable "harvest_polling_time" {}
+variable "harvest_complete_stow_fields" {}
 
 variable "notifications_from_addr" {}
 
