@@ -41,7 +41,6 @@ resource "aws_nat_gateway" "services" {
 }
 
 resource "aws_vpc_endpoint" "s3" {
-  count             = "${var.gateway_endpoints ? 1 : 0}"
   vpc_id            = "${aws_vpc.main.id}"
   vpc_endpoint_type = "Gateway"
   service_name      = "com.amazonaws.${var.region}.s3"
