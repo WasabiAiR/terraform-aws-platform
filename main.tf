@@ -93,6 +93,10 @@ module "services" {
   services_iam_role_name       = "${var.services_iam_role_name}"
   temporary_bucket_name        = "${module.ecs.temporary_bucket_name}"
   harvest_complete_stow_fields = "${var.harvest_complete_stow_fields}"
+  sqs_s3notifications_arn      = "${var.sqs_s3notifications_arn}"
+  sqs_s3notifications          = "${var.sqs_s3notifications}"
+  s3subscriber_priority        = "${var.s3subscriber_priority}"
+
 
   sqs_activity     = "${module.queues.activity}"
   sqs_activity_arn = "${module.queues.activity_arn}"
