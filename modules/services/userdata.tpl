@@ -91,6 +91,7 @@ write_files:
         gm_scheduler_api=https://${dns_name}/api/scheduler
         gm_sqs_activity=${sqs_activity}
         gm_sqs_index=${sqs_index}
+        gm_sqs_notifications=${sqs_notifications}
         gm_sqs_stage=${sqs_stage}
         gm_sqs_walk=${sqs_walk}
         gm_usage_api=https://${dns_name}/api/usage
@@ -103,6 +104,7 @@ write_files:
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
         harvest_rollbar_token=${rollbar_token}
         rollbar_token=${rollbar_token}
+        s3subscriber_priority=${s3subscriber_priority}
         stow_mountpath=/var/lib/graymeta/mounts
         walkd_item_batch_size=${walkd_item_batch_size}
     path: /etc/graymeta/metafarm.env

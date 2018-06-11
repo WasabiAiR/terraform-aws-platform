@@ -300,10 +300,29 @@ variable "services_iam_role_name" {
 }
 
 variable "harvest_complete_stow_fields" {
-    type        = "string"
-    description = "A comma-delimited list of strings that correspond to the names of Stow metadata keys or Stow tag keys to include in harvest complete notification messages. Case insensitive."
-    default     = ""
+  type        = "string"
+  description = "Optional. A comma-delimited list of strings that correspond to the names of Stow metadata keys or Stow tag keys to include in harvest complete notification messages. Case insensitive."
+  default     = ""
 }
+
+variable "sqs_s3notifications_arn" {
+  type        = "string"
+  description = "Optional. The ARN of the queue that will be subscribed to s3 ObjectCreated notifications."
+  default     = ""
+}
+
+variable "sqs_s3notifications" {
+  type        = "string"
+  description = "Optional. The queue url of the s3 notifications queue . Optional."
+  default     = ""
+}
+
+variable "s3subscriber_priority" {
+  type        = "string"
+  description = "Optional. The priority to assign jobs registered by s3 notifications. Valid values 1-10 (1=highest priority). Set to 0 for default priority."
+  default     = "0"
+}
+
 
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
 # Limiting factor for region support is EFS: http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region
