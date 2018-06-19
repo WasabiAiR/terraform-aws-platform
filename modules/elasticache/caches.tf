@@ -1,6 +1,7 @@
 resource "aws_elasticache_cluster" "services" {
   cluster_id           = "cluster-services"
   engine               = "redis"
+  engine_version       = "3.2.10"
   node_type            = "${var.instance_type_services}"
   port                 = 6379
   num_cache_nodes      = 1
@@ -12,6 +13,7 @@ resource "aws_elasticache_cluster" "services" {
 resource "aws_elasticache_cluster" "facebox" {
   cluster_id           = "cluster-facebox"
   engine               = "redis"
+  engine_version       = "3.2.10"
   node_type            = "${var.instance_type_facebox}"
   port                 = 6379
   num_cache_nodes      = 1
