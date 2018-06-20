@@ -12,7 +12,8 @@
                 "logs:CreateLogStream",
                 "logs:PutLogEvents",
                 "rekognition:*",
-                "s3:ListAllMyBuckets"
+                "s3:ListAllMyBuckets",
+                "transcribe:*"
             ],
             "Effect": "Allow",
             "Resource": [
