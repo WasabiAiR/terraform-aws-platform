@@ -48,6 +48,8 @@ write_files:
         SES_REGION=${region}
         box_client_id=${box_client_id}
         box_client_secret=${box_client_secret}
+        dropbox_app_key=${dropbox_app_key}
+        dropbox_app_secret=${dropbox_app_secret}
         facebox_host=http://127.0.0.1:9090
         gm_auth_api_redis=${elasticache_services}:6379
         gm_auth_api_redis_db=0

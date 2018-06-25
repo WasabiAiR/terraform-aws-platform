@@ -230,6 +230,18 @@ variable "box_client_secret" {
   default     = ""
 }
 
+variable "dropbox_app_key" {
+  type        = "string"
+  description = "Dropbox application key."
+  default     = ""
+}
+
+variable "dropbox_app_secret" {
+  type        = "string"
+  description = "Dropbox application secret. See box.com"
+  default     = ""
+}
+
 variable "elasticache_instance_type_services" {
   type        = "string"
   description = "Instance type for Services cluster Redis cache"
