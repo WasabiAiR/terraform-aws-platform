@@ -78,7 +78,7 @@ resource "aws_launch_configuration" "launch_config_services" {
   iam_instance_profile = "${aws_iam_instance_profile.iam_instance_profile_services.name}"
   key_name             = "${var.key_name}"
   security_groups      = ["${aws_security_group.services.id}"]
-  user_data            = "${data.template_file.userdata.rendered}"
+  user_data_base64     = "${data.template_cloudinit_config.config.rendered}"
   depends_on           = ["aws_cloudwatch_log_group.services", "aws_cloudwatch_log_group.ecs"]
 
   root_block_device {
@@ -89,6 +89,22 @@ resource "aws_launch_configuration" "launch_config_services" {
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+
+data "template_cloudinit_config" "config" {
+  gzip = true
+  base64_encode = true
+
+  part {
+    content_type = "text/cloud-config"
+    content = "${data.template_file.userdata.rendered}"
+  }
+
+  part {
+    content_type = "text/cloud-config"
+    content      = "${var.user_init}"
+    merge_type   = "list(append)+dict(recurse_array)+str()"
   }
 }
 

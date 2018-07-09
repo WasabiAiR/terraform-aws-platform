@@ -323,6 +323,11 @@ variable "s3subscriber_priority" {
   default     = "0"
 }
 
+variable "user_init" {
+  type        = "string"
+  description = "Custom cloud-init that is rendered. (Optional)"
+  default     = ""
+}
 
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
 # Limiting factor for region support is EFS: http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region
