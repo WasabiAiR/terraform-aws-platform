@@ -1,6 +1,13 @@
 #cloud-config
 package_upgrade: false
 runcmd:
+- yum install -y cloud-utils-growpart
+- growpart /dev/xvda 2
+- growpart /dev/nvme0n1 2
+- pvresize /dev/xvda2
+- pvresize /dev/nvme0n1p2
+- lvextend -l +100%FREE /dev/mapper/centos-root
+- xfs_growfs /dev/mapper/centos-root
 - sed -i 's/^log_group_name = .*/log_group_name = ${services_log_group}/' /var/awslogs/etc/awslogs.conf
 - systemctl restart awslogs
 - /opt/graymeta/bin/aws_configurator -bucket ${file_storage_s3_bucket_arn} -usage-bucket ${usage_s3_bucket_arn} -region ${region} -encrypted-config-blob "${encrypted_config_blob}" >> /etc/graymeta/metafarm.env 2>/var/log/graymeta/aws_configurator.log
