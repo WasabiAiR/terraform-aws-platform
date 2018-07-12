@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.26"
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.27"
 
     platform_instance_id = "${local.platform_instance_id}"
 }
@@ -67,19 +67,19 @@ provider "aws" {
 }
 
 module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.26"
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.27"
 
     platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.26"
+    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.27"
 
     ... (see README.md for details)
 }
 
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.26"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.27"
 
     encrypted_config_blob = "base64 encoded string from gmcrypt"
 
