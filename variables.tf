@@ -323,9 +323,15 @@ variable "s3subscriber_priority" {
   default     = "0"
 }
 
-variable "user_init" {
+variable "ecs_user_init" {
   type        = "string"
-  description = "Custom cloud-init that is rendered. (Optional)"
+  description = "Custom cloud-init that is rendered to be used on ECS instances. (Not Recommened)"
+  default     = ""
+}
+
+variable "services_user_init" {
+  type        = "string"
+  description = "Custom cloud-init that is rendered to be used on Service instances. (Not Recommened)"
   default     = ""
 }
 
