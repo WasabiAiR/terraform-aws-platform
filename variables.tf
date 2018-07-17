@@ -58,6 +58,24 @@ variable "elasticsearch_subnet_id_2" {
   description = "The second elasticsearch subnet ID to use. Needs to be in a different AZ than elasticsearch_subnet_id_1"
 }
 
+variable "ecs_cpu_reservation" {
+  type        = "string"
+  description = "Not recommened to change unless you talk to GrayMeta support.  Default: 1024"
+  default     = "1024"
+}
+
+variable "ecs_memory_hard_reservation" {
+  type        = "string"
+  description = "Not recommened to change unless you talk to GrayMeta support.  Default: 4000"
+  default     = "4000"
+}
+
+variable "ecs_memory_soft_reservation" {
+  type        = "string"
+  description = "Not recommened to change unless you talk to GrayMeta support.  Default: 3000"
+  default     = "3000"
+}
+
 variable "ecs_max_cluster_size" {
   type        = "string"
   description = "The maxiumum number of nodes in the ECS cluster"

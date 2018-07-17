@@ -20,6 +20,9 @@ variable "client_secret_fe" {}
 variable "client_secret_internal" {}
 variable "dns_name" {}
 variable "ecs_cluster" {}
+variable "ecs_cpu_reservation" {}
+variable "ecs_memory_hard_reservation" {}
+variable "ecs_memory_soft_reservation" {}
 variable "elasticache_facebox" {}
 variable "elasticache_services" {}
 variable "elasticsearch_endpoint" {}
