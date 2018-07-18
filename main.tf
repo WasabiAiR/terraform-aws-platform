@@ -135,7 +135,7 @@ module "services" {
   ecs_cluster                 = "${module.ecs.cluster}"
   ecs_cpu_reservation         = "${var.ecs_cpu_reservation}"
   ecs_memory_hard_reservation = "${var.ecs_memory_hard_reservation}"
-  ecs_memory_soft_reservation = "${var.ecs_memory_hard_reservation}"
+  ecs_memory_soft_reservation = "${var.ecs_memory_soft_reservation}"
   elasticache_facebox         = "${module.elasticache.endpoint_facebox}"
   elasticache_services        = "${module.elasticache.endpoint_services}"
   encryption_key              = "${var.encryption_key}"
