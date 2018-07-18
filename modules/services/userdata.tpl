@@ -70,10 +70,10 @@ write_files:
         gm_db_username=${db_username}
         gm_ecs_auth_type=iam
         gm_ecs_cluster=${ecs_cluster}
-        gm_ecs_cpu=1024
+        gm_ecs_cpu=${ecs_cpu_reservation}
         gm_ecs_log_group=${ecs_log_group}
-        gm_ecs_memory_hard=4000
-        gm_ecs_memory_soft=3000
+        gm_ecs_memory_hard=${ecs_memory_hard_reservation}
+        gm_ecs_memory_soft=${ecs_memory_soft_reservation}
         gm_ecs_region=${region}
         gm_elasticsearch=${elasticsearch_endpoint}
         gm_email_from=${from_addr}
