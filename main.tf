@@ -90,6 +90,7 @@ module "services" {
   key_name                     = "${var.key_name}"
   notifications_from_addr      = "${var.notifications_from_addr}"
   encrypted_config_blob        = "${var.encrypted_config_blob}"
+  log_retention                = "${var.log_retention}"
   services_iam_role_name       = "${var.services_iam_role_name}"
   temporary_bucket_name        = "${module.ecs.temporary_bucket_name}"
   harvest_complete_stow_fields = "${var.harvest_complete_stow_fields}"

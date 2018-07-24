@@ -341,6 +341,12 @@ variable "s3subscriber_priority" {
   default     = "0"
 }
 
+variable "log_retention" {
+  type        = "string"
+  description = "Optional. The log retention for cloudwatch logs.  Default 7 days"
+  default     = "7"
+}
+
 
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
 # Limiting factor for region support is EFS: http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region
