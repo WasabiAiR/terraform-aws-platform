@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_log_group" "services" {
   name              = "GrayMetaPlatform-${var.platform_instance_id}-Services"
-  retention_in_days = 7
+  retention_in_days = "${var.log_retention}"
 
   tags {
     Name               = "GrayMetaPlatform-${var.platform_instance_id}-Services"
@@ -13,7 +13,7 @@ resource "aws_cloudwatch_log_group" "services" {
 # launches the job
 resource "aws_cloudwatch_log_group" "ecs" {
   name              = "GrayMetaPlatform-${var.platform_instance_id}-ECS"
-  retention_in_days = 7
+  retention_in_days = "${var.log_retention}"
 
   tags {
     Name               = "GrayMetaPlatform-${var.platform_instance_id}-ECS"

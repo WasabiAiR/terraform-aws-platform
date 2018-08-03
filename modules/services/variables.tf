@@ -30,6 +30,7 @@ variable "encryption_key" {}
 variable "facebox_key" {}
 variable "jwt_key" {}
 variable "encrypted_config_blob" {}
+variable "log_retention" {}
 variable "services_iam_role_name" {}
 variable "temporary_bucket_name" {}
 variable "harvest_polling_time" {}
