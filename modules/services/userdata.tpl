@@ -95,6 +95,11 @@ write_files:
         gm_recently_walked_redis=${elasticache_services}:6379
         gm_recently_walked_redis_db=0
         gm_recently_walked_redis_key_prefix="recwalked:"
+        gm_roles_redis=${elasticache_services}:6379"
+        gm_roles_redis_db=0
+        gm_roles_key_prefix="roles:"
+        gm_user_key_prefix="user:"
+        gm_user_apikey_prefix="apikey:"
         gm_scheduler_api=https://${dns_name}/api/scheduler
         gm_sqs_activity=${sqs_activity}
         gm_sqs_index=${sqs_index}
