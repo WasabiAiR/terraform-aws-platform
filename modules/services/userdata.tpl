@@ -56,8 +56,6 @@ write_files:
         box_client_id=${box_client_id}
         box_client_secret=${box_client_secret}
         facebox_host=http://127.0.0.1:9090
-        gm_auth_api_redis=${elasticache_services}:6379
-        gm_auth_api_redis_db=0
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
@@ -87,16 +85,12 @@ write_files:
         gm_harvest_complete_stow_fields=${harvest_complete_stow_fields}
         gm_harvest_polling_time=${harvest_polling_time}
         gm_internal_client_secret=${client_secret_internal}
-        gm_job_store_redis=${elasticache_services}:6379
-        gm_job_store_redis_db=0
         gm_job_store_redis_key_prefix="jobinfo:"
         gm_jwt_private_key=${jwt_key}
         gm_recently_walked_expiration=1209600s
-        gm_recently_walked_redis=${elasticache_services}:6379
-        gm_recently_walked_redis_db=0
         gm_recently_walked_redis_key_prefix="recwalked:"
-        gm_roles_redis=${elasticache_services}:6379
-        gm_roles_redis_db=0
+        gm_redis=${elasticache_services}:6379
+        gm_redis_db=0
         gm_roles_key_prefix="roles:"
         gm_user_key_prefix="user:"
         gm_user_apikey_prefix="apikey:"
