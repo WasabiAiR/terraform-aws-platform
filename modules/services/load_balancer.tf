@@ -85,7 +85,7 @@ resource "aws_lb_target_group" "port7000" {
   }
 
   health_check {
-    path                = "/"
+    path                = "/healthz"
     interval            = 30
     timeout             = 5
     protocol            = "HTTP"
