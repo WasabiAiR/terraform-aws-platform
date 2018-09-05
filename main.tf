@@ -145,10 +145,13 @@ module "services" {
   harvest_polling_time        = "${var.harvest_polling_time}"
   jwt_key                     = "${var.jwt_key}"
 
-  box_client_id     = "${var.box_client_id}"
-  box_client_secret = "${var.box_client_secret}"
-  google_maps_key   = "${var.google_maps_key}"
-  rollbar_token     = "${var.rollbar_token}"
 
-  user_init = "${var.services_user_init}"
+  box_client_id      = "${var.box_client_id}"
+  box_client_secret  = "${var.box_client_secret}"
+  dropbox_app_key    = "${var.dropbox_app_key}"
+  dropbox_app_secret = "${var.dropbox_app_secret}"
+  google_maps_key    = "${var.google_maps_key}"
+  rollbar_token      = "${var.rollbar_token}"
+  user_init          = "${var.services_user_init}"
+
 }

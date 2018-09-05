@@ -114,6 +114,8 @@ data "template_file" "userdata" {
   vars {
     box_client_id                  = "${var.box_client_id}"
     box_client_secret              = "${var.box_client_secret}"
+    dropbox_app_key                = "${var.dropbox_app_key}"
+    dropbox_app_secret             = "${var.dropbox_app_secret}"
     client_secret_fe               = "${var.client_secret_fe}"
     client_secret_internal         = "${var.client_secret_internal}"
     db_endpoint                    = "${var.db_endpoint}"

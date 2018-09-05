@@ -76,6 +76,8 @@ variable "db_endpoint" {}
 
 variable "box_client_id" {}
 variable "box_client_secret" {}
+variable "dropbox_app_key" {}
+variable "dropbox_app_secret" {}
 variable "google_maps_key" {}
 variable "rollbar_token" {}
 
