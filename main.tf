@@ -15,6 +15,7 @@ module "ecs" {
   key_name             = "${var.key_name}"
   ssh_cidr_blocks      = "${var.ssh_cidr_blocks}"
   volume_size          = "${var.ecs_volume_size}"
+  user_init            = "${var.ecs_user_init}"
 }
 
 module "queues" {
@@ -148,4 +149,6 @@ module "services" {
   box_client_secret = "${var.box_client_secret}"
   google_maps_key   = "${var.google_maps_key}"
   rollbar_token     = "${var.rollbar_token}"
+
+  user_init = "${var.services_user_init}"
 }
