@@ -58,6 +58,24 @@ variable "elasticsearch_subnet_id_2" {
   description = "The second elasticsearch subnet ID to use. Needs to be in a different AZ than elasticsearch_subnet_id_1"
 }
 
+variable "ecs_cpu_reservation" {
+  type        = "string"
+  description = "Not recommened to change unless you talk to GrayMeta support.  Default: 1024"
+  default     = "1024"
+}
+
+variable "ecs_memory_hard_reservation" {
+  type        = "string"
+  description = "Not recommened to change unless you talk to GrayMeta support.  Default: 4000"
+  default     = "4000"
+}
+
+variable "ecs_memory_soft_reservation" {
+  type        = "string"
+  description = "Not recommened to change unless you talk to GrayMeta support.  Default: 3000"
+  default     = "3000"
+}
+
 variable "ecs_max_cluster_size" {
   type        = "string"
   description = "The maxiumum number of nodes in the ECS cluster"
@@ -335,6 +353,23 @@ variable "s3subscriber_priority" {
   default     = "0"
 }
 
+variable "ecs_user_init" {
+  type        = "string"
+  description = "Custom cloud-init that is rendered to be used on ECS instances. (Not Recommened)"
+  default     = ""
+}
+
+variable "services_user_init" {
+  type        = "string"
+  description = "Custom cloud-init that is rendered to be used on Service instances. (Not Recommened)"
+  default     = ""
+}
+
+variable "log_retention" {
+  type        = "string"
+  description = "Optional. The log retention for cloudwatch logs.  Default 7 days"
+  default     = "7"
+}
 
 # per-region ECS AMI can be found at  http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
 # Limiting factor for region support is EFS: http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region
@@ -343,11 +378,11 @@ variable ecs_amis {
   description = "map of region to ami for ecs nodes"
 
   default = {
-    "us-east-1"      = "ami-0d145772"
-    "us-east-2"      = "ami-43eed026"
-    "us-west-2"      = "ami-c06624b8"
-    "ap-southeast-2" = "ami-980cd3fa"
-    "eu-west-1"      = "ami-b22925cb"
+    "us-east-1"      = "ami-0e411902eaebfc31b"
+    "us-east-2"      = "ami-0319e2aa390e705fd"
+    "us-west-2"      = "ami-ade3c2d5"
+    "ap-southeast-2" = "ami-0759ee2308f303d4e"
+    "eu-west-1"      = "ami-0b5d0030f1de97a5e"
   }
 }
 
@@ -356,10 +391,10 @@ variable services_amis {
   description = "map of region to ami for services nodes"
 
   default = {
-    "us-east-1"      = "ami-0327647c"
-    "us-east-2"      = "ami-16f1cf73"
-    "us-west-2"      = "ami-e460229c"
-    "ap-southeast-2" = "ami-a910cfcb"
-    "eu-west-1"      = "ami-baede1c3"
+    "us-east-1"      = "ami-08acc41d7249cf567"
+    "us-east-2"      = "ami-0b2225ada44049230"
+    "us-west-2"      = "ami-cb1d3cb3"
+    "ap-southeast-2" = "ami-02e40e0faff468641"
+    "eu-west-1"      = "ami-0ec86ed2d107735fd"
   }
 }

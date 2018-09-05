@@ -1,6 +1,13 @@
 #cloud-config
 package_upgrade: false
 runcmd:
+- yum install -y cloud-utils-growpart
+- growpart /dev/xvda 2
+- growpart /dev/nvme0n1 2
+- pvresize /dev/xvda2
+- pvresize /dev/nvme0n1p2
+- lvextend -l +100%FREE /dev/mapper/centos-root
+- xfs_growfs /dev/mapper/centos-root
 - sed -i 's/^log_group_name = .*/log_group_name = ${services_log_group}/' /var/awslogs/etc/awslogs.conf
 - systemctl restart awslogs
 - /opt/graymeta/bin/aws_configurator -bucket ${file_storage_s3_bucket_arn} -usage-bucket ${usage_s3_bucket_arn} -region ${region} -encrypted-config-blob "${encrypted_config_blob}" >> /etc/graymeta/metafarm.env 2>/var/log/graymeta/aws_configurator.log
@@ -51,8 +58,6 @@ write_files:
         dropbox_app_key=${dropbox_app_key}
         dropbox_app_secret=${dropbox_app_secret}
         facebox_host=http://127.0.0.1:9090
-        gm_auth_api_redis=${elasticache_services}:6379
-        gm_auth_api_redis_db=0
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
@@ -65,10 +70,10 @@ write_files:
         gm_db_username=${db_username}
         gm_ecs_auth_type=iam
         gm_ecs_cluster=${ecs_cluster}
-        gm_ecs_cpu=1024
+        gm_ecs_cpu=${ecs_cpu_reservation}
         gm_ecs_log_group=${ecs_log_group}
-        gm_ecs_memory_hard=4000
-        gm_ecs_memory_soft=3000
+        gm_ecs_memory_hard=${ecs_memory_hard_reservation}
+        gm_ecs_memory_soft=${ecs_memory_soft_reservation}
         gm_ecs_region=${region}
         gm_elasticsearch=${elasticsearch_endpoint}
         gm_email_from=${from_addr}
@@ -82,14 +87,15 @@ write_files:
         gm_harvest_complete_stow_fields=${harvest_complete_stow_fields}
         gm_harvest_polling_time=${harvest_polling_time}
         gm_internal_client_secret=${client_secret_internal}
-        gm_job_store_redis=${elasticache_services}:6379
-        gm_job_store_redis_db=0
         gm_job_store_redis_key_prefix="jobinfo:"
         gm_jwt_private_key=${jwt_key}
         gm_recently_walked_expiration=1209600s
-        gm_recently_walked_redis=${elasticache_services}:6379
-        gm_recently_walked_redis_db=0
         gm_recently_walked_redis_key_prefix="recwalked:"
+        gm_redis=${elasticache_services}:6379
+        gm_redis_db=0
+        gm_roles_key_prefix="roles:"
+        gm_user_key_prefix="user:"
+        gm_user_apikey_prefix="apikey:"
         gm_scheduler_api=https://${dns_name}/api/scheduler
         gm_sqs_activity=${sqs_activity}
         gm_sqs_index=${sqs_index}

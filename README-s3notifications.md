@@ -11,7 +11,7 @@ Set the following variables when instantiating the module:
 
 ```
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.24"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.30"
 
     ...
 

@@ -13,6 +13,12 @@ variable "ssh_cidr_blocks" {
   description = "Comma delimited list of cidr blocks to allow SSH access from."
 }
 
+variable "user_init" {
+  type        = "string"
+  description = "Custom cloud-init that is rendered"
+  default     = ""
+}
+
 data "aws_subnet" "ecs_subnet" {
   id = "${var.subnet_id}"
 }

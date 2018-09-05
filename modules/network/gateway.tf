@@ -39,3 +39,10 @@ resource "aws_nat_gateway" "services" {
     PlatformInstanceID = "${var.platform_instance_id}"
   }
 }
+
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id            = "${aws_vpc.main.id}"
+  vpc_endpoint_type = "Gateway"
+  service_name      = "com.amazonaws.${var.region}.s3"
+  route_table_ids   = ["${aws_route_table.ecs.id}","${aws_route_table.services.id}"]
+}
