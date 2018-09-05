@@ -236,18 +236,6 @@ variable "jwt_key" {
   default     = ""
 }
 
-variable "box_client_id" {
-  type        = "string"
-  description = "Box Client ID key. See box.com"
-  default     = ""
-}
-
-variable "box_client_secret" {
-  type        = "string"
-  description = "Box client secret. See box.com"
-  default     = ""
-}
-
 variable "elasticache_instance_type_services" {
   type        = "string"
   description = "Instance type for Services cluster Redis cache"

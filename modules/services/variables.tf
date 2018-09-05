@@ -74,8 +74,6 @@ variable "db_username" {}
 variable "db_password" {}
 variable "db_endpoint" {}
 
-variable "box_client_id" {}
-variable "box_client_secret" {}
 variable "google_maps_key" {}
 variable "rollbar_token" {}
 
