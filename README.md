@@ -124,10 +124,6 @@ module "platform" {
     # Facebox API Key
     facebox_key                      = ""
 
-    # Box (Box.com)
-    box_client_id                    = ""
-    box_client_secret                = ""
-
     # Google maps (for plotting geocoded results on a map in the UI
     google_maps_key                  = ""
 }
