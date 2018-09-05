@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ---
-## [v0.0.31] - 2018-09-05
+## [NOT RELEASED] - 2018-09-06  
 #### Added
 - Added service and ecs cloud init settings to be added to Graymeta default cloud init settings.  Before added check with Graymeta support to make sure it will not interfere with the default init.
 ```
