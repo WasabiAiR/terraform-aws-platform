@@ -2,9 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ---
-## [NOT RELEASED] - 2018-09-06  
+## [v0.0.31] - 2018-09-06  
 #### Added
-- Added service and ecs cloud init settings to be added to Graymeta default cloud init settings.  Before added check with Graymeta support to make sure it will not interfere with the default init.
+- (Optional) Added service and ecs cloud init settings.  These cloud-init's will be merged with Graymeta cloud-init script.  Please check with Graymeta support to verify your cloud-init scripts will not interfere with the defaults.
 ```
 module "platform" {
   source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.31"
@@ -15,9 +15,6 @@ module "platform" {
 }
 ```
   
-#### Changed
-- Platform AMI update to verision .  Contact Graymeta for more details
-  
 #### Removed
 - Consolidated Redis environment variables on the backend of the service instances.  No template changes needed.
 - Removed the Box.com variables since they are now configured in the UI.  If you have the following in the platform module please remove
@@ -26,6 +23,9 @@ module "platform" {
     box_client_id                    = ""
     box_client_secret                = ""
 ```
+  
+#### Changed
+- Platform AMI update to verision 2.0.2312.  Contact Graymeta for more details
   
 ---
 ## [v0.0.30] - 2018-08-10
