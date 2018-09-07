@@ -28,6 +28,7 @@ variable "elasticache_services" {}
 variable "elasticsearch_endpoint" {}
 variable "encryption_key" {}
 variable "facebox_key" {}
+variable "faces_endpoint" {}
 variable "jwt_key" {}
 variable "encrypted_config_blob" {}
 variable "log_retention" {}
@@ -67,6 +68,7 @@ variable "sqs_walk_arn" {}
 
 // Optional SQS configurations for s3 ObjectCreated notifications
 variable "sqs_s3notifications_arn" {}
+
 variable "sqs_s3notifications" {}
 variable "s3subscriber_priority" {}
 

@@ -219,6 +219,12 @@ variable "facebox_key" {
   description = "A facebox PRO license key. See http://machinebox.io"
 }
 
+variable "faces_endpoint" {
+  type        = "string"
+  description = "Faces endpoint from the faces module"
+  default     = ""
+}
+
 variable "google_maps_key" {
   type        = "string"
   description = "A Google maps key"
@@ -354,11 +360,11 @@ variable ecs_amis {
   description = "map of region to ami for ecs nodes"
 
   default = {
-    "us-east-1"      = "ami-0e411902eaebfc31b"
-    "us-east-2"      = "ami-0319e2aa390e705fd"
-    "us-west-2"      = "ami-ade3c2d5"
-    "ap-southeast-2" = "ami-0759ee2308f303d4e"
-    "eu-west-1"      = "ami-0b5d0030f1de97a5e"
+    "us-east-1"      = "ami-0e835215796dcb94e"
+    "us-east-2"      = "ami-0cac9dc1cab846291"
+    "us-west-2"      = "ami-0e17e79667b024a16"
+    "ap-southeast-2" = "ami-01d7b721f28944496"
+    "eu-west-1"      = "ami-0053d0f6921d13d17"
   }
 }
 
@@ -367,10 +373,10 @@ variable services_amis {
   description = "map of region to ami for services nodes"
 
   default = {
-    "us-east-1"      = "ami-08acc41d7249cf567"
-    "us-east-2"      = "ami-0b2225ada44049230"
-    "us-west-2"      = "ami-cb1d3cb3"
-    "ap-southeast-2" = "ami-02e40e0faff468641"
-    "eu-west-1"      = "ami-0ec86ed2d107735fd"
+    "us-east-1"      = "ami-0a8d3d930090c9996"
+    "us-east-2"      = "ami-05ba21e4653b048e1"
+    "us-west-2"      = "ami-0cf7e048792f9181b"
+    "ap-southeast-2" = "ami-0d9303883fbd22291"
+    "eu-west-1"      = "ami-07c82f0325d0f4a22"
   }
 }

@@ -76,6 +76,7 @@ write_files:
         gm_email_sender=ses
         gm_encryption_key=${encryption_key}
         gm_env=${gm_env}
+        gm_faces_recog_api_addr=${faces_endpoint}
         gm_fileapi_stow_kind=s3
         gm_files_api=https://${dns_name}/files
         gm_front_end_client_secret=${client_secret_fe}
@@ -103,6 +104,7 @@ write_files:
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
         gm_walkd_redis_max_active=${gm_walkd_redis_max_active}
         harvest_facebox_host=https://${dns_name}:8445
+        harvest_gm_faces_recog_api_addr=${faces_endpoint}
         harvest_gm_temp_bucket_name=${temporary_bucket_name}
         harvest_gm_temp_bucket_region=${region}
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
