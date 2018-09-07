@@ -99,11 +99,11 @@ module "platform" {
     elasticache_instance_type_facebox  = "cache.m4.large"
 
     # ElasticSearch Configuration
-    elasticsearch_volume_size = "100"
-    elasticsearch_instance_type = "m4.large.elasticsearch"
-    elasticsearch_dedicated_master_type = "m4.large.elasticsearch"
+    elasticsearch_volume_size            = "100"
+    elasticsearch_instance_type          = "m4.large.elasticsearch"
+    elasticsearch_dedicated_master_type  = "m4.large.elasticsearch"
     elasticsearch_dedicated_master_count = "3"
-    elasticsearch_instance_count = "2"
+    elasticsearch_instance_count         = "2"
 
     az1_nat_ip                = "${module.network.az1_nat_ip}/32"
     az2_nat_ip                = "${module.network.az2_nat_ip}/32"
