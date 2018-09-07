@@ -38,13 +38,13 @@ provider "aws" {
 }
 
 module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.30"
+    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.31"
 
     platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.30"
+    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.31"
 
     platform_instance_id = "${local.platform_instance_id}"
     region               = "us-east-1"
@@ -53,7 +53,7 @@ module "network" {
 }
 
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.30"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.31"
 
     platform_instance_id       = "${local.platform_instance_id}"
     customer                   = "mycompanyname"
@@ -122,10 +122,10 @@ module "platform" {
     rollbar_token = ""
 
     # Facebox API Key
-    facebox_key                      = ""
+    facebox_key = ""
 
     # Google maps (for plotting geocoded results on a map in the UI
-    google_maps_key                  = ""
+    google_maps_key = ""
 }
 
 output "GrayMetaPlatformEndpoint" {
