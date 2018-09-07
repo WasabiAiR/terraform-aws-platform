@@ -71,7 +71,7 @@ EOF
 
 resource "aws_launch_configuration" "launch_config_faces" {
   name_prefix          = "GrayMetaPlatform-${var.platform_instance_id}-Faces-"
-  image_id             = "${var.faces_ami_id}"
+  image_id             = "${lookup(var.faces_amis, data.aws_region.current.name)}"
   instance_type        = "${var.faces_instance_type}"
   iam_instance_profile = "${aws_iam_instance_profile.iam_instance_profile_faces.name}"
   key_name             = "${var.key_name}"

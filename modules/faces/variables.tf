@@ -37,12 +37,6 @@ variable "faces_subnet_id_2" {
   description = "The second subnet ID to use to deploy the faces cluster into. Needs to be in a different AZ than faces_subnet_id_1"
 }
 
-variable "faces_ami_id" {
-  type        = "string"
-  description = "The AMI id for the faces"
-  default     = "ami-0b4943b7d0bd643b3"
-}
-
 variable "faces_user_init" {
   type        = "string"
   description = "Custom cloud-init that is rendered to be used on faces instances. (Not Recommened)"
@@ -104,4 +98,17 @@ variable "log_retention" {
   type        = "string"
   description = "Optional. The log retention for cloudwatch logs.  Default 7 days"
   default     = "7"
+}
+
+variable "faces_amis" {
+  type        = "map"
+  description = "map of region to ami for faces nodes"
+
+  default = {
+    "us-east-1"      = ""
+    "us-east-2"      = ""
+    "us-west-2"      = "ami-0b4943b7d0bd643b3"
+    "ap-southeast-2" = ""
+    "eu-west-1"      = ""
+  }
 }
