@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [NOT_RELEASE] - <date>
+#### Added
+- Added Faces network to the network module
+
+
+#### Changed
+- Install 1 NAT Gateway in each AZ instead of one for Services and the other for ECS.  You will need to change the following two settings in the platform module.  In the Platform module you need to rename the following variables.
+        ecs_nat_ip      => az1_nat_ip
+        services_nat_ip => az2_nat_ip
+
+
+
 ---
 ## [v0.0.31] - 2018-09-06  
 #### Added

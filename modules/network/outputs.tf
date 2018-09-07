@@ -34,10 +34,18 @@ output "elasticsearch_subnet_id_2" {
   value = "${aws_subnet.elasticsearch_2.id}"
 }
 
-output "ecs_nat_ip" {
-  value = "${aws_eip.nat_gateway_ecs.public_ip}"
+output "faces_subnet_id_1" {
+  value = "${aws_subnet.elasticsearch_1.id}"
 }
 
-output "services_nat_ip" {
-  value = "${aws_eip.nat_gateway_services.public_ip}"
+output "faces_subnet_id_2" {
+  value = "${aws_subnet.elasticsearch_2.id}"
+}
+
+output "az1_nat_ip" {
+  value = "${aws_eip.nat_gateway_az1.public_ip}"
+}
+
+output "az2_nat_ip" {
+  value = "${aws_eip.nat_gateway_az2.public_ip}"
 }

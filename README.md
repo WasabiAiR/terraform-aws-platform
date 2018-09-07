@@ -105,8 +105,8 @@ module "platform" {
     elasticsearch_dedicated_master_count = "3"
     elasticsearch_instance_count = "2"
 
-    services_nat_ip           = "${module.network.services_nat_ip}/32"
-    ecs_nat_ip                = "${module.network.ecs_nat_ip}/32"
+    az1_nat_ip                = "${module.network.az1_nat_ip}/32"
+    az2_nat_ip                = "${module.network.az2_nat_ip}/32"
     ecs_subnet_id             = "${module.network.ecs_subnet_id}"
     public_subnet_id_1        = "${module.network.public_subnet_id_1}"
     public_subnet_id_2        = "${module.network.public_subnet_id_2}"

@@ -85,21 +85,21 @@ resource "aws_security_group" "services_alb_security_group" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["${var.ecs_nat_ip}"]
+    cidr_blocks = ["${var.az1_nat_ip}"]
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["${var.services_nat_ip}"]
+    cidr_blocks = ["${var.az2_nat_ip}"]
   }
 
   ingress {
     from_port   = 8445
     to_port     = 8445
     protocol    = "tcp"
-    cidr_blocks = ["${var.ecs_nat_ip}"]
+    cidr_blocks = ["${var.az1_nat_ip}"]
   }
 
   egress {
