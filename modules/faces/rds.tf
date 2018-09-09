@@ -41,27 +41,27 @@ resource "aws_security_group_rule" "rds_allow_servers" {
 
 resource "aws_db_instance" "rds" {
   allocated_storage           = "${var.rds_allocated_storage}"
-  storage_type                = "gp2"
-  engine                      = "postgres"
-  engine_version              = "10.4"
   allow_major_version_upgrade = "false"
   auto_minor_version_upgrade  = "false"
-  instance_class              = "${var.rds_db_instance_size}"
-  name                        = "faces"
-  username                    = "${var.rds_db_username}"
-  password                    = "${var.rds_db_password}"
   db_subnet_group_name        = "${aws_db_subnet_group.rds.name}"
-  final_snapshot_identifier   = "${var.platform_instance_id}-faces-final"
-  vpc_security_group_ids      = ["${aws_security_group.rds.id}"]
+  engine                      = "postgres"
+  engine_version              = "10.4"
+  final_snapshot_identifier   = "GrayMetaPlatform-${var.platform_instance_id}-faces-final"
+  identifier                  = "gm-${var.platform_instance_id}-faces"
+  instance_class              = "${var.rds_db_instance_size}"
   multi_az                    = true
+  name                        = "faces"
+  password                    = "${var.rds_db_password}"
 
-  identifier = "${var.platform_instance_id}-faces"
+  snapshot_identifier = "${var.rds_snapshot == "final" ?
+    format("GrayMetaPlatform-${var.platform_instance_id}-faces-final") :
+    var.rds_snapshot
+  }"
 
-  apply_immediately       = true
-  backup_retention_period = "14"
-  backup_window           = "03:00-04:00"
-  maintenance_window      = "Mon:00:00-Mon:03:00"
-  storage_encrypted       = true
+  storage_encrypted      = true
+  storage_type           = "gp2"
+  username               = "${var.rds_db_username}"
+  vpc_security_group_ids = ["${aws_security_group.rds.id}"]
 
   lifecycle {
     ignore_changes = [
