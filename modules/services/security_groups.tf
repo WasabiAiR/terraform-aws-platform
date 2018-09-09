@@ -63,7 +63,7 @@ resource "aws_security_group" "services" {
   }
 }
 
-resource "aws_security_group" "services_alb_security_group" {
+resource "aws_security_group" "services_alb" {
   description = "Services ALB Security Group"
   vpc_id      = "${data.aws_subnet.subnet_1.vpc_id}"
 
