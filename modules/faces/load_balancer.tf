@@ -1,10 +1,10 @@
 resource "aws_lb" "faces_lb" {
-  name_prefix                = "faces-"
+  enable_deletion_protection = false
   internal                   = true
   load_balancer_type         = "application"
+  name_prefix                = "faces-"
   security_groups            = ["${aws_security_group.faces_lb_nsg.id}"]
   subnets                    = ["${var.faces_subnet_id_1}", "${var.faces_subnet_id_2}"]
-  enable_deletion_protection = false
 
   tags {
     Name               = "GrayMetaPlatform-${var.platform_instance_id}-FacesNLB"
@@ -30,19 +30,19 @@ resource "aws_lb_target_group" "port10336" {
   vpc_id   = "${data.aws_subnet.subnet_faces_1.vpc_id}"
 
   stickiness {
-    type            = "lb_cookie"
-    cookie_duration = 30
     enabled         = true
+    cookie_duration = 30
+    type            = "lb_cookie"
   }
 
   health_check {
-    path                = "/health"
-    interval            = 30
-    timeout             = 5
-    protocol            = "HTTP"
-    port                = "10336"
-    matcher             = "200"
     healthy_threshold   = 5
+    interval            = 30
+    matcher             = "200"
+    path                = "/health"
+    port                = "10336"
+    protocol            = "HTTP"
+    timeout             = 5
     unhealthy_threshold = 2
   }
 
@@ -67,8 +67,8 @@ resource "aws_security_group" "faces_lb_nsg" {
 
 # Allow all outbound traffic
 resource "aws_security_group_rule" "egress" {
-  security_group_id = "${aws_security_group.faces_lb_nsg.id}"
   description       = "Allow all outbound"
+  security_group_id = "${aws_security_group.faces_lb_nsg.id}"
   type              = "egress"
   from_port         = 0
   to_port           = 0
@@ -78,8 +78,8 @@ resource "aws_security_group_rule" "egress" {
 
 # Allow Services and ECS networks
 resource "aws_security_group_rule" "allow_https" {
-  security_group_id = "${aws_security_group.faces_lb_nsg.id}"
   description       = "allow-services-ecs"
+  security_group_id = "${aws_security_group.faces_lb_nsg.id}"
   type              = "ingress"
   from_port         = 80
   to_port           = 80

@@ -37,6 +37,8 @@ write_files:
             -e "GMFACES_DBCFG_PASSWORD=${postgrespass}" \
             -e "GMFACES_DBCFG_NAME=${postgresdb}" \
             -p 10333:10333 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
             --name faces-data \
             graymeta-faces-data
         ExecStop=-/usr/bin/docker stop --time=0 faces-data
@@ -66,6 +68,8 @@ write_files:
             -e "GMFACES_DATA_PORT=10333" \
             -e "GMFACES_DATA_VERSION=${dataversion}" \
             -p 10336:10336 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
             --name faces \
             graymeta-faces
         ExecStop=-/usr/bin/docker stop --time=0 faces
