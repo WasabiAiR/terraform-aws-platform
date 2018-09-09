@@ -40,7 +40,7 @@ resource "aws_nat_gateway" "az2" {
   }
 }
 
-resource "aws_vpc_endpoint" "s3" {
+resource "aws_vpc_endpoint" "proxy_s3" {
   vpc_id            = "${aws_vpc.main.id}"
   vpc_endpoint_type = "Gateway"
   service_name      = "com.amazonaws.${var.region}.s3"
