@@ -1,7 +1,7 @@
 resource "aws_lb" "services_alb" {
   name_prefix                = "svcs-"                                                    # name_prefix can't be longer than 6 chars
   internal                   = false
-  security_groups            = ["${aws_security_group.services_alb_security_group.id}"]
+  security_groups            = ["${aws_security_group.services_alb.id}"]
   subnets                    = ["${var.public_subnet_id_1}", "${var.public_subnet_id_2}"]
   enable_deletion_protection = false
 

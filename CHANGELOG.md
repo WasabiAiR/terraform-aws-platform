@@ -1,6 +1,31 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [NOT_RELEASE] - date
+#### Added
+- Added two new subnets for faces in the network module.  If you did not use the default value for vpc_cidr then you need to add two new networks.
+```
+module "network" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.32"
+  ...
+  cidr_subnet_faces_1 = "x.x.x.x/24"
+  cidr_subnet_faces_2 = "x.x.x.x/24"
+  ...
+}
+```
+  
+- (Optional) Added Faces IAM module and Faces Cluser module.  More info at [README-faces](README-faces.md)
+
+
+
+#### Changed
+- Install 1 NAT Gateway in each AZ instead of one for Services and the other for ECS.  It is required to change the following two variable names in the platform module.  
+```
+        ecs_nat_ip      => az1_nat_ip
+        services_nat_ip => az2_nat_ip
+```
+
+
 ---
 ## [v0.0.31] - 2018-09-06  
 #### Added
