@@ -140,6 +140,24 @@ variable "ssl_certificate_arn" {
   description = "The ARN of the SSL certificate to use to secure the endpoints. Must be a valid CA issued certificate (no self-signed certs)"
 }
 
+variable "db_backup_retention" {
+  type        = "string"
+  description = "RDS backup retention"
+  default     = "7"
+}
+
+variable "db_backup_window" {
+  type        = "string"
+  description = "RDS Backup window"
+  default     = "03:00-04:00"
+}
+
+variable "db_multi_az" {
+  type        = "string"
+  description = "Multizone setting in RDS.  Default is true"
+  default     = true
+}
+
 variable "db_password" {
   type        = "string"
   description = "password for postgresql database"

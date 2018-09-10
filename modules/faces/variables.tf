@@ -19,19 +19,16 @@ variable "faces_iam_role_name" {
 variable "faces_instance_type" {
   type        = "string"
   description = "instance type for servers"
-  default     = "m5.2xlarge"
 }
 
 variable "faces_max_cluster_size" {
   type        = "string"
   description = "The max number of faces server nodes to spin up"
-  default     = "2"
 }
 
 variable "faces_min_cluster_size" {
   type        = "string"
   description = "The max number of faces server nodes to spin up"
-  default     = "2"
 }
 
 variable "faces_subnet_id_1" {
@@ -73,23 +70,43 @@ variable "platform_instance_id" {
 }
 
 variable "rds_allocated_storage" {
-  type    = "string"
-  default = "50"
+  type        = "string"
+  description = "Number of GB to allocate for RDS faces instance"
+  default     = "100"
+}
+
+variable "rds_backup_retention" {
+  type        = "string"
+  description = "RDS backup retention"
+  default     = "7"
+}
+
+variable "rds_backup_window" {
+  type        = "string"
+  description = "RDS Backup window"
+  default     = "03:00-04:00"
 }
 
 variable "rds_db_instance_size" {
-  type    = "string"
-  default = "db.t2.small"
+  type        = "string"
+  description = "The size of the instance to use for the RDS database instance"
+  default     = "db.t2.small"
 }
 
 variable "rds_db_password" {
-  type    = "string"
-  default = "gmchangeme"
+  type        = "string"
+  description = "password for postgresql database"
 }
 
 variable "rds_db_username" {
-  type    = "string"
-  default = "gmuser"
+  type        = "string"
+  description = "username for postgresql database"
+}
+
+variable "rds_multi_az" {
+  type        = "string"
+  description = "Multizone setting in RDS.  Default is true"
+  default     = true
 }
 
 variable "rds_snapshot" {

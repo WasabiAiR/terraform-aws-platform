@@ -4,6 +4,9 @@ variable "rds_subnet_id_2" {}
 variable "services_subnet_id_1" {}
 variable "services_subnet_id_2" {}
 
+variable "db_backup_retention" {}
+variable "db_backup_window" {}
+variable "db_multi_az" {}
 variable "db_username" {}
 variable "db_password" {}
 variable "db_instance_size" {}

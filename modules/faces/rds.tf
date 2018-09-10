@@ -43,13 +43,15 @@ resource "aws_db_instance" "rds" {
   allocated_storage           = "${var.rds_allocated_storage}"
   allow_major_version_upgrade = "false"
   auto_minor_version_upgrade  = "false"
+  backup_retention_period     = "${var.rds_backup_retention}"
+  backup_window               = "${var.rds_backup_window}"
   db_subnet_group_name        = "${aws_db_subnet_group.rds.name}"
   engine                      = "postgres"
   engine_version              = "10.4"
   final_snapshot_identifier   = "GrayMetaPlatform-${var.platform_instance_id}-faces-final"
   identifier                  = "gm-${var.platform_instance_id}-faces"
   instance_class              = "${var.rds_db_instance_size}"
-  multi_az                    = true
+  multi_az                    = "${var.rds_multi_az}"
   name                        = "faces"
   password                    = "${var.rds_db_password}"
 

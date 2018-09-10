@@ -53,6 +53,9 @@ module "rds" {
   source = "./modules/rds"
 
   platform_instance_id = "${var.platform_instance_id}"
+  db_backup_retention  = "${var.db_backup_retention}"
+  db_backup_window     = "${var.db_backup_window}"
+  db_multi_az          = "${var.db_multi_az}"
   db_username          = "${var.db_username}"
   db_password          = "${var.db_password}"
   db_snapshot          = "${var.db_snapshot}"

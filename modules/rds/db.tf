@@ -4,6 +4,8 @@ resource "aws_db_instance" "default" {
   engine                     = "postgres"
   engine_version             = "9.6.6"
   auto_minor_version_upgrade = "false"
+  backup_retention_period    = "${var.db_backup_retention}"
+  backup_window              = "${var.db_backup_window}"
   instance_class             = "${var.db_instance_size}"
   name                       = "graymeta"
   username                   = "${var.db_username}"
@@ -13,6 +15,7 @@ resource "aws_db_instance" "default" {
   vpc_security_group_ids     = ["${aws_security_group.rds.id}"]
   storage_encrypted          = "${var.db_storage_encrypted}"
   kms_key_id                 = "${var.db_kms_key_id}"
+  multi_az                   = "${var.db_multi_az}"
 
   snapshot_identifier = "${var.db_snapshot == "final" ?
     format("GrayMetaPlatform-${var.platform_instance_id}-final") :

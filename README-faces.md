@@ -15,27 +15,29 @@ module "faces" {
 
   platform_instance_id = "${local.platform_instance_id}"
 
+  faces_iam_role_name    = "${module.facesiam.faces_iam_role_name}"
   faces_instance_type    = "m5.2xlarge"
   faces_max_cluster_size = "2"
   faces_min_cluster_size = "1"
-  faces_volume_size      = "50"
   faces_subnet_id_1      = "${module.network.faces_subnet_id_1}"
   faces_subnet_id_2      = "${module.network.faces_subnet_id_2}"
-  faces_iam_role_name    = "${module.facesiam.faces_iam_role_name}"
+  faces_volume_size      = "50"
+  key_name               = "${local.key_name}"
+  log_retention          = "7"
 
   rds_allocated_storage = "100"
+  rds_backup_retention  = "7"
+  rds_backup_window     = "03:00-04:00"
   rds_db_instance_size  = "db.m4.xlarge"
-  rds_db_username       = "mydbuser"
   rds_db_password       = "mydbpassword"
+  rds_db_username       = "mydbuser"
+  rds_multi_az          = true
+  rds_snapshot          = ""   # Set to final after the initial deployment
   rds_subnet_id_1       = "${module.network.rds_subnet_id_1}"
   rds_subnet_id_2       = "${module.network.rds_subnet_id_2}"
-
-  key_name           = "${local.key_name}"
+  
+  services_ecs_cidrs = [ "${module.network.ecs_cidrs}", "${module.network.services_cidrs}" ]
   ssh_cidr_blocks    = "10.0.0.0/24,10.0.1.0/24"
-  services_ecs_cidrs = [
-    "${module.network.ecs_cidrs}",
-    "${module.network.services_cidrs}",
-  ]
 }
 ```
 
