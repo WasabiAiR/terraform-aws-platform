@@ -125,19 +125,37 @@ variable "platform_access_cidrs" {
   description = "A comma delimited list of CIDRs from which to allow access to the site."
 }
 
-variable "ecs_nat_ip" {
+variable "az1_nat_ip" {
   type        = "string"
-  description = "The public IP all traffic from the ECS cluster is NAT'ed through to allow access to the APIs"
+  description = "The public IP all traffic from az1 is NAT'ed through to allow access to the APIs"
 }
 
-variable "services_nat_ip" {
+variable "az2_nat_ip" {
   type        = "string"
-  description = "The public IP all traffic from the Services cluster is NAT'ed through to allow access to the APIs"
+  description = "The public IP all traffic from az2 is NAT'ed through to allow access to the APIs"
 }
 
 variable "ssl_certificate_arn" {
   type        = "string"
   description = "The ARN of the SSL certificate to use to secure the endpoints. Must be a valid CA issued certificate (no self-signed certs)"
+}
+
+variable "db_backup_retention" {
+  type        = "string"
+  description = "RDS backup retention"
+  default     = "7"
+}
+
+variable "db_backup_window" {
+  type        = "string"
+  description = "RDS Backup window"
+  default     = "03:00-04:00"
+}
+
+variable "db_multi_az" {
+  type        = "string"
+  description = "Multizone setting in RDS.  Default is true"
+  default     = true
 }
 
 variable "db_password" {
@@ -217,6 +235,12 @@ variable "encryption_key" {
 variable "facebox_key" {
   type        = "string"
   description = "A facebox PRO license key. See http://machinebox.io"
+}
+
+variable "faces_endpoint" {
+  type        = "string"
+  description = "Faces endpoint from the faces module"
+  default     = ""
 }
 
 variable "google_maps_key" {

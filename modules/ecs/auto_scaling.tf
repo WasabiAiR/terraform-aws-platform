@@ -54,12 +54,12 @@ resource "aws_launch_configuration" "launch_config_ecs" {
 }
 
 data "template_cloudinit_config" "config" {
-  gzip = true
+  gzip          = true
   base64_encode = true
 
   part {
     content_type = "text/cloud-config"
-    content = "${data.template_file.userdata.rendered}"
+    content      = "${data.template_file.userdata.rendered}"
   }
 
   part {

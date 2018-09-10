@@ -1,6 +1,49 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [NOT_RELEASED] - date
+#### Added
+- Added variable for the RDS backup retention and window within the platform module.  The default retention is now set to 7 days and a backup window of 03:00-04:00.  Previous versions this was not set.  So if this is not set to retention to 0 or you will have a pending update for the next maintance window.
+```
+module "platform" {
+  source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.32"
+  ...
+  db_backup_retention = "7"
+  db_backup_window    = "03:00-04:00"
+  ...
+}
+```
+
+- Added variable to set the RDS as a multi_az.  Default is true.  Previous versions this was not set.  So if this is not set to false you will have a pending update for the next maintance window.
+```
+module "platform" {
+  source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.32"
+  ...
+  db_multi_az = true
+  ...
+}
+```
+  
+- Added two new subnets for faces in the network module.  If you did not use the default value for vpc_cidr then you need to add two new networks.
+```
+module "network" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.32"
+  ...
+  cidr_subnet_faces_1 = "x.x.x.x/24"
+  cidr_subnet_faces_2 = "x.x.x.x/24"
+  ...
+}
+```
+  
+- (Optional) Added Faces IAM module and Faces Cluser module.  More info at [README-faces](README-faces.md)
+  
+#### Changed
+- Install 1 NAT Gateway in each AZ instead of one for Services and the other for ECS.  It is required to change the following two variable names in the platform module.  
+```
+        ecs_nat_ip      => az1_nat_ip
+        services_nat_ip => az2_nat_ip
+```
+  
 ---
 ## [v0.0.31] - 2018-09-06  
 #### Added
