@@ -93,12 +93,12 @@ resource "aws_launch_configuration" "launch_config_services" {
 }
 
 data "template_cloudinit_config" "config" {
-  gzip = true
+  gzip          = true
   base64_encode = true
 
   part {
     content_type = "text/cloud-config"
-    content = "${data.template_file.userdata.rendered}"
+    content      = "${data.template_file.userdata.rendered}"
   }
 
   part {
@@ -129,6 +129,7 @@ data "template_file" "userdata" {
     encrypted_config_blob          = "${var.encrypted_config_blob}"
     encryption_key                 = "${var.encryption_key}"
     facebox_key                    = "${var.facebox_key}"
+    faces_endpoint                 = "${var.faces_endpoint}"
     file_storage_s3_bucket_arn     = "${var.file_storage_s3_bucket_arn}"
     from_addr                      = "${var.notifications_from_addr}"
     google_maps_key                = "${var.google_maps_key}"

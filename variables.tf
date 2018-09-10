@@ -125,14 +125,14 @@ variable "platform_access_cidrs" {
   description = "A comma delimited list of CIDRs from which to allow access to the site."
 }
 
-variable "ecs_nat_ip" {
+variable "az1_nat_ip" {
   type        = "string"
-  description = "The public IP all traffic from the ECS cluster is NAT'ed through to allow access to the APIs"
+  description = "The public IP all traffic from az1 is NAT'ed through to allow access to the APIs"
 }
 
-variable "services_nat_ip" {
+variable "az2_nat_ip" {
   type        = "string"
-  description = "The public IP all traffic from the Services cluster is NAT'ed through to allow access to the APIs"
+  description = "The public IP all traffic from az2 is NAT'ed through to allow access to the APIs"
 }
 
 variable "ssl_certificate_arn" {
@@ -217,6 +217,12 @@ variable "encryption_key" {
 variable "facebox_key" {
   type        = "string"
   description = "A facebox PRO license key. See http://machinebox.io"
+}
+
+variable "faces_endpoint" {
+  type        = "string"
+  description = "Faces endpoint from the faces module"
+  default     = ""
 }
 
 variable "google_maps_key" {

@@ -72,8 +72,8 @@ module "services" {
   region                       = "${var.region}"
   customer                     = "${var.customer}"
   platform_instance_id         = "${var.platform_instance_id}"
-  ecs_nat_ip                   = "${var.ecs_nat_ip}"
-  services_nat_ip              = "${var.services_nat_ip}"
+  az1_nat_ip                   = "${var.az1_nat_ip}"
+  az2_nat_ip                   = "${var.az2_nat_ip}"
   platform_access_cidrs        = "${var.platform_access_cidrs}"
   ssh_cidr_blocks              = "${var.ssh_cidr_blocks}"
   subnet_id_1                  = "${var.services_subnet_id_1}"
@@ -98,7 +98,6 @@ module "services" {
   sqs_s3notifications_arn      = "${var.sqs_s3notifications_arn}"
   sqs_s3notifications          = "${var.sqs_s3notifications}"
   s3subscriber_priority        = "${var.s3subscriber_priority}"
-
 
   sqs_activity     = "${module.queues.activity}"
   sqs_activity_arn = "${module.queues.activity_arn}"
@@ -142,11 +141,12 @@ module "services" {
   elasticache_services        = "${module.elasticache.endpoint_services}"
   encryption_key              = "${var.encryption_key}"
   facebox_key                 = "${var.facebox_key}"
+  faces_endpoint              = "${var.faces_endpoint}"
   harvest_polling_time        = "${var.harvest_polling_time}"
   jwt_key                     = "${var.jwt_key}"
 
-  google_maps_key   = "${var.google_maps_key}"
-  rollbar_token     = "${var.rollbar_token}"
+  google_maps_key = "${var.google_maps_key}"
+  rollbar_token   = "${var.rollbar_token}"
 
   user_init = "${var.services_user_init}"
 }
