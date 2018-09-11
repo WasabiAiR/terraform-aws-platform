@@ -7,7 +7,7 @@ resource "aws_lb" "faces_lb" {
   subnets                    = ["${var.faces_subnet_id_1}", "${var.faces_subnet_id_2}"]
 
   tags {
-    Name               = "GrayMetaPlatform-${var.platform_instance_id}-FacesNLB"
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-FacesLB"
     ApplicationName    = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
@@ -59,7 +59,7 @@ resource "aws_security_group" "faces_lb_nsg" {
   vpc_id      = "${data.aws_subnet.subnet_faces_1.vpc_id}"
 
   tags {
-    Name               = "GrayMetaPlatform-${var.platform_instance_id}-FacesALB"
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-FacesLB"
     ApplicationName    = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
