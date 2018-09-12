@@ -11,11 +11,6 @@ variable "faces_amis" {
   }
 }
 
-variable "faces_iam_role_name" {
-  type        = "string"
-  description = "The name of the IAM role that will be applied to faces roles. Must be created by the facesiam module"
-}
-
 variable "faces_instance_type" {
   type        = "string"
   description = "instance type for servers"

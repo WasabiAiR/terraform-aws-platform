@@ -4,18 +4,11 @@
 ## Example
   
 ```
-module "facesiam" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/facesiam?ref=v0.0.32"
-
-  platform_instance_id = "${local.platform_instance_id}"
-}
-
 module "faces" {
   source = "github.com/graymeta/terraform-aws-platform//modules/faces?ref=v0.0.32"
 
   platform_instance_id = "${local.platform_instance_id}"
 
-  faces_iam_role_name    = "${module.facesiam.faces_iam_role_name}"
   faces_instance_type    = "m5.2xlarge"
   faces_max_cluster_size = "2"
   faces_min_cluster_size = "1"
