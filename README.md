@@ -68,13 +68,16 @@ module "platform" {
     services_iam_role_name     = "${module.servicesiam.services_iam_role_name}"
 
     # RDS Configuration
-    db_username          = "mydbuser"
-    db_password          = "mydbpassword"
-    db_instance_size     = "db.t2.small"
     db_allocated_storage = "100"
+    db_backup_retention  = "7"
+    db_backup_window     = "03:00-04:00"
+    db_instance_size     = "db.t2.small"
+    db_kms_key_id        = ""
+    db_multi_az          = true
+    db_password          = "mydbpassword"
     db_snapshot          = ""
     db_storage_encrypted = false
-    db_kms_key_id        = ""
+    db_username          = "mydbuser"
 
     # ECS Cluster Configuration
     ecs_instance_type    = "c4.large"
