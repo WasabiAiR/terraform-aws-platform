@@ -44,6 +44,8 @@ module "network" {
         services_nat_ip => az2_nat_ip
 ```
   
+- Platform AMI update to verision 2.0.2339.  Contact Graymeta for more details
+  
 ---
 ## [v0.0.31] - 2018-09-06  
 #### Added
