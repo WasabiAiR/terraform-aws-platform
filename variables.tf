@@ -378,11 +378,11 @@ variable ecs_amis {
   description = "map of region to ami for ecs nodes"
 
   default = {
-    "us-east-1"      = "ami-0e835215796dcb94e"
-    "us-east-2"      = "ami-0cac9dc1cab846291"
-    "us-west-2"      = "ami-0e17e79667b024a16"
-    "ap-southeast-2" = "ami-01d7b721f28944496"
-    "eu-west-1"      = "ami-0053d0f6921d13d17"
+    "eu-west-1"      = "ami-08a0063bd67186db9"
+    "us-east-1"      = "ami-0390e595d5a551086"
+    "us-east-2"      = "ami-0ef29c9ea0e0f9070"
+    "us-west-2"      = "ami-025ec0b5b509a9d5a"
+    "ap-southeast-2" = "ami-0b21d5edb536892fb"
   }
 }
 
@@ -391,10 +391,10 @@ variable services_amis {
   description = "map of region to ami for services nodes"
 
   default = {
-    "us-east-1"      = "ami-0a8d3d930090c9996"
-    "us-east-2"      = "ami-05ba21e4653b048e1"
-    "us-west-2"      = "ami-0cf7e048792f9181b"
-    "ap-southeast-2" = "ami-0d9303883fbd22291"
-    "eu-west-1"      = "ami-07c82f0325d0f4a22"
+    "eu-west-1"      = "ami-0e1703a05689e73e6"
+    "us-east-1"      = "ami-09b2c77d78185f2f4"
+    "us-east-2"      = "ami-091979cbe0bf79aaf"
+    "us-west-2"      = "ami-0989b69d9b068a27f"
+    "ap-southeast-2" = "ami-057192fb30e216b9f"
   }
 }

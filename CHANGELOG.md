@@ -1,9 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [NOT_RELEASED] - date
+## [v0.0.32] - 2018-09-17
 #### Added
-- Added variable for the RDS backup retention and window within the platform module.  The default retention is now set to 7 days and a backup window of 03:00-04:00.  Previous versions this was not set.  So if this is not set to retention to 0 or you will have a pending update for the next maintance window.
+- Added variable for the RDS backup retention and window within the platform module.  The default retention is now set to 7 days and a backup window set to 03:00-04:00.  Previous versions this was not set.  This will create a pending update for the next maintance window.
 ```
 module "platform" {
   source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.32"
@@ -14,7 +14,7 @@ module "platform" {
 }
 ```
 
-- Added variable to set the RDS as a multi_az.  Default is true.  Previous versions this was not set.  So if this is not set to false you will have a pending update for the next maintance window.
+- Added variable to set the RDS as a multi_az.  Default is true.  Previous versions this was not set.  This will create a pending update for the next maintance window.
 ```
 module "platform" {
   source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.32"
@@ -43,6 +43,8 @@ module "network" {
         ecs_nat_ip      => az1_nat_ip
         services_nat_ip => az2_nat_ip
 ```
+  
+- Platform AMI update to verision 2.0.2339.  Contact Graymeta for more details
   
 ---
 ## [v0.0.31] - 2018-09-06  

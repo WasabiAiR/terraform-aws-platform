@@ -3,11 +3,11 @@ variable "faces_amis" {
   description = "map of region to ami for faces nodes"
 
   default = {
-    "us-east-1"      = "ami-029b3fc1a877d2604"
-    "us-east-2"      = "ami-0576b5118fe0660ed"
-    "us-west-2"      = "ami-0b4943b7d0bd643b3"
-    "ap-southeast-2" = "ami-0cd34e9692b5453e2"
-    "eu-west-1"      = "ami-0e3167396f7fd1c2d"
+    "eu-west-1"      = "ami-0b36b80302f4b80d0"
+    "us-east-1"      = "ami-0aa5316c40520da2c"
+    "us-east-2"      = "ami-0bc19d0e0cad89ade"
+    "us-west-2"      = "ami-05cf604a220871d76"
+    "ap-southeast-2" = "ami-0942a64a2acc96ee4"
   }
 }
 
