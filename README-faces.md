@@ -35,7 +35,7 @@ module "faces" {
 ```
 
 # Platform update
-We need to pass the faces enpoint to the platform module.  
+We need to pass the faces endpoint to the platform module.  
   
 
 ```

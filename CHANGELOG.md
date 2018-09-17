@@ -14,7 +14,7 @@ module "platform" {
 }
 ```
 
-- Added variable to set the RDS as a multi_az.  Default is true.  Previous versions this was not set.  This will create a pending update for the next maintance window.
+- Added variable to set the RDS as a multi_az.  Default is now set to true.  Previous versions this was not set.  This will create a pending update for the next maintance window.
 ```
 module "platform" {
   source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.32"
@@ -24,7 +24,7 @@ module "platform" {
 }
 ```
   
-- Added two new subnets for faces in the network module.  If you did not use the default value for vpc_cidr then you need to add two new networks.
+- Added two new subnets for faces in the network module.  If you did not use the default value for vpc_cidr then you need to add two new subnets.
 ```
 module "network" {
   source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.32"
@@ -35,7 +35,7 @@ module "network" {
 }
 ```
   
-- (Optional) Added Faces IAM module and Faces Cluser module.  More info at [README-faces](README-faces.md)
+- (Optional) Added Faces module.  More info at [README-faces](README-faces.md)
   
 #### Changed
 - Install 1 NAT Gateway in each AZ instead of one for Services and the other for ECS.  It is required to change the following two variable names in the platform module.  
