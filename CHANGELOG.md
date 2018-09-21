@@ -1,6 +1,45 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [NOT RELEASED] - <date>
+#### Added
+- Added two new subnets for proxy instances in the network module.  If you did not use the default value for vpc_cidr then you need to add two new subnets.
+```
+module "network" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.33"
+  ...
+  cidr_subnet_proxy_1 = "10.0.20.0/24"
+  cidr_subnet_proxy_2 = "10.0.21.0/24"
+  ...
+}
+```
+  
+#### Changed
+- Now creating ECS nodes in two AZ.  Network Module we renamed the `cidr_subnet_ecs` subnet to `cidr_subnet_ecs_1` and added a `cidr_subnet_ecs_2`.  Recommened that cidr_subnet_ecs_2 to be a /21 subnet.  The default values in example:
+```
+module "network" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.33"
+  ...
+  cidr_subnet_ecs_1 = "10.0.8.0/21"
+  cidr_subnet_ecs_2 = "10.0.24.0/21"
+  ...
+```
+  
+- Now creating ECS nodes in two AZ.  In the Platform module rename `ecs_subnet_id` variable to `ecs_subnet_id_1`.  Then add the `ecs_subnet_id_2` variable.  Example:
+```
+module "platform" {
+  source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.33"
+  ...
+  ecs_subnet_id_1 = "${module.network.ecs_subnet_id_1}"
+  ecs_subnet_id_2 = "${module.network.ecs_subnet_id_2}"
+  ...
+}
+```
+
+#### Removed
+- Removed facebox_key from the platform module.
+
+   
 ## [v0.0.32] - 2018-09-17
 #### Added
 - Added variable for the RDS backup retention and window within the platform module.  The default retention is now set to 7 days and a backup window set to 03:00-04:00.  Previous versions this was not set.  This will create a pending update for the next maintance window.

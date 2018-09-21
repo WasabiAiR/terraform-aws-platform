@@ -36,19 +36,6 @@ resource "aws_lb_listener" "port443" {
   }
 }
 
-resource "aws_lb_listener" "port8445" {
-  load_balancer_arn = "${aws_lb.services_alb.arn}"
-  port              = "8445"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2015-05"
-  certificate_arn   = "${var.ssl_certificate_arn}"
-
-  default_action {
-    target_group_arn = "${aws_lb_target_group.port9090.arn}"
-    type             = "forward"
-  }
-}
-
 resource "aws_lb_target_group" "port80" {
   name_prefix = "s80-"                               # name_prefix limited to 6 chars
   port        = 80
@@ -146,21 +133,6 @@ resource "aws_lb_listener_rule" "port443" {
   action {
     type             = "forward"
     target_group_arn = "${aws_lb_target_group.port7000.arn}"
-  }
-
-  condition {
-    field  = "path-pattern"
-    values = ["/"]
-  }
-}
-
-resource "aws_lb_listener_rule" "port8445" {
-  listener_arn = "${aws_lb_listener.port8445.arn}"
-  priority     = 100
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.port9090.arn}"
   }
 
   condition {

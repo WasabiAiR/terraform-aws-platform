@@ -72,11 +72,23 @@ resource "aws_subnet" "services_2" {
 
 resource "aws_subnet" "ecs" {
   vpc_id            = "${aws_vpc.main.id}"
-  cidr_block        = "${var.cidr_subnet_ecs}"
+  cidr_block        = "${var.cidr_subnet_ecs_1}"
   availability_zone = "${var.az1}"
 
   tags {
-    Name               = "GrayMetaPlatform-${var.platform_instance_id}-ECS"
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-ECS1"
+    Application        = "GrayMetaPlatform"
+    PlatformInstanceID = "${var.platform_instance_id}"
+  }
+}
+
+resource "aws_subnet" "ecs_2" {
+  vpc_id            = "${aws_vpc.main.id}"
+  cidr_block        = "${var.cidr_subnet_ecs_2}"
+  availability_zone = "${var.az2}"
+
+  tags {
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-ECS2"
     Application        = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
@@ -125,6 +137,30 @@ resource "aws_subnet" "faces_2" {
 
   tags {
     Name               = "GrayMetaPlatform-${var.platform_instance_id}-Faces2"
+    Application        = "GrayMetaPlatform"
+    PlatformInstanceID = "${var.platform_instance_id}"
+  }
+}
+
+resource "aws_subnet" "proxy_1" {
+  vpc_id            = "${aws_vpc.main.id}"
+  cidr_block        = "${var.cidr_subnet_proxy_1}"
+  availability_zone = "${var.az1}"
+
+  tags {
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-Proxy1"
+    Application        = "GrayMetaPlatform"
+    PlatformInstanceID = "${var.platform_instance_id}"
+  }
+}
+
+resource "aws_subnet" "proxy_2" {
+  vpc_id            = "${aws_vpc.main.id}"
+  cidr_block        = "${var.cidr_subnet_proxy_2}"
+  availability_zone = "${var.az2}"
+
+  tags {
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-Proxy2"
     Application        = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }

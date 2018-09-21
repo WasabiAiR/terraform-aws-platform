@@ -4,7 +4,7 @@ resource "aws_autoscaling_group" "auto_scaling_group_ecs" {
   min_size             = "${var.min_cluster_size}"
   force_delete         = true
   launch_configuration = "${aws_launch_configuration.launch_config_ecs.name}"
-  vpc_zone_identifier  = ["${var.subnet_id}"]
+  vpc_zone_identifier  = ["${var.subnet_id_1}", "${var.subnet_id_2}"]
 
   lifecycle {
     create_before_destroy = true
@@ -73,8 +73,9 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
   vars {
-    ecs_cluster = "${aws_ecs_cluster.ecs_cluster.name}"
-    region      = "${var.region}"
+    ecs_cluster    = "${aws_ecs_cluster.ecs_cluster.name}"
+    region         = "${var.region}"
+    proxy_endpoint = "${var.proxy_endpoint}"
   }
 }
 
@@ -95,7 +96,7 @@ resource "aws_autoscaling_policy" "scale_down" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "scale_up" {
-  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-scale-up"
+  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-scale-up-mem"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "2"
   metric_name         = "MemoryReservation"

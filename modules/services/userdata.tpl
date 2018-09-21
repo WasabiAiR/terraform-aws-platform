@@ -1,6 +1,15 @@
 #cloud-config
 package_upgrade: false
 runcmd:
+- echo "export HTTP_PROXY=http://${proxy_endpoint}/" >> /etc/profile.d/proxy.sh
+- echo "export HTTPS_PROXY=http://${proxy_endpoint}/" >> /etc/profile.d/proxy.sh
+- echo "export NO_PROXY=169.254.169.254,localhost,127.0.0.1,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${faces_endpoint}" >> /etc/profile.d/proxy.sh
+- source /etc/profile.d/proxy.sh
+- echo "proxy=http://${proxy_endpoint}" >> /etc/yum.conf
+- sed -i 's/^metalink=/#metalink=/g' /etc/yum.repos.d/*
+- sed -i 's/^mirrorlist=/#mirrorlist=/g' /etc/yum.repos.d/*
+- sed -i 's/^#baseurl=/baseurl=/g' /etc/yum.repos.d/*
+- yum remove -y docker-engine docker-engine-selinux
 - yum install -y cloud-utils-growpart
 - growpart /dev/xvda 2
 - growpart /dev/nvme0n1 2
@@ -10,9 +19,9 @@ runcmd:
 - xfs_growfs /dev/mapper/centos-root
 - sed -i 's/^log_group_name = .*/log_group_name = ${services_log_group}/' /var/awslogs/etc/awslogs.conf
 - systemctl restart awslogs
+- sed 's/^export //g' < /etc/profile.d/proxy.sh  >> /etc/graymeta/metafarm.env
 - /opt/graymeta/bin/aws_configurator -bucket ${file_storage_s3_bucket_arn} -usage-bucket ${usage_s3_bucket_arn} -region ${region} -encrypted-config-blob "${encrypted_config_blob}" >> /etc/graymeta/metafarm.env 2>/var/log/graymeta/aws_configurator.log
 - systemctl daemon-reload
-- systemctl restart docker-facebox.service
 - /opt/graymeta/bin/all-services.sh restart
 - /opt/graymeta/bin/all-services.sh enable
 - echo "net.ipv4.tcp_fin_timeout = 1" >> /etc/sysctl.conf
@@ -22,38 +31,8 @@ runcmd:
 - sysctl -p
 write_files:
 -   content: |
-        [Unit]
-        Description=Daemon for facebox
-        After=docker.service
-        Wants=
-        Requires=docker.service
-        [Service]
-        Restart=on-failure
-        StartLimitInterval=20
-        StartLimitBurst=5
-        TimeoutStartSec=0
-        Environment="HOME=/root"
-        ExecStartPre=-/usr/bin/docker kill facebox
-        ExecStartPre=-/usr/bin/docker rm  facebox
-        ExecStart=/usr/bin/docker run \
-            --net bridge \
-            -m 0b \
-            -e MB_KEY=${facebox_key} \
-            -e MB_FACEBOX_REDIS=${elasticache_facebox}:6379 \
-            -e MB_FACEBOX_REDIS_DB=0 \
-            -p 9090:8080  \
-            --name facebox \
-            machinebox/facebox
-        ExecStop=-/usr/bin/docker stop --time=0 facebox
-        ExecStop=-/usr/bin/docker rm  facebox
-        [Install]
-        WantedBy=multi-user.target
-    path: /etc/systemd/system/docker-facebox.service
-    permissions: '0644'
--   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         SES_REGION=${region}
-        facebox_host=http://127.0.0.1:9090
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
@@ -75,8 +54,9 @@ write_files:
         gm_email_from=${from_addr}
         gm_email_sender=ses
         gm_encryption_key=${encryption_key}
+        gm_enforce_default_password=false
         gm_env=${gm_env}
-        gm_faces_recog_api_addr=${faces_endpoint}
+        gm_faces_recog_api_addr=http://${faces_endpoint}
         gm_fileapi_stow_kind=s3
         gm_files_api=https://${dns_name}/files
         gm_front_end_client_secret=${client_secret_fe}
@@ -103,8 +83,7 @@ write_files:
         gm_usage_prefix=${gm_usage_prefix}
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
         gm_walkd_redis_max_active=${gm_walkd_redis_max_active}
-        harvest_facebox_host=https://${dns_name}:8445
-        harvest_gm_faces_recog_api_addr=${faces_endpoint}
+        harvest_gm_faces_recog_api_addr=http://${faces_endpoint}
         harvest_gm_temp_bucket_name=${temporary_bucket_name}
         harvest_gm_temp_bucket_region=${region}
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
@@ -113,6 +92,12 @@ write_files:
         s3subscriber_priority=${s3subscriber_priority}
         stow_mountpath=/var/lib/graymeta/mounts
         walkd_item_batch_size=${walkd_item_batch_size}
+        http_proxy=http://${proxy_endpoint}/
+        https_proxy=http://${proxy_endpoint}/
+        no_proxy=localhost,127.0.0.1,69.254.169.254,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${faces_endpoint}
+        harvest_http_proxy=http://${proxy_endpoint}/
+        harvest_https_proxy=http://${proxy_endpoint}/
+        harvest_no_proxy=169.254.169.254,169.254.170.2,/var/run/docker.sock,${faces_endpoint}
     path: /etc/graymeta/metafarm.env
     permissions: '0400'
     owner: graymeta:graymeta
@@ -122,3 +107,9 @@ write_files:
         [default]
         region = ${region}
     path: /var/awslogs/etc/aws.conf
+-   content: |
+        HTTP_PROXY=http://${proxy_endpoint}
+        HTTPS_PROXY=https://${proxy_endpoint}
+        NO_PROXY=169.254.169.254
+    path: /var/awslogs/etc/proxy.conf
+
