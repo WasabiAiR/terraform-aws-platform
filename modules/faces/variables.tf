@@ -1,16 +1,3 @@
-variable "faces_amis" {
-  type        = "map"
-  description = "map of region to ami for faces nodes"
-
-  default = {
-    "eu-west-1"      = "ami-0b36b80302f4b80d0"
-    "us-east-1"      = "ami-0aa5316c40520da2c"
-    "us-east-2"      = "ami-0bc19d0e0cad89ade"
-    "us-west-2"      = "ami-05cf604a220871d76"
-    "ap-southeast-2" = "ami-0942a64a2acc96ee4"
-  }
-}
-
 variable "faces_instance_type" {
   type        = "string"
   description = "instance type for servers"
@@ -62,6 +49,11 @@ variable "log_retention" {
 variable "platform_instance_id" {
   type        = "string"
   description = "A human-readable string for this instance of the GrayMeta Platform"
+}
+
+variable "proxy_endpoint" {
+  type        = "string"
+  description = "The Proxy Load Balancer created by the network module"
 }
 
 variable "rds_allocated_storage" {
@@ -128,4 +120,18 @@ variable "services_ecs_cidrs" {
 variable "ssh_cidr_blocks" {
   type        = "string"
   description = "Comma delimited list of cidr blocks from which to allow access via SSH"
+}
+
+# AMI
+variable "faces_amis" {
+  type        = "map"
+  description = "map of region to ami for faces nodes"
+
+  default = {
+    "eu-west-1"      = "ami-0b36b80302f4b80d0"
+    "us-east-1"      = "ami-0aa5316c40520da2c"
+    "us-east-2"      = "ami-0bc19d0e0cad89ade"
+    "us-west-2"      = "ami-05cf604a220871d76"
+    "ap-southeast-2" = "ami-0942a64a2acc96ee4"
+  }
 }

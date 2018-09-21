@@ -123,12 +123,10 @@ data "template_file" "userdata" {
     ecs_memory_hard_reservation    = "${var.ecs_memory_hard_reservation}"
     ecs_memory_soft_reservation    = "${var.ecs_memory_soft_reservation}"
     ecs_log_group                  = "GrayMetaPlatform-${var.platform_instance_id}-ECS"
-    elasticache_facebox            = "${var.elasticache_facebox}"
     elasticache_services           = "${var.elasticache_services}"
     elasticsearch_endpoint         = "${var.elasticsearch_endpoint}"
     encrypted_config_blob          = "${var.encrypted_config_blob}"
     encryption_key                 = "${var.encryption_key}"
-    facebox_key                    = "${var.facebox_key}"
     faces_endpoint                 = "${var.faces_endpoint}"
     file_storage_s3_bucket_arn     = "${var.file_storage_s3_bucket_arn}"
     from_addr                      = "${var.notifications_from_addr}"
@@ -153,6 +151,7 @@ data "template_file" "userdata" {
     temporary_bucket_name          = "${var.temporary_bucket_name}"
     usage_s3_bucket_arn            = "${var.usage_s3_bucket_arn}"
     walkd_item_batch_size          = "${var.walkd_item_batch_size}"
+    proxy_endpoint                 = "${var.proxy_endpoint}"
   }
 }
 
