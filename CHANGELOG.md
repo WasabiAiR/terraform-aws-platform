@@ -1,6 +1,75 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [NOT RELEASED] - <date>
+#### Added
+- Added two new subnets for proxy instances in the network module.  If you did not use the default value for vpc_cidr then you need to add two new subnets.
+```
+module "network" {
+  ...
+  cidr_subnet_proxy_1 = "10.0.20.0/24"
+  cidr_subnet_proxy_2 = "10.0.21.0/24"
+  ...
+}
+```
+
+- Added Proxy cluster in the network module.  All outbound internet traffic will be forced through the the proxy instances that are created here.  The thresholds should be adjusted for the instance type you pick.
+```
+module "network" {
+  ...
+  # Proxy Cluster
+  dns_name               = "foo.cust.graymeta.com"
+  key_name               = "${local.key_name}"
+  log_retention          = "7"
+  proxy_instance_type    = "m4.large"
+  proxy_max_cluster_size = 4
+  proxy_min_cluster_size = 2
+  proxy_scale_down_thres = "12500000" # bytes = 100 Mb/s
+  proxy_scale_up_thres   = "50000000" # bytes = 400 Mb/s
+  ssh_cidr_blocks        = "10.0.0.0/24,10.0.1.0/24"
+  ...
+```
+
+- Added Proxy endpoint variable to the platform module.
+```
+module "platform" {
+  ...
+  proxy_endpoint = "${module.network.proxy_endpoint}"
+  ...
+}
+```
+  
+#### Changed
+- Now creating ECS nodes in two AZ.  Network Module we renamed the `cidr_subnet_ecs` subnet to `cidr_subnet_ecs_1` and added a `cidr_subnet_ecs_2`.  Recommened that cidr_subnet_ecs_2 to be a /21 subnet.  
+```
+module "network" {
+  ...
+  cidr_subnet_ecs_1 = "10.0.8.0/21"
+  cidr_subnet_ecs_2 = "10.0.24.0/21"
+  ...
+```
+  
+- Now creating ECS nodes in two AZ.  In the Platform module rename `ecs_subnet_id` variable to `ecs_subnet_id_1`.  Then add the `ecs_subnet_id_2` variable.  Example:
+```
+module "platform" {
+  ...
+  ecs_subnet_id_1 = "${module.network.ecs_subnet_id_1}"
+  ecs_subnet_id_2 = "${module.network.ecs_subnet_id_2}"
+  ...
+}
+```
+
+#### Removed
+- Removed facebox from the platform module.  Please delete the following variables.
+```
+module "platform" {
+  ...
+  elasticache_instance_type_facebox  = "cache.m4.large"
+  facebox_key = ""
+  ...
+}
+```
+   
 ## [v0.0.32] - 2018-09-17
 #### Added
 - Added variable for the RDS backup retention and window within the platform module.  The default retention is now set to 7 days and a backup window set to 03:00-04:00.  Previous versions this was not set.  This will create a pending update for the next maintance window.

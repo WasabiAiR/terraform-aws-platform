@@ -9,19 +9,32 @@ If your security policies prevent using secrets directly in Terraform, you can u
 Your terraform configs should look like this:
 
 ```
-locals {
-    platform_instance_id = "labs"
-    key_name             = "somekey"
-}
-
 provider "aws" {
     region = "us-east-1"
 }
 
-module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.32"
+locals {
+  version                    = "v0.0.33"
+  customer                   = "mycompanyname"
+  platform_instance_id       = "labs"
+  notifications_from_addr    = "noreply@example.com"
+  dns_name                   = "foo.cust.graymeta.com"
+  region                     = "us-west-2"
+  az1                        = "us-west-2a"
+  az2                        = "us-west-2b"
+  platform_access_cidrs      = "0.0.0.0/0"
+  ssh_cidr_blocks            = "10.0.0.0/24,10.0.1.0/24"
+  key_name                   = "somekey"
+  ssl_certificate_arn        = "arn:aws:acm:us-west-2:111111111111:certificate/11111111-1111-1111-1111-111111111111"
+  file_storage_s3_bucket_arn = "arn:aws:s3:::cfn-file-api"
+  usage_s3_bucket_arn        = "arn:aws:s3:::cfn-usage-api"
+  log_retention              = "14"
+}
 
-    platform_instance_id = "${local.platform_instance_id}"
+module "servicesiam" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=${local.version}"
+
+  platform_instance_id = "${local.platform_instance_id}"
 }
 ```
 
@@ -57,32 +70,10 @@ A base64 encoded string will be output. This string becomes the `encrypted_confi
 Add in the network(if using) and platform modules. Your Terraform config should now look like this:
 
 ```
-locals {
-    platform_instance_id = "labs"
-    key_name             = "somekey"
-}
-
-provider "aws" {
-    region = "us-east-1"
-}
-
-module "servicesiam" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.0.32"
-
-    platform_instance_id = "${local.platform_instance_id}"
-}
-
-module "network" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.0.32"
-
-    ... (see README.md for details)
-}
-
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.32"
-
+    source = "github.com/graymeta/terraform-aws-platform?ref=${local.version}"
+    ...
     encrypted_config_blob = "base64 encoded string from gmcrypt"
-
     ... (see README.md for details)
 }
 ```
@@ -100,8 +91,13 @@ terraform destroy -target=module.platform.module.rds.aws_db_instance.default
 ```
 * Create a new KMS key and add the following to the platform configuration.
 ```
-  db_storage_encrypted = true
-  db_kms_key_id        = "arn:aws:kms:us-west-2:1111111111111:key/11111111-1111-11111-11111-111111111"
+module "platform" {
+    source = "github.com/graymeta/terraform-aws-platform?ref=${local.version}"
+    ...
+    db_storage_encrypted = true
+    db_kms_key_id        = "arn:aws:kms:us-west-2:1111111111111:key/11111111-1111-11111-11111-111111111"
+    ...
+}
 ```
 * Go into AWS console -> RDS -> Snapshots -> Look for a snapshot that has the name GrayMetaPlatform-<platform_instance_id>-final.  
 * Select Copy on that snapshot and enable encryption on the copy.  Then wait for the copy to complete.

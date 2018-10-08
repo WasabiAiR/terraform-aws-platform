@@ -1,62 +1,46 @@
 # Network Requirements
 
-* Single VPC. VPC must have DNS host names enabled. Attach an internet gateway.
-* Stand up 7 subnets as follows and record the subnet ID of each:
-  * Public subnet 1:
-    * size: /24
-    * availability zone: different than Public subnet 2
-    * route 0.0.0.0/0 through the Internet gateway
-    * record the subnet id as variable `public_subnet_id_1`
-  * Public subnet 2:
-    * size: /24
-    * availability zone: different than Public subnet 1
-    * route 0.0.0.0/0 through the Internet gateway
-    * record the subnet id as variable `public_subnet_id_2`
-  * Services subnet 1:
-    * size: /24
-    * availability zone: different than Services subnet 2
-    * route 0.0.0.0/0 through the AZ1 NAT gateway
-    * record the subnet id as variable `services_subnet_id_1`
-  * Services subnet 2:
-    * size: /24
-    * availability zone: different than Services subnet 1
-    * route 0.0.0.0/0 through the AZ2 NAT gateway
-    * record the subnet id as variable `services_subnet_id_2`
-  * RDS subnet 1:
-    * size: As small as a /29 or as large as a /24
-    * availability zone: different than RDS subnet 2
-    * route 0.0.0.0/0 through the AZ1 NAT gateway
-    * record the subnet id as variable `rds_subnet_id_1`
-  * RDS subnet 2:
-    * size: As small as a /29 or as large as a /24
-    * availability zone: different than RDS subnet 1
-    * route 0.0.0.0/0 through the AZ2 NAT gateway
-    * record the subnet id as variable `rds_subnet_id_2`
-  * ECS subnet:
-    * size: /21
-    * availability zone: no hard requirement here, but typically deployed in the same AZ as Services subnet 1
-    * route 0.0.0.0/0 through the AZ1 NAT gateway
-    * record the subnet id as variable `ecs_subnet_id_1`
-  * Elasticsearch Subnet 1:
-    * size: /24 (needs to be as large as `instance_count` / 2 * 3 addresses available where `instance_count` is the number of instances not counting dedicated master nodes in the ES cluster)
-    * availability zone: different than Elasticsearch Subnet 2, should be same AZ as Services Subnet 1
-    * route 0.0.0.0/0 through the AZ1 NAT gateway
-    * record the subnet id as variable `elasticsearch_subnet_id_1`
-  * Elasticsearch Subnet 2:
-    * size: /24 (needs to be as large as `instance_count` / 2 * 3 addresses available where `instance_count` is the number of instances not counting dedicated master nodes in the ES cluster)
-    * availability zone: different than Elasticsearch Subnet 1, should be same AZ as Services Subnet 2
-    * route 0.0.0.0/0 through the AZ2 NAT gateway
-    * record the subnet id as variable `elasticsearch_subnet_id_1`
-  * Faces Subnet 1:
-    * size: /24 or larger is recommened
-    * availability zone: different than Faces Subnet 2
-    * route 0.0.0.0/0 through the AZ1 NAT gateway
-    * record the subnet id as variable `faces_subnet_id_1`
-  * Faces Subnet 2:
-    * size: /24 or larger is recommened
-    * availability zone: different than Faces Subnet 1
-    * route 0.0.0.0/0 through the AZ2 NAT gateway
-    * record the subnet id as variable `faces_subnet_id_1`
-* Create a NAT gateway for the az1 subnets. Record the EIP assigned to the NAT gateway as variable `az1_nat_ip`. Note that it must be in CIDR notation: `1.2.3.4/32`
-* Create a NAT gateway for the az2 subnets. Record the EIP assigned to the NAT gateway as variable `az2_nat_ip`. Note that it must be in CIDR notation: `1.2.3.4/32`
+It is required that you use GrayMeta network module to create the network.
 
+Example if you would like to use a different subnet.
+```
+locals {
+  cidr_vpc = "10.10.0.0/16"
+}
+
+module "network" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=${local.version}"
+
+  az1                  = "${local.az1}"
+  az2                  = "${local.az2}"
+  cidr_vpc             = "${local.cidr_vpc}"
+  platform_instance_id = "${local.platform_instance_id}"
+  region               = "${local.region}"
+
+  # Proxy Cluster Configuration
+  dns_name               = "${local.dns_name}"
+  key_name               = "${local.key_name}"
+  proxy_instance_type    = "m4.large"
+  proxy_max_cluster_size = 2
+  proxy_min_cluster_size = 1
+  proxy_scale_down_thres = "12500000" # 100 Mb/s
+  proxy_scale_up_thres   = "50000000" # 400 Mb/s
+  ssh_cidr_blocks        = "${local.ssh_cidr_blocks}"
+
+  # Subnets
+  cidr_subnet_ecs_1           = "${cidrsubnet(local.cidr_vpc, 5, 1)}"
+  cidr_subnet_ecs_2           = "${cidrsubnet(local.cidr_vpc, 5, 3)}"
+  cidr_subnet_elasticsearch_1 = "${cidrsubnet(local.cidr_vpc, 8, 16)}"
+  cidr_subnet_elasticsearch_2 = "${cidrsubnet(local.cidr_vpc, 8, 17)}"
+  cidr_subnet_faces_1         = "${cidrsubnet(local.cidr_vpc, 8, 18)}"
+  cidr_subnet_faces_2         = "${cidrsubnet(local.cidr_vpc, 8, 19)}"
+  cidr_subnet_proxy_1         = "${cidrsubnet(local.cidr_vpc, 8, 20)}"
+  cidr_subnet_proxy_2         = "${cidrsubnet(local.cidr_vpc, 8, 21)}"
+  cidr_subnet_public_1        = "${cidrsubnet(local.cidr_vpc, 8, 0)}"
+  cidr_subnet_public_2        = "${cidrsubnet(local.cidr_vpc, 8, 1)}"
+  cidr_subnet_rds_1           = "${cidrsubnet(local.cidr_vpc, 8, 2)}"
+  cidr_subnet_rds_2           = "${cidrsubnet(local.cidr_vpc, 8, 3)}"
+  cidr_subnet_services_1      = "${cidrsubnet(local.cidr_vpc, 8, 4)}"
+  cidr_subnet_services_2      = "${cidrsubnet(local.cidr_vpc, 8, 5)}"
+}
+```

@@ -1,7 +1,7 @@
 # Loading the template_body from a template file decouples the dependency between the LC and ASG and breaks the update, so use a HEREDOC instead :(
 # See https://github.com/hashicorp/terraform/issues/1552 for more info
-resource "aws_cloudformation_stack" "faces_asg" {
-  name               = "GrayMetaPlatform-${var.platform_instance_id}-Faces-ASG"
+resource "aws_cloudformation_stack" "proxy_asg" {
+  name               = "GrayMetaPlatform-${var.platform_instance_id}-Proxy-ASG"
   timeout_in_minutes = "90"
 
   timeouts {
@@ -15,13 +15,13 @@ resource "aws_cloudformation_stack" "faces_asg" {
     "AutoScalingGroup": {
       "Type": "AWS::AutoScaling::AutoScalingGroup",
       "Properties": {
-        "LaunchConfigurationName": "${aws_launch_configuration.launch_config_faces.name}",
-        "MaxSize": "${var.faces_max_cluster_size}",
-        "MinSize": "${var.faces_min_cluster_size}",
+        "LaunchConfigurationName": "${aws_launch_configuration.launch_config_proxy.name}",
+        "MaxSize": "${var.proxy_max_cluster_size}",
+        "MinSize": "${var.proxy_min_cluster_size}",
         "Tags": [
           {
             "Key": "Name",
-            "Value": "GrayMetaPlatform-${var.platform_instance_id}-Faces",
+            "Value": "GrayMetaPlatform-${var.platform_instance_id}-Proxy",
             "PropagateAtLaunch": true
           },
           {
@@ -36,7 +36,7 @@ resource "aws_cloudformation_stack" "faces_asg" {
           }
         ],
         "TargetGroupARNs": [
-            "${aws_lb_target_group.port10336.arn}"
+            "${aws_lb_target_group.port3128.arn}"
         ],
         "TerminationPolicies": [
           "OldestLaunchConfiguration",
@@ -44,13 +44,13 @@ resource "aws_cloudformation_stack" "faces_asg" {
           "Default"
         ],
         "VPCZoneIdentifier": [
-            "${var.faces_subnet_id_1}",
-            "${var.faces_subnet_id_2}"
+            "${var.proxy_subnet_id_1}",
+            "${var.proxy_subnet_id_2}"
         ]
       },
       "UpdatePolicy": {
         "AutoScalingRollingUpdate": {
-          "MinInstancesInService": "${var.faces_min_cluster_size}",
+          "MinInstancesInService": "${var.proxy_min_cluster_size}",
           "MaxBatchSize": "2",
           "PauseTime": "PT0S"
         }
@@ -69,27 +69,28 @@ resource "aws_cloudformation_stack" "faces_asg" {
 EOF
 }
 
-resource "aws_launch_configuration" "launch_config_faces" {
-  iam_instance_profile = "${aws_iam_instance_profile.iam_instance_profile_faces.name}"
-  image_id             = "${lookup(var.faces_amis, data.aws_region.current.name)}"
-  instance_type        = "${var.faces_instance_type}"
-  key_name             = "${var.key_name}"
-  name_prefix          = "GrayMetaPlatform-${var.platform_instance_id}-Faces-"
+resource "aws_launch_configuration" "launch_config_proxy" {
+  iam_instance_profile = "${aws_iam_instance_profile.iam_instance_profile_proxy.name}"
+
+  image_id      = "${var.proxy_amis}"
+  instance_type = "${var.proxy_instance_type}"
+  key_name      = "${var.key_name}"
+  name_prefix   = "GrayMetaPlatform-${var.platform_instance_id}-Proxy-"
 
   root_block_device {
     volume_type           = "gp2"
-    volume_size           = "${var.faces_volume_size}"
+    volume_size           = "${var.proxy_volume_size}"
     delete_on_termination = true
   }
 
-  security_groups  = ["${aws_security_group.faces.id}"]
+  security_groups  = ["${aws_security_group.proxy.id}"]
   user_data_base64 = "${data.template_cloudinit_config.config.rendered}"
 
   lifecycle {
     create_before_destroy = true
   }
 
-  depends_on = ["aws_cloudwatch_log_group.faces"]
+  depends_on = ["aws_cloudwatch_log_group.proxy"]
 }
 
 data "template_cloudinit_config" "config" {
@@ -103,7 +104,7 @@ data "template_cloudinit_config" "config" {
 
   part {
     content_type = "text/cloud-config"
-    content      = "${var.faces_user_init}"
+    content      = "${var.proxy_user_init}"
     merge_type   = "list(append)+dict(recurse_array)+str()"
   }
 }
@@ -112,61 +113,57 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
   vars {
-    dataversion      = "1"
-    log_group        = "${aws_cloudwatch_log_group.faces.name}"
-    postgresdb       = "faces"
-    postgresendpoint = "${element(split(":", "${aws_db_instance.rds.endpoint}"), 0)}"
-    postgrespass     = "${var.rds_db_password}"
-    postgresport     = 5432
-    postgresuser     = "${var.rds_db_username}"
-    proxy_endpoint   = "${var.proxy_endpoint}"
+    log_group = "${aws_cloudwatch_log_group.proxy.name}"
+    region    = "${data.aws_region.current.name}"
+    dns_name  = "${var.dns_name}"
+    whitelist = "${join("\n", formatlist("        %s",var.whitelist))}"
   }
 }
 
 resource "aws_autoscaling_policy" "scale_up" {
   adjustment_type        = "ChangeInCapacity"
-  autoscaling_group_name = "${aws_cloudformation_stack.faces_asg.outputs["AsgName"]}"
+  autoscaling_group_name = "${aws_cloudformation_stack.proxy_asg.outputs["AsgName"]}"
   cooldown               = 60
-  name                   = "GrayMetaPlatform-${var.platform_instance_id}-Faces-scale-up"
+  name                   = "GrayMetaPlatform-${var.platform_instance_id}-Proxy-scale-up"
   scaling_adjustment     = 1
 }
 
 resource "aws_autoscaling_policy" "scale_down" {
   adjustment_type        = "ChangeInCapacity"
-  autoscaling_group_name = "${aws_cloudformation_stack.faces_asg.outputs["AsgName"]}"
+  autoscaling_group_name = "${aws_cloudformation_stack.proxy_asg.outputs["AsgName"]}"
   cooldown               = 180
-  name                   = "GrayMetaPlatform-${var.platform_instance_id}-Faces-scale-down"
+  name                   = "GrayMetaPlatform-${var.platform_instance_id}-Proxy-scale-down"
   scaling_adjustment     = -1
 }
 
 resource "aws_cloudwatch_metric_alarm" "scale_up" {
   alarm_actions       = ["${aws_autoscaling_policy.scale_up.arn}"]
-  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-Faces-scale-up"
+  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-Proxy-scale-up"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = "1"
-  metric_name         = "CPUUtilization"
+  evaluation_periods  = "${var.proxy_scale_up_evaluation_periods}"
+  metric_name         = "NetworkOut"
   namespace           = "AWS/EC2"
-  period              = "60"
+  period              = "${var.proxy_scale_up_period}"
   statistic           = "Average"
-  threshold           = "80"
+  threshold           = "${var.proxy_scale_up_thres}"
 
   dimensions {
-    AutoScalingGroupName = "${aws_cloudformation_stack.faces_asg.outputs["AsgName"]}"
+    AutoScalingGroupName = "${aws_cloudformation_stack.proxy_asg.outputs["AsgName"]}"
   }
 }
 
 resource "aws_cloudwatch_metric_alarm" "scale_down" {
   alarm_actions       = ["${aws_autoscaling_policy.scale_down.arn}"]
-  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-Faces-scale-down"
+  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-Proxy-scale-down"
   comparison_operator = "LessThanThreshold"
-  evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
+  evaluation_periods  = "${var.proxy_scale_down_evaluation_periods}"
+  metric_name         = "NetworkOut"
   namespace           = "AWS/EC2"
-  period              = "300"
+  period              = "${var.proxy_scale_down_period}"
   statistic           = "Average"
-  threshold           = "50"
+  threshold           = "${var.proxy_scale_down_thres}"
 
   dimensions {
-    AutoScalingGroupName = "${aws_cloudformation_stack.faces_asg.outputs["AsgName"]}"
+    AutoScalingGroupName = "${aws_cloudformation_stack.proxy_asg.outputs["AsgName"]}"
   }
 }

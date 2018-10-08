@@ -1,10 +1,10 @@
-resource "aws_autoscaling_group" "auto_scaling_group_ecs" {
+resource "aws_autoscaling_group" "ecs" {
   name_prefix          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-"
   max_size             = "${var.max_cluster_size}"
   min_size             = "${var.min_cluster_size}"
   force_delete         = true
-  launch_configuration = "${aws_launch_configuration.launch_config_ecs.name}"
-  vpc_zone_identifier  = ["${var.subnet_id}"]
+  launch_configuration = "${aws_launch_configuration.ecs.name}"
+  vpc_zone_identifier  = ["${var.subnet_id_1}", "${var.subnet_id_2}"]
 
   lifecycle {
     create_before_destroy = true
@@ -33,7 +33,7 @@ resource "aws_autoscaling_group" "auto_scaling_group_ecs" {
   ]
 }
 
-resource "aws_launch_configuration" "launch_config_ecs" {
+resource "aws_launch_configuration" "ecs" {
   name_prefix          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-"
   image_id             = "${var.ami_id}"
   instance_type        = "${var.instance_type}"
@@ -73,8 +73,9 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
   vars {
-    ecs_cluster = "${aws_ecs_cluster.ecs_cluster.name}"
-    region      = "${var.region}"
+    ecs_cluster    = "${aws_ecs_cluster.ecs_cluster.name}"
+    region         = "${var.region}"
+    proxy_endpoint = "${var.proxy_endpoint}"
   }
 }
 
@@ -83,7 +84,7 @@ resource "aws_autoscaling_policy" "scale_up" {
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 60
-  autoscaling_group_name = "${aws_autoscaling_group.auto_scaling_group_ecs.name}"
+  autoscaling_group_name = "${aws_autoscaling_group.ecs.name}"
 }
 
 resource "aws_autoscaling_policy" "scale_down" {
@@ -91,11 +92,11 @@ resource "aws_autoscaling_policy" "scale_down" {
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 180
-  autoscaling_group_name = "${aws_autoscaling_group.auto_scaling_group_ecs.name}"
+  autoscaling_group_name = "${aws_autoscaling_group.ecs.name}"
 }
 
 resource "aws_cloudwatch_metric_alarm" "scale_up" {
-  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-scale-up"
+  alarm_name          = "GrayMetaPlatform-${var.platform_instance_id}-ECS-scale-up-mem"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "2"
   metric_name         = "MemoryReservation"
