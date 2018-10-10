@@ -24,10 +24,10 @@ resource "aws_lb_listener" "port3128" {
 }
 
 resource "aws_lb_target_group" "port3128" {
-  nameprefix = "s3128-"
-  port       = "3128"
-  protocol   = "TCP"
-  vpc_id     = "${data.aws_subnet.subnet_proxy_1.vpc_id}"
+  name_prefix = "s3128-"
+  port        = "3128"
+  protocol    = "TCP"
+  vpc_id      = "${data.aws_subnet.subnet_proxy_1.vpc_id}"
 
   health_check {
     healthy_threshold   = 3

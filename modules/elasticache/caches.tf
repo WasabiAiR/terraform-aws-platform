@@ -1,5 +1,5 @@
 resource "aws_elasticache_cluster" "services" {
-  cluster_id           = "cluster-services"
+  cluster_id           = "gm-${var.platform_instance_id}"
   engine               = "redis"
   engine_version       = "3.2.10"
   node_type            = "${var.instance_type_services}"
