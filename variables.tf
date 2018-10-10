@@ -380,7 +380,7 @@ variable ecs_amis {
     "eu-west-1"      = "ami-"
     "us-east-1"      = "ami-02da10529f19a6fa7"
     "us-east-2"      = "ami-"
-    "us-west-2"      = "ami-041185c27ca53056e"
+    "us-west-2"      = "ami-0544481635ff42970"
     "ap-southeast-2" = "ami-"
   }
 }
@@ -393,7 +393,7 @@ variable services_amis {
     "eu-west-1"      = "ami-"
     "us-east-1"      = "ami-061ccc77a4f225142"
     "us-east-2"      = "ami-"
-    "us-west-2"      = "ami-0544481635ff42970"
+    "us-west-2"      = "ami-08cf1e0ea9d1d953c"
     "ap-southeast-2" = "ami-"
   }
 }
