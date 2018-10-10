@@ -78,12 +78,6 @@ resource "aws_lb_target_group" "port7000" {
   protocol    = "HTTP"
   vpc_id      = "${data.aws_subnet.subnet_1.vpc_id}"
 
-  stickiness {
-    type            = "lb_cookie"
-    cookie_duration = 30
-    enabled         = true
-  }
-
   health_check {
     path                = "/healthz"
     interval            = 30
