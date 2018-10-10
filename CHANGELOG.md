@@ -55,7 +55,7 @@ All notable changes to this project will be documented in this file.
     }
 ```
   
-- Now creating ECS nodes in two AZ.  In the Platform module rename `ecs_subnet_id` variable to `ecs_subnet_id_1`.  Then add the `ecs_subnet_id_2` variable.
+* Now creating ECS nodes in two AZ.  In the Platform module rename `ecs_subnet_id` variable to `ecs_subnet_id_1`.  Then add the `ecs_subnet_id_2` variable.
 ```
     module "platform" {
       ...
@@ -64,6 +64,8 @@ All notable changes to this project will be documented in this file.
       ...
     }
 ```
+  
+* Renamed the ElastiCache instance so multiple platforms in the same region can be supported.
 
 #### Removed
 * Removed facebox from the platform module.  Please delete the following variables.
