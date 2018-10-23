@@ -16,10 +16,11 @@ resource "aws_sqs_queue" "my_notification_queue" {
 }
 
 module "s3_sqs" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/s3_sqs?ref=v0.0.32"
+    source = "github.com/graymeta/terraform-aws-platform//modules/s3_sqs?ref=${local.version}"
 
     platform_instance_id = "${local.platform_instance_id}"
     region               = "${local.region}"
+    
     bucket_arn           = "arn:aws:s3:::somebucket"
     queue_name           = "${aws_sqs_queue.my_notification_queue.id}"
     filter_prefix        = "logs/"

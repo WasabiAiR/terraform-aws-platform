@@ -68,47 +68,48 @@ resource "aws_route_table_association" "public_2" {
   route_table_id = "${aws_route_table.main.id}"
 }
 
-resource "aws_route_table_association" "ecs" {
+resource "aws_route_table_association" "proxy_1" {
+  subnet_id      = "${aws_subnet.proxy_1.id}"
+  route_table_id = "${aws_route_table.az1.id}"
+}
+
+resource "aws_route_table_association" "proxy_2" {
+  subnet_id      = "${aws_subnet.proxy_2.id}"
+  route_table_id = "${aws_route_table.az2.id}"
+}
+
+resource "aws_route_table_association" "ecs_1" {
+  count          = "${var.enforce_proxy ? 0 : 1}"
   subnet_id      = "${aws_subnet.ecs.id}"
   route_table_id = "${aws_route_table.az1.id}"
 }
 
+resource "aws_route_table_association" "ecs_2" {
+  count          = "${var.enforce_proxy ? 0 : 1}"
+  subnet_id      = "${aws_subnet.ecs_2.id}"
+  route_table_id = "${aws_route_table.az2.id}"
+}
+
 resource "aws_route_table_association" "services_1" {
+  count          = "${var.enforce_proxy ? 0 : 1}"
   subnet_id      = "${aws_subnet.services_1.id}"
   route_table_id = "${aws_route_table.az1.id}"
 }
 
 resource "aws_route_table_association" "services_2" {
+  count          = "${var.enforce_proxy ? 0 : 1}"
   subnet_id      = "${aws_subnet.services_2.id}"
   route_table_id = "${aws_route_table.az2.id}"
 }
 
-resource "aws_route_table_association" "rds_1" {
-  subnet_id      = "${aws_subnet.rds_1.id}"
-  route_table_id = "${aws_route_table.az1.id}"
-}
-
-resource "aws_route_table_association" "rds_2" {
-  subnet_id      = "${aws_subnet.rds_2.id}"
-  route_table_id = "${aws_route_table.az2.id}"
-}
-
-resource "aws_route_table_association" "elasticsearch_1" {
-  subnet_id      = "${aws_subnet.elasticsearch_1.id}"
-  route_table_id = "${aws_route_table.az1.id}"
-}
-
-resource "aws_route_table_association" "elasticsearch_2" {
-  subnet_id      = "${aws_subnet.elasticsearch_2.id}"
-  route_table_id = "${aws_route_table.az2.id}"
-}
-
 resource "aws_route_table_association" "faces_1" {
+  count          = "${var.enforce_proxy ? 0 : 1}"
   subnet_id      = "${aws_subnet.faces_1.id}"
   route_table_id = "${aws_route_table.az1.id}"
 }
 
 resource "aws_route_table_association" "faces_2" {
+  count          = "${var.enforce_proxy ? 0 : 1}"
   subnet_id      = "${aws_subnet.faces_2.id}"
   route_table_id = "${aws_route_table.az2.id}"
 }

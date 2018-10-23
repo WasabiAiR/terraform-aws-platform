@@ -29,12 +29,6 @@ resource "aws_lb_target_group" "port10336" {
   protocol = "HTTP"
   vpc_id   = "${data.aws_subnet.subnet_faces_1.vpc_id}"
 
-  stickiness {
-    enabled         = true
-    cookie_duration = 30
-    type            = "lb_cookie"
-  }
-
   health_check {
     healthy_threshold   = 5
     interval            = 30

@@ -11,13 +11,13 @@ Set the following variables when instantiating the module:
 
 ```
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=v0.0.32"
-
+    source = "github.com/graymeta/terraform-aws-platform?ref=${local.version}"
     ...
-
+    # (Optional) s3 notification
     sqs_s3notifications_arn = ""
-    sqs_s3notifications = ""
-    s3subscriber_priority = ""
+    sqs_s3notifications     = ""
+    s3subscriber_priority   = ""
+    ...
 }
 ```
 

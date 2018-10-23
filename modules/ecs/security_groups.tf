@@ -1,6 +1,6 @@
 resource "aws_security_group" "ecs" {
   description = "Access to ECS nodes"
-  vpc_id      = "${data.aws_subnet.ecs_subnet.vpc_id}"
+  vpc_id      = "${data.aws_subnet.ecs_subnet_1.vpc_id}"
 
   ingress {
     from_port   = 22
