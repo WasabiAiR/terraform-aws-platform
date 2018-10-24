@@ -203,11 +203,11 @@ variable "proxy_amis" {
   description = "map of region to ami for proxy nodes"
 
   default = {
-    "eu-west-1"      = "ami-0b3e64407a43f22a7"
-    "us-east-1"      = "ami-02556801df665542b"
-    "us-east-2"      = "ami-079bceba6780173f8"
-    "us-west-2"      = "ami-0eadd4cdd7ba4ef44"
-    "ap-southeast-2" = "ami-01090d5163e5618ea"
+    "ap-southeast-2" = "ami-081c3bca5bb0fb280"
+    "eu-west-1"      = "ami-09d0344514bef6484"
+    "us-east-1"      = "ami-0b4fa399234c5ab0b"
+    "us-east-2"      = "ami-07586ac64d109340a"
+    "us-west-2"      = "ami-017379caf2e25ac14"
   }
 }
 

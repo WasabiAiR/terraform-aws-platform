@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 locals {
-  version                    = "v0.0.33"
+  version                    = "v0.1.0"
   customer                   = "mycompanyname"
   platform_instance_id       = "labs"
   notifications_from_addr    = "noreply@example.com"

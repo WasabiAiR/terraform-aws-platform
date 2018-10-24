@@ -13,9 +13,9 @@ resource "aws_lb" "faces_lb" {
   }
 }
 
-resource "aws_lb_listener" "port80" {
+resource "aws_lb_listener" "port10336" {
   load_balancer_arn = "${aws_lb.faces_lb.arn}"
-  port              = "80"
+  port              = "10336"
   protocol          = "HTTP"
 
   default_action {
@@ -24,6 +24,27 @@ resource "aws_lb_listener" "port80" {
   }
 }
 
+resource "aws_lb_listener" "port10337" {
+  load_balancer_arn = "${aws_lb.faces_lb.arn}"
+  port              = "10337"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = "${aws_lb_target_group.port10337.arn}"
+    type             = "forward"
+  }
+}
+
+resource "aws_lb_listener" "port10338" {
+  load_balancer_arn = "${aws_lb.faces_lb.arn}"
+  port              = "10338"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = "${aws_lb_target_group.port10338.arn}"
+    type             = "forward"
+  }
+}
 resource "aws_lb_target_group" "port10336" {
   port     = "10336"
   protocol = "HTTP"
@@ -33,7 +54,7 @@ resource "aws_lb_target_group" "port10336" {
     healthy_threshold   = 5
     interval            = 30
     matcher             = "200"
-    path                = "/health"
+    path                = "/healthz/"
     port                = "10336"
     protocol            = "HTTP"
     timeout             = 5
@@ -42,6 +63,52 @@ resource "aws_lb_target_group" "port10336" {
 
   tags {
     Name               = "GrayMetaPlatform-${var.platform_instance_id}-port10336"
+    ApplicationName    = "GrayMetaPlatform"
+    PlatformInstanceID = "${var.platform_instance_id}"
+  }
+}
+
+resource "aws_lb_target_group" "port10337" {
+  port     = "10337"
+  protocol = "HTTP"
+  vpc_id   = "${data.aws_subnet.subnet_faces_1.vpc_id}"
+
+  health_check {
+    healthy_threshold   = 5
+    interval            = 30
+    matcher             = "200"
+    path                = "/healthz/"
+    port                = "10337"
+    protocol            = "HTTP"
+    timeout             = 5
+    unhealthy_threshold = 2
+  }
+
+  tags {
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-port10337"
+    ApplicationName    = "GrayMetaPlatform"
+    PlatformInstanceID = "${var.platform_instance_id}"
+  }
+}
+
+resource "aws_lb_target_group" "port10338" {
+  port     = "10338"
+  protocol = "HTTP"
+  vpc_id   = "${data.aws_subnet.subnet_faces_1.vpc_id}"
+
+  health_check {
+    healthy_threshold   = 5
+    interval            = 30
+    matcher             = "200"
+    path                = "/healthz/"
+    port                = "10338"
+    protocol            = "HTTP"
+    timeout             = 5
+    unhealthy_threshold = 2
+  }
+
+  tags {
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-port10338"
     ApplicationName    = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
@@ -71,12 +138,32 @@ resource "aws_security_group_rule" "egress" {
 }
 
 # Allow Services and ECS networks
-resource "aws_security_group_rule" "allow_https" {
+resource "aws_security_group_rule" "allow_faces" {
   description       = "allow-services-ecs"
   security_group_id = "${aws_security_group.faces_lb_nsg.id}"
   type              = "ingress"
-  from_port         = 80
-  to_port           = 80
+  from_port         = 10336
+  to_port           = 10336
+  protocol          = "tcp"
+  cidr_blocks       = ["${var.services_ecs_cidrs}"]
+}
+
+resource "aws_security_group_rule" "allow_credits" {
+  description       = "allow-services-ecs"
+  security_group_id = "${aws_security_group.faces_lb_nsg.id}"
+  type              = "ingress"
+  from_port         = 10337
+  to_port           = 10337
+  protocol          = "tcp"
+  cidr_blocks       = ["${var.services_ecs_cidrs}"]
+}
+
+resource "aws_security_group_rule" "allow_slates" {
+  description       = "allow-services-ecs"
+  security_group_id = "${aws_security_group.faces_lb_nsg.id}"
+  type              = "ingress"
+  from_port         = 10338
+  to_port           = 10338
   protocol          = "tcp"
   cidr_blocks       = ["${var.services_ecs_cidrs}"]
 }

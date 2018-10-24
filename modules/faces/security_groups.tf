@@ -20,6 +20,28 @@ resource "aws_security_group" "faces" {
     ]
   }
 
+    ingress {
+    from_port = 10337
+    to_port   = 10337
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "${data.aws_subnet.subnet_faces_1.cidr_block}",
+      "${data.aws_subnet.subnet_faces_2.cidr_block}",
+    ]
+  }
+
+    ingress {
+    from_port = 10338
+    to_port   = 10338
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "${data.aws_subnet.subnet_faces_1.cidr_block}",
+      "${data.aws_subnet.subnet_faces_2.cidr_block}",
+    ]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

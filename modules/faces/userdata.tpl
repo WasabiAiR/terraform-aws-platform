@@ -20,8 +20,18 @@ runcmd:
 - systemctl restart docker
 - systemctl enable docker-faces-data.service
 - systemctl restart docker-faces-data.service
-- systemctl enable docker-faces.service
-- systemctl restart docker-faces.service
+- systemctl enable docker-faces-api.service
+- systemctl restart docker-faces-api.service
+- systemctl enable docker-faces-tfs.service
+- systemctl restart docker-faces-tfs.service
+- systemctl enable docker-credits-api.service
+- systemctl restart docker-credits-api.service
+- systemctl enable docker-credits-tfs.service
+- systemctl restart docker-credits-tfs.service
+- systemctl enable docker-slates-api.service
+- systemctl restart docker-slates-api.service
+- systemctl enable docker-slates-tfs.service
+- systemctl restart docker-slates-tfs.service
 write_files:
 -   content: |
         [Unit]
@@ -35,8 +45,8 @@ write_files:
         StartLimitBurst=5
         TimeoutStartSec=0
         Environment="HOME=/root"
-        ExecStartPre=-/usr/bin/docker kill face-data
-        ExecStartPre=-/usr/bin/docker rm  face-data
+        ExecStartPre=-/usr/bin/docker kill faces-data
+        ExecStartPre=-/usr/bin/docker rm faces-data
         ExecStart=/usr/bin/docker run \
             --net bridge \
             -m 0b \
@@ -58,7 +68,7 @@ write_files:
     permissions: '0644'
 -   content: |
         [Unit]
-        Description=Daemon for faces
+        Description=Daemon for faces-api
         After=docker.service
         Wants=
         Requires=docker.service
@@ -68,24 +78,173 @@ write_files:
         StartLimitBurst=5
         TimeoutStartSec=0
         Environment="HOME=/root"
-        ExecStartPre=-/usr/bin/docker kill faces
-        ExecStartPre=-/usr/bin/docker rm  faces
+        ExecStartPre=-/usr/bin/docker kill faces-api
+        ExecStartPre=-/usr/bin/docker rm  faces-api
         ExecStart=/usr/bin/docker run \
             --net bridge \
             -m 0b \
             -e "GMFACES_DATA_HOST=172.17.0.1" \
             -e "GMFACES_DATA_PORT=10333" \
             -e "GMFACES_DATA_VERSION=${dataversion}" \
+            -e "GMFACES_TFS_HOST=172.17.0.1" \
+            -e "GMFACES_TFS_PORT=11333" \
+            -e "GMFACES_LOG_LEVEL=INFO" \
             -p 10336:10336 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
-            --name faces \
-            graymeta-faces
-        ExecStop=-/usr/bin/docker stop --time=0 faces
-        ExecStop=-/usr/bin/docker rm faces
+            --name faces-api \
+            graymeta-faces-api
+        ExecStop=-/usr/bin/docker stop --time=0 faces-api
+        ExecStop=-/usr/bin/docker rm faces-api
         [Install]
         WantedBy=multi-user.target
-    path: /etc/systemd/system/docker-faces.service
+    path: /etc/systemd/system/docker-faces-api.service
+    permissions: '0644'
+-   content: |
+        [Unit]
+        Description=Daemon for faces-tfs
+        After=docker.service
+        Wants=
+        Requires=docker.service
+        [Service]
+        Restart=on-failure
+        StartLimitInterval=20
+        StartLimitBurst=5
+        TimeoutStartSec=0
+        Environment="HOME=/root"
+        ExecStartPre=-/usr/bin/docker kill faces-tfs
+        ExecStartPre=-/usr/bin/docker rm  faces-tfs
+        ExecStart=/usr/bin/docker run \
+            --net bridge \
+            -m 0b \
+            -p 11333:9000 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
+            --name faces-tfs \
+            graymeta-faces-tfs
+        ExecStop=-/usr/bin/docker stop --time=0 faces-tfs
+        ExecStop=-/usr/bin/docker rm faces-tfs
+        [Install]
+        WantedBy=multi-user.target
+    path: /etc/systemd/system/docker-faces-tfs.service
+    permissions: '0644'
+-   content: |
+        [Unit]
+        Description=Daemon for credits-api
+        After=docker.service
+        Wants=
+        Requires=docker.service
+        [Service]
+        Restart=on-failure
+        StartLimitInterval=20
+        StartLimitBurst=5
+        TimeoutStartSec=0
+        Environment="HOME=/root"
+        ExecStartPre=-/usr/bin/docker kill credits-api
+        ExecStartPre=-/usr/bin/docker rm  credits-api
+        ExecStart=/usr/bin/docker run \
+            --net bridge \
+            -m 0b \
+            -e "FLASK_API_PORT=10337" \
+            -e "TFS_HOST=172.17.0.1" \
+            -e "TFS_PORT=11337" \
+            -p 10337:10337 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
+            --name credits-api \
+            graymeta-credits-api
+        ExecStop=-/usr/bin/docker stop --time=0 credits-api
+        ExecStop=-/usr/bin/docker rm credits-api
+        [Install]
+        WantedBy=multi-user.target
+    path: /etc/systemd/system/docker-credits-api.service
+    permissions: '0644'
+-   content: |
+        [Unit]
+        Description=Daemon for credits-tfs
+        After=docker.service
+        Wants=
+        Requires=docker.service
+        [Service]
+        Restart=on-failure
+        StartLimitInterval=20
+        StartLimitBurst=5
+        TimeoutStartSec=0
+        Environment="HOME=/root"
+        ExecStartPre=-/usr/bin/docker kill credits-tfs
+        ExecStartPre=-/usr/bin/docker rm  credits-tfs
+        ExecStart=/usr/bin/docker run \
+            --net bridge \
+            -m 0b \
+            -p 11337:9000 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
+            --name credits-tfs \
+            graymeta-credits-tfs
+        ExecStop=-/usr/bin/docker stop --time=0 credits-tfs
+        ExecStop=-/usr/bin/docker rm credits-tfs
+        [Install]
+        WantedBy=multi-user.target
+    path: /etc/systemd/system/docker-credits-tfs.service
+    permissions: '0644'
+-   content: |
+        [Unit]
+        Description=Daemon for slates-api
+        After=docker.service
+        Wants=
+        Requires=docker.service
+        [Service]
+        Restart=on-failure
+        StartLimitInterval=20
+        StartLimitBurst=5
+        TimeoutStartSec=0
+        Environment="HOME=/root"
+        ExecStartPre=-/usr/bin/docker kill slates-api
+        ExecStartPre=-/usr/bin/docker rm  slates-api
+        ExecStart=/usr/bin/docker run \
+            --net bridge \
+            -m 0b \
+            -e "FLASK_API_PORT=10338" \
+            -e "TFS_HOST=172.17.0.1" \
+            -e "TFS_PORT=11338" \
+            -p 10338:10338 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
+            --name slates-api \
+            graymeta-slates-api
+        ExecStop=-/usr/bin/docker stop --time=0 slates-api
+        ExecStop=-/usr/bin/docker rm slates-api
+        [Install]
+        WantedBy=multi-user.target
+    path: /etc/systemd/system/docker-slates-api.service
+    permissions: '0644'
+-   content: |
+        [Unit]
+        Description=Daemon for slates-tfs
+        After=docker.service
+        Wants=
+        Requires=docker.service
+        [Service]
+        Restart=on-failure
+        StartLimitInterval=20
+        StartLimitBurst=5
+        TimeoutStartSec=0
+        Environment="HOME=/root"
+        ExecStartPre=-/usr/bin/docker kill slates-tfs
+        ExecStartPre=-/usr/bin/docker rm  slates-tfs
+        ExecStart=/usr/bin/docker run \
+            --net bridge \
+            -m 0b \
+            -p 11338:9000 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
+            --name slates-tfs \
+            graymeta-slates-tfs
+        ExecStop=-/usr/bin/docker stop --time=0 slates-tfs
+        ExecStop=-/usr/bin/docker rm slates-tfs
+        [Install]
+        WantedBy=multi-user.target
+    path: /etc/systemd/system/docker-slates-tfs.service
     permissions: '0644'
 -   content: |
         [Service]
