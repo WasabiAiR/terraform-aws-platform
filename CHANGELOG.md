@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 ## [v0.1.0] - 2018-10-24
-**Upgrading to this release will cause an outage while the proxy cluster is created, and Services and ECS instance are recreate.**
+**Upgrading to this release will cause an outage while the proxy cluster is created, and Services and ECS instances are recreate.**
 
 #### Added
 * Two new subnets for proxy instances in the network module.  You need to apply only if the default value for vpc_cidr was not used.
@@ -44,12 +44,15 @@ All notable changes to this project will be documented in this file.
     }
 ```
 
-* Added Slates and Credits to the Faces cluster.  To setup the extractor in the UI you need to output the credits and slates endpoints.
+* (Optional) Added Credits to the Faces cluster.  To setup the extractor in the UI you need the credits endpoint.  In the UI go to Settings -> Extractors -> Credits.  Then insert the output from credits_endpoint in the Hostname field.
 ```
     output "credits_endpoint" {
         value = "${module.faces.credit_endpoint}"
     }
-
+```
+  
+* (Optional) Added Slates to the Faces cluster.  To setup the extractor in the UI you need the slates endpoint.  In the UI go to Settings -> Extractors -> Slates.  Then insert the output from slates_endpoint in the Hostname field.
+```
     output "slates_endpoint" {
         value = "${module.faces.slates_endpoint}"
     }
