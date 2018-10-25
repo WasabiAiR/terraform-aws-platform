@@ -81,7 +81,7 @@ All notable changes to this project will be documented in this file.
   
 * Renamed the ElastiCache instance so multiple platforms in the same region can be supported.
 
-* Platform AMI update to version 2.0.2467.  Contact GrayMeta for more details
+* Platform AMI update to version 2.0.2472.  Contact GrayMeta for more details
 
 #### Removed
 * Removed facebox from the platform module.  Please delete the following variables.
