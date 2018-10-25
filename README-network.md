@@ -9,7 +9,7 @@ locals {
 }
 
 module "network" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=${local.version}"
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.1.0"
 
   az1                  = "${local.az1}"
   az2                  = "${local.az2}"

@@ -14,7 +14,6 @@ provider "aws" {
 }
 
 locals {
-  version                    = "v0.1.0"
   customer                   = "mycompanyname"
   platform_instance_id       = "labs"
   notifications_from_addr    = "noreply@example.com"
@@ -32,7 +31,7 @@ locals {
 }
 
 module "servicesiam" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=${local.version}"
+  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.0"
 
   platform_instance_id = "${local.platform_instance_id}"
 }
@@ -71,7 +70,7 @@ Add in the network(if using) and platform modules. Your Terraform config should 
 
 ```
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=${local.version}"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.0"
     ...
     encrypted_config_blob = "base64 encoded string from gmcrypt"
     ... (see README.md for details)
@@ -92,7 +91,7 @@ terraform destroy -target=module.platform.module.rds.aws_db_instance.default
 * Create a new KMS key and add the following to the platform configuration.
 ```
 module "platform" {
-    source = "github.com/graymeta/terraform-aws-platform?ref=${local.version}"
+    source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.0"
     ...
     db_storage_encrypted = true
     db_kms_key_id        = "arn:aws:kms:us-west-2:1111111111111:key/11111111-1111-11111-11111-111111111"
