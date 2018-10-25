@@ -1,6 +1,7 @@
 # Graymeta Faces extractor
 (Optional) If you want to install and use the Graymeta Faces extractor.
 
+
 ## Example
   
 ```
@@ -34,6 +35,16 @@ module "faces" {
   rds_subnet_id_1    = "${module.network.rds_subnet_id_1}"
   rds_subnet_id_2    = "${module.network.rds_subnet_id_2}"
   services_ecs_cidrs = [ "${module.network.ecs_cidrs}", "${module.network.services_cidrs}" ]
+}
+
+output "credits_endpoint" {
+  description = "Credits endpoint is for the Credits extractor in the UI.  The credentials can be left blank."
+  value       = "${module.faces.credits_endpoint}"
+}
+
+output "slates_endpoint" {
+  description = "Slates endpoint is for the Slates extractor in the UI.  The credentials can be left blank."
+  value       = "${module.faces.slates_endpoint}"
 }
 ```
 

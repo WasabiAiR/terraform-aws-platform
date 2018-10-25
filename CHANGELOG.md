@@ -3,8 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ---
-## [NOT RELEASED] - 2018-10-12
-**Upgrading to this release will cause a outage while the proxy cluster is created, and Services and ECS instance are recreate.**
+## [v0.1.0] - 2018-10-24
+**Upgrading to this release will cause an outage while the proxy cluster is created, and Services and ECS instances are recreate.**
 
 #### Added
 * Two new subnets for proxy instances in the network module.  You need to apply only if the default value for vpc_cidr was not used.
@@ -43,6 +43,20 @@ All notable changes to this project will be documented in this file.
       ...
     }
 ```
+
+* (Optional) Added Credits to the Faces cluster.  To setup the extractor in the UI you need the credits endpoint.  In the UI go to Settings -> Extractors -> Credits.  Then insert the output from credits_endpoint in the Hostname field.
+```
+    output "credits_endpoint" {
+        value = "${module.faces.credit_endpoint}"
+    }
+```
+  
+* (Optional) Added Slates to the Faces cluster.  To setup the extractor in the UI you need the slates endpoint.  In the UI go to Settings -> Extractors -> Slates.  Then insert the output from slates_endpoint in the Hostname field.
+```
+    output "slates_endpoint" {
+        value = "${module.faces.slates_endpoint}"
+    }
+```
   
 #### Changed
 * Now creating ECS nodes in two AZ.  Network Module we renamed the `cidr_subnet_ecs` subnet to `cidr_subnet_ecs_1` and added a `cidr_subnet_ecs_2`.  Recommended that cidr_subnet_ecs_2 to be a /21 subnet.  You need to apply only if the default value for vpc_cidr was not used.
@@ -66,6 +80,8 @@ All notable changes to this project will be documented in this file.
 ```
   
 * Renamed the ElastiCache instance so multiple platforms in the same region can be supported.
+
+* Platform AMI update to version 2.0.2472.  Contact GrayMeta for more details
 
 #### Removed
 * Removed facebox from the platform module.  Please delete the following variables.

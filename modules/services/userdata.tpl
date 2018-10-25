@@ -56,7 +56,7 @@ write_files:
         gm_encryption_key=${encryption_key}
         gm_enforce_default_password=false
         gm_env=${gm_env}
-        gm_faces_recog_api_addr=http://${faces_endpoint}
+        gm_faces_recog_api_addr=http://${faces_endpoint}:10336
         gm_fileapi_stow_kind=s3
         gm_files_api=https://${dns_name}/files
         gm_front_end_client_secret=${client_secret_fe}
@@ -83,7 +83,7 @@ write_files:
         gm_usage_prefix=${gm_usage_prefix}
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
         gm_walkd_redis_max_active=${gm_walkd_redis_max_active}
-        harvest_gm_faces_recog_api_addr=http://${faces_endpoint}
+        harvest_gm_faces_recog_api_addr=http://${faces_endpoint}:10336
         harvest_gm_temp_bucket_name=${temporary_bucket_name}
         harvest_gm_temp_bucket_region=${region}
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic

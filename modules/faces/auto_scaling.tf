@@ -36,7 +36,9 @@ resource "aws_cloudformation_stack" "faces_asg" {
           }
         ],
         "TargetGroupARNs": [
-            "${aws_lb_target_group.port10336.arn}"
+            "${aws_lb_target_group.port10336.arn}",
+            "${aws_lb_target_group.port10337.arn}",
+            "${aws_lb_target_group.port10338.arn}"
         ],
         "TerminationPolicies": [
           "OldestLaunchConfiguration",
