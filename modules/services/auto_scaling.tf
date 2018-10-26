@@ -129,6 +129,7 @@ data "template_file" "userdata" {
     faces_endpoint                 = "${var.faces_endpoint}"
     file_storage_s3_bucket_arn     = "${var.file_storage_s3_bucket_arn}"
     from_addr                      = "${var.notifications_from_addr}"
+    from_region                    = "${var.notifications_region}"
     google_maps_key                = "${var.google_maps_key}"
     gm_env                         = "${var.customer}-${var.platform_instance_id}"
     gm_usage_prefix                = "${var.customer}-${var.platform_instance_id}"

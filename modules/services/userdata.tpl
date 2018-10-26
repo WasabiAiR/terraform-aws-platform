@@ -32,7 +32,7 @@ runcmd:
 write_files:
 -   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
-        SES_REGION=${region}
+        SES_REGION=${from_region}
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}

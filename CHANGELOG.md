@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 
 ---
+## [NOT RELEASED] - 2018-10-26
+
+#### Added
+* (Optional) No longer required for SES to be configured in the same region as the platform.  If you have SES in another region just add the following to the platform module.  Default is the same region as the platform if left blank.
+```
+    module "platform" {
+      ...
+      notifications_region = "us-west-2"
+      ...
+    }
+```
+
+---
 ## [v0.1.0] - 2018-10-24
 **Upgrading to this release will cause an outage while the proxy cluster is created, and Services and ECS instances are recreate.**
 

@@ -254,6 +254,12 @@ variable "notifications_from_addr" {
   description = "The email address to use as the From address on email notifications. This must be an SES verified email address"
 }
 
+variable "notifications_region" {
+  type        = "string"
+  description = "The region that SES was setup in.  Default will be the region of the platform"
+  default     = ""
+}
+
 variable "platform_access_cidrs" {
   type        = "string"
   description = "A comma delimited list of CIDRs from which to allow access to the site."
