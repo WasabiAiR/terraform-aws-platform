@@ -32,6 +32,7 @@ module "faces" {
   # Network Configuration
   faces_subnet_id_1  = "${module.network.faces_subnet_id_1}"
   faces_subnet_id_2  = "${module.network.faces_subnet_id_2}"
+  proxy_endpoint     = "${module.network.proxy_endpoint}"
   rds_subnet_id_1    = "${module.network.rds_subnet_id_1}"
   rds_subnet_id_2    = "${module.network.rds_subnet_id_2}"
   services_ecs_cidrs = [ "${module.network.ecs_cidrs}", "${module.network.services_cidrs}" ]
