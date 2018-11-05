@@ -65,6 +65,7 @@ write_files:
         gm_harvest_polling_time=${harvest_polling_time}
         gm_internal_client_secret=${client_secret_internal}
         gm_job_store_redis_key_prefix="jobinfo:"
+        gm_jwt_expiration_time=${gm_jwt_expiration_time}
         gm_jwt_private_key=${jwt_key}
         gm_recently_walked_expiration=1209600s
         gm_recently_walked_redis_key_prefix="recwalked:"

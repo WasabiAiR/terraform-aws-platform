@@ -131,6 +131,7 @@ data "template_file" "userdata" {
     from_addr                      = "${var.notifications_from_addr}"
     google_maps_key                = "${var.google_maps_key}"
     gm_env                         = "${var.customer}-${var.platform_instance_id}"
+    gm_jwt_expiration_time         = "${var.gm_jwt_expiration_time}"
     gm_usage_prefix                = "${var.customer}-${var.platform_instance_id}"
     gm_walkd_max_item_concurrency  = "${var.gm_walkd_max_item_concurrency}"
     gm_walkd_redis_max_active      = "${var.gm_walkd_redis_max_active}"

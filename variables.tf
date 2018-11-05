@@ -214,6 +214,12 @@ variable "file_storage_s3_bucket_arn" {
   description = "The ARN of the s3 bucket to store thumbnails, video previews, and metadata files"
 }
 
+variable "gm_jwt_expiration_time" {
+  type        = "string"
+  description = "The amount of time a session token is valid for. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
+  default     = "168h"
+}
+
 variable "google_maps_key" {
   type        = "string"
   description = "A Google maps key"

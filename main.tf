@@ -94,6 +94,7 @@ module "services" {
   encryption_key                = "${var.encryption_key}"
   faces_endpoint                = "${var.faces_endpoint}"
   file_storage_s3_bucket_arn    = "${var.file_storage_s3_bucket_arn}"
+  gm_jwt_expiration_time        = "${var.gm_jwt_expiration_time}"
   gm_walkd_max_item_concurrency = "600"
   gm_walkd_redis_max_active     = "1200"
   google_maps_key               = "${var.google_maps_key}"
