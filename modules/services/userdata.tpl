@@ -33,6 +33,10 @@ write_files:
 -   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         SES_REGION=${from_region}
+        box_com_client_id=${box_com_client_id}
+        box_com_secret_key=${box_com_secret_key}
+        dropbox_app_key=${dropbox_app_key}
+        dropbox_app_secret=${dropbox_app_secret}
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
@@ -89,6 +93,7 @@ write_files:
         harvest_gm_temp_bucket_region=${region}
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
         harvest_rollbar_token=${rollbar_token}
+        oauthconnect_url=https://${dns_name}:8443/connect
         rollbar_token=${rollbar_token}
         s3subscriber_priority=${s3subscriber_priority}
         stow_mountpath=/var/lib/graymeta/mounts

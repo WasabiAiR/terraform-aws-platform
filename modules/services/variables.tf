@@ -1,6 +1,8 @@
 variable "ami_id" {}
 variable "az1_nat_ip" {}
 variable "az2_nat_ip" {}
+variable "box_com_client_id" {}
+variable "box_com_secret_key" {}
 variable "client_secret_fe" {}
 variable "client_secret_internal" {}
 variable "customer" {}
@@ -8,6 +10,8 @@ variable "db_endpoint" {}
 variable "db_password" {}
 variable "db_username" {}
 variable "dns_name" {}
+variable "dropbox_app_key" {}
+variable "dropbox_app_secret" {}
 variable "ecs_cluster" {}
 variable "ecs_cpu_reservation" {}
 variable "ecs_memory_hard_reservation" {}

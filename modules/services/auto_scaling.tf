@@ -37,7 +37,8 @@ resource "aws_cloudformation_stack" "services_asg" {
         ],
         "TargetGroupARNs": [
             "${aws_lb_target_group.port80.arn}",
-            "${aws_lb_target_group.port7000.arn}"
+            "${aws_lb_target_group.port7000.arn}",
+            "${aws_lb_target_group.port7009.arn}"
         ],
         "TerminationPolicies": [
           "OldestLaunchConfiguration",
@@ -111,12 +112,16 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
   vars {
+    box_com_client_id              = "${var.box_com_client_id}"
+    box_com_secret_key             = "${var.box_com_secret_key}"
     client_secret_fe               = "${var.client_secret_fe}"
     client_secret_internal         = "${var.client_secret_internal}"
     db_endpoint                    = "${var.db_endpoint}"
     db_password                    = "${var.db_password}"
     db_username                    = "${var.db_username}"
     dns_name                       = "${var.dns_name}"
+    dropbox_app_key                = "${var.dropbox_app_key}"
+    dropbox_app_secret             = "${var.dropbox_app_secret}"
     ecs_cluster                    = "${var.ecs_cluster}"
     ecs_cpu_reservation            = "${var.ecs_cpu_reservation}"
     ecs_memory_hard_reservation    = "${var.ecs_memory_hard_reservation}"
