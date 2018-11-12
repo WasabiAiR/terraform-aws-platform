@@ -308,6 +308,12 @@ variable "notifications_region" {
   default     = ""
 }
 
+variable "password_min_length" {
+  type        = "string"
+  description = "Minimum password length. Default: 8"
+  default     = "8"
+}
+
 variable "platform_access_cidrs" {
   type        = "string"
   description = "A comma delimited list of CIDRs from which to allow access to the site."

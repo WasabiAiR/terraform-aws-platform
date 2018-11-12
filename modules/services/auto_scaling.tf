@@ -147,6 +147,7 @@ data "template_file" "userdata" {
     harvest_complete_stow_fields   = "${var.harvest_complete_stow_fields}"
     harvest_polling_time           = "${var.harvest_polling_time}"
     jwt_key                        = "${var.jwt_key}"
+    password_min_length            = "${var.password_min_length}"
     region                         = "${var.region}"
     rollbar_token                  = "${var.rollbar_token}"
     s3subscriber_priority          = "${var.s3subscriber_priority}"

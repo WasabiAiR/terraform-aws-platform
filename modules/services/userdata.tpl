@@ -97,6 +97,7 @@ write_files:
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
         harvest_rollbar_token=${rollbar_token}
         oauthconnect_url=https://${dns_name}:8443/connect
+        password_min_length=${password_min_length}
         rollbar_token=${rollbar_token}
         s3subscriber_priority=${s3subscriber_priority}
         stow_mountpath=/var/lib/graymeta/mounts
