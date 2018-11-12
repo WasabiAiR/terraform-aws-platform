@@ -107,6 +107,7 @@ module "services" {
   max_cluster_size              = "${var.services_max_cluster_size}"
   min_cluster_size              = "${var.services_min_cluster_size}"
   notifications_from_addr       = "${var.notifications_from_addr}"
+  notifications_region          = "${coalesce(var.notifications_region, var.region)}"
   platform_access_cidrs         = "${var.platform_access_cidrs}"
   platform_instance_id          = "${var.platform_instance_id}"
   proxy_endpoint                = "${var.proxy_endpoint}"
