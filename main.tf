@@ -74,6 +74,9 @@ module "rds" {
 module "services" {
   source = "./modules/services"
 
+  account_lockout_attempts      = "${var.account_lockout_attempts}"
+  account_lockout_interval      = "${var.account_lockout_interval}"
+  account_lockout_period        = "${var.account_lockout_period}"
   ami_id                        = "${lookup(var.services_amis, var.region)}"
   az1_nat_ip                    = "${var.az1_nat_ip}"
   az2_nat_ip                    = "${var.az2_nat_ip}"

@@ -33,6 +33,9 @@ write_files:
 -   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         SES_REGION=${from_region}
+        account_lockout_attempts=${account_lockout_attempts}
+        account_lockout_interval=${account_lockout_interval}
+        account_lockout_period=${account_lockout_period}
         box_com_client_id=${box_com_client_id}
         box_com_secret_key=${box_com_secret_key}
         dropbox_app_key=${dropbox_app_key}

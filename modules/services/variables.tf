@@ -1,3 +1,6 @@
+variable "account_lockout_attempts" {}
+variable "account_lockout_interval" {}
+variable "account_lockout_period" {}
 variable "ami_id" {}
 variable "az1_nat_ip" {}
 variable "az2_nat_ip" {}
