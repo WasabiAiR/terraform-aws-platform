@@ -2,7 +2,7 @@
 
 Available on the [Terraform Registry](https://registry.terraform.io/modules/graymeta/platform/aws)
 
-![Graymeta Terraform Enterprise](images/Graymeta_Terraform_Enterprise.png) 
+![Graymeta Terraform Enterprise](images/Graymeta_Terraform_Enterprise.png)
 
 * `version` - Current version is `v0.1.0`
 
@@ -27,11 +27,11 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 * `file_storage_s3_bucket_arn` - Create an S3 bucket to store thumbnails, transcoded video and audio preview files, and metadata files.  Record the ARN of the s3 bucket as variable file_storage_s3_bucket_arn.
 * `usage_s3_bucket_arn` - Create an S3 bucket to store usage reports. Record the ARN of the s3 bucket as variable `usage_s3_bucket_arn`.
 * `log_retention` - The log retention set in Cloudwatch for all logs.
-   
+
 ### Additional Notes
 * The default network will be `10.0.0.0/16`.  Currently you must use our network module to create the network since it is also creating a Proxy cluster for added security of outbound traffic.  If you would like to use a different network address block, please review the [Networking Module Readme](README-networking.md)
 * Secrets are already encrypted by the platform.  Decide if you want the RDS encrypted at rest.   To encrypt change `db_storage_encrypted` to true.  If you leave `db_kms_key_id` blank it will create a kms key for you.  To specify an existing KMS Key add the ARN to `db_kms_key_id`.  These settings are ignored after creation.
-   
+
 ### Terraform Deployment
 * Fill in the rest of the variables, review the output of a `terraform plan`, then apply the changes.
 * After the apply.  Create a CNAME from your `dns_name` to the value of the `GrayMetaPlatformEndpoint` output. This needs to be publicly resolvable.
@@ -89,7 +89,7 @@ module "network" {
 
 module "platform" {
   source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.0"
-  
+
   customer                = "${local.customer}"
   dns_name                = "${local.dns_name}"
   key_name                = "${local.key_name}"
@@ -117,7 +117,7 @@ module "platform" {
   db_multi_az          = true
   db_password          = "mydbpassword"
   db_snapshot          = "" # Set to "final" after the initial deployment
-  db_storage_encrypted = false 
+  db_storage_encrypted = false
   db_username          = "mydbuser"
 
   # ECS Cluster Configuration

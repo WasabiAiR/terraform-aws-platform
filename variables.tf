@@ -8,6 +8,18 @@ variable "az2_nat_ip" {
   description = "The public IP all traffic from az2 is NAT'ed through to allow access to the APIs"
 }
 
+variable "box_com_client_id" {
+  type        = "string"
+  description = "Box.com client ID"
+  default     = ""
+}
+
+variable "box_com_secret_key" {
+  type = "string"
+  description = "Box.com application secret key"
+  default     = ""
+}
+
 variable "client_secret_fe" {
   type        = "string"
   description = "32 character string used to generate tokens"
@@ -87,6 +99,18 @@ variable "db_username" {
 variable "dns_name" {
   type        = "string"
   description = "The DNS hostname that will be used to access the plaform (ex. graymeta.example.com)"
+}
+
+variable "dropbox_app_key" {
+  type        = "string"
+  description = "Dropbox application key"
+  default     = ""
+}
+
+variable "dropbox_app_secret" {
+  type        = "string"
+  description = "Dropbox application secret"
+  default     = ""
 }
 
 variable "ecs_cpu_reservation" {

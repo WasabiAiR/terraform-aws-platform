@@ -32,6 +32,17 @@ resource "aws_security_group" "services" {
   }
 
   ingress {
+    from_port = 7009
+    to_port   = 7009
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "${data.aws_subnet.public_subnet_1.cidr_block}",
+      "${data.aws_subnet.public_subnet_2.cidr_block}",
+    ]
+  }
+
+  ingress {
     from_port = 9090
     to_port   = 9090
     protocol  = "tcp"
@@ -93,6 +104,13 @@ resource "aws_security_group" "services_alb" {
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["${var.az2_nat_ip}"]
+  }
+
+  ingress {
+    from_port   = 8443
+    to_port     = 8443
+    protocol    = "tcp"
+    cidr_blocks = ["${split(",", var.platform_access_cidrs)}"]
   }
 
   egress {
