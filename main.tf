@@ -74,6 +74,9 @@ module "rds" {
 module "services" {
   source = "./modules/services"
 
+  account_lockout_attempts      = "${var.account_lockout_attempts}"
+  account_lockout_interval      = "${var.account_lockout_interval}"
+  account_lockout_period        = "${var.account_lockout_period}"
   ami_id                        = "${lookup(var.services_amis, var.region)}"
   az1_nat_ip                    = "${var.az1_nat_ip}"
   az2_nat_ip                    = "${var.az2_nat_ip}"
@@ -112,6 +115,7 @@ module "services" {
   min_cluster_size              = "${var.services_min_cluster_size}"
   notifications_from_addr       = "${var.notifications_from_addr}"
   notifications_region          = "${coalesce(var.notifications_region, var.region)}"
+  password_min_length           = "${var.password_min_length}"
   platform_access_cidrs         = "${var.platform_access_cidrs}"
   platform_instance_id          = "${var.platform_instance_id}"
   proxy_endpoint                = "${var.proxy_endpoint}"

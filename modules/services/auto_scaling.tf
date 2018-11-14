@@ -112,6 +112,9 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
   vars {
+    account_lockout_attempts       = "${var.account_lockout_attempts}"
+    account_lockout_interval       = "${var.account_lockout_interval}"
+    account_lockout_period         = "${var.account_lockout_period}"
     box_com_client_id              = "${var.box_com_client_id}"
     box_com_secret_key             = "${var.box_com_secret_key}"
     client_secret_fe               = "${var.client_secret_fe}"
@@ -144,6 +147,7 @@ data "template_file" "userdata" {
     harvest_complete_stow_fields   = "${var.harvest_complete_stow_fields}"
     harvest_polling_time           = "${var.harvest_polling_time}"
     jwt_key                        = "${var.jwt_key}"
+    password_min_length            = "${var.password_min_length}"
     region                         = "${var.region}"
     rollbar_token                  = "${var.rollbar_token}"
     s3subscriber_priority          = "${var.s3subscriber_priority}"

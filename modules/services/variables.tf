@@ -1,3 +1,6 @@
+variable "account_lockout_attempts" {}
+variable "account_lockout_interval" {}
+variable "account_lockout_period" {}
 variable "ami_id" {}
 variable "az1_nat_ip" {}
 variable "az2_nat_ip" {}
@@ -36,6 +39,7 @@ variable "max_cluster_size" {}
 variable "min_cluster_size" {}
 variable "notifications_from_addr" {}
 variable "notifications_region" {}
+variable "password_min_length" {}
 variable "platform_access_cidrs" {}
 variable "platform_instance_id" {}
 variable "proxy_endpoint" {}

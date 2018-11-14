@@ -33,6 +33,9 @@ write_files:
 -   content: |
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         SES_REGION=${from_region}
+        account_lockout_attempts=${account_lockout_attempts}
+        account_lockout_interval=${account_lockout_interval}
+        account_lockout_period=${account_lockout_period}
         box_com_client_id=${box_com_client_id}
         box_com_secret_key=${box_com_secret_key}
         dropbox_app_key=${dropbox_app_key}
@@ -94,6 +97,7 @@ write_files:
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
         harvest_rollbar_token=${rollbar_token}
         oauthconnect_url=https://${dns_name}:8443/connect
+        password_min_length=${password_min_length}
         rollbar_token=${rollbar_token}
         s3subscriber_priority=${s3subscriber_priority}
         stow_mountpath=/var/lib/graymeta/mounts

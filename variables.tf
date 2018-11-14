@@ -1,3 +1,21 @@
+variable "account_lockout_attempts" {
+  type        = "string"
+  description = "The number of failed login attempts that will trigger an account lockout. Default: 5"
+  default     = "5"
+}
+
+variable "account_lockout_interval" {
+  type        = "string"
+  description = "The amount of time an account is locked out after exceeding the threshold for number of failed logins. Default: 10m.  Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
+  default     = "10m"
+}
+
+variable "account_lockout_period" {
+  type        = "string"
+  description = "The window of time for failed login attempts to trigger an account lockout. Default: 10m.  Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
+  default     = "10m"
+}
+
 variable "az1_nat_ip" {
   type        = "string"
   description = "The public IP all traffic from az1 is NAT'ed through to allow access to the APIs"
@@ -288,6 +306,12 @@ variable "notifications_region" {
   type        = "string"
   description = "The region that SES was setup in.  Default will be the region of the platform"
   default     = ""
+}
+
+variable "password_min_length" {
+  type        = "string"
+  description = "Minimum password length. Default: 8"
+  default     = "8"
 }
 
 variable "platform_access_cidrs" {
