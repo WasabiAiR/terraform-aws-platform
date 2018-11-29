@@ -262,6 +262,12 @@ variable "gm_jwt_expiration_time" {
   default     = "168h"
 }
 
+variable "gm_threshold_to_harvest" {
+  type        = "string"
+  description = "The minimum amount of time between two harvests of the same container. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
+  default     = ""
+}
+
 variable "google_maps_key" {
   type        = "string"
   description = "A Google maps key"
@@ -276,7 +282,7 @@ variable "harvest_complete_stow_fields" {
 
 variable "harvest_polling_time" {
   type        = "string"
-  description = "Live Harvest Polling time.  Default: 6h"
+  description = "Live Harvest Polling time.  Default: 6h. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
   default     = "6h"
 }
 

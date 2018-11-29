@@ -141,6 +141,7 @@ data "template_file" "userdata" {
     google_maps_key                = "${var.google_maps_key}"
     gm_env                         = "${var.customer}-${var.platform_instance_id}"
     gm_jwt_expiration_time         = "${var.gm_jwt_expiration_time}"
+    gm_threshold_to_harvest        = "${var.gm_threshold_to_harvest}"
     gm_usage_prefix                = "${var.customer}-${var.platform_instance_id}"
     gm_walkd_max_item_concurrency  = "${var.gm_walkd_max_item_concurrency}"
     gm_walkd_redis_max_active      = "${var.gm_walkd_redis_max_active}"
