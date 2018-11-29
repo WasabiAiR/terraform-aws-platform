@@ -4,6 +4,7 @@ variable "account_lockout_period" {}
 variable "ami_id" {}
 variable "az1_nat_ip" {}
 variable "az2_nat_ip" {}
+variable "bcrypt_cost" {}
 variable "box_com_client_id" {}
 variable "box_com_secret_key" {}
 variable "client_secret_fe" {}
