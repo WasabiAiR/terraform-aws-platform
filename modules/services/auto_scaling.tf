@@ -115,6 +115,7 @@ data "template_file" "userdata" {
     account_lockout_attempts       = "${var.account_lockout_attempts}"
     account_lockout_interval       = "${var.account_lockout_interval}"
     account_lockout_period         = "${var.account_lockout_period}"
+    bcrypt_cost                    = "${var.bcrypt_cost}"
     box_com_client_id              = "${var.box_com_client_id}"
     box_com_secret_key             = "${var.box_com_secret_key}"
     client_secret_fe               = "${var.client_secret_fe}"

@@ -36,6 +36,7 @@ write_files:
         account_lockout_attempts=${account_lockout_attempts}
         account_lockout_interval=${account_lockout_interval}
         account_lockout_period=${account_lockout_period}
+        bcrypt_cost=${bcrypt_cost}
         box_com_client_id=${box_com_client_id}
         box_com_secret_key=${box_com_secret_key}
         dropbox_app_key=${dropbox_app_key}

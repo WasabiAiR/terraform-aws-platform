@@ -82,6 +82,7 @@ module "services" {
   az2_nat_ip                    = "${var.az2_nat_ip}"
   box_com_client_id             = "${var.box_com_client_id}"
   box_com_secret_key            = "${var.box_com_secret_key}"
+  bcrypt_cost                   = "${var.bcrypt_cost}"
   client_secret_fe              = "${var.client_secret_fe}"
   client_secret_internal        = "${var.client_secret_internal}"
   customer                      = "${var.customer}"

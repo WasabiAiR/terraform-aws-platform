@@ -38,6 +38,12 @@ variable "box_com_secret_key" {
   default     = ""
 }
 
+variable "bcrypt_cost" {
+  type        = "string"
+  description = "bcrypt cost factor for hashing passwords"
+  default     = "14"
+}
+
 variable "client_secret_fe" {
   type        = "string"
   description = "32 character string used to generate tokens"
