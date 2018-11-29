@@ -26,6 +26,7 @@ variable "encryption_key" {}
 variable "faces_endpoint" {}
 variable "file_storage_s3_bucket_arn" {}
 variable "gm_jwt_expiration_time" {}
+variable "gm_threshold_to_harvest" {}
 variable "gm_walkd_max_item_concurrency" {}
 variable "gm_walkd_redis_max_active" {}
 variable "google_maps_key" {}

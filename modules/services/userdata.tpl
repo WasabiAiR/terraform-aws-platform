@@ -87,6 +87,7 @@ write_files:
         gm_sqs_notifications=${sqs_notifications}
         gm_sqs_stage=${sqs_stage}
         gm_sqs_walk=${sqs_walk}
+        gm_threshold_to_harvest=${gm_threshold_to_harvest}
         gm_usage_api=https://${dns_name}/api/usage
         gm_usage_prefix=${gm_usage_prefix}
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
