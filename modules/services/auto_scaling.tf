@@ -36,7 +36,6 @@ resource "aws_cloudformation_stack" "services_asg" {
           }
         ],
         "TargetGroupARNs": [
-            "${aws_lb_target_group.port80.arn}",
             "${aws_lb_target_group.port7000.arn}",
             "${aws_lb_target_group.port7009.arn}"
         ],
