@@ -268,6 +268,14 @@ variable "gm_jwt_expiration_time" {
   default     = "168h"
 }
 
+variable "gm_license_key" {
+    type        = "string"
+    description = "The GrayMeta Platform license key. Contact support@graymeta.com if you have not been provided a license key"
+
+    # leave the default as an empty string in case the user decides to add this value as part of a KMS encrypted blob payload
+    default = ""
+}
+
 variable "gm_threshold_to_harvest" {
   type        = "string"
   description = "The minimum amount of time between two harvests of the same container. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
