@@ -7,6 +7,15 @@ All notable changes to this project will be documented in this file.
 
 #### Added
 
+* Added centralized Oauth service into box/dropbox.  32 character encryption key.  If added to `encrypted_config_blob` then this variable must be set to `""`.  
+```
+    module "platform" {
+      ...
+      oauthconnect_encryption_key = "012345678901234567890123456789ab"
+      ...
+    }
+```
+
 * (Optional) No longer required for SES to be configured in the same region as the platform.  If you have SES in another region just add the following to the platform module.  Default is the same region as the platform if left blank.
 ```
     module "platform" {
@@ -16,7 +25,7 @@ All notable changes to this project will be documented in this file.
     }
 ```
 
-* (Optional). Accounts will now be locked out after numerous failed login attempts in a given timeframe. The lockouts are tuneable with the following parameters:
+* (Optional) Accounts will now be locked out after numerous failed login attempts in a given timeframe. The lockouts are tuneable with the following parameters:
   * `account_lockout_attempts` - The number of failed login attempts that will trigger an account lockout. Default: 5
   * `account_lockout_interval` - The amount of time an account is locked out after exceeding the threshold for number of failed logins. Default: 10m.  Valid values must be parseable as a Golang [time.Duration](https://godoc.org/time#ParseDuration)
   * `account_lockout_period` - The window of time for failed login attempts to trigger an account lockout. Default: 10m.  Valid values must be parseable as a Golang [time.Duration](https://godoc.org/time#ParseDuration)

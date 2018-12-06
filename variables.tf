@@ -320,6 +320,11 @@ variable "notifications_region" {
   default     = ""
 }
 
+variable "oauthconnect_encryption_key" {
+  type        = "string"
+  description = "32 Character string used in oauth authentication.  Set this to blank if specified in the crypt blob."
+}
+
 variable "password_min_length" {
   type        = "string"
   description = "Minimum password length. Default: 8"
@@ -449,11 +454,11 @@ variable ecs_amis {
   description = "map of region to ami for ecs nodes"
 
   default = {
-    "ap-southeast-2" = "ami-02bbc069d0f019e46"
-    "eu-west-1"      = "ami-06ba0a03a3f3ca59d"
-    "us-east-1"      = "ami-01805ab7925048f76"
-    "us-east-2"      = "ami-042c1b3d2ee5bdb91"
-    "us-west-2"      = "ami-048258a1bef7dfdab"
+    "ap-southeast-2" = "ami-0a5372167f2d205d3"
+    "eu-west-1"      = "ami-04deba7835b6fecbe"
+    "us-east-1"      = "ami-09574a79c55452be6"
+    "us-east-2"      = "ami-0ee9ba491619eead1"
+    "us-west-2"      = "ami-0274a86026e067c5f"
   }
 }
 
@@ -462,10 +467,10 @@ variable services_amis {
   description = "map of region to ami for services nodes"
 
   default = {
-    "ap-southeast-2" = "ami-08d1d363ae9f2f0ad"
-    "eu-west-1"      = "ami-0d8b489c4427d27c2"
-    "us-east-1"      = "ami-0b9b328d11bc7c81b"
-    "us-east-2"      = "ami-0e107cdae0a7f3103"
-    "us-west-2"      = "ami-0fdb3ef6f0e17d3b3"
+    "ap-southeast-2" = "ami-0c8ccb3573ba63c27"
+    "eu-west-1"      = "ami-070e3196d5d67756d"
+    "us-east-1"      = "ami-06a8e4ca190ee96eb"
+    "us-east-2"      = "ami-03b51dec4dfb86b33"
+    "us-west-2"      = "ami-0bb29bd1d14e747d7"
   }
 }

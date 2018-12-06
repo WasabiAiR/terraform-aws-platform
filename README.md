@@ -133,10 +133,11 @@ module "platform" {
   services_min_cluster_size = 2
 
   # Encryption Tokens - 32 character alpha numberic strings
-  client_secret_fe       = "012345678901234567890123456789ab"
-  client_secret_internal = "012345678901234567890123456789ab"
-  encryption_key         = "012345678901234567890123456789ab"
-  jwt_key                = "012345678901234567890123456789ab"
+  client_secret_fe            = "012345678901234567890123456789ab"
+  client_secret_internal      = "012345678901234567890123456789ab"
+  encryption_key              = "012345678901234567890123456789ab"
+  jwt_key                     = "012345678901234567890123456789ab"
+  oauthconnect_encryption_key = "012345678901234567890123456789ab"
 
   # Elasticache Configuration
   elasticache_instance_type_services = "cache.m4.xlarge"

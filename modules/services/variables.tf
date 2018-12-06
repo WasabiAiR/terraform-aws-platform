@@ -41,6 +41,7 @@ variable "max_cluster_size" {}
 variable "min_cluster_size" {}
 variable "notifications_from_addr" {}
 variable "notifications_region" {}
+variable "oauthconnect_encryption_key" {}
 variable "password_min_length" {}
 variable "platform_access_cidrs" {}
 variable "platform_instance_id" {}

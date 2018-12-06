@@ -117,6 +117,7 @@ module "services" {
   min_cluster_size              = "${var.services_min_cluster_size}"
   notifications_from_addr       = "${var.notifications_from_addr}"
   notifications_region          = "${coalesce(var.notifications_region, var.region)}"
+  oauthconnect_encryption_key   = "${var.oauthconnect_encryption_key}"
   password_min_length           = "${var.password_min_length}"
   platform_access_cidrs         = "${var.platform_access_cidrs}"
   platform_instance_id          = "${var.platform_instance_id}"
