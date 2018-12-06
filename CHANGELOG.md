@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ---
-## [NOT RELEASED] - 2018-10-26
+## v0.1.1 - 2018-12-06
 
 #### Added
 
