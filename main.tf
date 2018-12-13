@@ -103,6 +103,7 @@ module "services" {
   faces_endpoint                = "${var.faces_endpoint}"
   file_storage_s3_bucket_arn    = "${var.file_storage_s3_bucket_arn}"
   gm_jwt_expiration_time        = "${var.gm_jwt_expiration_time}"
+  gm_license_key                = "${var.gm_license_key}"
   gm_threshold_to_harvest       = "${var.gm_threshold_to_harvest}"
   gm_walkd_max_item_concurrency = "600"
   gm_walkd_redis_max_active     = "1200"
