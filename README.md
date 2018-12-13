@@ -99,6 +99,7 @@ module "platform" {
   platform_instance_id    = "${local.platform_instance_id}"
   region                  = "${local.region}"
   ssl_certificate_arn     = "${local.ssl_certificate_arn}"
+  gm_license_key          = "your GrayMeta license key"
 
   # Access
   platform_access_cidrs = "${local.platform_access_cidrs}"
