@@ -3,9 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 ---
-## v0.1.1 - 2018-12-06
+## v0.1.1 - 2018-12-14
 
 #### Added
+
+* Added a gm_license_key.  Contact support@graymeta.com if you have not been provided a license key.  Please include your `dns_name` in your request for a license.  If you add this variable to your `encrypted_config_blob` then you can set this to empty string. 
+```
+    module "platform" {
+      ...
+      gm_license_key = ""
+      ...
+    }
+```
 
 * Added centralized Oauth service into box/dropbox.  32 character encryption key.  If added to `encrypted_config_blob` then this variable must be set to `""`.  
 ```

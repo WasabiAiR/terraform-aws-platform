@@ -271,9 +271,6 @@ variable "gm_jwt_expiration_time" {
 variable "gm_license_key" {
     type        = "string"
     description = "The GrayMeta Platform license key. Contact support@graymeta.com if you have not been provided a license key"
-
-    # leave the default as an empty string in case the user decides to add this value as part of a KMS encrypted blob payload
-    default = ""
 }
 
 variable "gm_threshold_to_harvest" {
@@ -462,11 +459,11 @@ variable ecs_amis {
   description = "map of region to ami for ecs nodes"
 
   default = {
-    "ap-southeast-2" = "ami-0a5372167f2d205d3"
-    "eu-west-1"      = "ami-04deba7835b6fecbe"
-    "us-east-1"      = "ami-09574a79c55452be6"
-    "us-east-2"      = "ami-0ee9ba491619eead1"
-    "us-west-2"      = "ami-0274a86026e067c5f"
+    "ap-southeast-2" = "ami-00714d52062ce01a1"
+    "eu-west-1"      = "ami-05ba0a3f40ebae136"
+    "us-east-1"      = "ami-0a200426286a61149"
+    "us-east-2"      = "ami-0ad7c4818242c8532"
+    "us-west-2"      = "ami-03da7c174b183a69d"
   }
 }
 
@@ -475,10 +472,10 @@ variable services_amis {
   description = "map of region to ami for services nodes"
 
   default = {
-    "ap-southeast-2" = "ami-0c8ccb3573ba63c27"
-    "eu-west-1"      = "ami-070e3196d5d67756d"
-    "us-east-1"      = "ami-06a8e4ca190ee96eb"
-    "us-east-2"      = "ami-03b51dec4dfb86b33"
-    "us-west-2"      = "ami-0bb29bd1d14e747d7"
+    "ap-southeast-2" = "ami-020e62f94c382ff5c"
+    "eu-west-1"      = "ami-075df1309192d9869"
+    "us-east-1"      = "ami-032c50e4711639bb7"
+    "us-east-2"      = "ami-0fba9ad7cdcbc1118"
+    "us-west-2"      = "ami-0dcbd0fe935be01e5"
   }
 }

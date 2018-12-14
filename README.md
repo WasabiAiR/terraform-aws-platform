@@ -23,6 +23,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
   * `platform_access_cidrs` - The list of CIDRs that will be allowed to access the web ports of the platform
   * `ssh_cidr_blocks` - The list of CIDRs that will be allowed SSH access to the servers. This is typically an admin or VPN subnet somewhere within your VPC.
 * `key_name` - The default ssh key name to access the instances.
+* `gm_license_key` - Contact support@graymeta.com if you have not been provided a license key.  Please include your `dns_name` in your request for a license.  If you add this variable to your `encrypted_config_blob` then you can set this to empty string. `gm_license_key = ""`
 * `ssl_certificate_arn` - Procure a valid SSL certificate for the hostname chosen in the previous step. Self-signed certificates will NOT work. Upload the SSL certificate to Amazon Certificate Manager in the same region you will be deploying the platform into.  After upload, record the ARN of the certificate as variable ssl_certificate_arn
 * `file_storage_s3_bucket_arn` - Create an S3 bucket to store thumbnails, transcoded video and audio preview files, and metadata files.  Record the ARN of the s3 bucket as variable file_storage_s3_bucket_arn.
 * `usage_s3_bucket_arn` - Create an S3 bucket to store usage reports. Record the ARN of the s3 bucket as variable `usage_s3_bucket_arn`.
@@ -55,6 +56,7 @@ locals {
   platform_access_cidrs      = "0.0.0.0/0"
   ssh_cidr_blocks            = "10.0.0.0/24,10.0.1.0/24"
   key_name                   = "somekey"
+  gm_license_key             = "Contact Graymeta Support for license"
   ssl_certificate_arn        = "arn:aws:acm:us-west-2:111111111111:certificate/11111111-1111-1111-1111-111111111111"
   file_storage_s3_bucket_arn = "arn:aws:s3:::cfn-file-api"
   usage_s3_bucket_arn        = "arn:aws:s3:::cfn-usage-api"
@@ -137,8 +139,10 @@ module "platform" {
   client_secret_fe            = "012345678901234567890123456789ab"
   client_secret_internal      = "012345678901234567890123456789ab"
   encryption_key              = "012345678901234567890123456789ab"
+  encrypted_config_blob       = ""
   jwt_key                     = "012345678901234567890123456789ab"
   oauthconnect_encryption_key = "012345678901234567890123456789ab"
+  gm_license_key              = "${local.gm_license_key}"
 
   # Elasticache Configuration
   elasticache_instance_type_services = "cache.m4.xlarge"
