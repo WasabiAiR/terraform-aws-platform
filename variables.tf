@@ -271,9 +271,6 @@ variable "gm_jwt_expiration_time" {
 variable "gm_license_key" {
     type        = "string"
     description = "The GrayMeta Platform license key. Contact support@graymeta.com if you have not been provided a license key"
-
-    # leave the default as an empty string in case the user decides to add this value as part of a KMS encrypted blob payload
-    default = ""
 }
 
 variable "gm_threshold_to_harvest" {
@@ -326,6 +323,11 @@ variable "notifications_region" {
   type        = "string"
   description = "The region that SES was setup in.  Default will be the region of the platform"
   default     = ""
+}
+
+variable "oauthconnect_encryption_key" {
+  type        = "string"
+  description = "32 Character string used in oauth authentication.  Set this to blank if specified in the crypt blob."
 }
 
 variable "password_min_length" {
@@ -457,11 +459,11 @@ variable ecs_amis {
   description = "map of region to ami for ecs nodes"
 
   default = {
-    "ap-southeast-2" = "ami-02bbc069d0f019e46"
-    "eu-west-1"      = "ami-06ba0a03a3f3ca59d"
-    "us-east-1"      = "ami-01805ab7925048f76"
-    "us-east-2"      = "ami-042c1b3d2ee5bdb91"
-    "us-west-2"      = "ami-048258a1bef7dfdab"
+    "ap-southeast-2" = "ami-00714d52062ce01a1"
+    "eu-west-1"      = "ami-05ba0a3f40ebae136"
+    "us-east-1"      = "ami-0a200426286a61149"
+    "us-east-2"      = "ami-0ad7c4818242c8532"
+    "us-west-2"      = "ami-03da7c174b183a69d"
   }
 }
 
@@ -470,10 +472,10 @@ variable services_amis {
   description = "map of region to ami for services nodes"
 
   default = {
-    "ap-southeast-2" = "ami-08d1d363ae9f2f0ad"
-    "eu-west-1"      = "ami-0d8b489c4427d27c2"
-    "us-east-1"      = "ami-0b9b328d11bc7c81b"
-    "us-east-2"      = "ami-0e107cdae0a7f3103"
-    "us-west-2"      = "ami-0fdb3ef6f0e17d3b3"
+    "ap-southeast-2" = "ami-020e62f94c382ff5c"
+    "eu-west-1"      = "ami-075df1309192d9869"
+    "us-east-1"      = "ami-032c50e4711639bb7"
+    "us-east-2"      = "ami-0fba9ad7cdcbc1118"
+    "us-west-2"      = "ami-0dcbd0fe935be01e5"
   }
 }

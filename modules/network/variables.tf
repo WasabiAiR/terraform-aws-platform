@@ -218,9 +218,12 @@ variable "whitelist" {
   default = [
     ".amazonaws.com",
     ".apptek.graymeta.com",
+    ".box.com",
+    ".boxcloud.com",
     ".cognitive.microsoft.com",
     ".core.windows.net",
     ".darksky.net",
+    ".dropboxapi.com",
     ".forecast.io",
     ".geonames.org",
     ".googleapis.com",

@@ -152,6 +152,7 @@ data "template_file" "userdata" {
     password_min_length            = "${var.password_min_length}"
     region                         = "${var.region}"
     rollbar_token                  = "${var.rollbar_token}"
+    oauthconnect_encryption_key    = "${var.oauthconnect_encryption_key}"
     s3subscriber_priority          = "${var.s3subscriber_priority}"
     services_log_group             = "GrayMetaPlatform-${var.platform_instance_id}-Services"
     sns_topic_arn_harvest_complete = "${aws_sns_topic.harvest_complete.arn}"

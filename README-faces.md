@@ -6,7 +6,7 @@
   
 ```
 module "faces" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/faces?ref=v0.1.0"
+  source = "github.com/graymeta/terraform-aws-platform//modules/faces?ref=v0.1.1"
 
   key_name             = "${local.key_name}"
   log_retention        = "${local.log_retention}"
@@ -54,7 +54,7 @@ We need to pass the faces endpoint to the platform module.
    
 ```
 module "platform" {
-  source = "github.com/graymeta/terraform-aws-platform?ef=v0.1.0"
+  source = "github.com/graymeta/terraform-aws-platform?ef=v0.1.1"
   ...
   # (Optional) Graymeta Faces Extractor
   faces_endpoint = "${module.faces.faces_endpoint}"
