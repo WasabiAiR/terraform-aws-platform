@@ -399,6 +399,18 @@ variable "services_instance_type" {
   default     = "m4.large"
 }
 
+variable "services_scale_down_threshold_cpu" {
+  type        = "string"
+  description = "The CPU threshold the services cluster needs to reach before it begins to scale back in"
+  default     = "50"
+}
+
+variable "services_scale_up_threshold_cpu" {
+  type        = "string"
+  description = "The CPU threshold the services cluster needs to reach before it begins to scale out"
+  default     = "70"
+}
+
 variable "services_max_cluster_size" {
   type        = "string"
   description = "The maximum number of nodes in the Services cluster"
