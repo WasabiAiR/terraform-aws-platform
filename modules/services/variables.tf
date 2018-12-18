@@ -53,6 +53,8 @@ variable "region" {}
 variable "rollbar_token" {}
 variable "s3subscriber_priority" {}
 variable "services_iam_role_name" {}
+variable "services_scale_down_threshold_cpu" {}
+variable "services_scale_up_threshold_cpu" {}
 variable "sqs_activity" {}
 variable "sqs_activity_arn" {}
 variable "sqs_index" {}
