@@ -10,7 +10,10 @@
                 "logs:PutLogEvents",
                 "ecs:DescribeClusters",
                 "ecs:RunTask",
-                "ecs:RegisterTaskDefinition"
+                "ecs:RegisterTaskDefinition",
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:DescribeAutoScalingInstances",
+                "autoscaling:SetInstanceProtection"
             ],
             "Effect": "Allow",
             "Resource": [

@@ -1,7 +1,11 @@
+locals {
+    cfn_stack_name = "GrayMetaPlatform-${var.platform_instance_id}-Services-ASG"
+}
+
 # Loading the template_body from a template file decouples the dependency between the LC and ASG and breaks the update, so use a HEREDOC instead :(
 # See https://github.com/hashicorp/terraform/issues/1552 for more info
 resource "aws_cloudformation_stack" "services_asg" {
-  name               = "GrayMetaPlatform-${var.platform_instance_id}-Services-ASG"
+  name               = "${local.cfn_stack_name}"
   timeout_in_minutes = "90"
 
   timeouts {
