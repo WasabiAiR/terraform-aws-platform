@@ -71,4 +71,4 @@ write_files:
       coredump_dir /var/spool/squid
   - path: /etc/squid/gm-cogs.conf
     content: |
-${whitelist}
+${safelist}

@@ -116,7 +116,7 @@ data "template_file" "userdata" {
     log_group = "${aws_cloudwatch_log_group.proxy.name}"
     region    = "${data.aws_region.current.name}"
     dns_name  = "${var.dns_name}"
-    whitelist = "${join("\n", formatlist("        %s",var.whitelist))}"
+    safelist  = "${join("\n", formatlist("        %s",var.safelist))}"
   }
 }
 

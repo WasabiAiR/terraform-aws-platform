@@ -22,6 +22,6 @@ variable "proxy_user_init" {}
 variable "proxy_volume_size" {}
 variable "ssh_cidr_blocks" {}
 
-variable "whitelist" {
+variable "safelist" {
   type = "list"
 }
