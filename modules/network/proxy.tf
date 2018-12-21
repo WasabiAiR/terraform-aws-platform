@@ -28,6 +28,6 @@ module "proxy" {
   proxy_subnet_id_2                   = "${aws_subnet.proxy_2.id}"
   proxy_user_init                     = "${var.proxy_user_init}"
   proxy_volume_size                   = "${var.proxy_volume_size}"
+  safelist                            = "${var.safelist}"
   ssh_cidr_blocks                     = "${var.ssh_cidr_blocks}"
-  whitelist                           = "${var.whitelist}"
 }

@@ -211,7 +211,7 @@ variable "proxy_amis" {
   }
 }
 
-variable "whitelist" {
+variable "safelist" {
   type        = "list"
   description = "List of dstdomain to add to the proxy server.  Please talk to Graymeta Support before changing"
 
