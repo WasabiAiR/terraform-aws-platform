@@ -51,7 +51,6 @@ write_files:
         gm_db_password=${db_password}
         gm_db_port=5432
         gm_db_username=${db_username}
-        gm_ecs_auth_type=iam
         gm_ecs_cluster=${ecs_cluster}
         gm_ecs_cpu=${ecs_cpu_reservation}
         gm_ecs_log_group=${ecs_log_group}
