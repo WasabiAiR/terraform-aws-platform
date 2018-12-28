@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 module "share_usage" {
   source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.2"
 
-  usage_s3_bucket_id = "cfn-usage-api"
+  usage_s3_bucket_arn = ""arn:aws:s3:::cfn-file-api""
 }
 ```
 

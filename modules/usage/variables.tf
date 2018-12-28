@@ -1,1 +1,1 @@
-variable "usage_s3_bucket_id" {}
+variable "usage_s3_bucket_arn" {}

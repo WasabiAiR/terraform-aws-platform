@@ -27,7 +27,6 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 * `ssl_certificate_arn` - Procure a valid SSL certificate for the hostname chosen in the previous step. Self-signed certificates will NOT work. Upload the SSL certificate to Amazon Certificate Manager in the same region you will be deploying the platform into.  After upload, record the ARN of the certificate as variable ssl_certificate_arn
 * `file_storage_s3_bucket_arn` - Create an S3 bucket to store thumbnails, transcoded video and audio preview files, and metadata files.  Record the ARN of the s3 bucket as variable file_storage_s3_bucket_arn.
 * `usage_s3_bucket_arn` - Create an S3 bucket to store usage reports. Record the ARN of the s3 bucket as variable `usage_s3_bucket_arn`.
-* `usage_s3_bucket_id` - Create an S3 bucket to store usage reports. Record the ID of the s3 bucket as variable `usage_s3_bucket_id`.
 * `log_retention` - The log retention set in Cloudwatch for all logs.
 
 ### Additional Notes
@@ -197,6 +196,6 @@ output "GrayMetaPlatformEndpoint" {
 module "share_usage" {
   source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.2"
 
-  usage_s3_bucket_id = "${local.usage_s3_bucket_id}"
+  usage_s3_bucket_arn = "${local.usage_s3_bucket_arn}"
 }
 ```
