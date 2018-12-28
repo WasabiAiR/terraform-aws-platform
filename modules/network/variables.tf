@@ -217,7 +217,6 @@ variable "safelist" {
 
   default = [
     ".amazonaws.com",
-    ".apptek.graymeta.com",
     ".box.com",
     ".boxcloud.com",
     ".cognitive.microsoft.com",
