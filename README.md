@@ -60,17 +60,18 @@ locals {
   ssl_certificate_arn        = "arn:aws:acm:us-west-2:111111111111:certificate/11111111-1111-1111-1111-111111111111"
   file_storage_s3_bucket_arn = "arn:aws:s3:::cfn-file-api"
   usage_s3_bucket_arn        = "arn:aws:s3:::cfn-usage-api"
+  usage_s3_bucket_id         = "cfn-usage-api"
   log_retention              = "14"
 }
 
 module "servicesiam" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.1"
+  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.2"
 
   platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.1.1"
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.1.2"
 
   az1                  = "${local.az1}"
   az2                  = "${local.az2}"
@@ -90,7 +91,7 @@ module "network" {
 
 
 module "platform" {
-  source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.1"
+  source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.2"
 
   customer                = "${local.customer}"
   dns_name                = "${local.dns_name}"
@@ -189,5 +190,12 @@ module "platform" {
 
 output "GrayMetaPlatformEndpoint" {
     value = "${module.platform.GrayMetaPlatformEndpoint}"
+}
+
+# This is to share the usage bucket and contents with Graymeta.
+module "share_usage" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.2"
+
+  usage_s3_bucket_arn = "${local.usage_s3_bucket_arn}"
 }
 ```

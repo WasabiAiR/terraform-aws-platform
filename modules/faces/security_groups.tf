@@ -20,7 +20,7 @@ resource "aws_security_group" "faces" {
     ]
   }
 
-    ingress {
+  ingress {
     from_port = 10337
     to_port   = 10337
     protocol  = "tcp"
@@ -31,7 +31,7 @@ resource "aws_security_group" "faces" {
     ]
   }
 
-    ingress {
+  ingress {
     from_port = 10338
     to_port   = 10338
     protocol  = "tcp"
