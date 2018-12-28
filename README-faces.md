@@ -6,7 +6,7 @@
   
 ```
 module "faces" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/faces?ref=v0.1.1"
+  source = "github.com/graymeta/terraform-aws-platform//modules/faces?ref=v0.1.2"
 
   key_name             = "${local.key_name}"
   log_retention        = "${local.log_retention}"

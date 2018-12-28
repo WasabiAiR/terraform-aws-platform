@@ -227,6 +227,7 @@ variable "safelist" {
     ".forecast.io",
     ".geonames.org",
     ".googleapis.com",
+    ".graymeta.com",
     ".kairos.com",
     ".logograb.com",
     ".picpurify.com",

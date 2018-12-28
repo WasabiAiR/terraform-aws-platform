@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.2 - 2018-12-28
+
+#### Added
+* Added a new module named usage.  This is to help setup the permissions needed for Graymeta to access the usage bucket.
+```
+module "share_usage" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.2"
+
+  usage_s3_bucket_id = "cfn-usage-api"
+}
+```
+
+* Added `services_scale_down_threshold_cpu` and `services_scale_up_threshold_cpu` variables.  Should not set unless directed by support@graymeta.com
+
+#### Changed
+* Updated ECS AMI to use amazon linux 2
+* Platform AMI update to version 2.0.2763.  Contact GrayMeta for more details
+
 ---
 ## v0.1.1 - 2018-12-14
 

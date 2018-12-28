@@ -45,6 +45,7 @@ resource "aws_lb_listener" "port10338" {
     type             = "forward"
   }
 }
+
 resource "aws_lb_target_group" "port10336" {
   port     = "10336"
   protocol = "HTTP"
