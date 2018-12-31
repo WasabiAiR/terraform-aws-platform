@@ -4,7 +4,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 
 ![Graymeta Terraform Enterprise](images/Graymeta_Terraform_Enterprise.png)
 
-* `version` - Current version is `v0.1.1`
+* `version` - Current version is `v0.1.2`
 
 ### Variable Definitions
 * `customer` - Short name for you company.
