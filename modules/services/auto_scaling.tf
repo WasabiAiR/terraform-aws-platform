@@ -154,6 +154,7 @@ data "template_file" "userdata" {
     rollbar_token                  = "${var.rollbar_token}"
     oauthconnect_encryption_key    = "${var.oauthconnect_encryption_key}"
     s3subscriber_priority          = "${var.s3subscriber_priority}"
+    segment_write_key              = "${var.segment_write_key}"
     services_log_group             = "GrayMetaPlatform-${var.platform_instance_id}-Services"
     sns_topic_arn_harvest_complete = "${aws_sns_topic.harvest_complete.arn}"
     sqs_activity                   = "${var.sqs_activity}"
