@@ -194,7 +194,7 @@ output "GrayMetaPlatformEndpoint" {
 
 # This is to share the usage bucket and contents with Graymeta.
 module "share_usage" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.2"
+  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.2"
 
   usage_s3_bucket_arn = "${local.usage_s3_bucket_arn}"
 }
