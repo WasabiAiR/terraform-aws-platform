@@ -67,7 +67,6 @@ write_files:
         gm_fileapi_stow_kind=s3
         gm_files_api=https://${dns_name}/files
         gm_front_end_client_secret=${client_secret_fe}
-        gm_google_maps_key=${google_maps_key}
         gm_harvest_complete_stow_fields=${harvest_complete_stow_fields}
         gm_harvest_polling_time=${harvest_polling_time}
         gm_internal_client_secret=${client_secret_internal}
@@ -93,6 +92,7 @@ write_files:
         gm_usage_prefix=${gm_usage_prefix}
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
         gm_walkd_redis_max_active=${gm_walkd_redis_max_active}
+        google_maps_key=${google_maps_key}
         harvest_gm_faces_recog_api_addr=http://${faces_endpoint}:10336
         harvest_gm_temp_bucket_name=${temporary_bucket_name}
         harvest_gm_temp_bucket_region=${region}
@@ -103,6 +103,7 @@ write_files:
         password_min_length=${password_min_length}
         rollbar_token=${rollbar_token}
         s3subscriber_priority=${s3subscriber_priority}
+        segment_write_key=${segment_write_key}
         stow_mountpath=/var/lib/graymeta/mounts
         walkd_item_batch_size=${walkd_item_batch_size}
         http_proxy=http://${proxy_endpoint}/

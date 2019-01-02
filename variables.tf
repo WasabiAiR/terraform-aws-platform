@@ -388,6 +388,12 @@ variable "s3subscriber_priority" {
   default     = "0"
 }
 
+variable "segment_write_key" {
+  type        = "string"
+  description = "Segment.com Analytics Write Key. Set to an empty string to disable analytics."
+  default     = ""
+}
+
 variable "services_iam_role_name" {
   type        = "string"
   description = "The name of the IAM role that will be applied to services roles. Must be created by the servicesiam module"

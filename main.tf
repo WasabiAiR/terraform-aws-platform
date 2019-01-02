@@ -128,6 +128,7 @@ module "services" {
   region                            = "${var.region}"
   rollbar_token                     = "${var.rollbar_token}"
   s3subscriber_priority             = "${var.s3subscriber_priority}"
+  segment_write_key                 = "${var.segment_write_key}"
   services_iam_role_name            = "${var.services_iam_role_name}"
   services_scale_down_threshold_cpu = "${var.services_scale_down_threshold_cpu}"
   services_scale_up_threshold_cpu   = "${var.services_scale_up_threshold_cpu}"

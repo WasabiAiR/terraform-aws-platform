@@ -52,6 +52,7 @@ variable "public_subnet_id_2" {}
 variable "region" {}
 variable "rollbar_token" {}
 variable "s3subscriber_priority" {}
+variable "segment_write_key" {}
 variable "services_iam_role_name" {}
 variable "services_scale_down_threshold_cpu" {}
 variable "services_scale_up_threshold_cpu" {}
