@@ -14,6 +14,14 @@ output "index_arn" {
   value = "${aws_sqs_queue.index.arn}"
 }
 
+output "itemcleanup" {
+  value = "${aws_sqs_queue.itemcleanup.id}"
+}
+
+output "itemcleanup_arn" {
+  value = "${aws_sqs_queue.itemcleanup.arn}"
+}
+
 output "stage01" {
   value = "${aws_sqs_queue.stage01.id}"
 }

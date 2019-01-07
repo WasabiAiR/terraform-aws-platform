@@ -136,6 +136,8 @@ module "services" {
   sqs_activity_arn                  = "${module.queues.activity_arn}"
   sqs_index                         = "${module.queues.index}"
   sqs_index_arn                     = "${module.queues.index_arn}"
+  sqs_itemcleanup                   = "${module.queues.itemcleanup}"
+  sqs_itemcleanup_arn               = "${module.queues.itemcleanup_arn}"
   sqs_s3notifications               = "${var.sqs_s3notifications}"
   sqs_s3notifications_arn           = "${var.sqs_s3notifications_arn}"
   sqs_stage01                       = "${module.queues.stage01}"

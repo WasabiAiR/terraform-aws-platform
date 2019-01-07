@@ -8,6 +8,11 @@ resource "aws_sqs_queue" "index" {
   message_retention_seconds = 1209600
 }
 
+resource "aws_sqs_queue" "itemcleanup" {
+  name                      = "GrayMetaPlatform-${var.platform_instance_id}-itemcleanup"
+  message_retention_seconds = 1209600
+}
+
 resource "aws_sqs_queue" "stage01" {
   name                      = "GrayMetaPlatform-${var.platform_instance_id}-stage01"
   message_retention_seconds = 1209600
