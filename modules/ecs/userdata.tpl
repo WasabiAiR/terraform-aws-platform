@@ -14,5 +14,18 @@ runcmd:
 - echo "env NO_PROXY=169.254.169.254,169.254.170.2,/var/run/docker.sock" >> /etc/init/ecs.override
 - echo ECS_CLUSTER=${ecs_cluster} >> /etc/ecs/ecs.config
 - mkdir /data
+- usermod -a -G docker graymeta
 - systemctl daemon-reload
 - systemctl restart docker
+- systemctl enable gm-termprotector
+- systemctl restart gm-termprotector
+write_files:
+-   content: |
+        AWS_REGION=${region}
+        http_proxy=http://${proxy_endpoint}/
+        https_proxy=http://${proxy_endpoint}/
+        no_proxy=localhost,127.0.0.1,169.254.169.254
+        termprotector_mode=docker
+    path: /etc/graymeta/metafarm.env
+    permissions: '0400'
+    owner: graymeta:graymeta

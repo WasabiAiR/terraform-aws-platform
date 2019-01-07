@@ -24,6 +24,8 @@ runcmd:
 - systemctl daemon-reload
 - /opt/graymeta/bin/all-services.sh restart
 - /opt/graymeta/bin/all-services.sh enable
+- systemctl enable gm-termprotector.service
+- systemctl restart gm-termprotector.service
 - echo "net.ipv4.tcp_fin_timeout = 1" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_intvl = 20" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_probes = 5" >> /etc/sysctl.conf
@@ -31,6 +33,7 @@ runcmd:
 - sysctl -p
 write_files:
 -   content: |
+        AWS_REGION=${region}
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         SES_REGION=${from_region}
         account_lockout_attempts=${account_lockout_attempts}
@@ -108,7 +111,7 @@ write_files:
         walkd_item_batch_size=${walkd_item_batch_size}
         http_proxy=http://${proxy_endpoint}/
         https_proxy=http://${proxy_endpoint}/
-        no_proxy=localhost,127.0.0.1,69.254.169.254,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${faces_endpoint}
+        no_proxy=localhost,127.0.0.1,169.254.169.254,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${faces_endpoint}
         harvest_http_proxy=http://${proxy_endpoint}/
         harvest_https_proxy=http://${proxy_endpoint}/
         harvest_no_proxy=169.254.169.254,169.254.170.2,/var/run/docker.sock,${faces_endpoint}
