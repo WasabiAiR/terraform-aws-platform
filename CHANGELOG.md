@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.3 - 2019-01-07
+
+#### Added
+* Added Segment.com Analytics Write Key. Set to an empty string to disable analytics.
+```
+module "platform" {
+  ...
+  segment_write_key = ""
+  ...
+}
+```
+
+* Added a Node protection service.  This service will mark nodes working on critical workloads as protected in the AutoScaling Group.
+
+#### Changed
+* Platform AMI update to version 2.0.2788.  Contact GrayMeta for more details
+  
+---
 ## v0.1.2 - 2018-12-28
 
 #### Added
