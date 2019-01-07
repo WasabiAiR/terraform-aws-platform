@@ -4,7 +4,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 
 ![Graymeta Terraform Enterprise](images/Graymeta_Terraform_Enterprise.png)
 
-* `version` - Current version is `v0.1.2`
+* `version` - Current version is `v0.1.3`
 
 ### Variable Definitions
 * `customer` - Short name for you company.
@@ -65,13 +65,13 @@ locals {
 }
 
 module "servicesiam" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.2"
+  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.3"
 
   platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.1.2"
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.1.3"
 
   az1                  = "${local.az1}"
   az2                  = "${local.az2}"
@@ -91,7 +91,7 @@ module "network" {
 
 
 module "platform" {
-  source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.2"
+  source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.3"
 
   customer                = "${local.customer}"
   dns_name                = "${local.dns_name}"
@@ -173,8 +173,11 @@ module "platform" {
   # (Optional) Error Reporting Configurations
   rollbar_token = ""
 
-  # (Optional) Google maps (for plotting geocoded results on a map in the UI
+  # (Optional) Google maps - for plotting geocoded results on a map in the UI
   google_maps_key = ""
+
+  # (Optional) Segment.com Analytics Write Key. Set to an empty string to disable analytics.
+  segment_write_key = ""
 
   # (Optional) s3 notification
   s3subscriber_priority   = ""
@@ -194,7 +197,7 @@ output "GrayMetaPlatformEndpoint" {
 
 # This is to share the usage bucket and contents with Graymeta.
 module "share_usage" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.2"
+  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.3"
 
   usage_s3_bucket_arn = "${local.usage_s3_bucket_arn}"
 }
