@@ -60,6 +60,8 @@ variable "sqs_activity" {}
 variable "sqs_activity_arn" {}
 variable "sqs_index" {}
 variable "sqs_index_arn" {}
+variable "sqs_itemcleanup" {}
+variable "sqs_itemcleanup_arn" {}
 variable "sqs_s3notifications" {}
 variable "sqs_s3notifications_arn" {}
 variable "sqs_stage01" {}

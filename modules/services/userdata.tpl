@@ -87,6 +87,7 @@ write_files:
         gm_scheduler_api=https://${dns_name}/api/scheduler
         gm_sqs_activity=${sqs_activity}
         gm_sqs_index=${sqs_index}
+        gm_sqs_itemcleanup=${sqs_itemcleanup}
         gm_sqs_notifications=${sqs_notifications}
         gm_sqs_stage=${sqs_stage}
         gm_sqs_walk=${sqs_walk}

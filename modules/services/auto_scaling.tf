@@ -163,6 +163,7 @@ data "template_file" "userdata" {
     sns_topic_arn_harvest_complete = "${aws_sns_topic.harvest_complete.arn}"
     sqs_activity                   = "${var.sqs_activity}"
     sqs_index                      = "${var.sqs_index}"
+    sqs_itemcleanup                = "${var.sqs_itemcleanup}"
     sqs_notifications              = "${var.sqs_s3notifications}"
     sqs_stage                      = "${var.sqs_stage01},${var.sqs_stage02},${var.sqs_stage03},${var.sqs_stage04},${var.sqs_stage05},${var.sqs_stage06},${var.sqs_stage07},${var.sqs_stage08},${var.sqs_stage09},${var.sqs_stage10}"
     sqs_walk                       = "${var.sqs_walk}"
