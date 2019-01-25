@@ -1,5 +1,5 @@
 locals {
-    cfn_stack_name = "GrayMetaPlatform-${var.platform_instance_id}-Services-ASG"
+  cfn_stack_name = "GrayMetaPlatform-${var.platform_instance_id}-Services-ASG"
 }
 
 # Loading the template_body from a template file decouples the dependency between the LC and ASG and breaks the update, so use a HEREDOC instead :(

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.4 - 2019-01-25
+
+#### Added
+* Added a new SQS named `GrayMetaPlatform-<platform_instance_id>-itemcleanup`
+
+#### Changed
+* Platform AMI update to version 2.0.2921.  Contact GrayMeta for more details
+  
+---
 ## v0.1.3 - 2019-01-07
 
 #### Added
