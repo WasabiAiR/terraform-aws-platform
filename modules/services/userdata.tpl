@@ -73,6 +73,7 @@ write_files:
         gm_harvest_complete_stow_fields=${harvest_complete_stow_fields}
         gm_harvest_polling_time=${harvest_polling_time}
         gm_internal_client_secret=${client_secret_internal}
+        gm_job_status_api=https://${dns_name}/api/jobstatus
         gm_job_store_redis_key_prefix="jobinfo:"
         gm_jwt_expiration_time=${gm_jwt_expiration_time}
         gm_jwt_private_key=${jwt_key}
