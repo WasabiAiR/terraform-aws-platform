@@ -3,6 +3,11 @@ output "ecs_amis" {
   value       = "${var.ecs_amis}"
 }
 
+output "faces_amis" {
+  description = "map of region to ami for ml faces nodes"
+  value       = "${var.faces_amis}"
+}
+
 output "mlservices_amis" {
   description = "map of region to ami for ml services nodes"
   value       = "${var.mlservices_amis}"
