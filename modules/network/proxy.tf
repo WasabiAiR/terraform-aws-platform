@@ -1,3 +1,7 @@
+module "amis" {
+  source = "../amis"
+}
+
 module "proxy" {
   source = "../proxy"
 
@@ -14,7 +18,7 @@ module "proxy" {
   key_name                            = "${var.key_name}"
   log_retention                       = "${var.log_retention}"
   platform_instance_id                = "${var.platform_instance_id}"
-  proxy_amis                          = "${lookup(var.proxy_amis, var.region)}"
+  proxy_amis                          = "${lookup(module.amis.proxy_amis, var.region)}"
   proxy_instance_type                 = "${var.proxy_instance_type}"
   proxy_max_cluster_size              = "${var.proxy_max_cluster_size}"
   proxy_min_cluster_size              = "${var.proxy_min_cluster_size}"

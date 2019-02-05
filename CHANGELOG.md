@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## not released -
+
+#### Changed
+* Removed AMI variables from modules `platform`, `network`, `faces`.  If you have `ecs_amis`, `services_amis`, `proxy_amis`, `faces_amis` defined as a variable remove it.
+
+---
 ## v0.1.4 - 2019-01-25
 
 #### Added

@@ -197,20 +197,6 @@ variable "ssh_cidr_blocks" {
   description = "Comma delimited list of cidr blocks from which to allow access via SSH"
 }
 
-# AMI
-variable "proxy_amis" {
-  type        = "map"
-  description = "map of region to ami for proxy nodes"
-
-  default = {
-    "ap-southeast-2" = "ami-081c3bca5bb0fb280"
-    "eu-west-1"      = "ami-09d0344514bef6484"
-    "us-east-1"      = "ami-0b4fa399234c5ab0b"
-    "us-east-2"      = "ami-07586ac64d109340a"
-    "us-west-2"      = "ami-017379caf2e25ac14"
-  }
-}
-
 variable "safelist" {
   type        = "list"
   description = "List of dstdomain to add to the proxy server.  Please talk to Graymeta Support before changing"

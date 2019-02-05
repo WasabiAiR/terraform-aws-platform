@@ -3,10 +3,14 @@ provider "aws" {
   version = "~> 1.16"
 }
 
+module "amis" {
+  source = "./modules/amis"
+}
+
 module "ecs" {
   source = "./modules/ecs"
 
-  ami_id               = "${lookup(var.ecs_amis, var.region)}"
+  ami_id               = "${lookup(module.amis.ecs_amis, var.region)}"
   instance_type        = "${var.ecs_instance_type}"
   key_name             = "${var.key_name}"
   max_cluster_size     = "${var.ecs_max_cluster_size}"
@@ -77,7 +81,7 @@ module "services" {
   account_lockout_attempts          = "${var.account_lockout_attempts}"
   account_lockout_interval          = "${var.account_lockout_interval}"
   account_lockout_period            = "${var.account_lockout_period}"
-  ami_id                            = "${lookup(var.services_amis, var.region)}"
+  ami_id                            = "${lookup(module.amis.services_amis, var.region)}"
   az1_nat_ip                        = "${var.az1_nat_ip}"
   az2_nat_ip                        = "${var.az2_nat_ip}"
   box_com_client_id                 = "${var.box_com_client_id}"
