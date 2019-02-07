@@ -120,11 +120,11 @@ resource "aws_subnet" "elasticsearch_2" {
 
 resource "aws_subnet" "faces_1" {
   vpc_id            = "${aws_vpc.main.id}"
-  cidr_block        = "${var.cidr_subnet_faces_1}"
+  cidr_block        = "${var.cidr_subnet_mlservices_1}"
   availability_zone = "${var.az1}"
 
   tags {
-    Name               = "GrayMetaPlatform-${var.platform_instance_id}-Faces1"
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-MLservices1"
     Application        = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
@@ -132,11 +132,11 @@ resource "aws_subnet" "faces_1" {
 
 resource "aws_subnet" "faces_2" {
   vpc_id            = "${aws_vpc.main.id}"
-  cidr_block        = "${var.cidr_subnet_faces_2}"
+  cidr_block        = "${var.cidr_subnet_mlservices_2}"
   availability_zone = "${var.az2}"
 
   tags {
-    Name               = "GrayMetaPlatform-${var.platform_instance_id}-Faces2"
+    Name               = "GrayMetaPlatform-${var.platform_instance_id}-MLservices2"
     Application        = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }

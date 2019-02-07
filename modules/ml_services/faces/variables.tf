@@ -1,59 +1,26 @@
-variable "faces_instance_type" {
+variable "instance_type" {
   type        = "string"
-  description = "instance type for servers"
+  description = "ec2 instance type"
 }
 
-variable "faces_max_cluster_size" {
+variable "max_cluster_size" {
   type        = "string"
-  description = "The max number of faces server nodes to spin up"
+  description = "The max number of ec2 instances to spin up"
 }
 
-variable "faces_min_cluster_size" {
+variable "min_cluster_size" {
   type        = "string"
-  description = "The max number of faces server nodes to spin up"
+  description = "The max number of ec2 instances to spin up"
 }
 
-variable "faces_subnet_id_1" {
-  type        = "string"
-  description = "The first subnet ID to use to deploy the faces cluster into. Needs to be in a different AZ than faces_subnet_id_2"
-}
-
-variable "faces_subnet_id_2" {
-  type        = "string"
-  description = "The second subnet ID to use to deploy the faces cluster into. Needs to be in a different AZ than faces_subnet_id_1"
-}
-
-variable "faces_user_init" {
-  type        = "string"
-  description = "Custom cloud-init that is rendered to be used on faces instances. (Not Recommened)"
-  default     = ""
-}
-
-variable "faces_volume_size" {
-  type        = "string"
-  description = "The OS disk size for Faces Server"
-  default     = "50"
-}
-
-variable "key_name" {
-  type        = "string"
-  description = "The name of the SSH key to use"
-}
-
-variable "log_retention" {
-  type        = "string"
-  description = "Optional. The log retention for cloudwatch logs.  Default 7 days"
-  default     = "7"
+variable "ml_loadbalancer_output" {
+  type        = "map"
+  description = "The output from the ml_network module"
 }
 
 variable "platform_instance_id" {
   type        = "string"
   description = "A human-readable string for this instance of the GrayMeta Platform"
-}
-
-variable "proxy_endpoint" {
-  type        = "string"
-  description = "The Proxy Load Balancer created by the network module"
 }
 
 variable "rds_allocated_storage" {
@@ -114,10 +81,19 @@ variable "rds_subnet_id_2" {
 
 variable "services_ecs_cidrs" {
   type        = "list"
-  description = "List of services and ecs subnet ids"
+  description = "The list of cidrs to allow connection to cluster"
 }
 
-variable "ssh_cidr_blocks" {
+variable "user_init" {
   type        = "string"
-  description = "Comma delimited list of cidr blocks from which to allow access via SSH"
+  description = "Custom cloud-init that is rendered to be used on cluster instances. (Not Recommened)"
+  default     = ""
 }
+
+variable "volume_size" {
+  type        = "string"
+  description = "The OS disk size for credits Server"
+  default     = "50"
+}
+
+data "aws_region" "current" {}

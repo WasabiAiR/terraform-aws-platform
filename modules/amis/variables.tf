@@ -33,7 +33,7 @@ variable "mlservices_amis" {
     "eu-west-1"      = "ami-01f52bdbbacd9c571"
     "us-east-1"      = "ami-03cd50d329fc8d167"
     "us-east-2"      = "ami-07597effa369e15c2"
-    "us-west-2"      = "ami-0db0a7f246a93b6e2"
+    "us-west-2"      = "ami-0e70e04b373bc1aa2"
   }
 }
 

@@ -185,6 +185,9 @@ module "platform" {
   # (Optional) Harvest complete fields
   harvest_complete_stow_fields = ""
 
+  # (Optional) Graymeta ML Services
+  mlservices_endpoint = ""
+
   # (Optional) Graymeta Faces Extractor
   faces_endpoint = ""
 }

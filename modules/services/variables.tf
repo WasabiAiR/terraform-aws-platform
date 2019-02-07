@@ -40,6 +40,7 @@ variable "key_name" {}
 variable "log_retention" {}
 variable "max_cluster_size" {}
 variable "min_cluster_size" {}
+variable "mlservices_endpoint" {}
 variable "notifications_from_addr" {}
 variable "notifications_region" {}
 variable "oauthconnect_encryption_key" {}

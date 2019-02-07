@@ -68,15 +68,15 @@ variable "cidr_subnet_elasticsearch_2" {
   default     = "10.0.17.0/24"
 }
 
-variable "cidr_subnet_faces_1" {
+variable "cidr_subnet_mlservices_1" {
   type        = "string"
-  description = "The CIDR block to use for the faces 1 subnet"
+  description = "The CIDR block to use for the mlservices 1 subnet"
   default     = "10.0.18.0/24"
 }
 
-variable "cidr_subnet_faces_2" {
+variable "cidr_subnet_mlservices_2" {
   type        = "string"
-  description = "The CIDR block to use for the faces 2 subnet"
+  description = "The CIDR block to use for the mlservices 2 subnet"
   default     = "10.0.19.0/24"
 }
 
