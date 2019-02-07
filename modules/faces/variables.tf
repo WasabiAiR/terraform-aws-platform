@@ -121,17 +121,3 @@ variable "ssh_cidr_blocks" {
   type        = "string"
   description = "Comma delimited list of cidr blocks from which to allow access via SSH"
 }
-
-# AMI
-variable "faces_amis" {
-  type        = "map"
-  description = "map of region to ami for faces nodes"
-
-  default = {
-    "ap-southeast-2" = "ami-0735710cbf43cd325"
-    "eu-west-1"      = "ami-01f52bdbbacd9c571"
-    "us-east-1"      = "ami-03cd50d329fc8d167"
-    "us-east-2"      = "ami-07597effa369e15c2"
-    "us-west-2"      = "ami-0db0a7f246a93b6e2"
-  }
-}

@@ -71,9 +71,13 @@ resource "aws_cloudformation_stack" "faces_asg" {
 EOF
 }
 
+module "amis" {
+  source = "../amis"
+}
+
 resource "aws_launch_configuration" "launch_config_faces" {
   iam_instance_profile = "${aws_iam_instance_profile.iam_instance_profile_faces.name}"
-  image_id             = "${lookup(var.faces_amis, data.aws_region.current.name)}"
+  image_id             = "${lookup(module.amis.faces_amis, data.aws_region.current.name)}"
   instance_type        = "${var.faces_instance_type}"
   key_name             = "${var.key_name}"
   name_prefix          = "GrayMetaPlatform-${var.platform_instance_id}-Faces-"
