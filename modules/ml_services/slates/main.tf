@@ -4,24 +4,21 @@ locals {
   tfs_port = "11305"
 }
 
-# Generate the cloud-init script
-data "template_file" "userdata" {
-  template = "${file("${path.module}/userdata.tpl")}"
+module "ml_init" {
+  source = "../ml_userdata"
 
-  vars {
-    api_port       = "${local.api_port}"
-    log_group      = "${var.ml_loadbalancer_output["ml_cloudwatch_log_group"]}"
-    proxy_endpoint = "${var.ml_loadbalancer_output["proxy_endpoint"]}"
-    service_name   = "${local.api_name}"
-    tfs_port       = "${local.tfs_port}"
-  }
+  api_port       = "${local.api_port}"
+  log_group      = "${var.ml_loadbalancer_output["ml_cloudwatch_log_group"]}"
+  proxy_endpoint = "${var.ml_loadbalancer_output["proxy_endpoint"]}"
+  service_name   = "${local.api_name}"
+  tfs_port       = "${local.tfs_port}"
 }
 
 # Create the cluster
 module "cluster" {
   source = "../ml_cluster"
 
-  cloud_init             = "${data.template_file.userdata.rendered}"
+  cloud_init             = "${module.ml_init.userdata}"
   instance_type          = "${var.instance_type}"
   max_cluster_size       = "${var.max_cluster_size}"
   min_cluster_size       = "${var.min_cluster_size}"
