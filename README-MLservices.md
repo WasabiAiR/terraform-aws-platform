@@ -135,23 +135,22 @@ output "vssoccer_endpoint" {
 }
 ```
 
-## To setup the endpoint for the extractors
-#### Configure extractors
-For the Graymeta ML Services we need to add the following variables to the platform module.  The `faces_endpoint` is only needed if you did the `faces` module above.
+## Configure extractors
+For the Graymeta ML Services we need to add the following variables to the platform module.  
+* `mlservices_endpoint` is required for any of the above ML Services.
+* `faces_endpoint` is required for GrayMeta Facial Recognition extractor
+
 ```
 module "platform" {
   source = "github.com/graymeta/terraform-aws-platform?ef=v0.1.5"
   ...
-  # (Optional) Graymeta ML Services
   mlservices_endpoint = "${module.ml_network.endpoint}"
-
-  # (Optional) Graymeta Faces Extractor
   faces_endpoint = "${module.faces.faces_endpoint}"
   ...
 }
 ```
 
 After the `terraform apply` you will get the endpoint as part of the output.  Go into the Platform UI under Settings -> Extractors.
-Configure the extractors and add the endpoint as the hostname server hostname.  The credentials can be blank since they will not be used.
+Configure the extractors and add the endpoint to the hostname field.  The credentials can be blank since they will not be used.
 
 ![Graymeta Extractors](images/ExtractorView.png)
