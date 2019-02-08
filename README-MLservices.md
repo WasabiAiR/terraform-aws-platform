@@ -1,9 +1,9 @@
 # Graymeta Machine Learning services
 This is optional but is required if you want to use any Graymeta Machine Learning services.
 
-**NOTE:** *The first module below is required to setup a internal load balancer to the different ML services.*
+**NOTE:** *The first module below is required to setup an internal load balancer to the different ML services.*
 
-**UPGRADE:** *If upgrading Faces from v0.1.4 or lower make sure you copy the `RDS Configuration` to the new module and that the module does not change.  Also credits and slates was included with the old faces module.  Now they are seperate module and make sure you update the endpoint/hostname in the extractor config.*
+**UPGRADE:** *If upgrading Faces from v0.1.4 or lower make sure you copy the `RDS Configuration` to the new module and that the module name does not change.  Also credits and slates were included with the old faces module.  Now they are seperate modules and make sure you update the endpoint/hostname in the extractor config.*
 
 
 ```
@@ -136,8 +136,8 @@ output "vssoccer_endpoint" {
 ```
 
 ## To setup the endpoint for the extractors
-#### GrayMeta Facial Recognition extractor
-For the Graymeta Facial Recognigtion extractor you will need to add the following variables to the platform module.
+#### Configure extractors
+For the Graymeta ML Services we need to add the following variables to the platform module.  The `faces_endpoint` is only needed if you did the `faces` module above.
 ```
 module "platform" {
   source = "github.com/graymeta/terraform-aws-platform?ef=v0.1.5"
@@ -147,18 +147,6 @@ module "platform" {
 
   # (Optional) Graymeta Faces Extractor
   faces_endpoint = "${module.faces.faces_endpoint}"
-  ...
-}
-```
-
-#### All the other extractors
-For the Graymeta ML Services we need to add the following variables to the platform module.
-```
-module "platform" {
-  source = "github.com/graymeta/terraform-aws-platform?ef=v0.1.5"
-  ...
-  # (Optional) Graymeta ML Services
-  mlservices_endpoint = "${module.ml_network.endpoint}"
   ...
 }
 ```
