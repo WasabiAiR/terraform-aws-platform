@@ -95,6 +95,7 @@ write_files:
         gm_threshold_to_harvest=${gm_threshold_to_harvest}
         gm_usage_api=https://${dns_name}/api/usage
         gm_usage_prefix=${gm_usage_prefix}
+        gm_usageapi_stow_kind=s3
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
         gm_walkd_redis_max_active=${gm_walkd_redis_max_active}
         google_maps_key=${google_maps_key}
