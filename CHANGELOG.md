@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## not released -
+## v0.1.5 - 2019-02-11
 #### Added
 * Added a new MLservice modules to install clusters for Graymeta Machine Learning services. Please see [README-MLservices.md](README-MLservices.md)
 
