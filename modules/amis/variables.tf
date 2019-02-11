@@ -7,7 +7,7 @@ variable "ecs_amis" {
     "eu-west-1"      = "ami-03d443b9700eb0c5c"
     "us-east-1"      = "ami-03279f49db725b2aa"
     "us-east-2"      = "ami-0795f95e0574b17c5"
-    "us-west-2"      = "ami-07f2f9ac627a51c1d"
+    "us-west-2"      = "ami-0a231fb8ef2df0d92"
   }
 }
 
@@ -20,7 +20,7 @@ variable "mlservices_amis" {
     "eu-west-1"      = "ami-03f597608ec9fd7cf"
     "us-east-1"      = "ami-0d42ae192ff6ed15a"
     "us-east-2"      = "ami-00d4863607b509d9d"
-    "us-west-2"      = "ami-0a8fa7823ed364ee2"
+    "us-west-2"      = "ami-067fdc1cfd4630b85"
   }
 }
 
@@ -46,6 +46,6 @@ variable "services_amis" {
     "eu-west-1"      = "ami-0123f9b2f35c0ee5a"
     "us-east-1"      = "ami-0933c032b60d16c39"
     "us-east-2"      = "ami-0dc50bafb082d64f0"
-    "us-west-2"      = "ami-0e201cc02d6b949ef"
+    "us-west-2"      = "ami-0f9c9d94b62145028"
   }
 }
