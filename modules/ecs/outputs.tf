@@ -5,3 +5,7 @@ output "cluster" {
 output "temporary_bucket_name" {
   value = "${aws_s3_bucket.temp_bucket.id}"
 }
+
+output "ecs_security_group_id" {
+  value = "${aws_security_group.ecs.id}"
+}

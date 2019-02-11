@@ -25,6 +25,14 @@ resource "aws_security_group" "rds" {
   }
 }
 
+data "aws_subnet" "subnet_faces_1" {
+  id = "${var.ml_loadbalancer_output["mlservices_subnet_id_1"]}"
+}
+
+data "aws_subnet" "subnet_faces_2" {
+  id = "${var.ml_loadbalancer_output["mlservices_subnet_id_2"]}"
+}
+
 resource "aws_security_group_rule" "rds_allow_servers" {
   security_group_id = "${aws_security_group.rds.id}"
   description       = "Allow Faces Nodes"

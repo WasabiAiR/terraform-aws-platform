@@ -2,10 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
-## not released -
+## v0.1.5 - 2019-02-11
+#### Added
+* Added a new MLservice modules to install clusters for Graymeta Machine Learning services. Please see [README-MLservices.md](README-MLservices.md)
 
 #### Changed
-* Removed AMI variables from modules `platform`, `network`, `faces`.  If you have `ecs_amis`, `services_amis`, `proxy_amis`, `faces_amis` defined as a variable remove it.
+* In the Network Module we renamed the following variables.
+```
+cidr_subnet_faces_1 => cidr_subnet_mlservices_1
+cidr_subnet_faces_2 => cidr_subnet_mlservices_2
+```
+
+* Faces module has moved.  Please see [README-MLservices.md](README-MLservices.md)
+
+* Removed AMI variables `ecs_amis`, `services_amis`, `proxy_amis`, and `faces_amis` from all modules.  
 
 ---
 ## v0.1.4 - 2019-01-25

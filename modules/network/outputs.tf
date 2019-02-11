@@ -29,18 +29,18 @@ output "elasticsearch_subnet_id_2" {
   value = "${aws_subnet.elasticsearch_2.id}"
 }
 
-output "faces_cidrs" {
+output "mlservices_cidrs" {
   value = [
     "${aws_subnet.faces_1.cidr_block}",
     "${aws_subnet.faces_2.cidr_block}",
   ]
 }
 
-output "faces_subnet_id_1" {
+output "mlservices_subnet_id_1" {
   value = "${aws_subnet.faces_1.id}"
 }
 
-output "faces_subnet_id_2" {
+output "mlservices_subnet_id_2" {
   value = "${aws_subnet.faces_2.id}"
 }
 

@@ -325,6 +325,12 @@ variable "notifications_region" {
   default     = ""
 }
 
+variable "mlservices_endpoint" {
+  type        = "string"
+  description = "The dns_name of the ML Services loadbalancer."
+  default     = ""
+}
+
 variable "oauthconnect_encryption_key" {
   type        = "string"
   description = "32 Character string used in oauth authentication.  Set this to blank if specified in the crypt blob."
@@ -470,4 +476,3 @@ variable "usage_s3_bucket_arn" {
   type        = "string"
   description = "The ARN of the s3 bucket to store usage reports"
 }
-

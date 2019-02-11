@@ -120,6 +120,7 @@ module "services" {
   log_retention                     = "${var.log_retention}"
   max_cluster_size                  = "${var.services_max_cluster_size}"
   min_cluster_size                  = "${var.services_min_cluster_size}"
+  mlservices_endpoint               = "${var.mlservices_endpoint}"
   notifications_from_addr           = "${var.notifications_from_addr}"
   notifications_region              = "${coalesce(var.notifications_region, var.region)}"
   oauthconnect_encryption_key       = "${var.oauthconnect_encryption_key}"
