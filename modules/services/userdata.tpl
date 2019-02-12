@@ -44,11 +44,14 @@ write_files:
         box_com_secret_key=${box_com_secret_key}
         dropbox_app_key=${dropbox_app_key}
         dropbox_app_secret=${dropbox_app_secret}
+        external_data_api=https://${dns_name}/api/data
+        external_file_api=https://${dns_name}/files
+        external_scheduler_api=https://${dns_name}/api/scheduler
+        external_usage_api=https://${dns_name}/api/usage
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
         gm_container_image=graymeta/harvester
-        gm_data_api=https://${dns_name}/api/data
         gm_db_host=${db_endpoint}
         gm_db_name=graymeta
         gm_db_password=${db_password}
@@ -68,7 +71,6 @@ write_files:
         gm_env=${gm_env}
         gm_faces_recog_api_addr=http://${faces_endpoint}
         gm_fileapi_stow_kind=s3
-        gm_files_api=https://${dns_name}/files
         gm_front_end_client_secret=${client_secret_fe}
         gm_harvest_complete_stow_fields=${harvest_complete_stow_fields}
         gm_harvest_polling_time=${harvest_polling_time}
@@ -85,7 +87,6 @@ write_files:
         gm_roles_key_prefix="roles:"
         gm_user_key_prefix="user:"
         gm_user_apikey_prefix="apikey:"
-        gm_scheduler_api=https://${dns_name}/api/scheduler
         gm_sqs_activity=${sqs_activity}
         gm_sqs_index=${sqs_index}
         gm_sqs_itemcleanup=${sqs_itemcleanup}
@@ -93,7 +94,6 @@ write_files:
         gm_sqs_stage=${sqs_stage}
         gm_sqs_walk=${sqs_walk}
         gm_threshold_to_harvest=${gm_threshold_to_harvest}
-        gm_usage_api=https://${dns_name}/api/usage
         gm_usage_prefix=${gm_usage_prefix}
         gm_usageapi_stow_kind=s3
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
