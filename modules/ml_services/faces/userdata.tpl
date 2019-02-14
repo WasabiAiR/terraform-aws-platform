@@ -81,6 +81,7 @@ write_files:
             -e "GMFACES_TFS_HOST=172.17.0.1" \
             -e "GMFACES_TFS_PORT=${tfs_port}" \
             -e "GMFACES_LOG_LEVEL=INFO" \
+            -e "CELEB_DATASET=/data/msceleb/" \
             -p ${api_port}:10336 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
