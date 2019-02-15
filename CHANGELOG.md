@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.6 - 2019-02-15
+#### Added
+* Added AWS Comprehend to IAM Policy.
+
+#### Changed
+* Platform AMI update to version 2.0.3045.  Contact GrayMeta for more details
+
+---
 ## v0.1.5 - 2019-02-11
 #### Added
 * Added a new MLservice modules to install clusters for Graymeta Machine Learning services. Please see [README-MLservices.md](README-MLservices.md)
@@ -16,6 +24,8 @@ cidr_subnet_faces_2 => cidr_subnet_mlservices_2
 * Faces module has moved.  Please see [README-MLservices.md](README-MLservices.md)
 
 * Removed AMI variables `ecs_amis`, `services_amis`, `proxy_amis`, and `faces_amis` from all modules.  
+
+* Platform AMI update to version 2.0.3008.  Contact GrayMeta for more details
 
 ---
 ## v0.1.4 - 2019-01-25
