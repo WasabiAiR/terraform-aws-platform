@@ -61,7 +61,7 @@ resource "aws_lb_target_group" "port7000" {
   vpc_id      = "${data.aws_subnet.subnet_1.vpc_id}"
 
   health_check {
-    path                = "/"
+    path                = "/healthz"
     interval            = 30
     timeout             = 5
     protocol            = "HTTP"
