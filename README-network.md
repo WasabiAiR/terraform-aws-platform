@@ -33,7 +33,7 @@ module "network" {
   cidr_subnet_elasticsearch_1 = "${cidrsubnet(local.cidr_vpc, 8, 16)}"
   cidr_subnet_elasticsearch_2 = "${cidrsubnet(local.cidr_vpc, 8, 17)}"
   cidr_subnet_mlservices_1    = "${cidrsubnet(local.cidr_vpc, 8, 18)}"
-  cidr_subnet_mlservices_1    = "${cidrsubnet(local.cidr_vpc, 8, 19)}"
+  cidr_subnet_mlservices_2    = "${cidrsubnet(local.cidr_vpc, 8, 19)}"
   cidr_subnet_proxy_1         = "${cidrsubnet(local.cidr_vpc, 8, 20)}"
   cidr_subnet_proxy_2         = "${cidrsubnet(local.cidr_vpc, 8, 21)}"
   cidr_subnet_public_1        = "${cidrsubnet(local.cidr_vpc, 8, 0)}"
