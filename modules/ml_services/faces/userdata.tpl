@@ -75,12 +75,12 @@ write_files:
         ExecStart=/usr/bin/docker run \
             --net bridge \
             -m 0b \
-            -e "GMFACES_DATA_HOST=172.17.0.1" \
-            -e "GMFACES_DATA_PORT=${data_port}" \
-            -e "GMFACES_DATA_VERSION=${dataversion}" \
-            -e "GMFACES_TFS_HOST=172.17.0.1" \
-            -e "GMFACES_TFS_PORT=${tfs_port}" \
-            -e "GMFACES_LOG_LEVEL=INFO" \
+            -e "DATA_HOST=172.17.0.1" \
+            -e "DATA_PORT=${data_port}" \
+            -e "DATA_VERSION=${dataversion}" \
+            -e "TFS_HOST=172.17.0.1" \
+            -e "TFS_PORT=${tfs_port}" \
+            -e "LOG_LEVEL=INFO" \
             -e "CELEB_DATASET=/data/msceleb/" \
             -p ${api_port}:10336 \
             --log-driver=awslogs \
