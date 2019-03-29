@@ -26,6 +26,7 @@ variable "encrypted_config_blob" {}
 variable "encryption_key" {}
 variable "faces_endpoint" {}
 variable "file_storage_s3_bucket_arn" {}
+variable "gm_es_bulk_workers" {}
 variable "gm_jwt_expiration_time" {}
 variable "gm_license_key" {}
 variable "gm_threshold_to_harvest" {}
