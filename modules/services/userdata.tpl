@@ -3,7 +3,7 @@ package_upgrade: false
 runcmd:
 - echo "export HTTP_PROXY=http://${proxy_endpoint}/" >> /etc/profile.d/proxy.sh
 - echo "export HTTPS_PROXY=http://${proxy_endpoint}/" >> /etc/profile.d/proxy.sh
-- echo "export NO_PROXY=169.254.169.254,localhost,127.0.0.1,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${mlservices_endpoint}" >> /etc/profile.d/proxy.sh
+- echo "export NO_PROXY=169.254.169.254,localhost,127.0.0.1,s3.${region}.amazonaws.com,*.s3.${region}.amazonaws.com,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${mlservices_endpoint}" >> /etc/profile.d/proxy.sh
 - source /etc/profile.d/proxy.sh
 - echo "proxy=http://${proxy_endpoint}" >> /etc/yum.conf
 - sed -i 's/^metalink=/#metalink=/g' /etc/yum.repos.d/*
@@ -116,7 +116,7 @@ write_files:
         walkd_item_batch_size=${walkd_item_batch_size}
         http_proxy=http://${proxy_endpoint}/
         https_proxy=http://${proxy_endpoint}/
-        no_proxy=localhost,127.0.0.1,169.254.169.254,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${mlservices_endpoint}
+        no_proxy=localhost,127.0.0.1,169.254.169.254,s3.${region}.amazonaws.com,*.s3.${region}.amazonaws.com,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${mlservices_endpoint}
         harvest_http_proxy=http://${proxy_endpoint}/
         harvest_https_proxy=http://${proxy_endpoint}/
         harvest_no_proxy=169.254.169.254,169.254.170.2,/var/run/docker.sock,${mlservices_endpoint}
