@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.7 - 2019-03-29
+#### Added
+* Added a Celeb model to faces cluster.
+
+#### Changed
+* Bypass the webproxy for s3 buckets in the same region as platform.
+* Rename docker environment variables in faces cluster.
+* Updated the default number of ES workers in the data_api.
+* Changed the ELB health check endpoint.
+* Platform AMI update to version 2.0.3280.  Contact GrayMeta for more details
+
+---
 ## v0.1.6 - 2019-02-15
 #### Added
 * Added AWS Comprehend to IAM Policy.
