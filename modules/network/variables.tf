@@ -205,6 +205,7 @@ variable "safelist" {
     ".amazonaws.com",
     ".box.com",
     ".boxcloud.com",
+    ".curio.app",
     ".cognitive.microsoft.com",
     ".core.windows.net",
     ".darksky.net",
