@@ -44,9 +44,10 @@ resource "aws_vpc_endpoint" "proxy_s3" {
   vpc_id            = "${aws_vpc.main.id}"
   vpc_endpoint_type = "Gateway"
   service_name      = "com.amazonaws.${var.region}.s3"
-  route_table_ids   = [
-    "${aws_route_table.az1.id}", 
+
+  route_table_ids = [
+    "${aws_route_table.az1.id}",
     "${aws_route_table.az2.id}",
-    "${aws_default_route_table.default.id}"
+    "${aws_default_route_table.default.id}",
   ]
 }
