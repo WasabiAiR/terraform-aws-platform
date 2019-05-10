@@ -16,11 +16,11 @@ variable "mlservices_amis" {
   description = "map of region to ami for mlservices nodes"
 
   default = {
-    "ap-southeast-2" = "ami-0e51cc1966172479d"
-    "eu-west-1"      = "ami-084d0985f89e6862c"
-    "us-east-1"      = "ami-071ea359d44d8f468"
-    "us-east-2"      = "ami-0944e09ba7cddbc98"
-    "us-west-2"      = "ami-0ff3c229e32f868c9"
+    "ap-southeast-2" = "ami-08ecd49f86630aa20"
+    "eu-west-1"      = "ami-094b185c45d7bb962"
+    "us-east-1"      = "ami-0737b3d77d84a3278"
+    "us-east-2"      = "ami-0ba4340bf72620184"
+    "us-west-2"      = "ami-07e6565fa0ddc84c4"
   }
 }
 
