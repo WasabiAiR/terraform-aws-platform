@@ -78,7 +78,7 @@ write_files:
             -e "DATA_HOST=172.17.0.1" \
             -e "DATA_PORT=${data_port}" \
             -e "DATA_VERSION=${dataversion}" \
-            -e "FLASK_API_PORT=${api_port}" \
+            -e "FLASK_API_PORT=10336" \
             -e "TFS_HOST=172.17.0.1" \
             -e "TFS_PORT=${tfs_port}" \
             -e "LOG_LEVEL=INFO" \
