@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 #### Added
 * Curio license server to proxy safe list
 * Flask port to the faces environment variables
+* Tensorflow container to NLD service
 
 #### Changed
 * Platform AMI update to version 2.0.3449.  Contact GrayMeta for more details
