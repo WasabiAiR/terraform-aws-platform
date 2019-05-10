@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.8 - 2019-05-10
+#### Added
+* Curio license server to proxy safe list
+* Flask port to the faces environment variables
+
+#### Changed
+* Platform AMI update to version 2.0.3449.  Contact GrayMeta for more details
+
+---
 ## v0.1.7 - 2019-03-29
 #### Added
 * Added a Celeb model to faces cluster.

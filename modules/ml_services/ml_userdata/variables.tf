@@ -1,4 +1,3 @@
-
 variable "api_port" {}
 variable "log_group" {}
 variable "proxy_endpoint" {}
