@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 * Tensorflow container to NLD service
 
 #### Changed
-* Platform AMI update to version 2.0.3449.  Contact GrayMeta for more details
+* Platform AMI update to version 2.0.3464.  Contact GrayMeta for more details
 
 ---
 ## v0.1.7 - 2019-03-29
