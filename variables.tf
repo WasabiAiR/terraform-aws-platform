@@ -262,6 +262,18 @@ variable "file_storage_s3_bucket_arn" {
   description = "The ARN of the s3 bucket to store thumbnails, video previews, and metadata files"
 }
 
+variable "gm_celeb_detection_enabled" {
+  type        = "string"
+  description = "Whether or not celeb detection is enabled"
+  default     = "false"
+}
+
+variable "gm_celeb_detection_interval" {
+  type        = "string"
+  description = "Celeb detection interval. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
+  default     = "5m"
+}
+
 variable "gm_es_bulk_workers" {
   type        = "string"
   description = "The number of ES bulk workers.  Not recommened to change unless you talk to GrayMeta support.  Default: 2"

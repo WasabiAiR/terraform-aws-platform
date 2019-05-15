@@ -142,6 +142,8 @@ data "template_file" "userdata" {
     file_storage_s3_bucket_arn     = "${var.file_storage_s3_bucket_arn}"
     from_addr                      = "${var.notifications_from_addr}"
     from_region                    = "${var.notifications_region}"
+    gm_celeb_detection_enabled     = "${var.gm_celeb_detection_enabled}"
+    gm_celeb_detection_interval    = "${var.gm_celeb_detection_interval}"
     gm_env                         = "${var.customer}-${var.platform_instance_id}"
     gm_es_bulk_workers             = "${var.gm_es_bulk_workers}"
     gm_jwt_expiration_time         = "${var.gm_jwt_expiration_time}"
