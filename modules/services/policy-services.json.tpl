@@ -2,18 +2,19 @@
     "Statement": [
         {
             "Action": [
-                "s3:ListAllMyBuckets",
-                "s3:GetBucketLocation",
-                "logs:CreateLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents",
-                "ecs:DescribeClusters",
-                "ecs:RunTask",
-                "ecs:RegisterTaskDefinition",
                 "autoscaling:DescribeAutoScalingGroups",
                 "autoscaling:DescribeAutoScalingInstances",
-                "autoscaling:SetInstanceProtection"
+                "autoscaling:SetInstanceProtection",
+                "ecs:DescribeClusters",
+                "ecs:RegisterTaskDefinition",
+                "ecs:RunTask",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:PutLogEvents",
+                "rekognition:RecognizeCelebrities",
+                "s3:GetBucketLocation",
+                "s3:ListAllMyBuckets"
             ],
             "Effect": "Allow",
             "Resource": [

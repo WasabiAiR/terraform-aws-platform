@@ -50,6 +50,9 @@ write_files:
         external_usage_api=https://${dns_name}/api/usage
         gm_auth_api_redis_key_prefix="authapi:"
         gm_base_url=https://${dns_name}
+        gm_celeb_detection_aws_region=${region}
+        gm_celeb_detection_enabled=${gm_celeb_detection_enabled}
+        gm_celeb_detection_interval=${gm_celeb_detection_interval}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
         gm_container_image=graymeta/harvester
         gm_db_host=${db_endpoint}
