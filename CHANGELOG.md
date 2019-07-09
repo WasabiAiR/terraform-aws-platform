@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.10 - 2019-07-08
+
+#### Changed
+* Platform AMI update to version 2.0.3636.  Contact GrayMeta for more details
+* The Credits extractor has been updated to use the Technical Cues API.
+
 ## v0.1.9 - 2019-05-31
 #### Changed
 * Platform AMI update to version 2.0.3533.  Contact GrayMeta for more details
