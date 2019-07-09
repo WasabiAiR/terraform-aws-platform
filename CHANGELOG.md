@@ -3,11 +3,25 @@
 All notable changes to this project will be documented in this file.
 
 ## v0.1.10 - 2019-07-08
+#### Added
+* AWS Celeb
+  * gm_celeb_detection_enabled - Whether or not celeb detection is enabled
+  * gm_celeb_detection_interval - Celeb detection interval. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)
+```
+module "platform" {
+  ...
+  # (Optional) AWS Celeberty detection
+  gm_celeb_detection_enabled  = true
+  gm_celeb_detection_interval = "5m"
+  ...
+}
+```
 
 #### Changed
-* Platform AMI update to version 2.0.3636.  Contact GrayMeta for more details
 * The Credits extractor has been updated to use the Technical Cues API.
+* Platform AMI update to version 2.0.3636.  Contact GrayMeta for more details
 
+---
 ## v0.1.9 - 2019-05-31
 #### Changed
 * Platform AMI update to version 2.0.3533.  Contact GrayMeta for more details
