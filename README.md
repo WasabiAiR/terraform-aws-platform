@@ -190,6 +190,10 @@ module "platform" {
 
   # (Optional) Graymeta Faces Extractor
   faces_endpoint = ""
+
+  # (Optional) AWS Celeberty detection
+  gm_celeb_detection_enabled  = false
+  gm_celeb_detection_interval = "5m"
 }
 
 output "GrayMetaPlatformEndpoint" {

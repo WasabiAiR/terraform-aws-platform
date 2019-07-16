@@ -1,7 +1,7 @@
 locals {
-  api_name = "credits"
-  api_port = "10301"
-  tfs_port = "11301"
+  api_name = "tcues"
+  api_port = "10307"
+  tfs_port = "11307"
 }
 
 module "ml_init" {
