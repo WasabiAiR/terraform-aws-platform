@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+## NOT RELEASED - 
+**We have a database type change for ML Faces service.  If you are upgrading you will have to following the instructions in `ML Face RDS Migration` section**
+
+#### ML Face RDS Migration
+Changing ML Faces database to use Aurora RDS with a scaling read replicas configured.  
+* The following variables have been removed from the module.
+  * rds_allocated_storage
+  * rds_multi_az
+* Also for the instance size the default change to db.r4.2xlarge.
+  * supported instance types [DBInstanceClass](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html)
+* Process to migrate.
+  1. Before upgrading to the latest version you must first destory the module faces
+      * Run `terraform destroy -target module.faces`
+  1. On the Destroy AWS will create a final snapshot of the RDS database.  For migrating to Aurora we need to look up that snapshot ARN.
+      * In the AWS Console go to RDS -> Snapshots -> Look for a snapshot with the name format of `GrayMetaPlatform-<platform_instance_id>-faces-final` We will need the full arn in the next step.
+  1. In the `module.faces` place the ARN that was looked up in the previous step in the `rds_snapshot` variable.
+      ```
+        module "faces" {
+          ...
+          rds_snapshot = "arn:aws:rds:us-west-2:1111111111:snapshot:graymetaplatform-testsys-faces-final"
+          ...
+        }
+      ```
+  1. Additional Optional Options for `module.faces`
+      * rds_asg_target_cpu - Target CPU for the ASG group.  Default: 80
+      * rds_asg_max_capacity - ASG Maximum number of read replicas.  Default: 15, Min: 1, Max: 15
+  1. Upgrade the `module.faces` source to v0.1.10 or higher and do a `terraform apply`
+  1. After the upgrade is complete don't forget to change the `rds_snapshot` variable back to `final`
+        ```
+        module "faces" {
+          ...
+          rds_snapshot = "final"
+          ...
+        }
+      ```
+
+---
 ## v0.1.9 - 2019-05-31
 #### Changed
 * Platform AMI update to version 2.0.3533.  Contact GrayMeta for more details

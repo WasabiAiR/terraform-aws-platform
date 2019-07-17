@@ -43,6 +43,7 @@ write_files:
             --net bridge \
             -m 0b \
             -e "GMFACES_DBCFG_HOST=${postgresendpoint}" \
+            -e "GMFACES_DBCFG_READHOST=${postgresrendpoint}" \
             -e "GMFACES_DBCFG_PORT=${postgresport}" \
             -e "GMFACES_DBCFG_DBUSER=${postgresuser}" \
             -e "GMFACES_DBCFG_PASSWORD=${postgrespass}" \
