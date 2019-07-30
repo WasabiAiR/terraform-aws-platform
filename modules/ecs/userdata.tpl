@@ -13,6 +13,9 @@ runcmd:
 - echo "env HTTPS_PROXY=${proxy_endpoint}" >> /etc/init/ecs.override
 - echo "env NO_PROXY=169.254.169.254,169.254.170.2,/var/run/docker.sock" >> /etc/init/ecs.override
 - echo ECS_CLUSTER=${ecs_cluster} >> /etc/ecs/ecs.config
+- yum install chrony -y
+- systemctl enable chronyd
+- systemctl start chronyd
 - mkdir /data
 - usermod -a -G docker graymeta
 - systemctl daemon-reload
@@ -20,6 +23,13 @@ runcmd:
 - systemctl enable gm-termprotector
 - systemctl restart gm-termprotector
 write_files:
+-   content: |
+        server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
+        driftfile /var/lib/chrony/drift
+        makestep 1.0 3
+        rtcsync
+        logdir /var/log/chrony
+    path: /etc/chrony.conf
 -   content: |
         AWS_REGION=${region}
         http_proxy=http://${proxy_endpoint}/

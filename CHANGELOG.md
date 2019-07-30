@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.1.10 - 2019-07-30
+#### Added
+* Added a chronyd to the userdata
+
+---
 ## v0.1.9 - 2019-05-31
 #### Changed
 * Platform AMI update to version 2.0.3533.  Contact GrayMeta for more details
