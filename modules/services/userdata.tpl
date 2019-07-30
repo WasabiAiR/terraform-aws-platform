@@ -17,6 +17,9 @@ runcmd:
 - pvresize /dev/nvme0n1p2
 - lvextend -l +100%FREE /dev/mapper/centos-root
 - xfs_growfs /dev/mapper/centos-root
+- yum install chrony -y
+- systemctl enable chronyd
+- systemctl start chronyd
 - sed -i 's/^log_group_name = .*/log_group_name = ${services_log_group}/' /var/awslogs/etc/awslogs.conf
 - systemctl restart awslogs
 - sed 's/^export //g' < /etc/profile.d/proxy.sh  >> /etc/graymeta/metafarm.env
@@ -32,6 +35,13 @@ runcmd:
 - echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
 - sysctl -p
 write_files:
+-   content: |
+        server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
+        driftfile /var/lib/chrony/drift
+        makestep 1.0 3
+        rtcsync
+        logdir /var/log/chrony
+    path: /etc/chrony.conf
 -   content: |
         AWS_REGION=${region}
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
@@ -137,4 +147,3 @@ write_files:
         HTTPS_PROXY=https://${proxy_endpoint}
         NO_PROXY=169.254.169.254
     path: /var/awslogs/etc/proxy.conf
-
