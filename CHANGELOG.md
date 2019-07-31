@@ -50,6 +50,12 @@ output "credits_endpoint" {
 
 #### Changed
 * Platform AMI update to version 2.0.xxxx.  Contact GrayMeta for more details
+ 
+---
+## v0.1.10 - 2019-07-30
+#### Added
+* Added a chronyd to the userdata
+
 
 ---
 ## v0.1.9 - 2019-05-31
