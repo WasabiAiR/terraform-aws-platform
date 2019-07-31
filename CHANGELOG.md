@@ -37,6 +37,10 @@ Changing ML Faces database to use Aurora RDS with a scaling read replicas config
           ...
         }
       ```
+---
+## v0.1.10 - 2019-07-30
+#### Added
+* Added a chronyd to the userdata
 
 ---
 ## v0.1.9 - 2019-05-31

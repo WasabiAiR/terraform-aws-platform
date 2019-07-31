@@ -16,6 +16,9 @@ runcmd:
 - pvresize /dev/nvme0n1p2
 - lvextend -l +100%FREE /dev/mapper/centos-root
 - xfs_growfs /dev/mapper/centos-root
+- yum install chrony -y
+- systemctl enable chronyd
+- systemctl start chronyd
 - systemctl daemon-reload
 - systemctl restart docker
 - systemctl enable docker-${service_name}-data.service
@@ -25,6 +28,13 @@ runcmd:
 - systemctl enable docker-${service_name}-tfs.service
 - systemctl restart docker-${service_name}-tfs.service
 write_files:
+-   content: |
+        server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
+        driftfile /var/lib/chrony/drift
+        makestep 1.0 3
+        rtcsync
+        logdir /var/log/chrony
+    path: /etc/chrony.conf
 -   content: |
         [Unit]
         Description=Daemon for ${service_name}-data
