@@ -216,6 +216,7 @@ variable "safelist" {
     ".graymeta.com",
     ".kairos.com",
     ".logograb.com",
+    ".speech.microsoft.com",
     ".picpurify.com",
     ".platform.bing.com",
     ".speechmatics.com",
