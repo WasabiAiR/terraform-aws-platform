@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## NOT RELEASED - 
-**We have a database type change for ML Faces service.  If you are upgrading you will have to following the instructions in `ML Face RDS Migration` section**
+**We have a database type change for ML Faces service in this release.  If you are upgrading you will have to follow the instructions in `ML Face RDS Migration` section below**
 
 #### ML Face RDS Migration
 Changing ML Faces database to use Aurora RDS with a scaling read replicas configured.  
@@ -13,11 +13,11 @@ Changing ML Faces database to use Aurora RDS with a scaling read replicas config
 * Also for the instance size the default change to db.r4.2xlarge.
   * supported instance types [DBInstanceClass](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html)
 * Process to migrate.
-  1. Before upgrading to the latest version you must first destory the module faces
+  1. Before upgrading to the latest version you must first destory the faces module.
       * Run `terraform destroy -target module.faces`
   1. On the Destroy AWS will create a final snapshot of the RDS database.  For migrating to Aurora we need to look up that snapshot ARN.
       * In the AWS Console go to RDS -> Snapshots -> Look for a snapshot with the name format of `GrayMetaPlatform-<platform_instance_id>-faces-final` We will need the full arn in the next step.
-  1. In the `module.faces` place the ARN that was looked up in the previous step in the `rds_snapshot` variable.
+  1. In the `module.faces` place the ARN found on the previous step in the `rds_snapshot` variable.
       ```
         module "faces" {
           ...
