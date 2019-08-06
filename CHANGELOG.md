@@ -2,9 +2,60 @@
 
 All notable changes to this project will be documented in this file.
 
+## NOT RELEASED - 2019-07-16
+#### Added
+* AWS Celeb
+  * gm_celeb_detection_enabled - Whether or not celeb detection is enabled
+  * gm_celeb_detection_interval - Celeb detection interval. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)
+```
+module "platform" {
+  ...
+  # (Optional) AWS Celeberty detection
+  gm_celeb_detection_enabled  = true
+  gm_celeb_detection_interval = "5m"
+  ...
+}
+```
+  
+* Added ML Technical Cues extractor.  This new api will be replacing credits extractor cluster.
+```
+# tcues - (Optional) Technical Cues extractor.
+module "tcues" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/tcues?ref=v0.1.10"
+
+  instance_type          = "m5.large"
+  max_cluster_size       = "2"
+  min_cluster_size       = "1"
+  ml_loadbalancer_output = "${module.ml_network.ml_loadbalancer_output}"
+  services_ecs_cidrs     = ["${module.network.ecs_cidrs}", "${module.network.services_cidrs}"]
+}
+
+output "tcues_endpoint" {
+  value = "${module.tcues.endpoint}"
+}
+```
+
+#### Removed
+* The credits extractor cluster has been removed.  The credits extractor endpoint should now use the Technical Cues API (tcues).  Remove if you have this module defined.
+```
+# credits - (Optional) Credits extractor
+module "credits" {
+  ...
+}
+
+output "credits_endpoint" {
+  ...
+}
+```
+
+#### Changed
+* Platform AMI update to version 2.0.xxxx.  Contact GrayMeta for more details
+ 
+---
 ## v0.1.10 - 2019-07-30
 #### Added
 * Added a chronyd to the userdata
+
 
 ---
 ## v0.1.9 - 2019-05-31
