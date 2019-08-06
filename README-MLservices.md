@@ -35,20 +35,6 @@ output "audio_endpoint" {
   value = "${module.audio.endpoint}"
 }
 
-# credits - (Optional) Credits extractor
-module "credits" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/credits?ref=v0.1.10"
-
-  instance_type          = "m5.large"
-  max_cluster_size       = "2"
-  min_cluster_size       = "1"
-  ml_loadbalancer_output = "${module.ml_network.ml_loadbalancer_output}"
-  services_ecs_cidrs     = ["${module.network.ecs_cidrs}", "${module.network.services_cidrs}"]
-}
-
-output "credits_endpoint" {
-  value = "${module.credits.endpoint}"
-}
 
 # faces - (Optional) GrayMeta Facial Recognition extractor.  The endpoint is configured in platform module.
 # Please set `rds_snapshot = "final"` after your initial deployment.
@@ -115,6 +101,21 @@ module "slates" {
 
 output "slates_endpoint" {
   value = "${module.slates.endpoint}"
+}
+
+# tcues - (Optional) Technical Cues extractor.
+module "tcues" {
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/tcues?ref=v0.1.9"
+
+  instance_type          = "m5.large"
+  max_cluster_size       = "2"
+  min_cluster_size       = "1"
+  ml_loadbalancer_output = "${module.ml_network.ml_loadbalancer_output}"
+  services_ecs_cidrs     = ["${module.network.ecs_cidrs}", "${module.network.services_cidrs}"]
+}
+
+output "tcues_endpoint" {
+  value = "${module.tcues.endpoint}"
 }
 
 # vssoccer - (Optional) Graymeta Visual Sports Soccer extractor
