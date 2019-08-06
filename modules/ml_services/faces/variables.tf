@@ -23,10 +23,28 @@ variable "platform_instance_id" {
   description = "A human-readable string for this instance of the GrayMeta Platform"
 }
 
-variable "rds_allocated_storage" {
+variable "rds_asg_target_cpu" {
   type        = "string"
-  description = "Number of GB to allocate for RDS faces instance"
-  default     = "100"
+  description = "RDS ASG target CPU"
+  default     = "80"
+}
+
+variable "rds_asg_scalein_cooldown" {
+  type        = "string"
+  description = "RDS ASG Scale In cooldown"
+  default     = "300"
+}
+
+variable "rds_asg_scaleout_cooldown" {
+  type        = "string"
+  description = "RDS ASG Scale Out cooldown"
+  default     = "300"
+}
+
+variable "rds_asg_max_capacity" {
+  type        = "string"
+  description = "RDS max number of read nodes"
+  default     = "15"
 }
 
 variable "rds_backup_retention" {
@@ -44,7 +62,7 @@ variable "rds_backup_window" {
 variable "rds_db_instance_size" {
   type        = "string"
   description = "The size of the instance to use for the RDS database instance"
-  default     = "db.t2.small"
+  default     = "db.r4.2xlarge"
 }
 
 variable "rds_db_password" {
@@ -55,12 +73,6 @@ variable "rds_db_password" {
 variable "rds_db_username" {
   type        = "string"
   description = "username for postgresql database"
-}
-
-variable "rds_multi_az" {
-  type        = "string"
-  description = "Multizone setting in RDS.  Default is true"
-  default     = true
 }
 
 variable "rds_snapshot" {

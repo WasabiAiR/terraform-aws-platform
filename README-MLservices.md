@@ -48,13 +48,11 @@ module "faces" {
   services_ecs_cidrs     = ["${module.network.ecs_cidrs}", "${module.network.services_cidrs}"]
 
   # RDS Information
-  rds_allocated_storage = "100"
-  rds_backup_retention  = "0"
+  rds_backup_retention  = "14"
   rds_backup_window     = "03:00-04:00"
-  rds_db_instance_size  = "db.m4.xlarge"
+  rds_db_instance_size  = "db.r4.2xlarge"
   rds_db_password       = "mydbpassword"
   rds_db_username       = "mydbuser"
-  rds_multi_az          = false
   rds_snapshot          = "" # Set to "final" after the initial deployment
   rds_subnet_id_1       = "${module.network.rds_subnet_id_1}"
   rds_subnet_id_2       = "${module.network.rds_subnet_id_2}"
