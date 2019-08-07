@@ -85,7 +85,7 @@ output "credits_endpoint" {
 ```
 
 #### Changed
-* Changed the platform gm_es_bulk_size default from -1 to 100000000
+* Changed the platform gm_es_bulk_size default from -1 to 20000000
 * Platform AMI update to version 2.0.3712.  Contact GrayMeta for more details
  
 

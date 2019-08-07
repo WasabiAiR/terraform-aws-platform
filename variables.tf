@@ -277,7 +277,7 @@ variable "gm_celeb_detection_interval" {
 variable "gm_es_bulk_size" {
   type        = "string"
   description = "The max size for bulk http requests.  Not recommened to change unless you talk to GrayMeta support.  Default: 100000000"
-  default     = "100000000"
+  default     = "20000000"
 }
 
 variable "gm_es_bulk_workers" {
