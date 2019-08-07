@@ -82,6 +82,7 @@ write_files:
         gm_encryption_key=${encryption_key}
         gm_enforce_default_password=false
         gm_env=${gm_env}
+        gm_es_bulk_size=${gm_es_bulk_size}
         gm_es_bulk_workers=${gm_es_bulk_workers}
         gm_faces_recog_api_addr=http://${faces_endpoint}
         gm_fileapi_stow_kind=s3
