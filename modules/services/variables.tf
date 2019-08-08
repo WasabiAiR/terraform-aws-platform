@@ -28,6 +28,7 @@ variable "faces_endpoint" {}
 variable "file_storage_s3_bucket_arn" {}
 variable "gm_celeb_detection_enabled" {}
 variable "gm_celeb_detection_interval" {}
+variable "gm_es_bulk_size" {}
 variable "gm_es_bulk_workers" {}
 variable "gm_jwt_expiration_time" {}
 variable "gm_license_key" {}

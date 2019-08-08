@@ -145,6 +145,7 @@ data "template_file" "userdata" {
     gm_celeb_detection_enabled     = "${var.gm_celeb_detection_enabled}"
     gm_celeb_detection_interval    = "${var.gm_celeb_detection_interval}"
     gm_env                         = "${var.customer}-${var.platform_instance_id}"
+    gm_es_bulk_size                = "${var.gm_es_bulk_size}"
     gm_es_bulk_workers             = "${var.gm_es_bulk_workers}"
     gm_jwt_expiration_time         = "${var.gm_jwt_expiration_time}"
     gm_license_key                 = "${var.gm_license_key}"

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## NOT RELEASED - 
+## v0.1.11 - 2019-08-07
 **We have a database type change for ML Faces service in this release.  If you are upgrading you will have to follow the instructions in `ML Face RDS Migration` section below**
 
 #### ML Face RDS Migration
@@ -41,8 +41,8 @@ Changing ML Faces database to use Aurora RDS with a scaling read replicas config
 
 #### Added
 * AWS Celeb
-  * gm_celeb_detection_enabled - Whether or not celeb detection is enabled
-  * gm_celeb_detection_interval - Celeb detection interval. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)
+  * gm_celeb_detection_enabled - Whether or not celeb detection is enabled.  Default: false
+  * gm_celeb_detection_interval - Celeb detection interval. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration).  Default: 5m
 ```
 module "platform" {
   ...
@@ -85,7 +85,8 @@ output "credits_endpoint" {
 ```
 
 #### Changed
-* Platform AMI update to version 2.0.xxxx.  Contact GrayMeta for more details
+* Changed the platform gm_es_bulk_size default from -1 to 20000000
+* Platform AMI update to version 2.0.3712.  Contact GrayMeta for more details
  
 
 ---
