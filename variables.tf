@@ -274,6 +274,18 @@ variable "gm_celeb_detection_interval" {
   default     = "5m"
 }
 
+variable "gm_celeb_detection_min_confidence" {
+  type        = "string"
+  description = "Celeb detection min confidence. Recommended for gmceleb is 0.5, awsrekog is 90  Default: 0.5"
+  default     = "0.5"
+}
+
+variable "gm_celeb_detection_provider" {
+  type        = "string"
+  description = "Celeb detection provider. Valid values are gmceleb, awsrekog.  Default: gmceleb"
+  default     = "gmceleb"
+}
+
 variable "gm_es_bulk_size" {
   type        = "string"
   description = "The max size for bulk http requests.  Not recommened to change unless you talk to GrayMeta support.  Default: 100000000"
