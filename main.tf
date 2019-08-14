@@ -1,8 +1,3 @@
-provider "aws" {
-  region  = "${var.region}"
-  version = "~> 1.16"
-}
-
 module "amis" {
   source = "./modules/amis"
 }
