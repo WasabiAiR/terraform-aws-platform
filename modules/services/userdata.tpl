@@ -32,7 +32,6 @@ runcmd:
 - echo "net.ipv4.tcp_fin_timeout = 1" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_intvl = 20" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_probes = 5" >> /etc/sysctl.conf
-- echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
 - sysctl -p
 write_files:
 -   content: |
