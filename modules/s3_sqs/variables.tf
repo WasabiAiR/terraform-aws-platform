@@ -30,10 +30,6 @@ variable "region" {
   description = "AWS region to setup SQS"
 }
 
-provider "aws" {
-  region = "${var.region}"
-}
-
 data "aws_s3_bucket" "bucket" {
   bucket = "${element(split(":", var.bucket_arn), length(split(":", var.bucket_arn)) - 1)}"
 }
