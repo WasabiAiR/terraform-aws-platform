@@ -1,0 +1,9 @@
+variable "key_name" {}
+variable "platform_instance_id" {}
+variable "proxy_endpoint" {}
+variable "statsite_amis" {}
+variable "statsite_instance_type" {}
+variable "statsite_subnet_id_1" {}
+variable "statsite_user_init" {}
+variable "statsite_volume_size" {}
+variable "ssh_cidr_blocks" {}

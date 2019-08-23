@@ -2,7 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## NOT RELEASED
+#### Added
+* Added a Graphite/Statsite server
+  * Added the following variables to network module
+    ```
+    module "network" {
+      ...
+      # Graphite/Statsite server
+      statsite_instance_type = "m4.large"
+      statsite_volume_size   = "100"
+      ...
+    }
+    ```
+  * Added the following variables to platform module
+    ```
+    module "paltform" {
+      ...
+      statsite_ip  = "${module.platform.statsite_ip}"
+      statsite_nsg = "${module.platform.statsite_nsg}"
+      ...
+    }
+    ```  
+  * Added the following variables to ml_network module
+    ```
+    module "ml_network" {
+      ...
+      customer     = "${local.customer}"
+      statsite_ip  = "${module.platform.statsite_ip}"
+      statsite_nsg = "${module.platform.statsite_nsg}"
+      ...
+    }
+    ```
 
+---
 ## v0.1.11 - 2019-08-07
 **We have a database type change for ML Faces service in this release.  If you are upgrading you will have to follow the instructions in `ML Face RDS Migration` section below**
 

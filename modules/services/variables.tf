@@ -93,6 +93,8 @@ variable "sqs_walk" {}
 variable "sqs_walk_arn" {}
 variable "ssh_cidr_blocks" {}
 variable "ssl_certificate_arn" {}
+variable "statsd_host" {}
+variable "statsite_nsg" {}
 variable "subnet_id_1" {}
 variable "subnet_id_2" {}
 variable "temporary_bucket_name" {}

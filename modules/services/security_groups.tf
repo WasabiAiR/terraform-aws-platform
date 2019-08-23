@@ -126,3 +126,32 @@ resource "aws_security_group" "services_alb" {
     PlatformInstanceID = "${var.platform_instance_id}"
   }
 }
+
+# Opens connection to Graphite/statsite
+resource "aws_security_group_rule" "allow_udp_8125" {
+  security_group_id = "${var.statsite_nsg}"
+  description       = "Allow udp/8125"
+  type              = "ingress"
+  from_port         = 8125
+  to_port           = 8125
+  protocol          = "udp"
+
+  cidr_blocks = [
+    "${data.aws_subnet.subnet_1.cidr_block}",
+    "${data.aws_subnet.subnet_2.cidr_block}",
+  ]
+}
+
+resource "aws_security_group_rule" "allow_8080" {
+  security_group_id = "${var.statsite_nsg}"
+  description       = "Allow 8080"
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+
+  cidr_blocks = [
+    "${data.aws_subnet.subnet_1.cidr_block}",
+    "${data.aws_subnet.subnet_2.cidr_block}",
+  ]
+}

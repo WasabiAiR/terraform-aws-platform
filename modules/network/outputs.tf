@@ -86,3 +86,11 @@ output "services_subnet_id_1" {
 output "services_subnet_id_2" {
   value = "${aws_subnet.services_2.id}"
 }
+
+output "statsite_ip" {
+  value = "${module.statsite.statsite_ip}"
+}
+
+output "statsite_nsg" {
+  value = "${module.statsite.statsite_nsg}"
+}

@@ -173,6 +173,7 @@ data "template_file" "userdata" {
     sqs_notifications              = "${var.sqs_s3notifications}"
     sqs_stage                      = "${var.sqs_stage01},${var.sqs_stage02},${var.sqs_stage03},${var.sqs_stage04},${var.sqs_stage05},${var.sqs_stage06},${var.sqs_stage07},${var.sqs_stage08},${var.sqs_stage09},${var.sqs_stage10}"
     sqs_walk                       = "${var.sqs_walk}"
+    statsd_host                    = "${var.statsd_host}"
     temporary_bucket_name          = "${var.temporary_bucket_name}"
     usage_s3_bucket_arn            = "${var.usage_s3_bucket_arn}"
     walkd_item_batch_size          = "${var.walkd_item_batch_size}"

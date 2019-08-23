@@ -197,6 +197,18 @@ variable "ssh_cidr_blocks" {
   description = "Comma delimited list of cidr blocks from which to allow access via SSH"
 }
 
+variable "statsite_instance_type" {
+  type        = "string"
+  description = "The instance type for the statsite/graphite server.  Default: m4.large "
+  default     = "m4.large"
+}
+
+variable "statsite_volume_size" {
+  type        = "string"
+  description = "The root disk size for the statsite/graphite server.  Default: 100"
+  default     = "100"
+}
+
 variable "safelist" {
   type        = "list"
   description = "List of dstdomain to add to the proxy server.  Please talk to Graymeta Support before changing"
