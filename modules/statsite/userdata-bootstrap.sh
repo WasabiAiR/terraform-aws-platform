@@ -1,12 +1,25 @@
 #!/bin/bash
 
+function growdisk {
+  echo "INFO: Growdisk $1"
+  if [[ "$1" =~ ^/dev/nvme ]]; then
+    DISK=`echo $1 | awk -Fp {'print $1'}`
+    PART=`echo $1 | awk -Fp {'print $2'}`
+    growpart $DISK $PART
+  else
+    DISK=`echo $1 | sed 's/.$//'`
+    PART=`echo -n $1 | tail -c 1`
+    growpart $DISK $PART
+  fi
+}
+
+echo "INFO: Setup all the proxy"
 cat <<PROXY > /etc/profile.d/proxy.sh 
 export HTTP_PROXY=http://${proxy_endpoint}/
 export HTTPS_PROXY=http://${proxy_endpoint}/
 export NO_PROXY=169.254.169.254,localhost,127.0.0.1
 PROXY
 source /etc/profile.d/proxy.sh
-
 
 grep -q "proxy=" /etc/yum.conf
 if [ $? -ne 0 ]; then
@@ -18,6 +31,7 @@ sed -i 's/^mirrorlist=/#mirrorlist=/g' /etc/yum.repos.d/*
 sed -i 's/^#baseurl=/baseurl=/g' /etc/yum.repos.d/*
 sed -i 's/download.fedoraproject.org/dl.fedoraproject.org/g' /etc/yum.repos.d/epel*
 
+echo "INFO: Install all needed software"
 yum install -y \
   cloud-utils-growpart \
   chrony \
@@ -27,43 +41,64 @@ yum install -y \
   python-carbon \
   python-whisper
 
+echo "INFO: Enable chronyd" 
 systemctl enable chronyd
 systemctl start chronyd
 
+
 RDEV=`df -P / | awk 'END{print $1}' | tr -d '\n'`
-echo "# Growing Root Parition: $RDEV"
+echo "INFO: Growing Root Parition: $RDEV"
 if [ -z "$RDEV" ]; then
-  echo "ERR: Unable to find Root Device"
+  echo "ERROR: Unable to find Root Device"
+  exit 1
 else
   if [[ "$RDEV" =~ ^/dev/mapper ]]; then
     LDEV=$(pvs -o pv_name --noheadings -S lv_dm_path=$RDEV | awk {'print $1'})
-    DISK=`echo $LDEV | sed 's/.$//'`
-    PART=`echo -n $LDEV | tail -c 1`
-    growpart $DISK $PART
+    growdisk $LDEV
     pvresize $LDEV
     lvextend -l 100%FREE $RDEV
-    xfs_growfs $RDEV
-  elif [[ "$RDEV" =~ ^/dev/nvme ]]; then
-    DISK=`echo $RDEV | awk -Fp {'print $1'}`
-    PART=`echo $RDEV | awk -Fp {'print $2'}`
-    growpart $DISK $PART
-    xfs_growfs $RDEV
   else
-    DISK=`echo $RDEV | sed 's/.$//'`
-    PART=`echo -n $RDEV | tail -c 1`
-    growpart $DISK $PART
-    xfs_growfs $RDEV
+    growdisk $RDEV   
   fi
+  xfs_growfs $RDEV
 fi
 
-mkdir -p /etc/systemd/system/docker.service.d
-if [ ! -f /etc/systemd/system/docker.service.d/http-proxy.conf ]; then
-  cat <<DOCKER > /etc/systemd/system/docker.service.d/http-proxy.conf
-[Service]
-Environment=HTTP_PROXY=http://${proxy_endpoint}
-Environment=HTTPS_PROXY=http://${proxy_endpoint}
-Environment=NO_PROXY=localhost,127.0.0.1,169.254.169.254
-DOCKER
+echo "INFO: Searching for EBS volume path"
+[ ! -d "/data" ] && mkdir /data
+if [ -e '/dev/nvme1n1' ]; then
+  EBSDEV=/dev/nvme1n1
+elif [ -e '/dev/sdp' ]; then
+  EBSDEV=/dev/sdp
+elif [ -e 'dev/xvdp' ]; then
+  EBSDEV=/dev/xvdp
+elif [ -e '/dev/hdp' ]; then
+  EBSDEV=/dev/hdp
+else
+  echo "ERR: Unable to find the EBS volume"
+  exit 1
+fi
+
+echo "INFO: Checking for filesystem on $EBSDEV"
+TYPE=$(lsblk $EBSDEV -n -o fstype)
+if [ $? -eq 0 ] && [[ "$TYPE" == "" ]] ; then
+  mkfs -t xfs $EBSDEV
+fi
+
+echo "INFO: Checking /etc/fstab for $EBSDEV"
+UUID=$(blkid -s UUID -o value $EBSDEV)
+grep -q "$UUID" /etc/fstab
+if [ $? -ne 0 ]; then
+  echo "UUID=$UUID /data xfs defaults 0 0" >> /etc/fstab
+fi
+
+if findmnt /data; then
+  echo "INFO: /DATA defined and mounted"
+else
+  mount /data
+  if [ $? -ne 0 ]; then
+    echo "ERROR: /DATA is not mounted going to exit"
+    exit 1
+  fi
 fi
 
 mkdir -p /data/graphite/conf
@@ -165,7 +200,6 @@ MAX_DATAPOINTS_PER_MESSAGE = 500
 MAX_AGGREGATION_INTERVALS = 5
 CARBONCONF
 
-
 cat << GRAPHITE > /etc/systemd/system/docker-graphite.service
 [Unit]
 Description=Daemon for graphite
@@ -228,6 +262,14 @@ ExecStop=-/usr/bin/docker rm statsite
 WantedBy=multi-user.target
 STATSITE
 chmod 0644 /etc/systemd/system/docker-statsite.service
+
+mkdir -p /etc/systemd/system/docker.service.d
+cat <<DOCKER > /etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment=HTTP_PROXY=http://${proxy_endpoint}
+Environment=HTTPS_PROXY=http://${proxy_endpoint}
+Environment=NO_PROXY=localhost,127.0.0.1,169.254.169.254
+DOCKER
 
 systemctl daemon-reload
 systemctl enable docker

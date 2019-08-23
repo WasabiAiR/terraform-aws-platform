@@ -14,7 +14,7 @@ data "template_file" "bootstrap" {
 }
 
 data "template_cloudinit_config" "config" {
-  gzip          = false
+  gzip          = true
   base64_encode = true
 
   part {

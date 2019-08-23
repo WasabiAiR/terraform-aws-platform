@@ -205,8 +205,14 @@ variable "statsite_instance_type" {
 
 variable "statsite_volume_size" {
   type        = "string"
-  description = "The root disk size for the statsite/graphite server.  Default: 100"
+  description = "The disk size for the statsite/graphite server.  Default: 100"
   default     = "100"
+}
+
+variable "statsite_volume_snap" {
+  type        = "string"
+  description = "The snapshot id for statsite/graphite disk."
+  default     = ""
 }
 
 variable "safelist" {

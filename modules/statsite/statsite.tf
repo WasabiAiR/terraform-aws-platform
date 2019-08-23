@@ -1,5 +1,6 @@
 resource "aws_instance" "statsite" {
-  ami                    = "${var.statsite_amis}"
+  ami = "${var.statsite_amis}"
+
   instance_type          = "${var.statsite_instance_type}"
   user_data              = "${data.template_cloudinit_config.config.rendered}"
   key_name               = "${var.key_name}"
@@ -8,7 +9,7 @@ resource "aws_instance" "statsite" {
 
   root_block_device {
     volume_type = "gp2"
-    volume_size = "${var.statsite_volume_size}"
+    volume_size = "40"
   }
 
   tags = {
@@ -16,16 +17,24 @@ resource "aws_instance" "statsite" {
     ApplicationName    = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
+}
 
-  volume_tags = {
+resource "aws_ebs_volume" "whisper" {
+  availability_zone = "${var.statsite_volume_az}"
+  size              = "${var.statsite_volume_size}"
+  snapshot_id       = "${var.statsite_volume_snap}"
+  type              = "gp2"
+
+  tags {
     Name               = "GrayMetaPlatform-${var.platform_instance_id}-Statsite"
     ApplicationName    = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
+    Volume             = "whisper"
   }
+}
 
-  lifecycle {
-    ignore_changes = [
-      "ami",
-    ]
-  }
+resource "aws_volume_attachment" "whisper" {
+  device_name = "/dev/sdp"
+  volume_id   = "${aws_ebs_volume.whisper.id}"
+  instance_id = "${aws_instance.statsite.id}"
 }
