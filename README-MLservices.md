@@ -88,21 +88,6 @@ output "object_endpoint" {
   value = "${module.object.endpoint}"
 }
 
-# slates - (Optional) Slates extractor.
-module "slates" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/slates?ref=v0.1.11"
-
-  instance_type          = "m5.large"
-  max_cluster_size       = "2"
-  min_cluster_size       = "1"
-  ml_loadbalancer_output = "${module.ml_network.ml_loadbalancer_output}"
-  services_ecs_cidrs     = ["${module.network.ecs_cidrs}", "${module.network.services_cidrs}"]
-}
-
-output "slates_endpoint" {
-  value = "${module.slates.endpoint}"
-}
-
 # tcues - (Optional) Technical Cues extractor.
 module "tcues" {
   source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/tcues?ref=v0.1.9"

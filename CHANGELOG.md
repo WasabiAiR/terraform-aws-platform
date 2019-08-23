@@ -2,7 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## NOT RELEASED
+#### Removed
+* The slates extractor cluster has been removed.  The slates/clapperboard extractor endpoint should now use the Technical Cues API (tcues).  Remove if you have this module defined.
+```
+# slates - (Optional) Slates extractor
+module "slates" {
+  ...
+}
 
+output "slates_endpoint" {
+  ...
+}
+```
+
+---
 ## v0.1.11 - 2019-08-07
 **We have a database type change for ML Faces service in this release.  If you are upgrading you will have to follow the instructions in `ML Face RDS Migration` section below**
 
