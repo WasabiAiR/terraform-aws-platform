@@ -14,7 +14,9 @@
                 "logs:PutLogEvents",
                 "rekognition:RecognizeCelebrities",
                 "s3:GetBucketLocation",
-                "s3:ListAllMyBuckets"
+                "s3:ListAllMyBuckets",
+                "ses:GetAccountSendingEnabled",
+                "ses:GetIdentityVerificationAttributes"
             ],
             "Effect": "Allow",
             "Resource": [
