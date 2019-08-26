@@ -62,6 +62,8 @@ write_files:
         gm_celeb_detection_aws_region=${region}
         gm_celeb_detection_enabled=${gm_celeb_detection_enabled}
         gm_celeb_detection_interval=${gm_celeb_detection_interval}
+        gm_celeb_detection_min_confidence=${gm_celeb_detection_min_confidence}
+        gm_celeb_detection_provider=${gm_celeb_detection_provider}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
         gm_container_image=graymeta/harvester
         gm_db_host=${db_endpoint}
