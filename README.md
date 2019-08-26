@@ -4,7 +4,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 
 ![Graymeta Terraform Enterprise](images/Graymeta_Terraform_Enterprise.png)
 
-* `version` - Current version is `v0.1.11`
+* `version` - Current version is `v0.1.12`
 
 ### Variable Definitions
 * `customer` - Short name for you company.
@@ -42,7 +42,8 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 ## Example
 ```
 provider "aws" {
-    region = "us-west-2"
+  region  = "us-west-2"
+  version = "~> 1.16"
 }
 
 locals {
@@ -64,13 +65,13 @@ locals {
 }
 
 module "servicesiam" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.11"
+  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.1.12"
 
   platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.1.11"
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.1.12"
 
   az1                  = "${local.az1}"
   az2                  = "${local.az2}"
@@ -90,7 +91,7 @@ module "network" {
 
 
 module "platform" {
-  source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.11"
+  source = "github.com/graymeta/terraform-aws-platform?ref=v0.1.12"
 
   customer                = "${local.customer}"
   dns_name                = "${local.dns_name}"
@@ -191,9 +192,17 @@ module "platform" {
   # (Optional) Graymeta Faces Extractor
   faces_endpoint = ""
 
-  # (Optional) AWS Celeberty detection
-  gm_celeb_detection_enabled  = false
-  gm_celeb_detection_interval = "5m"
+  # (Optional) Celeberty detection
+  gm_celeb_detection_enabled        = "false"
+  gm_celeb_detection_interval       = "5m"
+  gm_celeb_detection_min_confidence = "0.6"
+  gm_celeb_detection_provider       = "gmceleb"
+
+  # (Optional) OAuth-storage
+  box_com_client_id  = ""
+  box_com_secret_key = ""
+  dropbox_app_key    = ""
+  dropbox_app_secret = ""
 }
 
 output "GrayMetaPlatformEndpoint" {
@@ -202,7 +211,7 @@ output "GrayMetaPlatformEndpoint" {
 
 # This is to share the usage bucket and contents with Graymeta.
 module "share_usage" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.11"
+  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.12"
 
   usage_s3_bucket_arn = "${local.usage_s3_bucket_arn}"
 }
