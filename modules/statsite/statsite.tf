@@ -9,7 +9,7 @@ resource "aws_instance" "statsite" {
 
   root_block_device {
     volume_type = "gp2"
-    volume_size = "40"
+    volume_size = "20"
   }
 
   tags = {
@@ -34,7 +34,9 @@ resource "aws_ebs_volume" "whisper" {
 }
 
 resource "aws_volume_attachment" "whisper" {
-  device_name = "/dev/sdp"
-  volume_id   = "${aws_ebs_volume.whisper.id}"
-  instance_id = "${aws_instance.statsite.id}"
+  force_detach = "${var.statsite_volume_force}"
+  skip_destroy = true
+  device_name  = "/dev/sdp"
+  volume_id    = "${aws_ebs_volume.whisper.id}"
+  instance_id  = "${aws_instance.statsite.id}"
 }

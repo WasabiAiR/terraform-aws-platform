@@ -203,6 +203,12 @@ variable "statsite_instance_type" {
   default     = "m4.large"
 }
 
+variable "statsite_volume_force" {
+  type        = "string"
+  description = "Destroy might fail because it is unable to detach.  Set this to true to force the detachment.  Data will be lost.  Recommended to take a snapshot before destroy"
+  default     = false
+}
+
 variable "statsite_volume_size" {
   type        = "string"
   description = "The disk size for the statsite/graphite server.  Default: 100"
