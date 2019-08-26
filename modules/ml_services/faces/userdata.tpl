@@ -86,6 +86,8 @@ write_files:
         ExecStart=/usr/bin/docker run \
             --net bridge \
             -m 0b \
+            -e "CELEBRITES_MODEL_HOST=172.17.0.1" \
+            -e "CELEBRITES_MODEL_PORT=8000" \
             -e "DATA_HOST=172.17.0.1" \
             -e "DATA_PORT=${data_port}" \
             -e "DATA_VERSION=${dataversion}" \
@@ -104,6 +106,34 @@ write_files:
         [Install]
         WantedBy=multi-user.target
     path: /etc/systemd/system/docker-${service_name}-api.service
+    permissions: '0644'
+-   content: |
+        [Unit]
+        Description=Daemon for ${service_name}-sptag
+        After=docker.service
+        Wants=
+        Requires=docker.service
+        [Service]
+        Restart=on-failure
+        StartLimitInterval=20
+        StartLimitBurst=5
+        TimeoutStartSec=0
+        Environment="HOME=/root"
+        ExecStartPre=-/usr/bin/docker kill ${service_name}-sptag
+        ExecStartPre=-/usr/bin/docker rm  ${service_name}-sptag
+        ExecStart=/usr/bin/docker run \
+            --net bridge \
+            -m 0b \
+            -p 8000:8000 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
+            --name ${service_name}-sptag \
+            graymeta-${service_name}-sptag
+        ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-sptag
+        ExecStop=-/usr/bin/docker rm ${service_name}-sptag
+        [Install]
+        WantedBy=multi-user.target
+    path: /etc/systemd/system/docker-${service_name}-sptag.service
     permissions: '0644'
 -   content: |
         [Unit]
