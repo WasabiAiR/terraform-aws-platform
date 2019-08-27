@@ -2,8 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
-## v0.1.12 - 2019-08-27
+## NOT RELEASED
+#### Added
+* Added a Graphite/Statsite server
+  * Added the following variables to network module
+    ```
+    module "network" {
+      ...
+      # Graphite/Statsite server
+      statsite_instance_type = "m4.large"
+      statsite_volume_size   = "100"
+      ...
+    }
+    ```
+  * Added the following variables to platform module
+    ```
+    module "paltform" {
+      ...
+      statsite_ip  = "${module.platform.statsite_ip}"
+      statsite_nsg = "${module.platform.statsite_nsg}"
+      ...
+    }
+    ```  
+  * Added the following variables to ml_network module
+    ```
+    module "ml_network" {
+      ...
+      customer     = "${local.customer}"
+      statsite_ip  = "${module.platform.statsite_ip}"
+      statsite_nsg = "${module.platform.statsite_nsg}"
+      ...
+    }
+    ```
 
+---
+## v0.1.12 - 2019-08-27
 #### Added
 * GM Celeb - **NOTE: If previously using awsrekog make sure you update provider setting since default changed**
   * `gm_celeb_detection_enabled` - Whether or not celeb detection is enabled.  Default: false

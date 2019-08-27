@@ -5,10 +5,12 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
   vars {
-    api_port       = "${var.api_port}"
-    log_group      = "${var.log_group}"
-    proxy_endpoint = "${var.proxy_endpoint}"
-    service_name   = "${var.service_name}"
-    tfs_port       = "${var.tfs_port}"
+    api_port        = "${var.api_port}"
+    log_group       = "${var.log_group}"
+    proxy_endpoint  = "${var.proxy_endpoint}"
+    service_name    = "${var.service_name}"
+    statsite_ip     = "${var.statsite_ip}"
+    statsite_prefix = "${var.statsite_prefix}"
+    tfs_port        = "${var.tfs_port}"
   }
 }

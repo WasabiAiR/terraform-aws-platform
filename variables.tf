@@ -508,6 +508,16 @@ variable "ssl_certificate_arn" {
   description = "The ARN of the SSL certificate to use to secure the endpoints. Must be a valid CA issued certificate (no self-signed certs)"
 }
 
+variable "statsite_ip" {
+  type        = "string"
+  description = "The internal ip of the statsite host"
+}
+
+variable "statsite_nsg" {
+  type        = "string"
+  description = "The NSG of the statsite"
+}
+
 variable "usage_s3_bucket_arn" {
   type        = "string"
   description = "The ARN of the s3 bucket to store usage reports"

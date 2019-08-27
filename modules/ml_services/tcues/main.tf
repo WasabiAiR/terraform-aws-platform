@@ -7,11 +7,13 @@ locals {
 module "ml_init" {
   source = "../ml_userdata"
 
-  api_port       = "${local.api_port}"
-  log_group      = "${var.ml_loadbalancer_output["ml_cloudwatch_log_group"]}"
-  proxy_endpoint = "${var.ml_loadbalancer_output["proxy_endpoint"]}"
-  service_name   = "${local.api_name}"
-  tfs_port       = "${local.tfs_port}"
+  api_port        = "${local.api_port}"
+  log_group       = "${var.ml_loadbalancer_output["ml_cloudwatch_log_group"]}"
+  proxy_endpoint  = "${var.ml_loadbalancer_output["proxy_endpoint"]}"
+  service_name    = "${local.api_name}"
+  statsite_ip     = "${var.ml_loadbalancer_output["statsite_ip"]}"
+  statsite_prefix = "${var.ml_loadbalancer_output["statsite_prefix"]}/ml/${local.api_name}"
+  tfs_port        = "${local.tfs_port}"
 }
 
 # Create the cluster
