@@ -33,7 +33,6 @@ runcmd:
 - echo "net.ipv4.tcp_fin_timeout = 1" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_intvl = 20" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_probes = 5" >> /etc/sysctl.conf
-- echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
 - sysctl -p
 write_files:
 -   content: |
@@ -64,6 +63,8 @@ write_files:
         gm_celeb_detection_aws_region=${region}
         gm_celeb_detection_enabled=${gm_celeb_detection_enabled}
         gm_celeb_detection_interval=${gm_celeb_detection_interval}
+        gm_celeb_detection_min_confidence=${gm_celeb_detection_min_confidence}
+        gm_celeb_detection_provider=${gm_celeb_detection_provider}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
         gm_container_image=graymeta/harvester
         gm_db_host=${db_endpoint}

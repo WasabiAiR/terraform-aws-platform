@@ -25,6 +25,8 @@ runcmd:
 - systemctl restart docker-${service_name}-data.service
 - systemctl enable docker-${service_name}-api.service
 - systemctl restart docker-${service_name}-api.service
+- systemctl enable docker-${service_name}-sptag.service
+- systemctl restart docker-${service_name}-sptag.service
 - systemctl enable docker-${service_name}-tfs.service
 - systemctl restart docker-${service_name}-tfs.service
 write_files:
@@ -66,6 +68,7 @@ write_files:
             -p ${data_port}:10333 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-data-%H \
             --name ${service_name}-data \
             graymeta-${service_name}-data
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-data
@@ -85,12 +88,13 @@ write_files:
         StartLimitInterval=20
         StartLimitBurst=5
         TimeoutStartSec=0
-        Environment="HOME=/root"
         ExecStartPre=-/usr/bin/docker kill ${service_name}-api
         ExecStartPre=-/usr/bin/docker rm  ${service_name}-api
         ExecStart=/usr/bin/docker run \
             --net bridge \
             -m 0b \
+            -e "CELEBRITES_MODEL_HOST=172.17.0.1" \
+            -e "CELEBRITES_MODEL_PORT=8000" \
             -e "DATA_HOST=172.17.0.1" \
             -e "DATA_PORT=${data_port}" \
             -e "DATA_VERSION=${dataversion}" \
@@ -101,10 +105,10 @@ write_files:
             -e "STATSD_APP_PREFIX=${statsite_prefix}/api" \
             -e "STATSD_BATCH_SIZE=100" \
             -e "LOG_LEVEL=INFO" \
-            -e "CELEB_DATASET=/data/msceleb/" \
             -p ${api_port}:10336 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-api-%H \
             --name ${service_name}-api \
             graymeta-${service_name}-api
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-api
@@ -112,6 +116,35 @@ write_files:
         [Install]
         WantedBy=multi-user.target
     path: /etc/systemd/system/docker-${service_name}-api.service
+    permissions: '0644'
+-   content: |
+        [Unit]
+        Description=Daemon for ${service_name}-sptag
+        After=docker.service
+        Wants=
+        Requires=docker.service
+        [Service]
+        Restart=on-failure
+        StartLimitInterval=20
+        StartLimitBurst=5
+        TimeoutStartSec=0
+        Environment="HOME=/root"
+        ExecStartPre=-/usr/bin/docker kill ${service_name}-sptag
+        ExecStartPre=-/usr/bin/docker rm  ${service_name}-sptag
+        ExecStart=/usr/bin/docker run \
+            --net bridge \
+            -m 0b \
+            -p 8000:8000 \
+            --log-driver=awslogs \
+            --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-sptag-%H \
+            --name ${service_name}-sptag \
+            graymeta-${service_name}-sptag
+        ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-sptag
+        ExecStop=-/usr/bin/docker rm ${service_name}-sptag
+        [Install]
+        WantedBy=multi-user.target
+    path: /etc/systemd/system/docker-${service_name}-sptag.service
     permissions: '0644'
 -   content: |
         [Unit]
@@ -133,6 +166,7 @@ write_files:
             -p ${tfs_port}:9000 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-tfs-%H \
             --name ${service_name}-tfs \
             graymeta-${service_name}-tfs
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-tfs
