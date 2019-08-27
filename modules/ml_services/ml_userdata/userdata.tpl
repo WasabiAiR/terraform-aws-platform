@@ -56,6 +56,7 @@ write_files:
             -p ${api_port}:${api_port} \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=${service_name}-api-%H \
             --name ${service_name}-api \
             graymeta-${service_name}-api
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-api
@@ -84,6 +85,7 @@ write_files:
             -p ${tfs_port}:9000 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=${service_name}-tfs-%H \
             --name ${service_name}-tfs \
             graymeta-${service_name}-tfs
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-tfs

@@ -276,8 +276,8 @@ variable "gm_celeb_detection_interval" {
 
 variable "gm_celeb_detection_min_confidence" {
   type        = "string"
-  description = "Celeb detection min confidence. Recommended for gmceleb is 0.5, awsrekog is 90  Default: 0.5"
-  default     = "0.5"
+  description = "Celeb detection min confidence. Recommended for gmceleb is 0.6, awsrekog is 90  Default: 0.6"
+  default     = "0.6"
 }
 
 variable "gm_celeb_detection_provider" {

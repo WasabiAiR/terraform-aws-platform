@@ -25,6 +25,8 @@ runcmd:
 - systemctl restart docker-${service_name}-data.service
 - systemctl enable docker-${service_name}-api.service
 - systemctl restart docker-${service_name}-api.service
+- systemctl enable docker-${service_name}-sptag.service
+- systemctl restart docker-${service_name}-sptag.service
 - systemctl enable docker-${service_name}-tfs.service
 - systemctl restart docker-${service_name}-tfs.service
 write_files:
@@ -61,6 +63,7 @@ write_files:
             -p ${data_port}:10333 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-data-%H \
             --name ${service_name}-data \
             graymeta-${service_name}-data
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-data
@@ -80,7 +83,6 @@ write_files:
         StartLimitInterval=20
         StartLimitBurst=5
         TimeoutStartSec=0
-        Environment="HOME=/root"
         ExecStartPre=-/usr/bin/docker kill ${service_name}-api
         ExecStartPre=-/usr/bin/docker rm  ${service_name}-api
         ExecStart=/usr/bin/docker run \
@@ -95,10 +97,10 @@ write_files:
             -e "TFS_HOST=172.17.0.1" \
             -e "TFS_PORT=${tfs_port}" \
             -e "LOG_LEVEL=INFO" \
-            -e "CELEB_DATASET=/data/msceleb/" \
             -p ${api_port}:10336 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-api-%H \
             --name ${service_name}-api \
             graymeta-${service_name}-api
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-api
@@ -127,6 +129,7 @@ write_files:
             -p 8000:8000 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-sptag-%H \
             --name ${service_name}-sptag \
             graymeta-${service_name}-sptag
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-sptag
@@ -155,6 +158,7 @@ write_files:
             -p ${tfs_port}:9000 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
+            --log-opt awslogs-stream=faces-tfs-%H \
             --name ${service_name}-tfs \
             graymeta-${service_name}-tfs
         ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-tfs
