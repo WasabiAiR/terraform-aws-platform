@@ -203,9 +203,15 @@ variable "statsite_instance_type" {
   default     = "m4.large"
 }
 
-variable "statsite_volume_force" {
+variable "statsite_volume_force_detach" {
   type        = "string"
-  description = "Destroy might fail because it is unable to detach.  Set this to true to force the detachment.  Data will be lost.  Recommended to take a snapshot before destroy"
+  description = "Should not change unless directed from Graymeta support."
+  default     = false
+}
+
+variable "statsite_volume_skip_destroy" {
+  type        = "string"
+  description = "Should not change unless directed from Graymeta support."
   default     = false
 }
 

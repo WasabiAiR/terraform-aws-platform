@@ -23,7 +23,7 @@ data "template_file" "userdata" {
     proxy_endpoint    = "${var.ml_loadbalancer_output["proxy_endpoint"]}"
     service_name      = "${local.api_name}"
     statsite_ip       = "${var.ml_loadbalancer_output["statsite_ip"]}"
-    statsite_prefix   = "${var.ml_loadbalancer_output["statsite_prefix"]}/${local.api_name}"
+    statsite_prefix   = "${var.ml_loadbalancer_output["statsite_prefix"]}/ml/${local.api_name}"
     tfs_port          = "${local.tfs_port}"
   }
 }

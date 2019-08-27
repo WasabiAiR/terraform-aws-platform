@@ -34,8 +34,8 @@ resource "aws_ebs_volume" "whisper" {
 }
 
 resource "aws_volume_attachment" "whisper" {
-  force_detach = "${var.statsite_volume_force}"
-  skip_destroy = true
+  force_detach = "${var.statsite_volume_force_detach}"
+  skip_destroy = "${var.statsite_volume_skip_destroy}"
   device_name  = "/dev/sdp"
   volume_id    = "${aws_ebs_volume.whisper.id}"
   instance_id  = "${aws_instance.statsite.id}"
