@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
     ```
   * Added the following variables to platform module
     ```
-    module "paltform" {
+    module "platform" {
       ...
       statsite_ip  = "${module.platform.statsite_ip}"
       statsite_nsg = "${module.platform.statsite_nsg}"

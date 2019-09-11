@@ -1,5 +1,5 @@
 # This cloud-init script is needed to tee the bootstap script to another log
-# This is how amazone ami work.  Broke in centos.  This will work around that issue.
+# This is how amazon ami work.  Broke in centos.  This will work around that issue.
 data "template_file" "init-logging" {
   template = "${file("${path.module}/userdata.tpl")}"
 }
