@@ -9,6 +9,7 @@ runcmd:
 - sed -i 's/^metalink=/#metalink=/g' /etc/yum.repos.d/*
 - sed -i 's/^mirrorlist=/#mirrorlist=/g' /etc/yum.repos.d/*
 - sed -i 's/^#baseurl=/baseurl=/g' /etc/yum.repos.d/*
+- sed -i 's/download.fedoraproject.org/dl.fedoraproject.org/g' /etc/yum.repos.d/epel*
 - yum remove -y docker-engine docker-engine-selinux
 - yum install -y cloud-utils-growpart
 - growpart /dev/xvda 2
@@ -127,6 +128,7 @@ write_files:
         rollbar_token=${rollbar_token}
         s3subscriber_priority=${s3subscriber_priority}
         segment_write_key=${segment_write_key}
+        statsd_host=${statsd_host}
         stow_mountpath=/var/lib/graymeta/mounts
         walkd_item_batch_size=${walkd_item_batch_size}
         http_proxy=http://${proxy_endpoint}/

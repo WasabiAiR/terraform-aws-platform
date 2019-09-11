@@ -1,3 +1,13 @@
+variable "customer" {
+  type        = "string"
+  description = "The customer name"
+}
+
+variable "key_name" {
+  type        = "string"
+  description = "The name of the SSH key to use"
+}
+
 variable "log_retention" {
   type        = "string"
   description = "Optional. The log retention for cloudwatch logs.  Default 7 days"
@@ -24,9 +34,14 @@ variable "proxy_endpoint" {
   description = "The Proxy Load Balancer created by the network module"
 }
 
-variable "key_name" {
+variable "statsite_ip" {
   type        = "string"
-  description = "The name of the SSH key to use"
+  description = "The internal ip of the statsite host"
+}
+
+variable "statsite_nsg" {
+  type        = "string"
+  description = "The NSG of the statsite"
 }
 
 variable "ssh_cidr_blocks" {

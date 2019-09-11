@@ -29,3 +29,18 @@ resource "aws_security_group" "ecs" {
     PlatformInstanceID = "${var.platform_instance_id}"
   }
 }
+
+# Opens connection to Graphite/statsite
+resource "aws_security_group_rule" "allow_udp_8125" {
+  security_group_id = "${var.statsite_nsg}"
+  description       = "Allow udp/8125"
+  type              = "ingress"
+  from_port         = 8125
+  to_port           = 8125
+  protocol          = "udp"
+
+  cidr_blocks = [
+    "${data.aws_subnet.ecs_subnet_1.cidr_block}",
+    "${data.aws_subnet.ecs_subnet_2.cidr_block}",
+  ]
+}

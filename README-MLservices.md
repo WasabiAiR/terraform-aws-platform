@@ -11,12 +11,15 @@ This is optional but is required if you want to use any Graymeta Machine Learnin
 module "ml_network" {
   source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/ml_network?ref=v0.1.12"
 
+  customer               = "${local.customer}"
   key_name               = "${local.key_name}"
   log_retention          = "${local.log_retention}"
   mlservices_subnet_id_1 = "${module.network.mlservices_subnet_id_1}"
   mlservices_subnet_id_2 = "${module.network.mlservices_subnet_id_2}"
   platform_instance_id   = "${local.platform_instance_id}"
   proxy_endpoint         = "${module.network.proxy_endpoint}"
+  statsite_ip            = "${module.platform.statsite_ip}"
+  statsite_nsg           = "${module.platform.statsite_nsg}"
   ssh_cidr_blocks        = "${local.ssh_cidr_blocks}"
 }
 

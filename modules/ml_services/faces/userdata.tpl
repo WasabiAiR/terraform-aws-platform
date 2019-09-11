@@ -60,6 +60,11 @@ write_files:
             -e "GMFACES_DBCFG_DBUSER=${postgresuser}" \
             -e "GMFACES_DBCFG_PASSWORD=${postgrespass}" \
             -e "GMFACES_DBCFG_NAME=${postgresdb}" \
+            -e "GMFACES_STATSCFG_STATS_ADDRESS=${statsite_ip}:8125" \
+            -e "GMFACES_STATSCFG_STATS_PORT=8125" \
+            -e "GMFACES_STATSCFG_STATS_ENABLED=true" \
+            -e "GMFACES_STATSCFG_STATS_PREFIX=${statsite_prefix}/data" \
+            -e "STATSD_BATCH_SIZE=100" \
             -p ${data_port}:10333 \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
@@ -96,6 +101,9 @@ write_files:
             -e "FLASK_API_PORT=10336" \
             -e "TFS_HOST=172.17.0.1" \
             -e "TFS_PORT=${tfs_port}" \
+            -e "STATSD_ADDRESS=${statsite_ip}:8125" \
+            -e "STATSD_APP_PREFIX=${statsite_prefix}/api" \
+            -e "STATSD_BATCH_SIZE=100" \
             -e "LOG_LEVEL=INFO" \
             -p ${api_port}:10336 \
             --log-driver=awslogs \

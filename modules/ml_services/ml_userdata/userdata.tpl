@@ -53,6 +53,9 @@ write_files:
             -e "FLASK_API_PORT=${api_port}" \
             -e "TFS_HOST=172.17.0.1" \
             -e "TFS_PORT=${tfs_port}" \
+            -e "STATSD_ADDRESS=${statsite_ip}:8125" \
+            -e "STATSD_APP_PREFIX=${statsite_prefix}" \
+            -e "STATSD_BATCH_SIZE=100" \
             -p ${api_port}:${api_port} \
             --log-driver=awslogs \
             --log-opt awslogs-group=${log_group} \
