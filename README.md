@@ -168,8 +168,8 @@ module "platform" {
   rds_subnet_id_2           = "${module.network.rds_subnet_id_2}"
   services_subnet_id_1      = "${module.network.services_subnet_id_1}"
   services_subnet_id_2      = "${module.network.services_subnet_id_2}"
-  statsite_ip               = "${module.platform.statsite_ip}"
-  statsite_nsg              = "${module.platform.statsite_nsg}"
+  statsite_ip               = "${module.network.statsite_ip}"
+  statsite_nsg              = "${module.network.statsite_nsg}"
   
   # (Optional) Error Reporting Configurations
   rollbar_token = ""
