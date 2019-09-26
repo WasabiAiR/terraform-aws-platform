@@ -239,6 +239,7 @@ variable "safelist" {
     ".cognitive.microsoft.com",
     ".core.windows.net",
     ".darksky.net",
+    ".digitaloceanspaces.com",
     ".dropboxapi.com",
     ".forecast.io",
     ".geonames.org",
