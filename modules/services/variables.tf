@@ -43,6 +43,7 @@ variable "google_maps_key" {}
 variable "harvest_complete_stow_fields" {}
 variable "harvest_polling_time" {}
 variable "instance_type" {}
+variable "item_disable_transaction" {}
 variable "jwt_key" {}
 variable "key_name" {}
 variable "log_retention" {}

@@ -119,6 +119,7 @@ module "services" {
   harvest_complete_stow_fields      = "${var.harvest_complete_stow_fields}"
   harvest_polling_time              = "${var.harvest_polling_time}"
   instance_type                     = "${var.services_instance_type}"
+  item_disable_transaction          = "${var.item_disable_transaction}"
   jwt_key                           = "${var.jwt_key}"
   key_name                          = "${var.key_name}"
   log_retention                     = "${var.log_retention}"

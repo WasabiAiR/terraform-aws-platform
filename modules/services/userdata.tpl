@@ -122,6 +122,7 @@ write_files:
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
         harvest_rollbar_token=${rollbar_token}
         indexer_client_timeout=5m
+        item_disable_transaction=${item_disable_transaction}
         oauthconnect_encryption_key=${oauthconnect_encryption_key}
         oauthconnect_url=https://${dns_name}:8443/connect
         password_min_length=${password_min_length}

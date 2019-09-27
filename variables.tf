@@ -345,6 +345,12 @@ variable "harvest_polling_time" {
   default     = "6h"
 }
 
+variable "item_disable_transaction" {
+  type        = "string"
+  description = "Disable item transactions in postgres.  DO NOT CHANGE unless instructed by graymeta support"
+  default     = "false"
+}
+
 variable "jwt_key" {
   type        = "string"
   description = "A 32 character string used to encrypt JWT web tokens"
