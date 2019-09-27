@@ -44,7 +44,7 @@ variable "services_amis" {
   default = {
     "ap-southeast-2" = "ami-0d73104b33158b0b5"
     "eu-west-1"      = "ami-03971e958e912d199"
-    "us-east-1"      = "ami-0fc7fe6c52f3e769e"
+    "us-east-1"      = "ami-00e0ac1dbe09beb7e"
     "us-east-2"      = "ami-0f4da8e9f6bad1443"
     "us-west-2"      = "ami-030f0642359b8849c"
   }
