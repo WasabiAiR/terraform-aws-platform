@@ -127,6 +127,13 @@ write_files:
         password_min_length=${password_min_length}
         rollbar_token=${rollbar_token}
         s3subscriber_priority=${s3subscriber_priority}
+        saml_attr_email=${saml_attr_email}
+        saml_attr_firstname=${saml_attr_firstname}
+        saml_attr_lastname=${saml_attr_lastname}
+        saml_attr_uid=${saml_attr_uid}
+        saml_cert=${saml_cert}
+        saml_idp_metadata_url=${saml_idp_metadata_url}
+        saml_key=${saml_key}
         segment_write_key=${segment_write_key}
         statsd_host=${statsd_host}
         stow_mountpath=/var/lib/graymeta/mounts

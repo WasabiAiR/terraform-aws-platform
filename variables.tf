@@ -430,6 +430,48 @@ variable "s3subscriber_priority" {
   default     = "0"
 }
 
+variable "saml_attr_email" {
+  type        = "string"
+  description = "The name of the SAML Attribute containing the user's email address. Default: email"
+  default     = "email"
+}
+
+variable "saml_attr_firstname" {
+  type        = "string"
+  description = "The name of the SAML Attribute containing the user's first name. Default: firstname"
+  default     = "firstname"
+}
+
+variable "saml_attr_lastname" {
+  type        = "string"
+  description = "The name of the SAML Attribute containing the user's last name. Default: lastname"
+  default     = "lastname"
+}
+
+variable "saml_attr_uid" {
+  type        = "string"
+  description = "The name of the SAML Attribute containing a unique ID for the user. Usernames are a bad choice as they could change for the user. Default: uid"
+  default     = "uid"
+}
+
+variable "saml_cert" {
+  type        = "string"
+  description = "base64 encoded string representation of a self-signed x509 certificate used to communicate with your SAML IDP"
+  default     = ""
+}
+
+variable "saml_idp_metadata_url" {
+  type        = "string"
+  description = "SAML Identity Provider metadata url"
+  default     = ""
+}
+
+variable "saml_key" {
+  type        = "string"
+  description = "base64 encoded string representation of the private key for the self-signed x509 certificate used to communicate with your SAML IDP"
+  default     = ""
+}
+
 variable "segment_write_key" {
   type        = "string"
   description = "Segment.com Analytics Write Key. Set to an empty string to disable analytics."
