@@ -108,6 +108,8 @@ module "services" {
   gm_celeb_detection_provider       = "${var.gm_celeb_detection_provider}"
   gm_es_bulk_size                   = "${var.gm_es_bulk_size}"
   gm_es_bulk_workers                = "${var.gm_es_bulk_workers}"
+  gm_es_replicas                    = "${var.gm_es_replicas}"
+  gm_es_shards                      = "${var.gm_es_shards}"
   gm_jwt_expiration_time            = "${var.gm_jwt_expiration_time}"
   gm_license_key                    = "${var.gm_license_key}"
   gm_threshold_to_harvest           = "${var.gm_threshold_to_harvest}"

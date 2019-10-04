@@ -288,14 +288,26 @@ variable "gm_celeb_detection_provider" {
 
 variable "gm_es_bulk_size" {
   type        = "string"
-  description = "The max size for bulk http requests.  Not recommened to change unless you talk to GrayMeta support.  Default: 100000000"
+  description = "The max size for bulk http requests. Not recommened to change unless you talk to GrayMeta support.  Default: 200000000"
   default     = "20000000"
 }
 
 variable "gm_es_bulk_workers" {
   type        = "string"
-  description = "The number of ES bulk workers.  Not recommened to change unless you talk to GrayMeta support.  Default: 2"
+  description = "The number of ES bulk workers. Not recommened to change unless you talk to GrayMeta support.  Default: 2"
   default     = "2"
+}
+
+variable "gm_es_replicas" {
+  type        = "string"
+  description = "The number of replicas per ES shard. Not recommened to change unless you talk to GrayMeta support.  Default: 1"
+  default     = "1"
+}
+
+variable "gm_es_shards" {
+  type        = "string"
+  description = "The number of shards be ES index. Not recommened to change unless you talk to GrayMeta support.  Default: 5"
+  default     = "5"
 }
 
 variable "gm_jwt_expiration_time" {

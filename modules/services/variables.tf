@@ -32,6 +32,8 @@ variable "gm_celeb_detection_min_confidence" {}
 variable "gm_celeb_detection_provider" {}
 variable "gm_es_bulk_size" {}
 variable "gm_es_bulk_workers" {}
+variable "gm_es_replicas" {}
+variable "gm_es_shards" {}
 variable "gm_jwt_expiration_time" {}
 variable "gm_license_key" {}
 variable "gm_threshold_to_harvest" {}
