@@ -18,7 +18,7 @@ variable "mlservices_amis" {
   default = {
     "ap-southeast-2" = "ami-0b612ebf71e50aba0"
     "eu-west-1"      = "ami-0a5fdb1fccf7e68d9"
-    "us-east-1"      = "ami-02adbe375281cf325"
+    "us-east-1"      = "ami-0c9a210fd5c76ecd4"
     "us-east-2"      = "ami-04658833954a690e4"
     "us-west-2"      = "ami-037d35c7968b3177d"
   }
@@ -44,7 +44,7 @@ variable "services_amis" {
   default = {
     "ap-southeast-2" = "ami-0d73104b33158b0b5"
     "eu-west-1"      = "ami-03971e958e912d199"
-    "us-east-1"      = "ami-00e0ac1dbe09beb7e"
+    "us-east-1"      = "ami-070a0489b4d4071eb"
     "us-east-2"      = "ami-0f4da8e9f6bad1443"
     "us-west-2"      = "ami-030f0642359b8849c"
   }
