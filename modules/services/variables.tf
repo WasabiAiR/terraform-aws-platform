@@ -59,6 +59,13 @@ variable "public_subnet_id_2" {}
 variable "region" {}
 variable "rollbar_token" {}
 variable "s3subscriber_priority" {}
+variable "saml_attr_email" {}
+variable "saml_attr_firstname" {}
+variable "saml_attr_lastname" {}
+variable "saml_attr_uid" {}
+variable "saml_cert" {}
+variable "saml_idp_metadata_url" {}
+variable "saml_key" {}
 variable "segment_write_key" {}
 variable "services_iam_role_name" {}
 variable "services_scale_down_threshold_cpu" {}
