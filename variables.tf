@@ -56,6 +56,19 @@ variable "client_secret_internal" {
   default     = ""
 }
 
+variable "cloudwatch_export_bucket" {
+  type        = "map"
+  description = "The destination s3 bucket for export logs"
+
+  default = {
+    "ap-southeast-2" = "gm-terraform-export-ap-southeast-2"
+    "eu-west-1"      = "gm-terraform-export-eu-west-1"
+    "us-east-1"      = "gm-terraform-export-us-east-1"
+    "us-east-2"      = "gm-terraform-export-us-east-2"
+    "us-west-2"      = "gm-terraform-export-us-west-2"
+  }
+}
+
 variable "customer" {
   type        = "string"
   description = "A human-readable string that identifies your company. Should be alphanumeric + underscores only. eg. If your company is 'XYZ Widgets', you might set it to 'xyzwidgets' or 'xyz_widgets'"

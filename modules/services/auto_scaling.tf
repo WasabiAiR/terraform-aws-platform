@@ -123,6 +123,8 @@ data "template_file" "userdata" {
     box_com_secret_key                = "${var.box_com_secret_key}"
     client_secret_fe                  = "${var.client_secret_fe}"
     client_secret_internal            = "${var.client_secret_internal}"
+    cw_prefix                         = "GrayMetaPlatform-${var.platform_instance_id}"
+    cw_dest_bucket                    = "${var.cw_dest_bucket}"
     db_endpoint                       = "${var.db_endpoint}"
     db_password                       = "${var.db_password}"
     db_username                       = "${var.db_username}"

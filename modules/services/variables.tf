@@ -30,6 +30,7 @@ variable "gm_celeb_detection_enabled" {}
 variable "gm_celeb_detection_interval" {}
 variable "gm_celeb_detection_min_confidence" {}
 variable "gm_celeb_detection_provider" {}
+variable "cw_dest_bucket" {}
 variable "gm_es_bulk_size" {}
 variable "gm_es_bulk_workers" {}
 variable "gm_es_replicas" {}
