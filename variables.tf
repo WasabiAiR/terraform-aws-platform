@@ -345,6 +345,18 @@ variable "harvest_polling_time" {
   default     = "6h"
 }
 
+variable "indexer_concurrency" {
+  type        = "string"
+  description = "How many concurrent index operations to perform per services node. Talk to GrayMeta support before modifying."
+  default     = "1"
+}
+
+variable "item_disable_transaction" {
+  type        = "string"
+  description = "Whether or not item transactions are disabled on upsert. Default false. Talk to GrayMeta support before modifying."
+  default     = "false"
+}
+
 variable "jwt_key" {
   type        = "string"
   description = "A 32 character string used to encrypt JWT web tokens"
