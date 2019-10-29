@@ -158,6 +158,8 @@ data "template_file" "userdata" {
     google_maps_key                   = "${var.google_maps_key}"
     harvest_complete_stow_fields      = "${var.harvest_complete_stow_fields}"
     harvest_polling_time              = "${var.harvest_polling_time}"
+    indexer_concurrency               = "${var.indexer_concurrency}"
+    item_disable_transaction          = "${var.item_disable_transaction}"
     jwt_key                           = "${var.jwt_key}"
     mlservices_endpoint               = "${var.mlservices_endpoint}"
     oauthconnect_encryption_key       = "${var.oauthconnect_encryption_key}"

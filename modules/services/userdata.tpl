@@ -97,6 +97,7 @@ write_files:
         gm_jwt_expiration_time=${gm_jwt_expiration_time}
         gm_jwt_private_key=${jwt_key}
         gm_license_key=${gm_license_key}
+        gm_runtime_metrics_enabled=false
         gm_recently_walked_expiration=1209600s
         gm_recently_walked_redis_key_prefix="recwalked:"
         gm_redis=${elasticache_services}:6379
@@ -122,9 +123,12 @@ write_files:
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
         harvest_rollbar_token=${rollbar_token}
         indexer_client_timeout=5m
+        indexer_concurrency=${indexer_concurrency}
+        item_disable_transaction=${item_disable_transaction}
         oauthconnect_encryption_key=${oauthconnect_encryption_key}
         oauthconnect_url=https://${dns_name}:8443/connect
         password_min_length=${password_min_length}
+        reindex_walk_concurrency=16
         rollbar_token=${rollbar_token}
         s3subscriber_priority=${s3subscriber_priority}
         saml_attr_email=${saml_attr_email}
