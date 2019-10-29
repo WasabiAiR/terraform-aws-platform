@@ -67,6 +67,9 @@ write_files:
         gm_celeb_detection_provider=${gm_celeb_detection_provider}
         gm_completed_sns_topic_arn=${sns_topic_arn_harvest_complete}
         gm_container_image=graymeta/harvester
+        gm_cw_dest_bucket=${cw_dest_bucket}
+        gm_cw_prefix=${cw_prefix}
+        gm_cw_region=${region}
         gm_db_host=${db_endpoint}
         gm_db_name=graymeta
         gm_db_password=${db_password}

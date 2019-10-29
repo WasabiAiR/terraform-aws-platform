@@ -106,6 +106,7 @@ module "services" {
   gm_celeb_detection_interval       = "${var.gm_celeb_detection_interval}"
   gm_celeb_detection_min_confidence = "${var.gm_celeb_detection_min_confidence}"
   gm_celeb_detection_provider       = "${var.gm_celeb_detection_provider}"
+  gm_cw_dest_bucket                 = "${lookup(var.cloudwatch_export_bucket, var.region)}"
   gm_es_bulk_size                   = "${var.gm_es_bulk_size}"
   gm_es_bulk_workers                = "${var.gm_es_bulk_workers}"
   gm_es_replicas                    = "${var.gm_es_replicas}"
