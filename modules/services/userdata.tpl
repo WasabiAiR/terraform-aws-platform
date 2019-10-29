@@ -46,6 +46,7 @@ write_files:
         AWS_REGION=${region}
         PATH=/opt/graymeta/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
         SES_REGION=${from_region}
+        ses_region=${from_region}
         account_lockout_attempts=${account_lockout_attempts}
         account_lockout_interval=${account_lockout_interval}
         account_lockout_period=${account_lockout_period}
