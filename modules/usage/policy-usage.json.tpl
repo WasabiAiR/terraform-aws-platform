@@ -4,7 +4,7 @@
        {
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::913397769129:root"
+                "AWS": "arn:aws:iam::${graymeta_account}:root"
             },
             "Action": [
                 "s3:GetBucketLocation",
