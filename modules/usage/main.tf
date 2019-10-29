@@ -3,6 +3,7 @@ data "template_file" "policy_usage" {
 
   vars {
     usage_s3_bucket_arn = "${var.usage_s3_bucket_arn}"
+    graymeta_account    = "${var.graymeta_account}"
   }
 }
 
