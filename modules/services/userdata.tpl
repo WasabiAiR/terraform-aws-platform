@@ -86,6 +86,8 @@ write_files:
         gm_env=${gm_env}
         gm_es_bulk_size=${gm_es_bulk_size}
         gm_es_bulk_workers=${gm_es_bulk_workers}
+        gm_es_replicas=${gm_es_replicas}
+        gm_es_shards=${gm_es_shards}
         gm_faces_recog_api_addr=http://${faces_endpoint}
         gm_fileapi_stow_kind=s3
         gm_front_end_client_secret=${client_secret_fe}
