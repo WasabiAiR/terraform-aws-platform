@@ -25,7 +25,8 @@
         },
         {
             "Action": [
-                "s3:ListBucket"
+                "s3:ListBucket",
+                "s3:GetBucketPublicAccessBlock"
             ],
             "Effect": "Allow",
             "Resource": [
