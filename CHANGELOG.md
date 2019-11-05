@@ -2,10 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
-## NOT RELEASED
+## v0.1.13 - NOT RELEASED
+#### Upgrade Notes:
+  This version will require a reindex.  Before you reindex we will need to you connect to the platform postgres system and run the following.
+  * Connecting to postgres - ssh into one of those service instances, become root and run the following
+    ```
+    yum install postgresql -y
+    export $(grep ^gm_db /etc/graymeta/metafarm.env)
+    PGPASSWORD=$gm_db_password psql -h $gm_db_host -U $gm_db_username -d $gm_db_name
+    ```
+  * Once in the postgres command prompt run
+    ```
+    TRUNCATE items CASCADE;
+    DELETE FROM hashes;
+    ```
+
 #### Added
-* Added a Graphite/Statsite server
-  * Added the following variables to network module
+* Monitoring your GrayMeta Platform Instance.  [README-monitoring](README-monitoring.md)
+  * Preflight check for elasticsearch heath
+  * Preflight check for SES configuration
+  * Preflight check for autoscaling and instance health
+  * Preflight check for extractor configurations using temp s3 bucket
+  * Preflight check for file and usage s3 bucket `Public Access Block`
+    * Example to enable `Public Access Block`:
+      ```
+      resource "aws_s3_bucket_public_access_block" "file_s3_bucket" {
+        bucket                  = "<bucket name>"
+        block_public_acls       = true
+        block_public_policy     = true
+        ignore_public_acls      = true
+        restrict_public_buckets = true
+      }
+      ```
+* Graphite/Statsite server
+  * Add the following variables to network module
     ```
     module "network" {
       ...
@@ -15,25 +45,64 @@ All notable changes to this project will be documented in this file.
       ...
     }
     ```
-  * Added the following variables to platform module
+  * Add the following variables to platform module
     ```
     module "platform" {
       ...
-      statsite_ip  = "${module.platform.statsite_ip}"
-      statsite_nsg = "${module.platform.statsite_nsg}"
+      statsite_ip  = "${module.network.statsite_ip}"
+      statsite_nsg = "${module.network.statsite_nsg}"
       ...
     }
     ```  
-  * Added the following variables to ml_network module
+  * Add the following variables to ml_network module
     ```
     module "ml_network" {
       ...
       customer     = "${local.customer}"
-      statsite_ip  = "${module.platform.statsite_ip}"
-      statsite_nsg = "${module.platform.statsite_nsg}"
+      statsite_ip  = "${module.network.statsite_ip}"
+      statsite_nsg = "${module.network.statsite_nsg}"
       ...
     }
     ```
+* SAML Configuration - More infomation [README-saml](README-saml.md)
+  * `saml_attr_email` - The name of the SAML Attribute containing the user's email address. Default: email
+  * `saml_attr_firstname` - The name of the SAML Attribute containing the user's first name. Default: firstname
+  * `saml_attr_lastname` - The name of the SAML Attribute containing the user's last name. Default: lastname
+  * `saml_attr_uid` - The name of the SAML Attribute containing a unique ID for the user. Usernames are a bad choice as they could change for the user. Default: uid
+  * `saml_cert` - base64 encoded string representation of a self-signed x509 certificate used to communicate with your SAML IDP
+  * `saml_idp_metadata_url` - SAML Identity Provider metadata url
+  * `saml_key` -base64 encoded string representation of the private key for the self-signed x509 certificate used to communicate with your SAML IDP
+
+  * Added the following variables to platform module
+    ```
+    module "platform" {
+      ...
+      # (Optional) SAML Configuration
+      saml_attr_email       = "email"
+      saml_attr_firstname   = "firstname"
+      saml_attr_lastname    = "lastname"
+      saml_attr_uid         = "uid"
+      saml_cert             = ""
+      saml_idp_metadata_url = ""
+      saml_key              = ""
+      ...
+    }
+    ```
+* Ability to adjust Elasticsearch number of replicas and shards.  Default replicas: 1, Default shards: 5
+  ```
+  module "platform" {
+    ...
+    gm_es_replicas = "1"
+    gm_es_shards = "5"
+    ...
+  }
+  ```
+
+ #### Changed
+* Add `.digitaloceanspaces.com` and `.okta.com` to the proxy safelist
+* Add `s3:GetBucketPublicAccessBlock`, `logs:CreateExportTask`, `logs:DescribeExportTasks` permissions to Service ec2 instances.
+* Add permission for Services role to export cloudwatch logs to Graymeta bucket.
+* Platform AMI update to version 2.0.  Contact GrayMeta for more details
 
 ---
 ## v0.1.12 - 2019-08-27
@@ -75,8 +144,6 @@ All notable changes to this project will be documented in this file.
       version = "~> 1.16"
     }
     ```
-
-
 
 #### Changed
 * Updated the ML Cloudwatch stream names for all the ML containers running.

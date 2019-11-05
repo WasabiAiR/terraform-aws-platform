@@ -20,6 +20,7 @@ data "template_file" "policy_services" {
 
   vars {
     file_storage_s3_bucket_arn     = "${var.file_storage_s3_bucket_arn}"
+    log_storage_s3_bucket_arn      = "arn:aws:s3:::${var.cw_dest_bucket}"
     usage_s3_bucket_arn            = "${var.usage_s3_bucket_arn}"
     sns_topic_arn_harvest_complete = "${aws_sns_topic.harvest_complete.arn}"
     sqs_queues                     = "${join("\",\"", compact(list(var.sqs_activity_arn, var.sqs_index_arn, var.sqs_itemcleanup_arn, var.sqs_walk_arn, var.sqs_stage01_arn, var.sqs_stage02_arn, var.sqs_stage03_arn, var.sqs_stage04_arn, var.sqs_stage05_arn, var.sqs_stage06_arn, var.sqs_stage07_arn, var.sqs_stage08_arn, var.sqs_stage09_arn, var.sqs_stage10_arn, var.sqs_s3notifications_arn)))}"
