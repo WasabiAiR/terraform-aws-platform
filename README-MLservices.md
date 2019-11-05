@@ -18,8 +18,8 @@ module "ml_network" {
   mlservices_subnet_id_2 = "${module.network.mlservices_subnet_id_2}"
   platform_instance_id   = "${local.platform_instance_id}"
   proxy_endpoint         = "${module.network.proxy_endpoint}"
-  statsite_ip            = "${module.platform.statsite_ip}"
-  statsite_nsg           = "${module.platform.statsite_nsg}"
+  statsite_ip            = "${module.network.statsite_ip}"
+  statsite_nsg           = "${module.network.statsite_nsg}"
   ssh_cidr_blocks        = "${local.ssh_cidr_blocks}"
 }
 

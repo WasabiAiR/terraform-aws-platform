@@ -2,7 +2,7 @@
 
 ## healthz
 
-The platform has a microservice style architecture. Many of the individual services expose a health checking endpoint called `healthz`. These endpoints simply return either an HTTP 200 or HTTP 500 response with some data in JSON format for dtermining if the particular service is having an issue. See [healthz](https://github.com/jasonhancock/healthz) for more information.
+The platform has a microservice style architecture. Many of the individual services expose a health checking endpoint called `healthz`. These endpoints simply return either an HTTP 200 or HTTP 500 response with some data in JSON format for determining if the particular service is having an issue. See [healthz](https://github.com/jasonhancock/healthz) for more information.
 
 An example request and response from a healthz endpoint:
 

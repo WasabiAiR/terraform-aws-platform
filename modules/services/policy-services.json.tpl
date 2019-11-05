@@ -8,9 +8,11 @@
                 "ecs:DescribeClusters",
                 "ecs:RegisterTaskDefinition",
                 "ecs:RunTask",
+                "logs:CreateExportTask",
                 "logs:CreateLogGroup",
                 "logs:CreateLogStream",
                 "logs:DescribeLogGroups",
+                "logs:DescribeExportTasks",
                 "logs:PutLogEvents",
                 "rekognition:RecognizeCelebrities",
                 "s3:GetBucketLocation",
@@ -44,6 +46,16 @@
             "Resource": [
                 "${file_storage_s3_bucket_arn}/*",
                 "${usage_s3_bucket_arn}/*"
+            ]
+        },
+        {
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "${log_storage_s3_bucket_arn}/*"
             ]
         },
         {

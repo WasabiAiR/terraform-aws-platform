@@ -75,18 +75,22 @@ module "network" {
 
   az1                  = "${local.az1}"
   az2                  = "${local.az2}"
+  dns_name             = "${local.dns_name}"
+  key_name             = "${local.key_name}"
   platform_instance_id = "${local.platform_instance_id}"
   region               = "${local.region}"
+  ssh_cidr_blocks      = "${local.ssh_cidr_blocks}"
 
   # Proxy Cluster Configuration
-  dns_name               = "${local.dns_name}"
-  key_name               = "${local.key_name}"
-  proxy_instance_type    = "m4.large"
+  proxy_instance_type    = "m5.large"
   proxy_max_cluster_size = 2
   proxy_min_cluster_size = 1
-  proxy_scale_down_thres = "12500000" # 100 Mb/s
-  proxy_scale_up_thres   = "50000000" # 400 Mb/s
-  ssh_cidr_blocks        = "${local.ssh_cidr_blocks}"
+  proxy_scale_down_thres = "250000000" # 2Gb/s
+  proxy_scale_up_thres   = "875000000" # 7Gb/s
+  
+  # Statsite
+  statsite_instance_type       = "m5.large"
+  statsite_volume_size         = "100"
 }
 
 
@@ -205,6 +209,15 @@ module "platform" {
   box_com_secret_key = ""
   dropbox_app_key    = ""
   dropbox_app_secret = ""
+
+  # (Optional) SAML Configuration
+  saml_attr_email       = "email"
+  saml_attr_firstname   = "firstname"
+  saml_attr_lastname    = "lastname"
+  saml_attr_uid         = "uid"
+  saml_cert             = ""
+  saml_idp_metadata_url = ""
+  saml_key              = ""
 }
 
 output "GrayMetaPlatformEndpoint" {
@@ -216,5 +229,21 @@ module "share_usage" {
   source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.1.12"
 
   usage_s3_bucket_arn = "${local.usage_s3_bucket_arn}"
+}
+
+resource "aws_s3_bucket_public_access_block" "file_s3_bucket" {
+  bucket                  = "${local.file_storage_s3_bucket_arn}"
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_public_access_block" "usage_s3_bucket" {
+  bucket                  = "${local.usage_s3_bucket_arn}"
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 ```
