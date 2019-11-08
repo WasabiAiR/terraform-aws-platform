@@ -37,6 +37,9 @@ variable "gm_es_replicas" {}
 variable "gm_es_shards" {}
 variable "gm_jwt_expiration_time" {}
 variable "gm_license_key" {}
+variable "gm_scheduled_max_items" {}
+variable "gm_scheduled_min_bytes" {}
+variable "gm_scheduled_wait_duration" {}
 variable "gm_threshold_to_harvest" {}
 variable "gm_walkd_max_item_concurrency" {}
 variable "gm_walkd_redis_max_active" {}

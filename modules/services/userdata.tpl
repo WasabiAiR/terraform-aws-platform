@@ -103,14 +103,13 @@ write_files:
         gm_jwt_expiration_time=${gm_jwt_expiration_time}
         gm_jwt_private_key=${jwt_key}
         gm_license_key=${gm_license_key}
-        gm_runtime_metrics_enabled=false
         gm_recently_walked_expiration=1209600s
         gm_recently_walked_redis_key_prefix="recwalked:"
         gm_redis=${elasticache_services}:6379
         gm_redis_db=0
         gm_roles_key_prefix="roles:"
-        gm_user_key_prefix="user:"
-        gm_user_apikey_prefix="apikey:"
+        gm_runtime_metrics_enabled=false
+        gm_scheduled_wait_duration=${gm_scheduled_wait_duration}
         gm_sqs_activity=${sqs_activity}
         gm_sqs_index=${sqs_index}
         gm_sqs_itemcleanup=${sqs_itemcleanup}
@@ -120,17 +119,25 @@ write_files:
         gm_threshold_to_harvest=${gm_threshold_to_harvest}
         gm_usage_prefix=${gm_usage_prefix}
         gm_usageapi_stow_kind=s3
+        gm_user_apikey_prefix="apikey:"
+        gm_user_key_prefix="user:"
         gm_walkd_max_item_concurrency=${gm_walkd_max_item_concurrency}
         gm_walkd_redis_max_active=${gm_walkd_redis_max_active}
         google_maps_key=${google_maps_key}
         harvest_gm_faces_recog_api_addr=http://${faces_endpoint}
         harvest_gm_temp_bucket_name=${temporary_bucket_name}
         harvest_gm_temp_bucket_region=${region}
+        harvest_http_proxy=http://${proxy_endpoint}/
+        harvest_https_proxy=http://${proxy_endpoint}/
         harvest_magic_files=/etc/magic:/usr/share/misc/magic:/etc/graymeta/mime.magic
+        harvest_no_proxy=169.254.169.254,169.254.170.2,/var/run/docker.sock,${mlservices_endpoint}
         harvest_rollbar_token=${rollbar_token}
+        http_proxy=http://${proxy_endpoint}/
+        https_proxy=http://${proxy_endpoint}/
         indexer_client_timeout=5m
         indexer_concurrency=${indexer_concurrency}
         item_disable_transaction=${item_disable_transaction}
+        no_proxy=localhost,127.0.0.1,169.254.169.254,s3.${region}.amazonaws.com,*.s3.${region}.amazonaws.com,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${mlservices_endpoint}
         oauthconnect_encryption_key=${oauthconnect_encryption_key}
         oauthconnect_url=https://${dns_name}:8443/connect
         password_min_length=${password_min_length}
@@ -144,16 +151,12 @@ write_files:
         saml_cert=${saml_cert}
         saml_idp_metadata_url=${saml_idp_metadata_url}
         saml_key=${saml_key}
+        scheduled_max_items=${gm_scheduled_max_items}
+        scheduled_minimum_bytes=${gm_scheduled_min_bytes}
         segment_write_key=${segment_write_key}
         statsd_host=${statsd_host}
         stow_mountpath=/var/lib/graymeta/mounts
         walkd_item_batch_size=${walkd_item_batch_size}
-        http_proxy=http://${proxy_endpoint}/
-        https_proxy=http://${proxy_endpoint}/
-        no_proxy=localhost,127.0.0.1,169.254.169.254,s3.${region}.amazonaws.com,*.s3.${region}.amazonaws.com,$(echo ${elasticsearch_endpoint} |sed 's/https\?:\/\///'),${mlservices_endpoint}
-        harvest_http_proxy=http://${proxy_endpoint}/
-        harvest_https_proxy=http://${proxy_endpoint}/
-        harvest_no_proxy=169.254.169.254,169.254.170.2,/var/run/docker.sock,${mlservices_endpoint}
     path: /etc/graymeta/metafarm.env
     permissions: '0400'
     owner: graymeta:graymeta
