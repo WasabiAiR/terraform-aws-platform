@@ -1,3 +1,4 @@
+variable "apply_immediately" {}
 variable "allocated_storage" {}
 variable "db_backup_retention" {}
 variable "db_backup_window" {}
@@ -8,6 +9,7 @@ variable "db_password" {}
 variable "db_snapshot" {}
 variable "db_storage_encrypted" {}
 variable "db_username" {}
+variable "db_version" {}
 variable "platform_instance_id" {}
 variable "rds_subnet_id_1" {}
 variable "rds_subnet_id_2" {}

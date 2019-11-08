@@ -80,6 +80,12 @@ variable "db_allocated_storage" {
   default     = "100"
 }
 
+variable "db_apply_immediately" {
+  type        = "string"
+  description = "Specifies whether any database modifications are applied immediately, or during the next maintenance window. Default is false. See Amazon RDS Documentation for more information."
+  default     = "false"
+}
+
 variable "db_backup_retention" {
   type        = "string"
   description = "RDS backup retention"
@@ -131,6 +137,12 @@ variable "db_storage_encrypted" {
 variable "db_username" {
   type        = "string"
   description = "username for postgresql database"
+}
+
+variable "db_version" {
+  type        = "string"
+  description = "Postgres version.  Default: 11.5"
+  default     = "11.5"
 }
 
 variable "dns_name" {
