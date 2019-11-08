@@ -334,6 +334,24 @@ variable "gm_license_key" {
   description = "The GrayMeta Platform license key. Contact support@graymeta.com if you have not been provided a license key"
 }
 
+variable "gm_scheduled_max_items" {
+  type        = "string"
+  description = "Max number of items in a harvest request. Default 100"
+  default     = "100"
+}
+
+variable "gm_scheduled_min_bytes" {
+  type        = "string"
+  description = "Minimum number of bytes in a harvest request.  Default 10485760 (10MB)"
+  default     = "10485760"
+}
+
+variable "gm_scheduled_wait_duration" {
+  type        = "string"
+  description = "The amount of time to wait before scheduling a harvest job. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration). Default: 20s"
+  default     = "20s"
+}
+
 variable "gm_threshold_to_harvest" {
   type        = "string"
   description = "The minimum amount of time between two harvests of the same container. Valid values must be parseable as a Golang time.Duration (see https://godoc.org/time#ParseDuration)"
