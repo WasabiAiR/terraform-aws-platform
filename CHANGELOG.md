@@ -4,18 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## v0.1.13 - NOT RELEASED
 #### Upgrade Notes:
-  This version will require a reindex.  Before you reindex we will need to you connect to the platform postgres system and run the following.
-  * Connecting to postgres - ssh into one of those service instances, become root and run the following
-    ```
-    yum install postgresql -y
-    export $(grep ^gm_db /etc/graymeta/metafarm.env)
-    PGPASSWORD=$gm_db_password psql -h $gm_db_host -U $gm_db_username -d $gm_db_name
-    ```
-  * Once in the postgres command prompt run
-    ```
-    TRUNCATE items CASCADE;
-    DELETE FROM hashes;
-    ```
+  * This version we recommend upgrading the Postgres database to 11.5.  Before you run the upgrade it is recommended that you go into the AWS console and update the version to 10 and choose apply immediately.  Then do it again and update to 11.5.
+  * After the upgrade a reindex will be required.  Before you reindex we will need to you connect to the platform postgres system and run the following.
+    * Connecting to postgres - ssh into one of those service instances, become root and run the following
+      ```
+      yum install postgresql -y
+      export $(grep ^gm_db /etc/graymeta/metafarm.env)
+      PGPASSWORD=$gm_db_password psql -h $gm_db_host -U $gm_db_username -d $gm_db_name
+      ```
+    * Once in the postgres command prompt run
+      ```
+      TRUNCATE items CASCADE;
+      DELETE FROM hashes;
+      ```
+  
 
 #### Added
 * Monitoring your GrayMeta Platform Instance.  [README-monitoring](README-monitoring.md)
@@ -99,6 +101,7 @@ All notable changes to this project will be documented in this file.
   ```
 
  #### Changed
+* Default postgres database is now 11.5 for the platform
 * Add `.digitaloceanspaces.com` and `.okta.com` to the proxy safelist
 * Add `s3:GetBucketPublicAccessBlock`, `logs:CreateExportTask`, `logs:DescribeExportTasks` permissions to Service ec2 instances.
 * Add permission for Services role to export cloudwatch logs to Graymeta bucket.

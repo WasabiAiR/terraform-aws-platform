@@ -55,6 +55,7 @@ module "rds" {
   source = "./modules/rds"
 
   allocated_storage    = "${var.db_allocated_storage}"
+  apply_immediately    = "${var.db_apply_immediately}"
   db_backup_retention  = "${var.db_backup_retention}"
   db_backup_window     = "${var.db_backup_window}"
   db_instance_size     = "${var.db_instance_size}"
@@ -64,6 +65,7 @@ module "rds" {
   db_snapshot          = "${var.db_snapshot}"
   db_storage_encrypted = "${var.db_storage_encrypted}"
   db_username          = "${var.db_username}"
+  db_version           = "${var.db_version}"
   platform_instance_id = "${var.platform_instance_id}"
   rds_subnet_id_1      = "${var.rds_subnet_id_1}"
   rds_subnet_id_2      = "${var.rds_subnet_id_2}"
