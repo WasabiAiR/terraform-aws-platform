@@ -3,11 +3,11 @@ variable "ecs_amis" {
   description = "map of region to ami for ecs nodes"
 
   default = {
-    "ap-southeast-2" = "ami-03274069cd28f502d"
-    "eu-west-1"      = "ami-01598c4664b32fff3"
-    "us-east-1"      = "ami-0787addc5084fb71e"
-    "us-east-2"      = "ami-0962ff5a695839102"
-    "us-west-2"      = "ami-0b04b65f594d85b88"
+    "ap-southeast-2" = "ami-0cdd0110ec4394a17"
+    "eu-west-1"      = "ami-0dbe442df817db4d6"
+    "us-east-1"      = "ami-0293393e267c802c9"
+    "us-east-2"      = "ami-003d4156a7d5e2466"
+    "us-west-2"      = "ami-0986d557a08db81c7"
   }
 }
 
@@ -16,11 +16,11 @@ variable "mlservices_amis" {
   description = "map of region to ami for mlservices nodes"
 
   default = {
-    "ap-southeast-2" = "ami-0b612ebf71e50aba0"
-    "eu-west-1"      = "ami-0a5fdb1fccf7e68d9"
-    "us-east-1"      = "ami-02adbe375281cf325"
-    "us-east-2"      = "ami-04658833954a690e4"
-    "us-west-2"      = "ami-037d35c7968b3177d"
+    "ap-southeast-2" = "ami-0e39a3ef0f5ba9c93"
+    "eu-west-1"      = "ami-02cf8ccdc3d033c7c"
+    "us-east-1"      = "ami-034455c84bda8e391"
+    "us-east-2"      = "ami-08964c02fe74f8748"
+    "us-west-2"      = "ami-051dfddbec0c32083"
   }
 }
 
@@ -29,11 +29,11 @@ variable "proxy_amis" {
   description = "map of region to ami for proxy nodes"
 
   default = {
-    "ap-southeast-2" = "ami-098359b323d053492"
-    "eu-west-1"      = "ami-09359966607cdfc51"
-    "us-east-1"      = "ami-0e68fc624f8f6af42"
-    "us-east-2"      = "ami-0575481f9f3ae875e"
-    "us-west-2"      = "ami-0b774fc38ca1d1c93"
+    "ap-southeast-2" = "ami-0b43e198c8789ccd5"
+    "eu-west-1"      = "ami-0c50c2b9cc9597649"
+    "us-east-1"      = "ami-06157519ffffe91e1"
+    "us-east-2"      = "ami-00fcc74b3c5973264"
+    "us-west-2"      = "ami-046c992ff6ddce686"
   }
 }
 
@@ -42,10 +42,10 @@ variable "services_amis" {
   description = "map of region to ami for services nodes"
 
   default = {
-    "ap-southeast-2" = "ami-0d73104b33158b0b5"
-    "eu-west-1"      = "ami-03971e958e912d199"
-    "us-east-1"      = "ami-0fc7fe6c52f3e769e"
-    "us-east-2"      = "ami-0f4da8e9f6bad1443"
-    "us-west-2"      = "ami-030f0642359b8849c"
+    "ap-southeast-2" = "ami-0b84c4f600bca77fa"
+    "eu-west-1"      = "ami-0a8801eb11bf79cab"
+    "us-east-1"      = "ami-0f42543816791919d"
+    "us-east-2"      = "ami-01bb25fb597b96c8b"
+    "us-west-2"      = "ami-073b77fd4b275074a"
   }
 }
