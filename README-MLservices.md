@@ -9,7 +9,7 @@ This is optional but is required if you want to use any Graymeta Machine Learnin
 ```
 # ml_network - (Required) if installing any Graymeta ML services.
 module "ml_network" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/ml_network?ref=v0.1.12"
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/ml_network?ref=v0.2.0"
 
   customer               = "${local.customer}"
   key_name               = "${local.key_name}"
@@ -25,7 +25,7 @@ module "ml_network" {
 
 # audio - (Optional) GrayMeta Audio Classification extractor.
 module "audio" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/audio?ref=v0.1.12"
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/audio?ref=v0.2.0"
 
   instance_type          = "m5.large"
   max_cluster_size       = "2"
@@ -42,7 +42,7 @@ output "audio_endpoint" {
 # faces - (Optional) GrayMeta Facial Recognition extractor.  The endpoint is configured in platform module.
 # Please set `rds_snapshot = "final"` after your initial deployment.
 module "faces" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/faces?ref=v0.1.12"
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/faces?ref=v0.2.0"
 
   instance_type          = "m5.large"
   max_cluster_size       = "2"
@@ -63,7 +63,7 @@ module "faces" {
 
 # nld - (Optional) Natural Language Description extractor.
 module "nld" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/nld?ref=v0.1.12"
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/nld?ref=v0.2.0"
 
   instance_type          = "m5.large"
   max_cluster_size       = "2"
@@ -78,7 +78,7 @@ output "nld_endpoint" {
 
 # object - (Optional) GrayMeta Object Detection extractor.
 module "object" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/object?ref=v0.1.12"
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/object?ref=v0.2.0"
 
   instance_type          = "m5.large"
   max_cluster_size       = "2"
@@ -108,7 +108,7 @@ output "tcues_endpoint" {
 
 # vssoccer - (Optional) Graymeta Visual Sports Soccer extractor
 module "vssoccer" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/vssoccer?ref=v0.1.12"
+  source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/vssoccer?ref=v0.2.0"
 
   instance_type          = "m5.large"
   max_cluster_size       = "2"
@@ -129,7 +129,7 @@ For the Graymeta ML Services we need to add the following variables to the platf
 
 ```
 module "platform" {
-  source = "github.com/graymeta/terraform-aws-platform?ef=v0.1.12"
+  source = "github.com/graymeta/terraform-aws-platform?ef=v0.2.0"
   ...
   mlservices_endpoint = "${module.ml_network.endpoint}"
   faces_endpoint = "${module.faces.faces_endpoint}"

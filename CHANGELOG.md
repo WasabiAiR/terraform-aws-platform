@@ -2,21 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
-## v0.1.13 - NOT RELEASED
-#### Upgrade Notes:
-  * This version we recommend upgrading the Postgres database to 11.5.  Before you run the upgrade it is recommended that you go into the AWS console and update the version to 10 and choose apply immediately.  Then do it again and update to 11.5.
-  * After the upgrade a reindex will be required.  Before you reindex we will need to you connect to the platform postgres system and run the following.
-    * Connecting to postgres - ssh into one of those service instances, become root and run the following
-      ```
-      yum install postgresql -y
-      export $(grep ^gm_db /etc/graymeta/metafarm.env)
-      PGPASSWORD=$gm_db_password psql -h $gm_db_host -U $gm_db_username -d $gm_db_name
-      ```
-    * Once in the postgres command prompt run
-      ```
-      TRUNCATE items CASCADE;
-      DELETE FROM hashes;
-      ```
+## v0.2.0 - 2019-11-18
+#### Upgrade Notes:  
+* Please follow the following steps if you are upgrading to this version
+  1. This version requires upgrading Postgres database to 11.5.  Before you run `terraform apply` it is recommended that you go into the AWS console and update the version to 10 and choose apply immediately.  Then do it again and update to 11.5.
+  1. Update the version in your code and run a `terraform apply`
+  1. Connect to the platform postgres system and run the following.
+      * Connecting to postgres - ssh into one of those service instances, become root and run the following
+        ```
+        yum install postgresql -y
+        export $(grep ^gm_db /etc/graymeta/metafarm.env)
+        PGPASSWORD=$gm_db_password psql -h $gm_db_host -U $gm_db_username -d $gm_db_name
+        ```
+      * Once in the postgres command prompt run
+        ```
+        TRUNCATE items CASCADE;
+        DELETE FROM hashes;
+        ```
+  1. Run a reindex.
   
 
 #### Added
