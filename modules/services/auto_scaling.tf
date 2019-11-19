@@ -131,6 +131,8 @@ data "template_file" "userdata" {
     dns_name                          = "${var.dns_name}"
     dropbox_app_key                   = "${var.dropbox_app_key}"
     dropbox_app_secret                = "${var.dropbox_app_secret}"
+    dropbox_teams_app_key             = "${var.dropbox_teams_app_key}"
+    dropbox_teams_app_secret          = "${var.dropbox_teams_app_secret}"
     ecs_cluster                       = "${var.ecs_cluster}"
     ecs_cpu_reservation               = "${var.ecs_cpu_reservation}"
     ecs_log_group                     = "GrayMetaPlatform-${var.platform_instance_id}-ECS"

@@ -55,6 +55,8 @@ write_files:
         box_com_secret_key=${box_com_secret_key}
         dropbox_app_key=${dropbox_app_key}
         dropbox_app_secret=${dropbox_app_secret}
+        dropbox_teams_app_key=${dropbox_teams_app_key}
+        dropbox_teams_app_secret=${dropbox_teams_app_secret}
         external_data_api=https://${dns_name}/api/data
         external_file_api=https://${dns_name}/files
         external_scheduler_api=https://${dns_name}/api/scheduler

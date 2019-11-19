@@ -94,6 +94,8 @@ module "services" {
   db_username                       = "${var.db_username}"
   dropbox_app_key                   = "${var.dropbox_app_key}"
   dropbox_app_secret                = "${var.dropbox_app_secret}"
+  dropbox_teams_app_key             = "${var.dropbox_teams_app_key}"
+  dropbox_teams_app_secret          = "${var.dropbox_teams_app_secret}"
   dns_name                          = "${var.dns_name}"
   ecs_cluster                       = "${module.ecs.cluster}"
   ecs_cpu_reservation               = "${var.ecs_cpu_reservation}"

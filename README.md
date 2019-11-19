@@ -205,10 +205,12 @@ module "platform" {
   gm_celeb_detection_provider       = "gmceleb"
 
   # (Optional) OAuth-storage
-  box_com_client_id  = ""
-  box_com_secret_key = ""
-  dropbox_app_key    = ""
-  dropbox_app_secret = ""
+  box_com_client_id        = ""
+  box_com_secret_key       = ""
+  dropbox_app_key          = ""
+  dropbox_app_secret       = ""
+  dropbox_teams_app_key    = ""
+  dropbox_teams_app_secret = ""
 
   # (Optional) SAML Configuration
   saml_attr_email       = "email"

@@ -16,6 +16,8 @@ variable "db_username" {}
 variable "dns_name" {}
 variable "dropbox_app_key" {}
 variable "dropbox_app_secret" {}
+variable "dropbox_teams_app_key" {}
+variable "dropbox_teams_app_secret" {}
 variable "ecs_cluster" {}
 variable "ecs_cpu_reservation" {}
 variable "ecs_memory_hard_reservation" {}
