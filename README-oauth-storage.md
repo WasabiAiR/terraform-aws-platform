@@ -20,8 +20,20 @@
 * Select "Create app"
   * Under "Choose an API" select "Dropbox API"
   * Under "Choose the type of access you need" select "Full Dropobx"
-  * Give you app a unique name
+  * Give your app a unique name
 * Record the "App key" and "Application secret" as the `dropbox_app_key` and `dropbox_app_secret` input Terraform variables.
+* Add `https://{dns_name}:8443/connect` (where `{dns_name}` is the domain name you will be hosting the platform on) as a Redirect URI
+* Under the "Status" section, "Apply For Production" to enable all users (not just your account) to use the Dropbox integration
+* Deploy your Terraform environment
+
+## Dropbox Teams
+
+* Go to https://www.dropbox.com/developers/apps
+* Select "Create app"
+  * Under "Choose an API" select "Dropbox Business API"
+  * Under "Choose the type of access you need" select "Team member file access"
+  * Give your app a unique name
+* Record the "App key" and "Application secret" as the `dropbox_teams_app_key` and `dropbox_teams_app_secret` input Terraform variables.
 * Add `https://{dns_name}:8443/connect` (where `{dns_name}` is the domain name you will be hosting the platform on) as a Redirect URI
 * Under the "Status" section, "Apply For Production" to enable all users (not just your account) to use the Dropbox integration
 * Deploy your Terraform environment

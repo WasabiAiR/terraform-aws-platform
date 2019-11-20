@@ -162,6 +162,18 @@ variable "dropbox_app_secret" {
   default     = ""
 }
 
+variable "dropbox_teams_app_key" {
+  type        = "string"
+  description = "Dropbox Teams application key"
+  default     = ""
+}
+
+variable "dropbox_teams_app_secret" {
+  type        = "string"
+  description = "Dropbox Teams application secret"
+  default     = ""
+}
+
 variable "ecs_cpu_reservation" {
   type        = "string"
   description = "Not recommened to change unless you talk to GrayMeta support.  Default: 1024"
