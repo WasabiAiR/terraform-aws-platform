@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## NOT RELEASED - 2020-01-16
+#### Added
+* Cloudwatch Dashboard name GrayMetaPlatform-<platform_instance_id>.  You will need to add the following variable to the platform module.
+    ```
+    module "platform" {
+      ...
+      proxy_asg = "${module.network.proxy_asg}"
+      ...
+    }
+    ```
+
+---
 ## v0.2.0 - 2019-11-18
 #### Upgrade Notes:  
 * Please follow the following steps if you are upgrading to this version

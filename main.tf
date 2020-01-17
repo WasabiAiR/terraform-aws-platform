@@ -199,3 +199,16 @@ module "services" {
   user_init                         = "${var.services_user_init}"
   walkd_item_batch_size             = "300"
 }
+
+module "dashboard" {
+  source = "./modules/dashboard"
+
+  dashboard_name       = "GrayMetaPlatform-${var.platform_instance_id}"
+  es_domain            = "graymeta-${var.platform_instance_id}"
+  platform_instance_id = "${var.platform_instance_id}"
+  proxy_asg            = "${var.proxy_asg}"
+  rds_name             = "gm-${var.platform_instance_id}-platform"
+  region               = "${var.region}"
+  services_alb         = "${module.services.services_alb_cw}"
+  services_asg         = "${module.services.services_asg}"
+}

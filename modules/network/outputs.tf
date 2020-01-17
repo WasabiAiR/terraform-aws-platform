@@ -44,6 +44,10 @@ output "mlservices_subnet_id_2" {
   value = "${aws_subnet.faces_2.id}"
 }
 
+output "proxy_asg" {
+  value = "${module.proxy.proxy_asg}"
+}
+
 output "proxy_endpoint" {
   value = "${module.proxy.proxy_endpoint}"
 }

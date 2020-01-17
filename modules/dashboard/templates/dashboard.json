@@ -1,0 +1,688 @@
+{
+  "widgets": [
+      {
+          "type": "text",
+          "x": 0,
+          "y": 7,
+          "width": 24,
+          "height": 1,
+          "properties": {
+              "markdown": "\n# ECS\n"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 8,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ECS", "CPUReservation", "ClusterName", "GrayMetaPlatform-${platform_instance_id}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "title": "ECS CPU Reservation",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false,
+              "yAxis": {
+                  "left": {
+                      "min": 0,
+                      "max": 100,
+                      "showUnits": false
+                  }
+              }
+          }
+      },
+      {
+          "type": "metric",
+          "x": 6,
+          "y": 8,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ECS", "CPUUtilization", "ClusterName", "GrayMetaPlatform-${platform_instance_id}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "title": "ECS CPU Utilization",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false,
+              "yAxis": {
+                  "left": {
+                      "min": 0,
+                      "max": 100
+                  }
+              }
+          }
+      },
+      {
+          "type": "metric",
+          "x": 12,
+          "y": 8,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ECS", "MemoryUtilization", "ClusterName", "GrayMetaPlatform-${platform_instance_id}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "title": "ECS Memory Utilization",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false,
+              "yAxis": {
+                  "left": {
+                      "min": 0,
+                      "max": 100
+                  }
+              }
+          }
+      },
+      {
+          "type": "metric",
+          "x": 18,
+          "y": 8,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ECS", "MemoryReservation", "ClusterName", "GrayMetaPlatform-${platform_instance_id}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "title": "Memory Reservation",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false,
+              "yAxis": {
+                  "left": {
+                      "min": 0,
+                      "max": 100
+                  }
+              }
+          }
+      },
+      {
+          "type": "text",
+          "x": 18,
+          "y": 0,
+          "width": 6,
+          "height": 1,
+          "properties": {
+              "markdown": "\n# SQS\n"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 18,
+          "y": 1,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "metrics": [
+                  [ { "expression": "m1+m2+m3+m4+m5+m6+m7+m8+m9+m10", "label": "Stage", "id": "e1" } ],
+                  [ "AWS/SQS", "ApproximateNumberOfMessagesVisible", "QueueName", "GrayMetaPlatform-${platform_instance_id}-activity", { "id": "m0r0", "yAxis": "left", "label": "Activity" } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-itemcleanup", { "id": "m0r2", "label": "Itemcleanup" } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-index", { "id": "m0r1", "label": "Index" } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-walk", { "id": "m0r13", "label": "Walk" } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage01", { "id": "m1", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage02", { "id": "m2", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage03", { "id": "m3", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage04", { "id": "m4", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage05", { "id": "m5", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage06", { "id": "m6", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage07", { "id": "m7", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage08", { "id": "m8", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage09", { "id": "m9", "visible": false } ],
+                  [ "...", "GrayMetaPlatform-${platform_instance_id}-stage10", { "id": "m10", "visible": false } ]
+              ],
+              "region": "${region}",
+              "title": "Approximate Number Of Messages Visible",
+              "legend": {
+                  "position": "bottom"
+              },
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false,
+              "setPeriodToTimeRange": false,
+              "stat": "Average"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 1,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/EC2", "CPUUtilization", "AutoScalingGroupName", "${services_asg}", { "stat": "Average" } ]
+              ],
+              "view": "timeSeries",
+              "stacked": false,
+              "start": "-PT3H",
+              "end": "P0D",
+              "period": 60,
+              "title": "Services CPU ASG"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 6,
+          "y": 1,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/EC2", "NetworkOut", "AutoScalingGroupName", "${proxy_asg}", { "stat": "Average" } ]
+              ],
+              "view": "timeSeries",
+              "stacked": false,
+              "start": "-PT3H",
+              "end": "P0D",
+              "period": 120,
+              "title": "Proxy Network ASG"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 12,
+          "y": 1,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ECS", "MemoryReservation", "ClusterName", "GrayMetaPlatform-${platform_instance_id}", { "stat": "Maximum" } ]
+              ],
+              "view": "timeSeries",
+              "stacked": false,
+              "start": "-PT3H",
+              "end": "P0D",
+              "period": 60,
+              "title": "ECS Memory ASG"
+          }
+      },
+      {
+          "type": "text",
+          "x": 0,
+          "y": 0,
+          "width": 18,
+          "height": 1,
+          "properties": {
+              "markdown": "\n# ASG\n"
+          }
+      },
+      {
+          "type": "text",
+          "x": 0,
+          "y": 14,
+          "width": 24,
+          "height": 1,
+          "properties": {
+              "markdown": "\n# RDS\n"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 15,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "CPUUtilization", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "CPU Utilization Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 6,
+          "y": 15,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "DatabaseConnections", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Database Connections Sum",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false,
+              "stat": "Sum"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 18,
+          "y": 15,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "FreeStorageSpace", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Free Storage Space Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 12,
+          "y": 15,
+          "width": 6,
+          "height": 6,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "FreeableMemory", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Freeable Memory Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 21,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "ReadLatency", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Read Latency Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 8,
+          "y": 21,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "ReadThroughput", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Read Throughput Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 16,
+          "y": 21,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "ReadIOPS", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Read IOPS Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 26,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "WriteLatency", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Write Latency Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 8,
+          "y": 26,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "WriteThroughput", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Write Throughput Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "metric",
+          "x": 16,
+          "y": 26,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "metrics": [
+                  [ "AWS/RDS", "WriteIOPS", "DBInstanceIdentifier", "${rds_name}", { "stat": "Average", "id": "m0r0" } ]
+              ],
+              "region": "${region}",
+              "title": "Write IOPS Average",
+              "copilot": true,
+              "period": 300,
+              "view": "timeSeries",
+              "stacked": false
+          }
+      },
+      {
+          "type": "text",
+          "x": 0,
+          "y": 31,
+          "width": 24,
+          "height": 1,
+          "properties": {
+              "markdown": "\n# Elasticsearch\n"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 32,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "CPUUtilization", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Average", "id": "m0r0" } ],
+                  [ "...", { "stat": "Average", "id": "m0r1" } ]
+              ],
+              "title": "CPU Utilization Average",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 8,
+          "y": 32,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "ElasticsearchRequests", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Sum", "id": "m0r0" } ],
+                  [ "...", { "stat": "Sum", "id": "m0r1" } ]
+              ],
+              "title": "Elasticsearch Requests Sum",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 16,
+          "y": 32,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "SearchableDocuments", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Average", "id": "m0r0" } ],
+                  [ "...", { "stat": "Average", "id": "m0r1" } ]
+              ],
+              "title": "Searchable Documents Average",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 37,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "ClusterStatus.green", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Average", "id": "m0r0" } ],
+                  [ "...", { "stat": "Average", "id": "m0r1" } ]
+              ],
+              "title": "Cluster Status Green Average",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 8,
+          "y": 37,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "ClusterStatus.yellow", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Average", "id": "m0r0" } ],
+                  [ "...", { "stat": "Average", "id": "m0r1" } ]
+              ],
+              "title": "Cluster Status Yellow Average",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 16,
+          "y": 37,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "ClusterStatus.red", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Average", "id": "m0r0" } ],
+                  [ "...", { "stat": "Average", "id": "m0r1" } ]
+              ],
+              "title": "Cluster Status Red Average",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 42,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "Nodes", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Average", "id": "m0r0" } ],
+                  [ "...", { "stat": "Average", "id": "m0r1" } ]
+              ],
+              "title": "Nodes Average",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 16,
+          "y": 42,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "FreeStorageSpace", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Average", "id": "m0r0" } ],
+                  [ "...", { "stat": "Average", "id": "m0r1" } ]
+              ],
+              "title": "Free Storage Space Average",
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 8,
+          "y": 42,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ES", "JVMMemoryPressure", "ClientId", "${client_id}", "DomainName", "${es_domain}", { "stat": "Maximum", "id": "m0r0" } ],
+                  [ "...", { "stat": "Maximum", "id": "m0r1" } ]
+              ],
+              "title": "JVM Memory Pressure Maximum",
+              "copilot": true
+          }
+      },
+      {
+          "type": "text",
+          "x": 0,
+          "y": 47,
+          "width": 24,
+          "height": 1,
+          "properties": {
+              "markdown": "\n# ALB\n"
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 48,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ApplicationELB", "RequestCount", "LoadBalancer", "${services_alb}", { "stat": "Sum", "id": "m0r0" } ]
+              ],
+              "title": "Request Count Sum",
+              "legend": {
+                  "position": "right"
+              },
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 8,
+          "y": 48,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ApplicationELB", "HTTPCode_ELB_5XX_Count", "LoadBalancer", "${services_alb}", { "stat": "Sum", "id": "m0r0" } ]
+              ],
+              "title": "HTTP 5XX Count",
+              "legend": {
+                  "position": "right"
+              },
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 16,
+          "y": 48,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ApplicationELB", "ActiveConnectionCount", "LoadBalancer", "${services_alb}", { "stat": "Sum", "id": "m0r0" } ]
+              ],
+              "title": "Active Connection Count Sum",
+              "legend": {
+                  "position": "right"
+              },
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 0,
+          "y": 53,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ApplicationELB", "HTTPCode_ELB_4XX_Count", "LoadBalancer", "${services_alb}", { "stat": "Sum", "id": "m0r0" } ]
+              ],
+              "title": "HTTP 4XX Count",
+              "legend": {
+                  "position": "right"
+              },
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 16,
+          "y": 53,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ApplicationELB", "NewConnectionCount", "LoadBalancer", "${services_alb}", { "stat": "Sum", "id": "m0r0" } ]
+              ],
+              "title": "New Connection Count Sum",
+              "legend": {
+                  "position": "right"
+              },
+              "copilot": true
+          }
+      },
+      {
+          "type": "metric",
+          "x": 8,
+          "y": 53,
+          "width": 8,
+          "height": 5,
+          "properties": {
+              "region": "${region}",
+              "metrics": [
+                  [ "AWS/ApplicationELB", "ProcessedBytes", "LoadBalancer", "${services_alb}", { "stat": "Sum", "id": "m0r0" } ]
+              ],
+              "title": "Processed Bytes Sum",
+              "legend": {
+                  "position": "right"
+              },
+              "copilot": true
+          }
+      }
+  ]
+}
