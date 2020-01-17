@@ -165,6 +165,7 @@ module "platform" {
   ecs_subnet_id_2           = "${module.network.ecs_subnet_id_2}"
   elasticsearch_subnet_id_1 = "${module.network.elasticsearch_subnet_id_1}"
   elasticsearch_subnet_id_2 = "${module.network.elasticsearch_subnet_id_2}"
+  proxy_asg                 = "${module.network.proxy_asg}"
   proxy_endpoint            = "${module.network.proxy_endpoint}"
   public_subnet_id_1        = "${module.network.public_subnet_id_1}"
   public_subnet_id_2        = "${module.network.public_subnet_id_2}"

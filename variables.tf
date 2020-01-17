@@ -467,6 +467,11 @@ variable "platform_instance_id" {
   description = "A human-readable string for this instance of the GrayMeta Platform"
 }
 
+variable "proxy_asg" {
+  type        = "string"
+  description = "The Autoscaling Proxy name"
+}
+
 variable "proxy_endpoint" {
   type        = "string"
   description = "The Proxy Load Balancer created by the network module"
