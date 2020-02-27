@@ -175,7 +175,11 @@ module "platform" {
   services_subnet_id_2      = "${module.network.services_subnet_id_2}"
   statsite_ip               = "${module.network.statsite_ip}"
   statsite_nsg              = "${module.network.statsite_nsg}"
-  
+
+  # AWS Rekognition Custom Labels Configuration
+  aws_cust_labels_bucket          = "somebucket"
+  aws_cust_labels_inference_units = "1"
+
   # (Optional) Error Reporting Configurations
   rollbar_token = ""
 

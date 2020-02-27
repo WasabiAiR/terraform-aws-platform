@@ -19,6 +19,7 @@ data "template_file" "policy_services" {
   template = "${file("${path.module}/policy-services.json.tpl")}"
 
   vars {
+    aws_cust_labels_bucket_arn     = "${var.aws_cust_labels_bucket_arn}"
     file_storage_s3_bucket_arn     = "${var.file_storage_s3_bucket_arn}"
     log_storage_s3_bucket_arn      = "arn:aws:s3:::${var.cw_dest_bucket}"
     usage_s3_bucket_arn            = "${var.usage_s3_bucket_arn}"
