@@ -80,6 +80,9 @@ module "services" {
   account_lockout_interval          = "${var.account_lockout_interval}"
   account_lockout_period            = "${var.account_lockout_period}"
   ami_id                            = "${lookup(module.amis.services_amis, var.region)}"
+  aws_cust_labels_bucket            = "${var.aws_cust_labels_bucket}"
+  aws_cust_labels_bucket_arn        = "${module.bucketcustomlabels.bucket_arn}"
+  aws_cust_labels_inference_units   = "${var.aws_cust_labels_inference_units}"
   az1_nat_ip                        = "${var.az1_nat_ip}"
   az2_nat_ip                        = "${var.az2_nat_ip}"
   box_com_client_id                 = "${var.box_com_client_id}"
@@ -211,4 +214,12 @@ module "dashboard" {
   region               = "${var.region}"
   services_alb         = "${module.services.services_alb_cw}"
   services_asg         = "${module.services.services_asg}"
+}
+
+module "bucketcustomlabels" {
+  source = "./modules/bucketcustomlabels"
+
+  bucket_name          = "${var.aws_cust_labels_bucket}"
+  platform_instance_id = "${var.platform_instance_id}"
+  region               = "${var.region}"
 }

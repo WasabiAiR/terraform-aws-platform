@@ -14,7 +14,7 @@
                 "logs:DescribeLogGroups",
                 "logs:DescribeExportTasks",
                 "logs:PutLogEvents",
-                "rekognition:RecognizeCelebrities",
+                "rekognition:*",
                 "s3:GetBucketLocation",
                 "s3:ListAllMyBuckets",
                 "ses:GetAccountSendingEnabled",
@@ -32,6 +32,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
+                "${aws_cust_labels_bucket_arn}",
                 "${file_storage_s3_bucket_arn}",
                 "${usage_s3_bucket_arn}"
             ]
@@ -44,6 +45,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
+                "${aws_cust_labels_bucket_arn}/*",
                 "${file_storage_s3_bucket_arn}/*",
                 "${usage_s3_bucket_arn}/*"
             ]

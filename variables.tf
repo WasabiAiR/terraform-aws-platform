@@ -16,6 +16,17 @@ variable "account_lockout_period" {
   default     = "10m"
 }
 
+variable "aws_cust_labels_bucket" {
+  type        = "string"
+  description = "The name of the bucket to store AWS Rekognition Custom Labels data"
+}
+
+variable "aws_cust_labels_inference_units" {
+  type        = "string"
+  description = "The number of inference units to use when spinning up an AWS Rekognition Custom Labels Project Version"
+  default     = 1
+}
+
 variable "az1_nat_ip" {
   type        = "string"
   description = "The public IP all traffic from az1 is NAT'ed through to allow access to the APIs"

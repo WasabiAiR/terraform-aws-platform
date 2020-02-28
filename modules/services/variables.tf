@@ -1,6 +1,9 @@
 variable "account_lockout_attempts" {}
 variable "account_lockout_interval" {}
 variable "account_lockout_period" {}
+variable "aws_cust_labels_bucket" {}
+variable "aws_cust_labels_bucket_arn" {}
+variable "aws_cust_labels_inference_units" {}
 variable "ami_id" {}
 variable "az1_nat_ip" {}
 variable "az2_nat_ip" {}
