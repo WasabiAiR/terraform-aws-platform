@@ -178,11 +178,11 @@ write_files:
     permissions: '0644'
 -   content: |
         [Service]
-        Environment="HTTP_PROXY=http://${proxy_endpoint}" "HTTPS_PROXY=https://${proxy_endpoint}" "NO_PROXY=169.254.169.254,localhost,127.0.0.1,/var/run/docker.sock"
+        Environment="HTTP_PROXY=http://${proxy_endpoint}" "HTTPS_PROXY=http://${proxy_endpoint}" "NO_PROXY=169.254.169.254,localhost,127.0.0.1,/var/run/docker.sock"
     path: /etc/systemd/system/docker.service.d/http-proxy.conf
     permissions: '0644'
 -   content: |
         HTTP_PROXY=http://${proxy_endpoint}
-        HTTPS_PROXY=https://${proxy_endpoint}
+        HTTPS_PROXY=http://${proxy_endpoint}
         NO_PROXY=169.254.169.254
     path: /var/awslogs/etc/proxy.conf
