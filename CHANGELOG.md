@@ -2,8 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## NOT RELEASED - 2020-01-16
+## v0.2.1 - 2020-03-25
 #### Added
+* Added AWS Rekognition Custom Labels.  You will have to add the following variables to the platform module.
+    ```
+    module "platform" {
+      ...
+      # AWS Rekognition Custom Labels Configuration
+      aws_cust_labels_bucket          = "somebucket"
+      aws_cust_labels_inference_units = "1"
+      ...
+    }
+    ```
 * Cloudwatch Dashboard name GrayMetaPlatform-<platform_instance_id>.  You will need to add the following variable to the platform module.
     ```
     module "platform" {
