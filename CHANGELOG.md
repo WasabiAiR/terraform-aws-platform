@@ -1,7 +1,29 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## v0.2.2 - 2020-05-14
+#### Added
+* Added ML Service NLP.
+    ```
+    # nlp - (Optional) Language Detection - GrayMeta extractor.
+    module "nlp" {
+      source = "github.com/graymeta/terraform-aws-platform//modules/ml_services/nlp?ref=v0.2.2"
 
+      instance_type          = "m5.large"
+      max_cluster_size       = "2"
+      min_cluster_size       = "1"
+      ml_loadbalancer_output = "${module.ml_network.ml_loadbalancer_output}"
+      services_ecs_cidrs     = ["${module.network.ecs_cidrs}", "${module.network.services_cidrs}"]
+    }
+
+    output "nlp_endpoint" {
+      value = "${module.nlp.endpoint}"
+    }
+    ```
+#### Changed
+* Platform AMI update to version 2.0.4391.  Contact GrayMeta for more details
+
+---
 ## v0.2.1 - 2020-03-25
 #### Added
 * Added AWS Rekognition Custom Labels.  You will have to add the following variables to the platform module.
