@@ -23,8 +23,6 @@ runcmd:
 - systemctl restart docker
 - systemctl enable docker-${service_name}-api.service
 - systemctl restart docker-${service_name}-api.service
-- systemctl enable docker-${service_name}-tfs.service
-- systemctl restart docker-${service_name}-tfs.service
 write_files:
 -   content: |
         server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
@@ -51,8 +49,6 @@ write_files:
             --net bridge \
             -m 0b \
             -e "FLASK_API_PORT=${api_port}" \
-            -e "TFS_HOST=172.17.0.1" \
-            -e "TFS_PORT=${tfs_port}" \
             -e "STATSD_ADDRESS=${statsite_ip}:8125" \
             -e "STATSD_APP_PREFIX=${statsite_prefix}" \
             -e "STATSD_BATCH_SIZE=100" \
@@ -67,35 +63,6 @@ write_files:
         [Install]
         WantedBy=multi-user.target
     path: /etc/systemd/system/docker-${service_name}-api.service
-    permissions: '0644'
--   content: |
-        [Unit]
-        Description=Daemon for ${service_name}-tfs
-        After=docker.service
-        Wants=
-        Requires=docker.service
-        [Service]
-        Restart=on-failure
-        StartLimitInterval=20
-        StartLimitBurst=5
-        TimeoutStartSec=0
-        Environment="HOME=/root"
-        ExecStartPre=-/usr/bin/docker kill ${service_name}-tfs
-        ExecStartPre=-/usr/bin/docker rm  ${service_name}-tfs
-        ExecStart=/usr/bin/docker run \
-            --net bridge \
-            -m 0b \
-            -p ${tfs_port}:9000 \
-            --log-driver=awslogs \
-            --log-opt awslogs-group=${log_group} \
-            --log-opt awslogs-stream=${service_name}-tfs-%H \
-            --name ${service_name}-tfs \
-            graymeta-${service_name}-tfs
-        ExecStop=-/usr/bin/docker stop --time=0 ${service_name}-tfs
-        ExecStop=-/usr/bin/docker rm ${service_name}-tfs
-        [Install]
-        WantedBy=multi-user.target
-    path: /etc/systemd/system/docker-${service_name}-tfs.service
     permissions: '0644'
 -   content: |
         [Service]
