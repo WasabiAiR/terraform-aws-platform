@@ -91,6 +91,12 @@ variable "rds_subnet_id_2" {
   description = "The second subnet ID to use to deploy the RDS database into. Needs to be in a different AZ than rds_subnet_id_1"
 }
 
+variable "rds_version" {
+  type        = "string"
+  description = "The Aurora postgres version.  Default 10.11"
+  default     = "10.11"
+}
+
 variable "services_ecs_cidrs" {
   type        = "list"
   description = "The list of cidrs to allow connection to cluster"
