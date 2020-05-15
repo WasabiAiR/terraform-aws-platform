@@ -71,7 +71,7 @@ resource "aws_rds_cluster" "postgresql" {
   database_name             = "faces"
   db_subnet_group_name      = "${aws_db_subnet_group.rds.name}"
   engine                    = "aurora-postgresql"
-  engine_version            = "10.4"
+  engine_version            = "${var.rds_version}"
   final_snapshot_identifier = "GrayMetaPlatform-${var.platform_instance_id}-faces-aurora-final"
   master_password           = "${var.rds_db_password}"
   master_username           = "${var.rds_db_username}"
