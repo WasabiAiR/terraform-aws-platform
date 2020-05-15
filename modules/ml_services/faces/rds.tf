@@ -52,7 +52,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   identifier         = "gm-${var.platform_instance_id}-faces-${count.index}"
   cluster_identifier = "${aws_rds_cluster.postgresql.id}"
   engine             = "aurora-postgresql"
-  engine_version     = "10.4"
+  engine_version     = "${var.rds_version}"
   instance_class     = "${var.rds_db_instance_size}"
 
   copy_tags_to_snapshot = true
