@@ -462,6 +462,18 @@ variable "oauthconnect_encryption_key" {
   description = "32 Character string used in oauth authentication.  Set this to blank if specified in the crypt blob."
 }
 
+variable "onedrive_client_id" {
+  type        = "string"
+  description = "Onedrive client ID"
+  default     = ""
+}
+
+variable "onedrive_secret_key" {
+  type        = "string"
+  description = "Onedrive application secret key"
+  default     = ""
+}
+
 variable "password_min_length" {
   type        = "string"
   description = "Minimum password length. Default: 8"
@@ -620,6 +632,18 @@ variable "services_subnet_id_2" {
 variable "services_user_init" {
   type        = "string"
   description = "Custom cloud-init that is rendered to be used on Service instances. (Not Recommened)"
+  default     = ""
+}
+
+variable "sharepoint_client_id" {
+  type        = "string"
+  description = "Sharepoint client ID"
+  default     = ""
+}
+
+variable "sharepoint_secret_key" {
+  type        = "string"
+  description = "Sharepoint application secret key"
   default     = ""
 }
 
