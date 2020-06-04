@@ -1,6 +1,20 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## NOT RELEASE YET
+#### Added
+* Added Logograb key
+    ```
+    module "platform" {
+      ...
+      # (Optional) logograb
+      logograb_key = ""
+      ...
+    }
+    ```
+
+---
+
 ## v0.2.2 - 2020-05-14
 #### Added
 * Added ML Service NLP.

@@ -440,6 +440,12 @@ variable "log_retention" {
   default     = "7"
 }
 
+variable "logograb_key" {
+  type        = "string"
+  description = "Logograb key"
+  default     = ""
+}
+
 variable "notifications_from_addr" {
   type        = "string"
   description = "The email address to use as the From address on email notifications. This must be an SES verified email address"
