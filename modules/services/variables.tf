@@ -57,6 +57,7 @@ variable "item_disable_transaction" {}
 variable "jwt_key" {}
 variable "key_name" {}
 variable "log_retention" {}
+variable "logograb_key" {}
 variable "max_cluster_size" {}
 variable "min_cluster_size" {}
 variable "mlservices_endpoint" {}

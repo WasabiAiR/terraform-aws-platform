@@ -135,6 +135,7 @@ module "services" {
   jwt_key                           = "${var.jwt_key}"
   key_name                          = "${var.key_name}"
   log_retention                     = "${var.log_retention}"
+  logograb_key                      = "${var.logograb_key}"
   max_cluster_size                  = "${var.services_max_cluster_size}"
   min_cluster_size                  = "${var.services_min_cluster_size}"
   mlservices_endpoint               = "${var.mlservices_endpoint}"

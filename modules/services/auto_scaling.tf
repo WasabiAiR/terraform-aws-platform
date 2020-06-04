@@ -172,6 +172,7 @@ data "template_file" "userdata" {
     indexer_concurrency               = "${var.indexer_concurrency}"
     item_disable_transaction          = "${var.item_disable_transaction}"
     jwt_key                           = "${var.jwt_key}"
+    logograb_key                      = "${var.logograb_key}"
     mlservices_endpoint               = "${var.mlservices_endpoint}"
     oauthconnect_encryption_key       = "${var.oauthconnect_encryption_key}"
     password_min_length               = "${var.password_min_length}"

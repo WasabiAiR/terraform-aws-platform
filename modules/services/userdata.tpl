@@ -109,6 +109,7 @@ write_files:
         gm_jwt_expiration_time=${gm_jwt_expiration_time}
         gm_jwt_private_key=${jwt_key}
         gm_license_key=${gm_license_key}
+        gm_logograb_api_key=${logograb_key}
         gm_recently_walked_expiration=1209600s
         gm_recently_walked_redis_key_prefix="recwalked:"
         gm_redis=${elasticache_services}:6379

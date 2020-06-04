@@ -186,6 +186,9 @@ module "platform" {
   # (Optional) Google maps - for plotting geocoded results on a map in the UI
   google_maps_key = ""
 
+  # (Optional) logograb
+  logograb_key = ""
+
   # (Optional) Segment.com Analytics Write Key. Set to an empty string to disable analytics.
   segment_write_key = ""
 
