@@ -123,6 +123,8 @@ write_files:
         gm_sqs_notifications=${sqs_notifications}
         gm_sqs_stage=${sqs_stage}
         gm_sqs_walk=${sqs_walk}
+        gm_temp_bucket_name=${temporary_bucket_name}
+        gm_temp_bucket_region=${region}
         gm_threshold_to_harvest=${gm_threshold_to_harvest}
         gm_usage_prefix=${gm_usage_prefix}
         gm_usageapi_stow_kind=s3
