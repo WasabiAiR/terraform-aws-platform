@@ -120,6 +120,7 @@ variable "statsd_host" {}
 variable "statsite_nsg" {}
 variable "subnet_id_1" {}
 variable "subnet_id_2" {}
+variable "temporary_bucket_arn" {}
 variable "temporary_bucket_name" {}
 variable "usage_s3_bucket_arn" {}
 variable "user_init" {}
