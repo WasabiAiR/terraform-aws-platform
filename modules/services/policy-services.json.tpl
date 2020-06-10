@@ -95,7 +95,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "${temporary_bucket_name}"
+                "${temporary_bucket_arn}"
             ]
         },
         {
@@ -106,7 +106,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "${temporary_bucket_name}/*"
+                "${temporary_bucket_arn}/*"
             ]
         }
     ],
