@@ -88,6 +88,26 @@
             "Resource": [
                 "${sns_topic_arn_harvest_complete}"
             ]
+        },
+        {
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "${temporary_bucket_name}"
+            ]
+        },
+        {
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "${temporary_bucket_name}/*"
+            ]
         }
     ],
     "Version": "2012-10-17"

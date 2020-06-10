@@ -198,6 +198,7 @@ module "services" {
   statsite_nsg                      = "${var.statsite_nsg}"
   subnet_id_1                       = "${var.services_subnet_id_1}"
   subnet_id_2                       = "${var.services_subnet_id_2}"
+  temporary_bucket_arn              = "${module.ecs.temporary_bucket_arn}"
   temporary_bucket_name             = "${module.ecs.temporary_bucket_name}"
   usage_s3_bucket_arn               = "${var.usage_s3_bucket_arn}"
   user_init                         = "${var.services_user_init}"
