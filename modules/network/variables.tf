@@ -248,6 +248,7 @@ variable "safelist" {
     ".graymeta.com",
     ".kairos.com",
     ".logograb.com",
+    ".microsoftonline.com",
     ".okta.com",
     ".picpurify.com",
     ".platform.bing.com",
