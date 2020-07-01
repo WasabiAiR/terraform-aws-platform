@@ -51,9 +51,9 @@ Various URLs that you will need:
 
 1. Create an Enterprise App using the `Integrate any other application you don't find in the gallery` option, then proceed to configure SSO/SAML.
 
-1. Set the Identifier (Entity ID) as `{endpoint}/saml/acs`
+1. Set the Identifier (Entity ID) as `{endpoint}/saml/metadata` 
 
-1. Set the Reply URL (Assertion Consumer Service URL) as `{endpoint}/saml/metadata`
+1. Set the Reply URL (Assertion Consumer Service URL) as `{endpoint}/saml/acs`
 
 1. Configure `Single Sign-On with SAML` in the Azure portal with the following attribute statements, and set your variables in Terraform:
     * `saml_attr_email       = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"` (user.mail)
