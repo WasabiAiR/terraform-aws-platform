@@ -1,3 +1,7 @@
+resource "aws_iam_service_linked_role" "es" {
+  aws_service_name = "es.amazonaws.com"
+}
+
 resource "aws_elasticsearch_domain" "es" {
   domain_name           = "graymeta-${var.platform_instance_id}"
   elasticsearch_version = "5.5"
@@ -36,6 +40,9 @@ resource "aws_elasticsearch_domain" "es" {
     ApplicationName    = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
+  depends_on = [
+    "aws_iam_service_linked_role.es",
+  ]
 }
 
 data "template_file" "policy" {
