@@ -40,6 +40,7 @@ resource "aws_elasticsearch_domain" "es" {
     ApplicationName    = "GrayMetaPlatform"
     PlatformInstanceID = "${var.platform_instance_id}"
   }
+
   depends_on = [
     "aws_iam_service_linked_role.es",
   ]
