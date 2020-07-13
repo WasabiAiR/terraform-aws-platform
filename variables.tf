@@ -474,7 +474,7 @@ variable "onedrive_client_id" {
   default     = ""
 }
 
-variable "onedrive_secret_key" {
+variable "onedrive_client_secret" {
   type        = "string"
   description = "Onedrive application secret key"
   default     = ""
@@ -647,7 +647,7 @@ variable "sharepoint_client_id" {
   default     = ""
 }
 
-variable "sharepoint_secret_key" {
+variable "sharepoint_client_secret" {
   type        = "string"
   description = "Sharepoint application secret key"
   default     = ""
