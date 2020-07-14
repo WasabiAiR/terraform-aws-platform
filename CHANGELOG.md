@@ -15,7 +15,6 @@ All notable changes to this project will be documented in this file.
 * Added Azure AD SAML instructions.  [README-saml](README-saml.md)
 * Added Onedrive and Sharepoint/Teams Oauth.  [README-oauth-storage](README-oauth-storage.md)
 #### Changed
-* New systems will setup the ES linked Role
 * Platform AMI update to version 2.0.4442.  Contact GrayMeta for more details
 
 ---
