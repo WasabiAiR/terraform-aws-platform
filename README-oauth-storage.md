@@ -43,11 +43,11 @@
 * Go to https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
 * Select "New registration"
   * Give your app a unique name
-  * Under "Supported Account Types" select "Accounts in this organizational directory only"
-  * Under "Redirect URI" enter in your base URL + connect.  Ex: `https://{dns_name}:8443/connect`
-* Record the "Application ID" as the `onedrive_app_key`
-* Create client secret under "Certificates & Secrets" and recode as the `onedrive_app_secret`
-* Permissions add the following graph api permissions as Delegated permissions.  User.Read, Files.Read, offline_access
+  * Under "Supported Account Types" select "Accounts in any organizational directory"
+  * Under "Redirect URI" enter in your base URL/connect.  Ex: `https://{dns_name}/connect`
+* Record the "Application ID" as the `onedrive_client_id`
+* Create client secret under "Certificates & Secrets" and recode as the `onedrive_client_secret`
+* Permissions: add the following Graph API permissions as Delegated permissions `User.Read`, `Files.Read`, `offline_access`
 * Deploy your Terraform environment
 
 ## Sharepoint
@@ -55,9 +55,9 @@
 * Go to https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
 * Select "New registration"
   * Give your app a unique name
-  * Under "Supported Account Types" select "Accounts in this organizational directory only"
-  * Under "Redirect URI" enter in your base URL + connect.  Ex: `https://{dns_name}:8443/connect`
-* Record the "Application ID" as the `sharepoint_app_key`
-* Create client secret under "Certificates & Secrets" and recode as the `sharepoint_app_secret`
-* Permissions add the following graph api permissions as Delegated permissions.  User.Read, Files.Read, offline_access, Group.Read.All
+  * Under "Supported Account Types" select "	Accounts in any organizational directory"
+  * Under "Redirect URI" enter in your base URL/connect.  Ex: `https://{dns_name}/connect`
+* Record the "Application ID" as the `sharepoint_client_id`
+* Create client secret under "Certificates & Secrets" and recode as the `sharepoint_client_secret`
+* Permissions: add the following Graph API permissions as Delegated permissions.  `User.Read`, `Files.Read`, `offline_access`, `Group.Read.All`
 * Deploy your Terraform environment
