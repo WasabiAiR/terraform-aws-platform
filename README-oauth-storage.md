@@ -45,8 +45,8 @@
   * Give your app a unique name
   * Under "Supported Account Types" select "Accounts in this organizational directory only"
   * Under "Redirect URI" enter in your base URL + connect.  Ex: `https://{dns_name}:8443/connect`
-* Record the "Application ID" as the `onedrive_app_key`
-* Create client secret under "Certificates & Secrets" and recode as the `onedrive_app_secret`
+* Record the "Application ID" as the `onedrive_client_id`
+* Create client secret under "Certificates & Secrets" and recode as the `onedrive_client_secret`
 * Permissions add the following graph api permissions as Delegated permissions.  User.Read, Files.Read, offline_access
 * Deploy your Terraform environment
 
@@ -57,7 +57,7 @@
   * Give your app a unique name
   * Under "Supported Account Types" select "Accounts in this organizational directory only"
   * Under "Redirect URI" enter in your base URL + connect.  Ex: `https://{dns_name}:8443/connect`
-* Record the "Application ID" as the `sharepoint_app_key`
-* Create client secret under "Certificates & Secrets" and recode as the `sharepoint_app_secret`
+* Record the "Application ID" as the `sharepoint_client_id`
+* Create client secret under "Certificates & Secrets" and recode as the `sharepoint_client_secret`
 * Permissions add the following graph api permissions as Delegated permissions.  User.Read, Files.Read, offline_access, Group.Read.All
 * Deploy your Terraform environment
