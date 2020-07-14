@@ -64,7 +64,7 @@ write_files:
         onedrive_client_id=${onedrive_client_id}
         onedrive_client_secret=${onedrive_client_secret}
         sharepoint_client_id=${sharepoint_client_id}
-        sharepoint_secret_key=${sharepoint_secret_key}
+        sharepoint_client_secret=${sharepoint_client_secret}
         external_data_api=https://${dns_name}/api/data
         external_file_api=https://${dns_name}/files
         external_scheduler_api=https://${dns_name}/api/scheduler

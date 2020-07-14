@@ -65,7 +65,7 @@ variable "notifications_from_addr" {}
 variable "notifications_region" {}
 variable "oauthconnect_encryption_key" {}
 variable "onedrive_client_id" {}
-variable "onedrive_secret_key" {}
+variable "onedrive_client_secret" {}
 variable "password_min_length" {}
 variable "platform_access_cidrs" {}
 variable "platform_instance_id" {}
@@ -87,7 +87,7 @@ variable "services_iam_role_name" {}
 variable "services_scale_down_threshold_cpu" {}
 variable "services_scale_up_threshold_cpu" {}
 variable "sharepoint_client_id" {}
-variable "sharepoint_secret_key" {}
+variable "sharepoint_client_secret" {}
 variable "sqs_activity" {}
 variable "sqs_activity_arn" {}
 variable "sqs_index" {}
