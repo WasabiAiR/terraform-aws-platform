@@ -16,7 +16,7 @@ resource "aws_sqs_queue" "my_notification_queue" {
 }
 
 module "s3_sqs" {
-    source = "github.com/graymeta/terraform-aws-platform//modules/s3_sqs?ref=v0.2.4"
+    source = "github.com/graymeta/terraform-aws-platform//modules/s3_sqs?ref=v0.2.5"
 
     platform_instance_id = "${local.platform_instance_id}"
     region               = "${local.region}"
