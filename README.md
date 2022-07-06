@@ -127,6 +127,7 @@ module "platform" {
   db_snapshot          = "" # Set to "final" after the initial deployment
   db_storage_encrypted = false
   db_username          = "mydbuser"
+  db_version           = "12"
 
   # ECS Cluster Configuration
   ecs_instance_type    = "c4.large"
@@ -202,12 +203,14 @@ module "platform" {
   harvest_complete_stow_fields = ""
 
   # (Optional) Graymeta ML Services
-  mlservices_endpoint = ""
+  # if not deploying GrayMeta ML Service uncomment the below and deploy empty array
+  # mlservices_endpoint = "${module.ml_network.endpoint}"
 
   # (Optional) Graymeta Faces Extractor
-  faces_endpoint = ""
+  # if not deploying GrayMeta Faces uncomment the below and deploy empty array
+  # faces_endpoint = "${module.faces.faces_endpoint}"
 
-  # (Optional) Celeberty detection
+  # (Optional) Celebrity detection
   gm_celeb_detection_enabled        = "false"
   gm_celeb_detection_interval       = "5m"
   gm_celeb_detection_min_confidence = "0.6"
