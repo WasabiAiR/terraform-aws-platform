@@ -47,6 +47,7 @@ module "faces" {
   instance_type          = "m5.large"
   max_cluster_size       = "2"
   min_cluster_size       = "1"
+  platform_instance_id   = "${local.platform_instance_id}"
   ml_loadbalancer_output = "${module.ml_network.ml_loadbalancer_output}"
   services_ecs_cidrs     = ["${module.network.ecs_cidrs}", "${module.network.services_cidrs}"]
 
@@ -59,6 +60,7 @@ module "faces" {
   rds_snapshot          = "" # Set to "final" after the initial deployment
   rds_subnet_id_1       = "${module.network.rds_subnet_id_1}"
   rds_subnet_id_2       = "${module.network.rds_subnet_id_2}"
+  rds_version           = "12"
 }
 
 # nld - (Optional) Natural Language Description extractor.
