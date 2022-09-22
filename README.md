@@ -6,6 +6,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 
 * `version` - Current version is `v0.2.5`
 * Terraform 11 is only supported at this time.
+* No AWS Root user security context should be used in the deployment of any/all Iris Anywhere services. Please follow the policy of least privilege for all access granted as part of the deployment.
 
 ### Variable Definitions
 * `customer` - Short name for you company.
