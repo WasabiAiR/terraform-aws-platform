@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.2.6 - 2022-10-14
+#### Changed
+* Platform AMI update to version 2.0.4650.  Contact GrayMeta for more details
 ## v0.2.5 - 2021-05-27
 #### Changed
 * Platform AMI update to version 2.0.4634.  Contact GrayMeta for more details

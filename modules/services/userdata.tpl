@@ -34,6 +34,16 @@ runcmd:
 - echo "net.ipv4.tcp_keepalive_intvl = 20" >> /etc/sysctl.conf
 - echo "net.ipv4.tcp_keepalive_probes = 5" >> /etc/sysctl.conf
 - sysctl -p
+- echo "running systemctl status chronyd"
+- systemctl status chronyd
+- echo "running chronyc tracking"
+- chronyc tracking
+- echo "running chronyc sources"
+- chronyc sources
+- echo "timedatectl command"
+- timedatectl
+- echo "systemctl restart chronyd"
+- systemctl restart chronyd
 write_files:
 -   content: |
         server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
