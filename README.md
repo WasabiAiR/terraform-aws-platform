@@ -4,7 +4,7 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 
 ![Graymeta Terraform Enterprise](images/Graymeta_Terraform_Enterprise.png)
 
-* `version` - Current version is `v0.2.5`
+* `version` - Current version is `v0.2.6`
 * Terraform 11 is only supported at this time.
 * Access to GrayMeta Curio AMI's for deployment - Contact support@graymeta.com.
 * Once successfully deployed, contact support@graymeta.com to license your product
@@ -69,13 +69,13 @@ locals {
 }
 
 module "servicesiam" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.2.5"
+  source = "github.com/graymeta/terraform-aws-platform//modules/servicesiam?ref=v0.2.6"
 
   platform_instance_id = "${local.platform_instance_id}"
 }
 
 module "network" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.2.5"
+  source = "github.com/graymeta/terraform-aws-platform//modules/network?ref=v0.2.6"
 
   az1                  = "${local.az1}"
   az2                  = "${local.az2}"
@@ -99,7 +99,7 @@ module "network" {
 
 
 module "platform" {
-  source = "github.com/graymeta/terraform-aws-platform?ref=v0.2.5"
+  source = "github.com/graymeta/terraform-aws-platform?ref=v0.2.6"
 
   customer                = "${local.customer}"
   dns_name                = "${local.dns_name}"
@@ -243,7 +243,7 @@ output "GrayMetaPlatformEndpoint" {
 
 # This is to share the usage bucket and contents with Graymeta.
 module "share_usage" {
-  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.2.5"
+  source = "github.com/graymeta/terraform-aws-platform//modules/usage?ref=v0.2.6"
 
   usage_s3_bucket_arn = "${local.usage_s3_bucket_arn}"
 }

@@ -37,7 +37,7 @@ module "servicesiam" {
 }
 ```
 
-Peform a `terraform plan` and `terraform apply`
+Perform a `terraform plan` and `terraform apply`
 
 
 ### Step 2: Create a KMS Customer Master Key
