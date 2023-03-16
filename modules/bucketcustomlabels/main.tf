@@ -4,6 +4,14 @@ resource "aws_s3_bucket" "bucket" {
 
   policy = "${data.aws_iam_policy_document.bucket.json}"
 
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+  
   lifecycle {
     prevent_destroy = true
   }
