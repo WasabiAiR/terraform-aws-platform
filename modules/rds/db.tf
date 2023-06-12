@@ -15,7 +15,7 @@ resource "aws_db_instance" "default" {
   name                       = "graymeta"
   password                   = "${var.db_password}"
   storage_encrypted          = "${var.db_storage_encrypted}"
-  storage_type               = "gp2"
+  storage_type               = "${var.db_storage_type}"
   username                   = "${var.db_username}"
   vpc_security_group_ids     = ["${aws_security_group.rds.id}"]
 
@@ -26,6 +26,7 @@ resource "aws_db_instance" "default" {
 
   lifecycle {
     ignore_changes = [
+      "allocated_storage",
       "storage_encrypted",
       "kms_key_id",
       "snapshot_identifier",

@@ -31,3 +31,9 @@ data "aws_subnet" "services_subnet_1" {
 data "aws_subnet" "services_subnet_2" {
   id = "${var.services_subnet_id_2}"
 }
+
+variable "db_storage_type" {
+  type = string
+  default = "gp2"
+  description = "(Optional) EBS volume type.  Default to `gp2`"
+}
