@@ -2,7 +2,7 @@
 
 Available on the [Terraform Registry](https://registry.terraform.io/modules/graymeta/platform/aws)
 
-![Graymeta Terraform Enterprise](images/Graymeta_Terraform_Enterprise.png)
+![Graymeta Terraform Enterprise](images/Curio-architecture-diagram-v3.png)
 
 * `version` - Current version is `v0.2.6`
 * Terraform 11 is only supported at this time.
