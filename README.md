@@ -10,6 +10,24 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 * Once successfully deployed, contact support@graymeta.com to license your product
 * No AWS Root user security context should be used in the deployment of any/all Iris Anywhere services. Please follow the policy of least privilege for all access granted as part of the deployment.
 
+### Specialized Knowledge
+* IAC
+  * Terraform - specifically versions 0.11.14 and 0.11.15
+* AWS Services familiarity with...
+  * IAM
+  * Route53
+  * EC2
+    * Specific compute needs  
+  * RDS
+  * ECS
+  * Elasticache (Redis)
+  * OpenSearch
+  * S3
+  * SQS
+  * ACM
+  * Networking/VPC
+
+
 ### Variable Definitions
 * `customer` - Short name for you company.
 * `platform_instance_id` - Pick a _platform instance id_ for this deployment of the GrayMeta platform. A short, descriptive name like `production`, `labs`, `test`, etc. that can be used to uniquely identify this deployment of the GrayMeta Platform within your environment.
