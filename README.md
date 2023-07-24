@@ -8,25 +8,39 @@ Available on the [Terraform Registry](https://registry.terraform.io/modules/gray
 * Terraform 11 is only supported at this time.
 * Access to GrayMeta Curio AMI's for deployment - Contact support@graymeta.com.
 * Once successfully deployed, contact support@graymeta.com to license your product
-* No AWS Root user security context should be used in the deployment of any/all Iris Anywhere services. Please follow the policy of least privilege for all access granted as part of the deployment.
+* No AWS Root user security context should be used in the deployment of any/all Iris Anywhere services. Please follow the policy of [least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) for all access granted as part of the deployment.
+
+### Deployment Duration
+New customers can expect deployment duration to last 2-3 hours.  Existing customers who have all pre-determined configurations in place can expect a deployment duration of 30 mins.
 
 ### Specialized Knowledge
 * IAC
   * Terraform - specifically versions 0.11.14 and 0.11.15
 * AWS Services familiarity with...
-  * IAM
-  * Route53
-  * EC2
+  * IAM (Free Service)
+    * Create necessary profile(s)
+    * Create keys
+  * Route53 (Billable Service)
+  * EC2 (Billable Service)
     * Specific compute needs  
-  * RDS
-  * ECS
-  * Elasticache (Redis)
-  * OpenSearch
-  * S3
-  * SQS
-  * ACM
-  * Networking/VPC
+  * RDS (Billable Service)
+  * ECS (Free Service)
+  * Elasticache - Redis (Billable Service)
+  * OpenSearch/ElasticSearch (Billable Service)
+  * S3 (Billable Service)
+  * ACM (Free Service)
+  * VPC/Networking (Free Service with optional Billable VPC services)
+  * NAT Gateway (Billable Service)
+  * Amazon Rekognition (Billable Service)
+  * SQS (optional) (Billable Service)
 
+### Sensitive Data
+User sensitive data will be stored/retrieved from the following...
+  * AWS Opensearch/Elasticsearch
+  * RDS/Postgres
+  * S3
+  * Terraform root module where configurations are set
+  * Redis for cached data
 
 ### Variable Definitions
 * `customer` - Short name for you company.
@@ -282,3 +296,35 @@ resource "aws_s3_bucket_public_access_block" "usage_s3_bucket" {
   restrict_public_buckets = true
 }
 ```
+
+### Test Your Deployment
+Upon successful `terraform apply` take the following steps to insure a successful deployment...
+* Step 1 - Wait approximately 15 minutes for the DNS record to propagate.
+* Step 2 - Enter your previously created CNAME into your browser.
+* Step 3 - If successful, you should land at the login page.
+* Step 4 - Login credentials can be obtained from your graymeta representative.
+* Step 5 - If you are able to login successfully, your curio app has been successfully installed!
+
+### Health Check
+AWS Cloudwatch alarms are deployed as part of the Graymeta terraform deployment.  Cloudwatch will alert the administrative users to any instabilities.
+
+### Backup and Recovery
+This Graymeta Curio deployment will produce backup snapshots of all databases, metadata2 files, main frames, and other files written to S3.  No further action is needed to backup critical data.
+
+### Common Deployment Issues
+The most common customer deployment issue we see is an unfamiliarity with terraform.  For this issue or any other challenges, please contact support@graymeta.com. 
+
+### Routine Maintenance
+The terraform code may need to be modified from time to time to maintain a rotating key schedule or launch a newer version of the curio platform.  Entering the new keys in the terraform code and executing a `terraform apply` will restart the Graymeta services and implement the new keys.  However, with a curio platform upgrade, a `terraform destroy`, `terraform init`, `terraform plan`, and `terraform apply` may be required.  Please contact support@graymeta.com for all your support needs.
+
+### Emergency Maintenance
+The Curio platform has been designed to be highly reproducible.  If ever a fault condition was found, whether it be hardware or software, the curio platform could be destroyed and fully recovered from the backup snapshots.  Prior to taking action, please contact support@graymeta.com for a full analysis.
+
+### Graymeta Support
+Graymeta provides 1 support tier.  Please contact support@graymeta.com for any support needs.
+
+### Graymeta Service-Level Agreement
+Each customer has different needs and will be provided a unique SLA that best suits their business requirements.
+
+### Cost Structure
+A instance license for Curio supports unlimited users and is an annually reoccurring license fee.  Depending on the deployment type (saas vs. self-managed) there are different content ingest thresholds.  The GrayMeta core ML suite are included with the license and any additional ML capability (3rd party ML) customer must provide their own keys to supported services.
