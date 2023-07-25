@@ -317,6 +317,22 @@ The most common customer deployment issue we see is an unfamiliarity with terraf
 ### Routine Maintenance
 The terraform code may need to be modified from time to time to maintain a rotating key schedule or launch a newer version of the curio platform.  Entering the new keys in the terraform code and executing a `terraform apply` will restart the Graymeta services and implement the new keys.  However, with a curio platform upgrade, a `terraform destroy`, `terraform init`, `terraform plan`, and `terraform apply` may be required.  Please contact support@graymeta.com for all your support needs.
 
+### AWS Quotas & Service Limits
+Select an AWS service to view it's service limits.
+* [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html)
+* [Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html)
+* [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html)
+* [RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html)
+* [ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html)
+* [ElastiCache/Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/quota-limits.html)
+* [OpenSearch/ElasticSearch](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/limits.html)
+* [S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html)
+* [ACM](https://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html)
+* [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html)
+* [NAT Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
+* [Amazon Rekognition](https://docs.aws.amazon.com/rekognition/latest/dg/limits.html)
+* [SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html)
+
 ### Emergency Maintenance
 The Curio platform has been designed to be highly reproducible.  If ever a fault condition was found, whether it be hardware or software, the curio platform could be destroyed and fully recovered from the backup snapshots.  Prior to taking action, please contact support@graymeta.com for a full analysis.
 
