@@ -8,5 +8,6 @@ resource "aws_elasticache_cluster" "services" {
   num_cache_nodes      = 1
   security_group_ids   = ["${aws_security_group.elasticache.id}"]
   subnet_group_name    = "${aws_elasticache_subnet_group.cache.name}"
-  parameter_group_name = "default.redis3.2"
+  //parameter_group_name = "default.redis3.2"
+  parameter_group_name = "default.redis7"
 }
